@@ -4,4 +4,16 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Saul/Hallway.unity
+    guid: 8b163e1459dde7541ba48ec89d91a90c
+  - enabled: 1
+    path: Assets/Saul/TestScene.unity
+    guid: f36fce9f517795e4ba009bb421169cc1
+  - enabled: 1
+    path: Assets/Saul/scene2.unity
+    guid: efb29ceef34385f46bfd82ec303a4e5a
+  - enabled: 1
+    path: Assets/Saul/CRUDScene.unity
+    guid: 7a6bed1b3ad242b43b89a5ffc6b39fe0
