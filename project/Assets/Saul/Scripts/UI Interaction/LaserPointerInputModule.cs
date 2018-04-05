@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 namespace Wacki {
 
@@ -45,6 +46,7 @@ namespace Wacki {
             
             // Create a new camera that will be used for raycasts
             UICamera = new GameObject("UI Camera").AddComponent<Camera>();
+            SceneManager.MoveGameObjectToScene(UICamera.gameObject, SceneManager.GetSceneByBuildIndex(0));
             // Added PhysicsRaycaster so that pointer events are sent to 3d objects
             raycaster = UICamera.gameObject.AddComponent<PhysicsRaycaster>();
             UICamera.clearFlags = CameraClearFlags.Nothing;

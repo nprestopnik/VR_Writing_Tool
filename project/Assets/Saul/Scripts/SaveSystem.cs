@@ -14,16 +14,16 @@ public class SaveSystem : MonoBehaviour {
     {
         instance = this; 
 
-        print("Testing for save at: " + Application.persistentDataPath + "/testSave.save");
-        if(File.Exists(Application.persistentDataPath + "/testSave.save"))
-        {
-            //Load save
-            currentSave = loadSaveWithName("testSave");
-        } else
-        {
-            //Create new save
-            createNewSave("testSave");
-        }
+        // print("Testing for save at: " + Application.persistentDataPath + "/testSave.save");
+        // if(File.Exists(Application.persistentDataPath + "/testSave.save"))
+        // {
+        //     //Load save
+        //     currentSave = loadSaveWithName("testSave");
+        // } else
+        // {
+        //     //Create new save
+        //     createNewSave("testSave");
+        // }
 
         //DEBUG: Lists the names of all the available saves
         Save[] saves = listSaves();
@@ -44,13 +44,13 @@ public class SaveSystem : MonoBehaviour {
 		
 	}
 
-    public void deleteSave(string name)
+    public void deleteSave(string path)
     {
-        print("DELETING: Testing for save at: " + Application.persistentDataPath + "/" + name + ".save");
-        if (File.Exists(Application.persistentDataPath + "/" + name + ".save"))
+        print("DELETING: Testing for save at: " + path);
+        if (File.Exists(path))
         {
             //Save exists
-            File.Delete(Application.persistentDataPath + "/" + name + ".save");
+            File.Delete(path);
         }
         else
         {
@@ -58,15 +58,17 @@ public class SaveSystem : MonoBehaviour {
         }
     }
 
-    public void createNewSave(string name)
+    public Save createNewSave(string name)
     {
         //Create new save and set it to the current one
         Save newSave = new Save(name);
         currentSave = newSave;
-        saveCurrentSave();
+        
+        currentSave.path = saveCurrentSave();
+        return currentSave;
     }
 
-    public void saveCurrentSave()
+    public string saveCurrentSave()
     {
         print("SAVING: Testing for save at: " + Application.persistentDataPath + "/" + currentSave.name + ".save");
         if (File.Exists(Application.persistentDataPath + "/" + currentSave.name + ".save"))
@@ -83,6 +85,7 @@ public class SaveSystem : MonoBehaviour {
         string file = JsonUtility.ToJson(currentSave);
         output.Write(file);
         output.Close();
+        return (Application.persistentDataPath + "/" + currentSave.name + ".save");
     }
 
     public Save loadSaveWithName(string name)
