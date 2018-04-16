@@ -8,7 +8,7 @@ using System.IO;
 public class SaveSystem : MonoBehaviour {
 
     public static SaveSystem instance;
-    public Save currentSave;
+    Save currentSave;
 
     void Awake()
     {
@@ -37,7 +37,7 @@ public class SaveSystem : MonoBehaviour {
         //SceneManager.LoadSceneAsync(currentSave.currentRoomID, LoadSceneMode.Additive);
 
         //Sets the hallway goal scene to the current save's last open scene
-        Hallway.instance.setGoalScene(currentSave.currentRoomID);
+        //Hallway.instance.setGoalScene(currentSave.currentRoomIndex);
 	}
 	
 	void Update () {
@@ -58,20 +58,23 @@ public class SaveSystem : MonoBehaviour {
         }
     }
 
-    public Save createNewSave(string name)
+    public Save createNewSave(string path)
     {
         //Create new save and set it to the current one
+        print(path.Length + " " + (path.Length - 5 - 1) + " " + ((Application.persistentDataPath + "/").Length - 1));
+        string name = path.Substring((Application.persistentDataPath + "/").Length, path.Length - 5 - (Application.persistentDataPath + "/").Length );
         Save newSave = new Save(name);
         currentSave = newSave;
         
-        currentSave.path = saveCurrentSave();
+        currentSave.path = path;
+        saveCurrentSave();
         return currentSave;
     }
 
     public string saveCurrentSave()
     {
-        print("SAVING: Testing for save at: " + Application.persistentDataPath + "/" + currentSave.name + ".save");
-        if (File.Exists(Application.persistentDataPath + "/" + currentSave.name + ".save"))
+        print("SAVING: Testing for save at: " + currentSave.path);
+        if (File.Exists(currentSave.path))
         {
             //Save already exists
         }
@@ -81,11 +84,11 @@ public class SaveSystem : MonoBehaviour {
         }
 
         //Converts the save into JSON and saves it to a file
-        StreamWriter output = new StreamWriter(Application.persistentDataPath + "/" + currentSave.name + ".save");
+        StreamWriter output = new StreamWriter(currentSave.path);
         string file = JsonUtility.ToJson(currentSave);
         output.Write(file);
         output.Close();
-        return (Application.persistentDataPath + "/" + currentSave.name + ".save");
+        return (currentSave.path);
     }
 
     public Save loadSaveWithName(string name)

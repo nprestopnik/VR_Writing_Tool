@@ -8,6 +8,8 @@ public class Hallway : MonoBehaviour {
     public static Hallway instance;
 
     public int goalSceneID = 2;
+    Room goalRoom;
+    int goalRoomIndex;
 
     [Tooltip("This point should be dead center in a perfectly symmetrical hallway")]
     public Transform rotatePoint;
@@ -39,7 +41,7 @@ public class Hallway : MonoBehaviour {
             SceneManager.UnloadSceneAsync(activeScene.buildIndex);
 
             //Updates the save data and then saves it
-            SaveSystem.instance.getCurrentSave().currentRoomID = goalSceneID;
+            SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
             SaveSystem.instance.saveCurrentSave();
             
             //TEMPORARY: Sets the goal scene to the other scene
@@ -49,8 +51,10 @@ public class Hallway : MonoBehaviour {
     }
 
     //Sets the goal scene ID
-    public void setGoalScene(int newGoal)
+    public void setGoalScene(int index)
     {
-        goalSceneID = newGoal;
+        goalRoomIndex = index;
+        goalRoom = SaveSystem.instance.getCurrentSave().rooms[goalRoomIndex];
+        goalSceneID = goalRoom.sceneID;
     }
 }

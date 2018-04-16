@@ -16,7 +16,7 @@ public class SavePanel : MonoBehaviour {
 
 	public void loadSave() {
 		SaveSystem.instance.setCurrentSave(save);
-		Hallway.instance.setGoalScene(save.currentRoomID);
+		Hallway.instance.setGoalScene(save.currentRoomIndex);
 	}
 
 	public void deleteSave() {

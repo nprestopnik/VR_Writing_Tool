@@ -10,13 +10,16 @@ public class Save {
     public string path;
     //Identification
     public string name;
-    //Last scene that the player was in
-    public int currentRoomID;
+    //Last room that the player was in
+    public int currentRoomIndex;
+
+    public List<Room> rooms;
 
     public Save(string name)
     {
         this.name = name;
-        currentRoomID = 1;
+        currentRoomIndex = 0;
+        rooms = new List<Room>(new Room[]{new Room("Base Room", 1)});
     }
 
     

@@ -8,19 +8,28 @@ public class CRUDMenu : MonoBehaviour {
 
 	public Text textDisplay;
 
+	public GameObject contentPanel;
+	public GameObject savePanelPrefab;
+
 	void Start () {
 		Save[] saves = SaveSystem.instance.listSaves();
-		string text = "";
-		foreach(Save s in saves) {
-			text += s.name + " | " + s.currentRoomID + " | " + s.path + "\n\n";
-		}
-		textDisplay.text = text;
 
-		//Open save from browse file menu??
-		//string path = EditorUtility.OpenFilePanel("Open a save", Application.persistentDataPath, "save");
+		foreach(Save s in saves) {
+			SavePanel p = ((GameObject)Instantiate(savePanelPrefab, contentPanel.transform)).GetComponent<SavePanel>();
+			p.initSave(s);
+		}
 	}
 	
-	void Update () {
-		
+	public void Update() {
+		if(Input.GetKeyDown(KeyCode.P)) {
+			createNewSave();
+		}
+	}
+
+	public void createNewSave() {
+		string path = EditorUtility.SaveFilePanel("Choose a name for the save", Application.persistentDataPath, "project", "save");
+		Save newSave = SaveSystem.instance.createNewSave(path);
+		SavePanel p = ((GameObject)Instantiate(savePanelPrefab, contentPanel.transform)).GetComponent<SavePanel>();
+		p.initSave(newSave);
 	}
 }
