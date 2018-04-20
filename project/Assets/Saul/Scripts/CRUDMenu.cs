@@ -31,5 +31,7 @@ public class CRUDMenu : MonoBehaviour {
 		Save newSave = SaveSystem.instance.createNewSave(path);
 		SavePanel p = ((GameObject)Instantiate(savePanelPrefab, contentPanel.transform)).GetComponent<SavePanel>();
 		p.initSave(newSave);
+		//Hallway.instance.setGoalScene(1);
+		p.loadSave();
 	}
 }

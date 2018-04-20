@@ -1,7 +1,7 @@
 sceneSetups:
-- path: Assets/Saul/Hallway.unity
-  isLoaded: 1
-  isActive: 0
 - path: Assets/Saul/CRUDScene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Saul/Hallway.unity
+  isLoaded: 1
+  isActive: 0

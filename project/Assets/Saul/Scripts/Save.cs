@@ -13,13 +13,28 @@ public class Save {
     //Last room that the player was in
     public int currentRoomIndex;
 
-    public List<Room> rooms;
+
+    [SerializeField]
+    Room[] rooms;
 
     public Save(string name)
     {
         this.name = name;
         currentRoomIndex = 0;
-        rooms = new List<Room>(new Room[]{new Room("Base Room", 1)});
+        rooms = new Room[]{new Room("CRUD Room", 3), new Room("Base Room", 1), new Room("Secondary Room", 2)};
+    }
+
+    public void addRoom(Room newRoom) {
+        Room[] temp = new Room[rooms.Length + 1];
+        for(int i = 0 ; i < rooms.Length; i++) {
+            temp[i] = rooms[i];
+        }
+        temp[rooms.Length] = newRoom;
+        rooms = temp;
+    }
+
+    public Room[] getRoomsArray() {
+        return rooms;
     }
 
     
