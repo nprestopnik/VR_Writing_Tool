@@ -25,6 +25,6 @@ public class RoomPanelHolder : MonoBehaviour {
 
 	public void roomClick() {
 		Hallway.instance.setGoalScene(roomIndex);
-		ControllerMenu.instance.loadRooms();
+		//ControllerMenu.instance.loadRooms();
 	}
 }

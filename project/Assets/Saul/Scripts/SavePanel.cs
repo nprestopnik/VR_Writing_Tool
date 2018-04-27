@@ -16,12 +16,12 @@ public class SavePanel : MonoBehaviour {
 
 	public void loadSave() {
 		SaveSystem.instance.setCurrentSave(save);
-		if(save.currentRoomIndex != Hallway.instance.goalRoomIndex)
+		if(Hallway.instance.testSetGoalScene(save.currentRoomIndex))
 			Hallway.instance.setGoalScene(save.currentRoomIndex);
 		else {
 			Hallway.instance.setGoalScene(1);
 		}
-		ControllerMenu.instance.loadRooms();
+		//ControllerMenu.instance.loadRooms();
 	}
 
 	public void deleteSave() {

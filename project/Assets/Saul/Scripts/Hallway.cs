@@ -7,7 +7,7 @@ public class Hallway : MonoBehaviour {
 
     public static Hallway instance;
 
-    public int goalSceneID = 2;
+    int goalSceneID = 3;
 
     public Room goalRoom;
     public int goalRoomIndex=0;
@@ -22,6 +22,7 @@ public class Hallway : MonoBehaviour {
 	void Start () {
         //TEMPORARY: Sets goal scene to the loaded scene
         //goalSceneID = (saveSystem.currentSave.currentRoomID == 2) ? 1 : 2;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 	
 	void Update () {
@@ -42,10 +43,12 @@ public class Hallway : MonoBehaviour {
             SceneManager.UnloadSceneAsync(activeScene.buildIndex);
 
             //Updates the save data and then saves it
+          
             int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
             SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
             goalRoomIndex = temp;
-            setGoalScene(goalRoomIndex);
+            // setGoalScene(goalRoomIndex);
+            
             SaveSystem.instance.saveCurrentSave();
 
             
@@ -55,13 +58,24 @@ public class Hallway : MonoBehaviour {
         }
     }
 
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        setGoalScene(goalRoomIndex);
+    }
+
     //Sets the goal scene ID
-    public void setGoalScene(int index)
+    public bool setGoalScene(int index)
     {
-        //if(index != goalRoomIndex) {
+        if(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex) {
             goalRoomIndex = index;
             goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
             goalSceneID = goalRoom.sceneID;
-        //}
+            ControllerMenu.instance.loadRooms();
+            return true;
+        }
+        return false;
+    }
+
+    public bool testSetGoalScene(int index) {
+        return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
     }
 }

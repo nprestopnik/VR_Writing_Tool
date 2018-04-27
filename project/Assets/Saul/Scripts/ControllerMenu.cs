@@ -28,15 +28,15 @@ public class ControllerMenu : MonoBehaviour {
 
 		//FIX THIS
 		for(int i = 0; i < rooms.Length; i++) {
-			if(i != Hallway.instance.goalRoomIndex && i != SaveSystem.instance.getCurrentSave().currentRoomIndex) {
+			if(Hallway.instance.testSetGoalScene(i)) {
 				RoomPanelHolder p = ((GameObject)Instantiate(roomPanelPrefab, contentPanel.transform)).GetComponent<RoomPanelHolder>();
 				p.loadRoom(i);
-			}
+			}	
 		}
 	}
 
 	void onSceneLoad(Scene scene, LoadSceneMode sceneMode){
-		loadRooms();
+		//loadRooms();
 	}
 	
 	void Update () {

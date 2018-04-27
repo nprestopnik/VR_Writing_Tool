@@ -11,6 +11,8 @@ public class SceneActivator : MonoBehaviour {
 	void Start () {
         //Sets the correct scene as active for lighting and scene loading to work.
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(buildIndex));
+        //ControllerMenu.instance.loadRooms();
+        Hallway.instance.setGoalScene(Hallway.instance.goalRoomIndex);
     }
 	
 }
