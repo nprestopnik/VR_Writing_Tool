@@ -65,13 +65,16 @@ public class Hallway : MonoBehaviour {
     //Sets the goal scene ID
     public bool setGoalScene(int index)
     {
-        if(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex) {
-            goalRoomIndex = index;
-            goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
-            goalSceneID = goalRoom.sceneID;
-            ControllerMenu.instance.loadRooms();
-            return true;
+        if(SaveSystem.instance.getCurrentSave() != null) {
+            if(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex) {
+                goalRoomIndex = index;
+                goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
+                goalSceneID = goalRoom.sceneID;
+                ControllerMenu.instance.loadRooms();
+                return true;
+            }
         }
+        
         return false;
     }
 
