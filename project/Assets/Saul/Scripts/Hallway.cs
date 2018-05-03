@@ -10,6 +10,7 @@ public class Hallway : MonoBehaviour {
     int goalSceneID = 3;
 
     public Room goalRoom;
+    public Room currentRoom;
     public int goalRoomIndex=0;
 
     [Tooltip("This point should be dead center in a perfectly symmetrical hallway")]
@@ -43,7 +44,7 @@ public class Hallway : MonoBehaviour {
             SceneManager.UnloadSceneAsync(activeScene.buildIndex);
 
             //Updates the save data and then saves it
-          
+            currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
             int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
             SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
             goalRoomIndex = temp;
@@ -66,7 +67,7 @@ public class Hallway : MonoBehaviour {
     public bool setGoalScene(int index)
     {
         if(SaveSystem.instance.getCurrentSave() != null) {
-            if(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex) {
+            if(testSetGoalScene(index)) {
                 goalRoomIndex = index;
                 goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
                 goalSceneID = goalRoom.sceneID;
@@ -79,6 +80,9 @@ public class Hallway : MonoBehaviour {
     }
 
     public bool testSetGoalScene(int index) {
-        return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
+        //return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
+        //FIX THIS
+        //Selecting a room with the same buildIndex (Background/Scenery) does not work.
+        return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
     }
 }
