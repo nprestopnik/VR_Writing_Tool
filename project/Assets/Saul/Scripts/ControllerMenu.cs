@@ -44,6 +44,18 @@ public class ControllerMenu : MonoBehaviour {
 			saveNameText.text = SaveSystem.instance.getCurrentSave().name;
 			goalRoomText.text = Hallway.instance.goalRoom.name;
 		}
+	}
 
+	public void createRoom() {
+		Room newRoom = new Room(randomName(), 2);
+		SaveSystem.instance.getCurrentSave().addRoom(newRoom);
+		loadRooms();
+		SaveSystem.instance.saveCurrentSave();
+	}
+
+	string[] names = new string[]{"Aloha", "Banana", "Room Land", "Testy McTest", "Bloopy Bloop"};
+
+	string randomName() {
+		return names[Random.Range(0, names.Length)];
 	}
 }
