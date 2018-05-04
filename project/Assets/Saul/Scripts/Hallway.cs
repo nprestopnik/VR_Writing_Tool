@@ -39,9 +39,16 @@ public class Hallway : MonoBehaviour {
             col.transform.root.RotateAround(rotatePoint.position, Vector3.up, 180);
      
             //Swaps scenes
-            SceneManager.LoadSceneAsync(goalSceneID, LoadSceneMode.Additive);
-            Scene activeScene = SceneManager.GetActiveScene();
-            SceneManager.UnloadSceneAsync(activeScene.buildIndex);
+            //Tests for scenery being the same in each room 
+            //Problematic because scene does not reset
+            if(goalSceneID != SceneManager.GetActiveScene().buildIndex) {
+                SceneManager.LoadSceneAsync(goalSceneID, LoadSceneMode.Additive);
+                Scene activeScene = SceneManager.GetActiveScene();
+                SceneManager.UnloadSceneAsync(activeScene.buildIndex);
+            } else {
+                setGoalScene(goalRoomIndex);
+            }
+            
 
             //Updates the save data and then saves it
             currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];

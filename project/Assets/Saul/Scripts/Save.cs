@@ -33,6 +33,12 @@ public class Save {
         rooms = temp;
     }
 
+    public void deleteRoom(int index) {
+        List<Room> tempList = new List<Room>(rooms);
+        tempList.RemoveAt(index);
+        rooms = tempList.ToArray();
+    }
+
     public Room[] getRoomsArray() {
         return rooms;
     }
