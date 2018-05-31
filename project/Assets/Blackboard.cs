@@ -9,8 +9,11 @@ public class Blackboard : MonoBehaviour {
 	bool isProximity = false;
 	bool isFinger = false;
 
-	void Start (){
-		slider.manager = Leap.Unity.Interaction.InteractionManager.instance;
+	DrawLineManagerEvents dlme;
+
+	void Awake (){
+		//slider.manager = Leap.Unity.Interaction.InteractionManager.instance;
+		dlme = GetComponent<DrawLineManagerEvents>();
 	}
 	
 	public void proximityEnter() {
@@ -41,5 +44,7 @@ public class Blackboard : MonoBehaviour {
 		} 
 
 	}
+
+
 	
 }
