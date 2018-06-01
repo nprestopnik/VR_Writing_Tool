@@ -12,10 +12,8 @@ public class Blackboard2 : MonoBehaviour {
 
 	public GameObject pointer;
 
-
-	//private LineRenderer currLine;
-	private GraphicsLineRenderer currLine;
 	private LineRenderer currLineR;
+	private List<Vector3> points;
 
 	private int numClicks = 0;
 	//DrawLineManagerEvents dlme;
@@ -31,63 +29,36 @@ public class Blackboard2 : MonoBehaviour {
 		if (button.isHovered) {
 			pointer.transform.position = button.primaryHoveringControllerPoint;
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
-
-			//currLine.SetVertexCount (numClicks + 1);
-			//currLine.SetPosition (numClicks, trackedObj.transform.position);
-
-			// if(button.primaryHoverDistance <= 0.1f) {
-			// 	currLine.AddPoint(button.primaryHoveringControllerPoint);
-			// 	numClicks++;
-			// } else {
-			// 	currLine = null;
-			// 	numClicks = 0;
-			// }
-			
-			
 		}
 
-		if(currLine != null) {
-			
-
-
-			//currLine.AddPoint(hand.fingers[1].bones[3].transform.position);
-			currLine.AddPoint(pointer.transform.position);
-			numClicks++;
-
-			if( (transform.worldToLocalMatrix * button.primaryHoveringController.velocity).z < -15f) {
-				//end();
-			}
-		}
 
 		if(currLineR != null) {
-
+			Vector3 newPos = transform.root.rotation * Vector3.Scale(pointer.transform.localPosition, transform.root.localScale);
+			currLineR.SetPositions(points.ToArray());
+			currLineR.positionCount = points.Count;
+			currLineR.SetPosition(currLineR.positionCount - 1, newPos);
+			points.Add(newPos);
 		}
 	}
 
 	public void begin(){
 		print("begin");
 		GameObject go = new GameObject (); 
-		go.AddComponent<MeshFilter> ();
-		go.AddComponent<MeshRenderer> ();
-		currLine = go.AddComponent<GraphicsLineRenderer> ();
 
-		currLine.lmat = lMat;
-
-		//currLine.SetWidth (.1f, .1f);
-		currLine.SetWidth (lineWidth);
-		numClicks = 0;
-
-		// currLineR = go.AddComponent<LineRenderer>();
-		// currLineR.startWidth = lineWidth;
-		// currLineR.endWidth = lineWidth;
-
+		currLineR = go.AddComponent<LineRenderer>();
+		currLineR.startWidth = lineWidth;
+		currLineR.endWidth = lineWidth;
+		currLineR.material = lMat;
+		currLineR.useWorldSpace = false;
+		points = new List<Vector3>();
+		points.Add(transform.root.rotation * Vector3.Scale(pointer.transform.localPosition, transform.root.localScale));
 
 		go.transform.SetParent(transform.root);
+		go.transform.localPosition = Vector3.zero;
 	}
 
 	public void end(){
 		print("end");
-		currLine = null;
 		currLineR = null;
 	}
 }
