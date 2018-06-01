@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Blackboard : MonoBehaviour {
 
-	public Leap.Unity.Interaction.InteractionSlider slider;
+	Leap.Unity.Interaction.InteractionSlider slider;
 
 	bool isProximity = false;
 	bool isFinger = false;
@@ -12,7 +12,7 @@ public class Blackboard : MonoBehaviour {
 	DrawLineManagerEvents dlme;
 
 	void Awake (){
-		//slider.manager = Leap.Unity.Interaction.InteractionManager.instance;
+		slider = GetComponent<Leap.Unity.Interaction.InteractionSlider>();
 		dlme = GetComponent<DrawLineManagerEvents>();
 	}
 	
@@ -34,6 +34,10 @@ public class Blackboard : MonoBehaviour {
 	public void fingerExit() {
 		print("end finger");
 		isFinger = false;
+	}
+
+	public void updateDrawPosition() {
+		//slider.tr = slider.primaryHoveringControllerPoint;
 	}
 
 	void Update() {

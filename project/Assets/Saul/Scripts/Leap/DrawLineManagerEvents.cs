@@ -10,9 +10,11 @@ public class DrawLineManagerEvents : MonoBehaviour {
 
 	//private LineRenderer currLine;
 	private MeshLineRenderer currLine;
+	Transform trackedObj;
 
 	private int numClicks = 0;
 	public void beginDraw() {
+		
 		GameObject go = new GameObject (); 
 		//currLine = go.AddComponent<LineRenderer> ();
 		go.AddComponent<MeshFilter> ();
