@@ -16,12 +16,10 @@ public class Blackboard2 : MonoBehaviour {
 	private List<Vector3> points;
 
 	private int numClicks = 0;
-	//DrawLineManagerEvents dlme;
 
 	// Use this for initialization
 	void Start () {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
-		//dlme = GetComponent<DrawLineManagerEvents>();
 	}
 	
 	// Update is called once per frame
@@ -42,7 +40,7 @@ public class Blackboard2 : MonoBehaviour {
 	}
 
 	public void begin(){
-		print("begin");
+		//print("begin");
 		GameObject go = new GameObject (); 
 
 		currLineR = go.AddComponent<LineRenderer>();
@@ -58,7 +56,7 @@ public class Blackboard2 : MonoBehaviour {
 	}
 
 	public void end(){
-		print("end");
+		//print("end");
 		currLineR = null;
 	}
 }
