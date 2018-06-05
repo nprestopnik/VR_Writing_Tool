@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlackboardMaterialSwapper : MonoBehaviour {
 
-	public Blackboard2 bb2;
+	public Blackboard bb2;
 	public Material m;
 	
 
