@@ -275,7 +275,8 @@ MonoBehaviour:
   save:
     path: 
     name: 
-    currentRoomID: 0
+    currentRoomIndex: 0
+    rooms: []
   nameText: {fileID: 114991578058943392}
 --- !u!114 &114549510526174878
 MonoBehaviour:
