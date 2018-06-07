@@ -11,17 +11,21 @@ public class Blackboard : MonoBehaviour {
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
 
+	//Original Material for the line
 	public Material lMat;
+	//Original line width
 	public float lineWidth = 0.01f;
 
-	
 
+	//The line currently being drawn
 	private LineRenderer currLineR;
+	//Data for history and undo/redo
 	private LineData currData;
 	private List<Vector3> points;
 	private List<LineData> history;
 	private List<LineData> redoHistory;
 
+	//Used for sorting order
 	private int numLines = 0;
 
 	// Use this for initialization
@@ -70,6 +74,7 @@ public class Blackboard : MonoBehaviour {
 	//Called when finger makes contact with the board
 	public void begin(){
 		GameObject go = new GameObject (); 
+		go.tag = "BoardLine";
 
 		currData = go.AddComponent<LineData>();
 		currLineR = go.AddComponent<LineRenderer>();
@@ -133,6 +138,7 @@ public class Blackboard : MonoBehaviour {
 			LineData l = redoHistory[redoHistory.Count - 1];
 			
 			GameObject go = new GameObject (); 
+			go.tag = "BoardLine";
 
 			currData = go.AddComponent<LineData>();
 			currData.lineWidth = l.lineWidth;
@@ -167,5 +173,19 @@ public class Blackboard : MonoBehaviour {
 			currData = null;
 		}	
 		
+	}
+
+	public void clear() {
+		foreach(Transform t in  transform.parent) {
+			if(t.tag.Equals("BoardLine")) {
+				// LineData l = t.gameObject.GetComponent<LineData>();
+				// LineData lhistory = new LineData();
+				// lhistory.points = l.points;
+				// lhistory.lineWidth = l.lineWidth;
+				// lhistory.lMat = l.lMat;
+				// history.Add(lhistory);
+				Destroy(t.gameObject);
+			}
+		}
 	}
 }
