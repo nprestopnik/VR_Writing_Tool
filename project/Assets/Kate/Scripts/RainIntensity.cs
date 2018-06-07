@@ -64,7 +64,7 @@ public class RainIntensity : MonoBehaviour {
 				sound.volume = 0.7f;
 				break;
 			case 3:
-				rainEmission.rate = 375;
+				rainEmission.rate = 350;
 				sound.clip = heavyRain;
 				sound.volume = 0.5f;
 				break;
