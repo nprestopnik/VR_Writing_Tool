@@ -9,7 +9,9 @@ public class MenuProximityShow : MonoBehaviour {
 	private float showTimestamp;
 	private float hoverTimestamp;
 
+	//Time finger has to hover for target to display
 	private float hoverShowDelay = 0.1f;
+	//Time finger has to be gone for target to dissapear 
 	private float showHideDelay = 0.5f;
 
 	void Start () {
@@ -23,8 +25,6 @@ public class MenuProximityShow : MonoBehaviour {
 	}
 
 	public void beginShow() {
-		//target.SetActive(true);
-		//showCooldown = Time.time + 1f;
 		hoverTimestamp = Time.time + hoverShowDelay;
 	}
 
@@ -38,7 +38,6 @@ public class MenuProximityShow : MonoBehaviour {
 	}
 
 	public void endShow() {
-		//target.SetActive(false);
-		//showCooldown = Time.time + 1f;
+
 	}
 }

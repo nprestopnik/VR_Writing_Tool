@@ -126,6 +126,7 @@ public class Blackboard : MonoBehaviour {
 		transform.localScale = new Vector3 (globalScale.x/transform.lossyScale.x, globalScale.y/transform.lossyScale.y, globalScale.z/transform.lossyScale.z);
 	}
 
+	//Destroys the gameobject and stores its data in a list
 	public void Undo() {
 		LineData l = history[history.Count - 1];
 		redoHistory.Add(l);
@@ -133,6 +134,8 @@ public class Blackboard : MonoBehaviour {
 		history.RemoveAt(history.Count - 1);
 	}
 
+
+	//Takes the data from the history and creates a new gameobject line
 	public void Redo() {
 		if(redoHistory.Count > 0) {
 			LineData l = redoHistory[redoHistory.Count - 1];
@@ -151,8 +154,6 @@ public class Blackboard : MonoBehaviour {
 			currLineR.material = l.lMat;
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
-			//points = new List<Vector3>();
-			//points.Add(pointer.transform.localPosition);
 			
 			currLineR.sortingOrder = numLines;
 			numLines++;
@@ -175,6 +176,8 @@ public class Blackboard : MonoBehaviour {
 		
 	}
 
+
+	//Deletes all lines. Non-reversable
 	public void clear() {
 		foreach(Transform t in  transform.parent) {
 			if(t.tag.Equals("BoardLine")) {
