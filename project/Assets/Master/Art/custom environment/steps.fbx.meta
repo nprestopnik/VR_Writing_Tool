@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 43520987068c12443ad932a4f0bf7aa1
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: pCube268
+    100002: pCube45
+    100004: pCube46
+    100006: pCube47
+    100008: pCube48
+    100010: pCube49
+    100012: pCube50
+    100014: pCube51
+    100016: pCube52
+    100018: pCube53
+    100020: pCube54
+    100022: pCube55
+    100024: pCube56
+    100026: stair_down
+    100028: stair_down1
+    100030: stair_down2
+    100032: stair_down3
+    100034: stair_up1
+    100036: stair_up2
+    100038: //RootNode
+    100040: transform336
+    100042: transform337
+    100044: transform338
+    100046: transform339
+    100048: transform340
+    100050: transform341
+    100052: transform342
+    100054: transform343
+    100056: transform344
+    100058: transform345
+    100060: transform346
+    100062: transform347
+    100064: transform348
+    100066: transform349
+    100068: transform350
+    100070: transform351
+    100072: transform352
+    100074: transform353
+    400000: pCube268
+    400002: pCube45
+    400004: pCube46
+    400006: pCube47
+    400008: pCube48
+    400010: pCube49
+    400012: pCube50
+    400014: pCube51
+    400016: pCube52
+    400018: pCube53
+    400020: pCube54
+    400022: pCube55
+    400024: pCube56
+    400026: stair_down
+    400028: stair_down1
+    400030: stair_down2
+    400032: stair_down3
+    400034: stair_up1
+    400036: stair_up2
+    400038: //RootNode
+    400040: transform336
+    400042: transform337
+    400044: transform338
+    400046: transform339
+    400048: transform340
+    400050: transform341
+    400052: transform342
+    400054: transform343
+    400056: transform344
+    400058: transform345
+    400060: transform346
+    400062: transform347
+    400064: transform348
+    400066: transform349
+    400068: transform350
+    400070: transform351
+    400072: transform352
+    400074: transform353
+    2100000: plank3
+    2100002: plank2
+    2100004: plank1
+    2100006: plank4
+    2100008: oldplank
+    2300000: pCube268
+    3300000: pCube268
+    4300000: pCube268
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: oldplank
+    second: {fileID: 2100000, guid: f7e00c0899474f345801a6979174c6ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2100000, guid: a7f98c7ba093ea44d971b36542061775, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank2
+    second: {fileID: 2100000, guid: 12fe2cbdee537d5439ebe7cec1537ac6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank3
+    second: {fileID: 2100000, guid: 26b5b8cdd40109a43a15f30502c72f9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank4
+    second: {fileID: 2100000, guid: ad072ea8bfce6a343965885588a4a02d, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2800000, guid: c9af1ab11250c6f4a924b30bee99a973, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank2
+    second: {fileID: 2800000, guid: 0324b18579b548a478610e7e010d0ff8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank3
+    second: {fileID: 2800000, guid: 2685a1d2cbe3a4842a84a28f89ebab99, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank4
+    second: {fileID: 2800000, guid: a7a4e5eb3b91ddc498715cd6e2e69238, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: planks_rough
+    second: {fileID: 2800000, guid: f76583ad8f5da7148a4639cdeb1b346e, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
