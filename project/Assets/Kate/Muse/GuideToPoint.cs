@@ -9,6 +9,7 @@ public class GuideToPoint : MonoBehaviour {
 	public float activationSpeed = 5.0f;
 	public bool guiding = false;
 	public bool activation = false;
+	public bool deactivation = false;
 
 	private Vector3 pos;
 	
@@ -19,7 +20,7 @@ public class GuideToPoint : MonoBehaviour {
 	void Update () {
 		if (guiding) {
 			if(transform.position != target.position) {
-				if (activation) {
+				if (activation || deactivation) {
 					pos = Vector3.MoveTowards(transform.position, target.position, activationSpeed * Time.deltaTime);
 				}
 				else {
@@ -29,6 +30,10 @@ public class GuideToPoint : MonoBehaviour {
 			} else {
 				guiding = false;
 				activation = false;
+				if (deactivation) {
+					this.gameObject.SetActive(false);
+					deactivation = false;
+				}
 			}
 		}
 	}

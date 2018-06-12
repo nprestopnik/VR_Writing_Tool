@@ -4,49 +4,54 @@ using UnityEngine;
 
 public class MuseController : MonoBehaviour {
 
+	public GameObject muse;
+
 	public Transform idlePoint;
 	public Transform spawnPoint;
-	public Transform targetPoint;
+	public Transform deskTargetPoint;
 
-	public float floatStrength = 1;
-	
-	private float originalY;
 	private GuideToPoint guide;
 
+	//how these buttons work is subject to change based on what the menu ends up being
+	//this setup is mostly just for testing
+	private GameObject confirmButton;
+	private GameObject returnButton;
+
 	void Start () {
-		guide = GetComponent<GuideToPoint>();
-		originalY = transform.position.y;
+		guide = muse.GetComponent<GuideToPoint>();
+		confirmButton = this.transform.Find("Confirm").gameObject;
+		returnButton = this.transform.Find("Return").gameObject;
 	}
 	
 	void Update () {
-
-		//check to see if the muse is moving to a point - only hover when not moving
-		bool guiding = GetComponent<GuideToPoint>().guiding;
-		if (!guiding){
-			transform.position = new Vector3(transform.position.x, 
-				originalY + ((float)Mathf.Sin(Time.time) * floatStrength),
-				transform.position.z);
-		} else {
-			originalY = transform.position.y;
+		if (muse.transform.position == idlePoint.position) {
+			confirmButton.SetActive(true);
+			returnButton.SetActive(true);
 		}
-
 	}
 
 	public void ActivateMuse() {
+		muse.SetActive(true);
 		guide.activation = true;
 		guide.guiding = true;
 		guide.target = idlePoint;
 	}
 
 	public void DeactivateMuse(){
-		guide.activation = true;
+		confirmButton.SetActive(false);
+		returnButton.SetActive(false);
+
+		guide.deactivation = true;
 		guide.guiding = true;
 		guide.target = spawnPoint;
 	}
 
-	public void MuseGuide(){
+	public void GoToDesk(){
+		confirmButton.SetActive(false);
+		returnButton.SetActive(false);
+		
 		guide.guiding = true;
-		guide.target = targetPoint;
+		guide.target = deskTargetPoint;
 	}
 }
 
