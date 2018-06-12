@@ -24,7 +24,11 @@ public class MuseController : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (muse.transform.position == idlePoint.position) {
+		//if (muse.transform.position == idlePoint.position) {
+		//accommodating for hovering motion:
+		if (muse.transform.position.x == idlePoint.position.x && muse.transform.position.z == idlePoint.position.z
+			&& (muse.transform.position.y < idlePoint.position.y+0.1 || muse.transform.position.y > idlePoint.position.y-0.1)) {
+			
 			confirmButton.SetActive(true);
 			returnButton.SetActive(true);
 		}
@@ -52,6 +56,18 @@ public class MuseController : MonoBehaviour {
 		
 		guide.guiding = true;
 		guide.target = deskTargetPoint;
+
+		Transform desk = deskTargetPoint.parent;
+		desk.gameObject.SetActive(true);
+		muse.transform.SetParent(desk);
+	}
+
+	public void ParkDesk() {
+		guide.parked = true;
+	}
+
+	public void UnParkDesk() {
+		guide.parked = false;
 	}
 }
 

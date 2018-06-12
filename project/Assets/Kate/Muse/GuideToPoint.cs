@@ -10,6 +10,7 @@ public class GuideToPoint : MonoBehaviour {
 	public bool guiding = false;
 	public bool activation = false;
 	public bool deactivation = false;
+	public bool parked = false;
 
 	private Vector3 pos;
 	
