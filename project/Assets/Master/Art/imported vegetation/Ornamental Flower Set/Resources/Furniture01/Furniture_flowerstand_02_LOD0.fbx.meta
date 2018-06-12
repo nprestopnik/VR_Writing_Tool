@@ -11,7 +11,13 @@ ModelImporter:
     3300000: Furniture_flowerstand_02
     4300000: Furniture_flowerstand_02
     9500000: //RootNode
-  externalObjects: {}
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F_flowerstand_02_00_mt
+    second: {fileID: 2100000, guid: d68a099a5d2cb9a4cbc4704b802e7b64, type: 2}
   materials:
     importMaterials: 1
     materialName: 1

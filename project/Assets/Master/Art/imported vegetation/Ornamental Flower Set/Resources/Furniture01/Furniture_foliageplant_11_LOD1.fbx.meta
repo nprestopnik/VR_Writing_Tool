@@ -16,7 +16,18 @@ ModelImporter:
     4300000: F_foliageplant_11_LOD1_01
     4300002: F_foliageplant_11_LOD1_02
     9500000: //RootNode
-  externalObjects: {}
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F_foliageplant_11_00_mt
+    second: {fileID: 2100000, guid: 3974e1e362d653b4bab3f18bcf674a11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F_foliageplant_11_01_mt
+    second: {fileID: 2100000, guid: 912333969d23f9049ae4f66246b5e952, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
