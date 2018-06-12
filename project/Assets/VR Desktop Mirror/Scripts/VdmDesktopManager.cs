@@ -1,4 +1,4 @@
-﻿#define VDM_SteamVR
+﻿//#define VDM_SteamVR
 
 using UnityEngine;
 using System;

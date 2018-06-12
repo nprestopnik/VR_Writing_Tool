@@ -1,4 +1,4 @@
-﻿#define VDM_SteamVR
+﻿//#define VDM_SteamVR
 
 using UnityEngine;
 using System;
@@ -74,8 +74,10 @@ public class VdmDesktop : MonoBehaviour
         bool skip = false;
         if (Visible() == false)
             skip = true;
+#if VDM_SteamVR
         if ((m_controllerAttach) && (m_zoom == false))
             skip = true;
+#endif
         if(skip == false)    
         {   
             float step = 0;
