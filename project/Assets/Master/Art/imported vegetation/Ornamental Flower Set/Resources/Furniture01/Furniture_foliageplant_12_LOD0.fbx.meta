@@ -16,7 +16,17 @@ ModelImporter:
     4300000: Furniture_foliageplant_12_B
     4300002: Furniture_foliageplant_12_A
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F_foliageplant_12_00_mt
+    second: {fileID: 2100000, guid: dbd63d7adde266b42af51074e86e760d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: F_foliageplant_12_01_mt
+    second: {fileID: 2100000, guid: 09af724328de2044ea06f307dfd72916, type: 2}
   materials:
     importMaterials: 1
     materialName: 1
@@ -55,7 +65,7 @@ ModelImporter:
     importCameras: 0
     importLights: 0
     swapUVChannels: 1
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0

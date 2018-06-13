@@ -10,7 +10,12 @@ ModelImporter:
     4300000: Mesh
     7400000: Take 001
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ch8_v3
+    second: {fileID: 2100000, guid: b3a7801346a5c544a8d00bf1fbc7b156, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -49,7 +54,7 @@ ModelImporter:
     importCameras: 0
     importLights: 0
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
