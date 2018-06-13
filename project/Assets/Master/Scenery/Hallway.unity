@@ -6368,7 +6368,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.043611623, y: 0.08580369}
   m_AnchorMax: {x: 0.94400007, y: 0.8651474}
-  m_AnchoredPosition: {x: 0.10003662, y: 1.1000061}
+  m_AnchoredPosition: {x: 0.10003662, y: 1.0999756}
   m_SizeDelta: {x: -0.9000244, y: 6.299988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &794713957
@@ -13658,7 +13658,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5000305}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1161975379
@@ -14061,6 +14061,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1269643047}
+  - component: {fileID: 1269643048}
   m_Layer: 0
   m_Name: HandModels
   m_TagString: Player
@@ -14085,6 +14086,18 @@ Transform:
   m_Father: {fileID: 245570354}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1269643048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269643046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08a1deb076a76df4293805bb8544bcd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hands: []
 --- !u!4 &1271078042 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4829828358790816, guid: 40e809833d307ef4983e1e71fe56e23b,
@@ -15400,7 +15413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5000305}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721972457

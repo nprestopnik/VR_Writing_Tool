@@ -146,6 +146,11 @@ public class VdmDesktop : MonoBehaviour
         return (m_renderer.enabled);
     }
 
+    public void setDesktopTransform(Transform goal) {
+        m_positionNormal = goal.position;
+        m_rotationNormal = goal.rotation;
+    }
+
     public void CheckKeyboardAndMouse()
     {
         if (Input.GetKeyDown(m_manager.KeyboardShow))
@@ -224,6 +229,55 @@ public class VdmDesktop : MonoBehaviour
                 m_positionZoomed += deltaCursor;
             }
             
+        }
+    }
+
+    public void CheckRaycast(Vector3 rayOrigin, Vector3 rayDirection) {
+        Vector3 origin;
+        Vector3 direction;
+        //Quaternion rotation;
+
+        origin = rayOrigin;
+        direction = rayDirection;
+        //rotation = rayOrigin.rotation;  
+
+        if(Visible()) {
+            RaycastHit[] rcasts = Physics.RaycastAll(origin, direction);
+
+            foreach (RaycastHit rcast in rcasts)
+            {
+                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 0.3f)
+                    continue;
+
+                //hitScreen = true;
+
+                if (m_manager.ShowLine)
+                {
+                    m_line.enabled = true;
+                    m_line.SetPosition(0, origin);
+                    m_line.SetPosition(1, rcast.point);
+                }
+                else
+                {
+                    m_line.enabled = false;
+                }
+
+                float dx = m_manager.GetScreenWidth(Screen);
+                float dy = m_manager.GetScreenHeight(Screen);
+
+                float vx = rcast.textureCoord.x;
+                float vy = rcast.textureCoord.y;
+
+                vy = 1 - vy;
+
+                float x = (vx * dx);
+                float y = (vy * dy);
+
+                int iX = (int)x;
+                int iY = (int)y;
+
+                m_manager.SetCursorPos(iX, iY);
+            }
         }
     }
 
