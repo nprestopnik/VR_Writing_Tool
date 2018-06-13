@@ -10,7 +10,6 @@ public class GuideToPoint : MonoBehaviour {
 	public bool guiding = false;
 	public bool activation = false;
 	public bool deactivation = false;
-	public bool parked = false;
 
 	private Vector3 pos;
 	
@@ -37,5 +36,15 @@ public class GuideToPoint : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void GuideTo(Transform targetPoint) {
+		guiding = true;
+		target = targetPoint;
+	}
+
+	public bool IsAtTarget() {
+		if (guiding) return false;
+		else return true;
 	}
 }

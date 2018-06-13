@@ -18,8 +18,7 @@ public class MuseHover : MonoBehaviour {
 
 		//check to see if the muse is moving to a point - only hover when not moving
 		bool guiding = GetComponent<GuideToPoint>().guiding;
-		bool parked = GetComponent<GuideToPoint>().parked;
-		if (!guiding && !parked){
+		if (!guiding){
 			transform.position = new Vector3(transform.position.x, 
 				originalY + ((float)Mathf.Sin(Time.time)/10 * floatStrength),
 				transform.position.z);
