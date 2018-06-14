@@ -195,7 +195,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400106, guid: 74226c0fe7dabdf4dbacf80c7451d859, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.119
       objectReference: {fileID: 0}
     - target: {fileID: 400106, guid: 74226c0fe7dabdf4dbacf80c7451d859, type: 3}
       propertyPath: m_LocalPosition.z
@@ -318,10 +318,27 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 123619246}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.41146362, y: -0.57469445, z: 0.41670913, w: 0.5716446}
+  m_LocalPosition: {x: 1.68, y: 2.39, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 71.692, y: -89.845, z: 0.63600004}
+--- !u!1 &2049927917 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100106, guid: 74226c0fe7dabdf4dbacf80c7451d859, type: 3}
+  m_PrefabInternal: {fileID: 62927176}
+--- !u!114 &2049927918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2049927917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a07493a7ef336f4aba39b0e484a0d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solidKey: {fileID: 2100000, guid: 28d4305c16efd834dafb8edc949eb6b0, type: 2}
+  hoverKey: {fileID: 2100000, guid: b63f444f15ddb0e4f8bc91d300da0f22, type: 2}
