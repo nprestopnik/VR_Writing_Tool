@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: fdb3cb7bf15713142910797c736fbd36
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: deck_floor
+    100002: //RootNode
+    100004: left_walk
+    100006: passage_floor
+    100008: pCube66
+    100010: pCube67
+    100012: pCube68
+    100014: pCube69
+    100016: right_walk
+    100018: right_walk1
+    100020: transform445
+    100022: transform446
+    100024: transform447
+    100026: transform448
+    100028: transform449
+    100030: transform450
+    100032: transform451
+    100034: transform452
+    400000: deck_floor
+    400002: //RootNode
+    400004: left_walk
+    400006: passage_floor
+    400008: pCube66
+    400010: pCube67
+    400012: pCube68
+    400014: pCube69
+    400016: right_walk
+    400018: right_walk1
+    400020: transform445
+    400022: transform446
+    400024: transform447
+    400026: transform448
+    400028: transform449
+    400030: transform450
+    400032: transform451
+    400034: transform452
+    2100000: deck1
+    2100002: oldplank
+    2100004: lambert1
+    2100006: planks_interior
+    2100008: plank3
+    2100010: window_dark
+    2100012: plank1
+    2300000: right_walk1
+    3300000: right_walk1
+    4300000: right_walk1
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: deck1
+    second: {fileID: 2100000, guid: a03da65d9e5a7134a8d1a981f13885d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: de5399128abad594d87655c71cba97d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: oldplank
+    second: {fileID: 2100000, guid: f7e00c0899474f345801a6979174c6ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2100000, guid: a7f98c7ba093ea44d971b36542061775, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank3
+    second: {fileID: 2100000, guid: 26b5b8cdd40109a43a15f30502c72f9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: planks_interior
+    second: {fileID: 2100000, guid: e1e5ff382e88cd546816134e8ec53a6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window_dark
+    second: {fileID: 2100000, guid: de5399128abad594d87655c71cba97d0, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,943 @@
+fileFormatVersion: 2
+guid: 6d912f6975a5fc643b516fca84615d93
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: b
+    100002: b 1
+    100004: b 10
+    100006: b 11
+    100008: b 12
+    100010: b 13
+    100012: b 14
+    100014: b 15
+    100016: b 16
+    100018: b 17
+    100020: b 18
+    100022: b 19
+    100024: b 2
+    100026: b 3
+    100028: b 4
+    100030: b 5
+    100032: b 6
+    100034: b 7
+    100036: b 8
+    100038: b 9
+    100040: b1
+    100042: b1 1
+    100044: b1 10
+    100046: b1 11
+    100048: b1 12
+    100050: b1 13
+    100052: b1 14
+    100054: b1 15
+    100056: b1 16
+    100058: b1 17
+    100060: b1 18
+    100062: b1 19
+    100064: b1 2
+    100066: b1 20
+    100068: b1 21
+    100070: b1 3
+    100072: b1 4
+    100074: b1 5
+    100076: b1 6
+    100078: b1 7
+    100080: b1 8
+    100082: b1 9
+    100084: b10
+    100086: b10 1
+    100088: b11
+    100090: b12
+    100092: b13
+    100094: b2
+    100096: b2 1
+    100098: b2 10
+    100100: b2 11
+    100102: b2 12
+    100104: b2 13
+    100106: b2 14
+    100108: b2 15
+    100110: b2 16
+    100112: b2 17
+    100114: b2 18
+    100116: b2 19
+    100118: b2 2
+    100120: b2 20
+    100122: b2 21
+    100124: b2 22
+    100126: b2 3
+    100128: b2 4
+    100130: b2 5
+    100132: b2 6
+    100134: b2 7
+    100136: b2 8
+    100138: b2 9
+    100140: b24
+    100142: b25
+    100144: b3
+    100146: b3 1
+    100148: b3 2
+    100150: b3 3
+    100152: b3 4
+    100154: b3 5
+    100156: b3 6
+    100158: b3 7
+    100160: b4
+    100162: b4 1
+    100164: b4 10
+    100166: b4 11
+    100168: b4 12
+    100170: b4 13
+    100172: b4 14
+    100174: b4 15
+    100176: b4 16
+    100178: b4 17
+    100180: b4 18
+    100182: b4 2
+    100184: b4 3
+    100186: b4 4
+    100188: b4 5
+    100190: b4 6
+    100192: b4 7
+    100194: b4 8
+    100196: b4 9
+    100198: b5
+    100200: b6
+    100202: b6 1
+    100204: b6 2
+    100206: b6 3
+    100208: b6 4
+    100210: b6 5
+    100212: b6 6
+    100214: b6 7
+    100216: b6 8
+    100218: b6 9
+    100220: b7
+    100222: b8
+    100224: b8 1
+    100226: b8 2
+    100228: b8 3
+    100230: b8 4
+    100232: b9
+    100234: b9 1
+    100236: b9 2
+    100238: b9 3
+    100240: b9 4
+    100242: pCube173
+    100244: pCube174
+    100246: pCube175
+    100248: pCube181
+    100250: pCube182
+    100252: pCube194
+    100254: pCube195
+    100256: pCube210
+    100258: pCube212
+    100260: pCube219
+    100262: pCube220
+    100264: pCube221
+    100266: pCube222
+    100268: pCube223
+    100270: pCube224
+    100272: pCube225
+    100274: pCube226
+    100276: pCube227
+    100278: pCube228
+    100280: pCube229
+    100282: pCube230
+    100284: pCube231
+    100286: pCube232
+    100288: pCube233
+    100290: pCube234
+    100292: pCube235
+    100294: pCube236
+    100296: pCube237
+    100298: pCube238
+    100300: pCube239
+    100302: railing
+    100304: railing 1
+    100306: railing 10
+    100308: railing 11
+    100310: railing 12
+    100312: railing 13
+    100314: railing 14
+    100316: railing 15
+    100318: railing 16
+    100320: railing 17
+    100322: railing 18
+    100324: railing 19
+    100326: railing 2
+    100328: railing 20
+    100330: railing 21
+    100332: railing 22
+    100334: railing 3
+    100336: railing 4
+    100338: railing 5
+    100340: railing 6
+    100342: railing 7
+    100344: railing 8
+    100346: railing 9
+    100348: railing1
+    100350: railing2
+    100352: //RootNode
+    100354: runner
+    100356: runner1
+    100358: runner10
+    100360: runner11
+    100362: runner12
+    100364: runner13
+    100366: runner14
+    100368: runner15
+    100370: runner16
+    100372: runner17
+    100374: runner18
+    100376: runner19
+    100378: runner2
+    100380: runner20
+    100382: runner21
+    100384: runner22
+    100386: runner23
+    100388: runner24
+    100390: runner25
+    100392: runner26
+    100394: runner3
+    100396: runner4
+    100398: runner5
+    100400: runner6
+    100402: runner7
+    100404: runner8
+    100406: runner9
+    100408: transform134
+    100410: transform135
+    100412: transform136
+    100414: transform137
+    100416: transform138
+    100418: transform139
+    100420: transform140
+    100422: transform141
+    100424: transform142
+    100426: transform143
+    100428: transform144
+    100430: transform145
+    100432: transform146
+    100434: transform147
+    100436: transform148
+    100438: transform149
+    100440: transform150
+    100442: transform151
+    100444: transform152
+    100446: transform153
+    100448: transform154
+    100450: transform155
+    100452: transform156
+    100454: transform157
+    100456: transform158
+    100458: transform159
+    100460: transform160
+    100462: transform161
+    100464: transform162
+    100466: transform163
+    100468: transform164
+    100470: transform165
+    100472: transform166
+    100474: transform167
+    100476: transform168
+    100478: transform169
+    100480: transform170
+    100482: transform171
+    100484: transform172
+    100486: transform173
+    100488: transform174
+    100490: transform175
+    100492: transform176
+    100494: transform177
+    100496: transform178
+    100498: transform179
+    100500: transform180
+    100502: transform181
+    100504: transform182
+    100506: transform183
+    100508: transform184
+    100510: transform185
+    100512: transform186
+    100514: transform187
+    100516: transform188
+    100518: transform189
+    100520: transform190
+    100522: transform191
+    100524: transform192
+    100526: transform193
+    100528: transform194
+    100530: transform195
+    100532: transform196
+    100534: transform197
+    100536: transform198
+    100538: transform199
+    100540: transform200
+    100542: transform201
+    100544: transform202
+    100546: transform203
+    100548: transform204
+    100550: transform205
+    100552: transform206
+    100554: transform207
+    100556: transform208
+    100558: transform209
+    100560: transform210
+    100562: transform211
+    100564: transform212
+    100566: transform213
+    100568: transform214
+    100570: transform215
+    100572: transform216
+    100574: transform217
+    100576: transform218
+    100578: transform219
+    100580: transform220
+    100582: transform221
+    100584: transform222
+    100586: transform223
+    100588: transform224
+    100590: transform225
+    100592: transform226
+    100594: transform227
+    100596: transform228
+    100598: transform229
+    100600: transform230
+    100602: transform231
+    100604: transform232
+    100606: transform233
+    100608: transform234
+    100610: transform235
+    100612: transform236
+    100614: transform237
+    100616: transform238
+    100618: transform239
+    100620: transform240
+    100622: transform241
+    100624: transform242
+    100626: transform243
+    100628: transform244
+    100630: transform245
+    100632: transform246
+    100634: transform247
+    100636: transform248
+    100638: transform249
+    100640: transform250
+    100642: transform251
+    100644: transform252
+    100646: transform253
+    100648: transform254
+    100650: transform255
+    100652: transform256
+    100654: transform257
+    100656: transform258
+    100658: transform259
+    100660: transform260
+    100662: transform261
+    100664: transform262
+    100666: transform263
+    100668: transform264
+    100670: transform265
+    100672: transform266
+    100674: transform267
+    100676: transform268
+    100678: transform269
+    100680: transform270
+    100682: transform271
+    100684: transform272
+    100686: transform273
+    100688: transform274
+    100690: transform275
+    100692: transform276
+    100694: transform277
+    100696: transform278
+    100698: transform279
+    100700: transform280
+    100702: transform281
+    100704: transform282
+    100706: transform283
+    100708: transform284
+    100710: transform285
+    100712: transform286
+    100714: transform287
+    100716: transform288
+    100718: transform289
+    100720: transform290
+    100722: transform291
+    100724: transform292
+    100726: transform293
+    100728: transform294
+    100730: transform295
+    100732: transform296
+    100734: transform297
+    100736: transform298
+    100738: transform299
+    100740: transform300
+    100742: transform301
+    100744: transform302
+    100746: transform303
+    100748: transform304
+    100750: transform305
+    100752: transform306
+    100754: transform307
+    100756: transform308
+    100758: transform309
+    100760: transform310
+    100762: transform311
+    100764: transform312
+    100766: transform313
+    100768: transform314
+    100770: transform315
+    100772: transform316
+    100774: transform317
+    100776: transform318
+    100778: transform319
+    100780: transform320
+    100782: transform321
+    100784: transform322
+    100786: transform323
+    100788: transform324
+    100790: transform325
+    100792: transform326
+    100794: transform327
+    100796: transform328
+    100798: transform329
+    100800: transform330
+    100802: transform331
+    100804: transform332
+    100806: transform333
+    100808: transform334
+    100810: transform335
+    400000: b
+    400002: b 1
+    400004: b 10
+    400006: b 11
+    400008: b 12
+    400010: b 13
+    400012: b 14
+    400014: b 15
+    400016: b 16
+    400018: b 17
+    400020: b 18
+    400022: b 19
+    400024: b 2
+    400026: b 3
+    400028: b 4
+    400030: b 5
+    400032: b 6
+    400034: b 7
+    400036: b 8
+    400038: b 9
+    400040: b1
+    400042: b1 1
+    400044: b1 10
+    400046: b1 11
+    400048: b1 12
+    400050: b1 13
+    400052: b1 14
+    400054: b1 15
+    400056: b1 16
+    400058: b1 17
+    400060: b1 18
+    400062: b1 19
+    400064: b1 2
+    400066: b1 20
+    400068: b1 21
+    400070: b1 3
+    400072: b1 4
+    400074: b1 5
+    400076: b1 6
+    400078: b1 7
+    400080: b1 8
+    400082: b1 9
+    400084: b10
+    400086: b10 1
+    400088: b11
+    400090: b12
+    400092: b13
+    400094: b2
+    400096: b2 1
+    400098: b2 10
+    400100: b2 11
+    400102: b2 12
+    400104: b2 13
+    400106: b2 14
+    400108: b2 15
+    400110: b2 16
+    400112: b2 17
+    400114: b2 18
+    400116: b2 19
+    400118: b2 2
+    400120: b2 20
+    400122: b2 21
+    400124: b2 22
+    400126: b2 3
+    400128: b2 4
+    400130: b2 5
+    400132: b2 6
+    400134: b2 7
+    400136: b2 8
+    400138: b2 9
+    400140: b24
+    400142: b25
+    400144: b3
+    400146: b3 1
+    400148: b3 2
+    400150: b3 3
+    400152: b3 4
+    400154: b3 5
+    400156: b3 6
+    400158: b3 7
+    400160: b4
+    400162: b4 1
+    400164: b4 10
+    400166: b4 11
+    400168: b4 12
+    400170: b4 13
+    400172: b4 14
+    400174: b4 15
+    400176: b4 16
+    400178: b4 17
+    400180: b4 18
+    400182: b4 2
+    400184: b4 3
+    400186: b4 4
+    400188: b4 5
+    400190: b4 6
+    400192: b4 7
+    400194: b4 8
+    400196: b4 9
+    400198: b5
+    400200: b6
+    400202: b6 1
+    400204: b6 2
+    400206: b6 3
+    400208: b6 4
+    400210: b6 5
+    400212: b6 6
+    400214: b6 7
+    400216: b6 8
+    400218: b6 9
+    400220: b7
+    400222: b8
+    400224: b8 1
+    400226: b8 2
+    400228: b8 3
+    400230: b8 4
+    400232: b9
+    400234: b9 1
+    400236: b9 2
+    400238: b9 3
+    400240: b9 4
+    400242: pCube173
+    400244: pCube174
+    400246: pCube175
+    400248: pCube181
+    400250: pCube182
+    400252: pCube194
+    400254: pCube195
+    400256: pCube210
+    400258: pCube212
+    400260: pCube219
+    400262: pCube220
+    400264: pCube221
+    400266: pCube222
+    400268: pCube223
+    400270: pCube224
+    400272: pCube225
+    400274: pCube226
+    400276: pCube227
+    400278: pCube228
+    400280: pCube229
+    400282: pCube230
+    400284: pCube231
+    400286: pCube232
+    400288: pCube233
+    400290: pCube234
+    400292: pCube235
+    400294: pCube236
+    400296: pCube237
+    400298: pCube238
+    400300: pCube239
+    400302: railing
+    400304: railing 1
+    400306: railing 10
+    400308: railing 11
+    400310: railing 12
+    400312: railing 13
+    400314: railing 14
+    400316: railing 15
+    400318: railing 16
+    400320: railing 17
+    400322: railing 18
+    400324: railing 19
+    400326: railing 2
+    400328: railing 20
+    400330: railing 21
+    400332: railing 22
+    400334: railing 3
+    400336: railing 4
+    400338: railing 5
+    400340: railing 6
+    400342: railing 7
+    400344: railing 8
+    400346: railing 9
+    400348: railing1
+    400350: railing2
+    400352: //RootNode
+    400354: runner
+    400356: runner1
+    400358: runner10
+    400360: runner11
+    400362: runner12
+    400364: runner13
+    400366: runner14
+    400368: runner15
+    400370: runner16
+    400372: runner17
+    400374: runner18
+    400376: runner19
+    400378: runner2
+    400380: runner20
+    400382: runner21
+    400384: runner22
+    400386: runner23
+    400388: runner24
+    400390: runner25
+    400392: runner26
+    400394: runner3
+    400396: runner4
+    400398: runner5
+    400400: runner6
+    400402: runner7
+    400404: runner8
+    400406: runner9
+    400408: transform134
+    400410: transform135
+    400412: transform136
+    400414: transform137
+    400416: transform138
+    400418: transform139
+    400420: transform140
+    400422: transform141
+    400424: transform142
+    400426: transform143
+    400428: transform144
+    400430: transform145
+    400432: transform146
+    400434: transform147
+    400436: transform148
+    400438: transform149
+    400440: transform150
+    400442: transform151
+    400444: transform152
+    400446: transform153
+    400448: transform154
+    400450: transform155
+    400452: transform156
+    400454: transform157
+    400456: transform158
+    400458: transform159
+    400460: transform160
+    400462: transform161
+    400464: transform162
+    400466: transform163
+    400468: transform164
+    400470: transform165
+    400472: transform166
+    400474: transform167
+    400476: transform168
+    400478: transform169
+    400480: transform170
+    400482: transform171
+    400484: transform172
+    400486: transform173
+    400488: transform174
+    400490: transform175
+    400492: transform176
+    400494: transform177
+    400496: transform178
+    400498: transform179
+    400500: transform180
+    400502: transform181
+    400504: transform182
+    400506: transform183
+    400508: transform184
+    400510: transform185
+    400512: transform186
+    400514: transform187
+    400516: transform188
+    400518: transform189
+    400520: transform190
+    400522: transform191
+    400524: transform192
+    400526: transform193
+    400528: transform194
+    400530: transform195
+    400532: transform196
+    400534: transform197
+    400536: transform198
+    400538: transform199
+    400540: transform200
+    400542: transform201
+    400544: transform202
+    400546: transform203
+    400548: transform204
+    400550: transform205
+    400552: transform206
+    400554: transform207
+    400556: transform208
+    400558: transform209
+    400560: transform210
+    400562: transform211
+    400564: transform212
+    400566: transform213
+    400568: transform214
+    400570: transform215
+    400572: transform216
+    400574: transform217
+    400576: transform218
+    400578: transform219
+    400580: transform220
+    400582: transform221
+    400584: transform222
+    400586: transform223
+    400588: transform224
+    400590: transform225
+    400592: transform226
+    400594: transform227
+    400596: transform228
+    400598: transform229
+    400600: transform230
+    400602: transform231
+    400604: transform232
+    400606: transform233
+    400608: transform234
+    400610: transform235
+    400612: transform236
+    400614: transform237
+    400616: transform238
+    400618: transform239
+    400620: transform240
+    400622: transform241
+    400624: transform242
+    400626: transform243
+    400628: transform244
+    400630: transform245
+    400632: transform246
+    400634: transform247
+    400636: transform248
+    400638: transform249
+    400640: transform250
+    400642: transform251
+    400644: transform252
+    400646: transform253
+    400648: transform254
+    400650: transform255
+    400652: transform256
+    400654: transform257
+    400656: transform258
+    400658: transform259
+    400660: transform260
+    400662: transform261
+    400664: transform262
+    400666: transform263
+    400668: transform264
+    400670: transform265
+    400672: transform266
+    400674: transform267
+    400676: transform268
+    400678: transform269
+    400680: transform270
+    400682: transform271
+    400684: transform272
+    400686: transform273
+    400688: transform274
+    400690: transform275
+    400692: transform276
+    400694: transform277
+    400696: transform278
+    400698: transform279
+    400700: transform280
+    400702: transform281
+    400704: transform282
+    400706: transform283
+    400708: transform284
+    400710: transform285
+    400712: transform286
+    400714: transform287
+    400716: transform288
+    400718: transform289
+    400720: transform290
+    400722: transform291
+    400724: transform292
+    400726: transform293
+    400728: transform294
+    400730: transform295
+    400732: transform296
+    400734: transform297
+    400736: transform298
+    400738: transform299
+    400740: transform300
+    400742: transform301
+    400744: transform302
+    400746: transform303
+    400748: transform304
+    400750: transform305
+    400752: transform306
+    400754: transform307
+    400756: transform308
+    400758: transform309
+    400760: transform310
+    400762: transform311
+    400764: transform312
+    400766: transform313
+    400768: transform314
+    400770: transform315
+    400772: transform316
+    400774: transform317
+    400776: transform318
+    400778: transform319
+    400780: transform320
+    400782: transform321
+    400784: transform322
+    400786: transform323
+    400788: transform324
+    400790: transform325
+    400792: transform326
+    400794: transform327
+    400796: transform328
+    400798: transform329
+    400800: transform330
+    400802: transform331
+    400804: transform332
+    400806: transform333
+    400808: transform334
+    400810: transform335
+    2100000: plank1
+    2100002: plankend2
+    2100004: plankend1
+    2100006: bark1
+    2100008: stump
+    2100010: rope
+    2100012: window_dark
+    2300000: runner26
+    3300000: runner26
+    4300000: runner26
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bark1
+    second: {fileID: 2100000, guid: 47c726fdd8dd6dd4eb73c700032c447e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2100000, guid: a7f98c7ba093ea44d971b36542061775, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plankend1
+    second: {fileID: 2100000, guid: 6a7345eb0cb5fbe4189c912326c425f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plankend2
+    second: {fileID: 2100000, guid: 323fc433c414cd14a8c5bfa10997456a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rope
+    second: {fileID: 2100000, guid: 5b212b7553232014296b15098a1adc7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stump
+    second: {fileID: 2100000, guid: 80284e4e098f85140b04fce267e4a16c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window_dark
+    second: {fileID: 2100000, guid: de5399128abad594d87655c71cba97d0, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
