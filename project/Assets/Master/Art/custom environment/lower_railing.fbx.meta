@@ -1,0 +1,745 @@
+fileFormatVersion: 2
+guid: f1bd9e2aeea534548913f6c8f22f311a
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: b
+    100002: b 1
+    100004: b 2
+    100006: b 3
+    100008: b 4
+    100010: b 5
+    100012: b 6
+    100014: b 7
+    100016: b 8
+    100018: b 9
+    100020: b1
+    100022: b1 1
+    100024: b1 2
+    100026: b1 3
+    100028: b1 4
+    100030: b1 5
+    100032: b1 6
+    100034: b1 7
+    100036: b1 8
+    100038: b1 9
+    100040: b10
+    100042: b10 1
+    100044: b11
+    100046: b12
+    100048: b13
+    100050: b2
+    100052: b2 1
+    100054: b2 10
+    100056: b2 2
+    100058: b2 3
+    100060: b2 4
+    100062: b2 5
+    100064: b2 6
+    100066: b2 7
+    100068: b2 8
+    100070: b2 9
+    100072: b4
+    100074: b4 1
+    100076: b4 2
+    100078: b4 3
+    100080: b4 4
+    100082: b4 5
+    100084: b4 6
+    100086: b4 7
+    100088: b6
+    100090: b6 1
+    100092: b6 2
+    100094: b6 3
+    100096: b6 4
+    100098: b6 5
+    100100: b6 6
+    100102: b6 7
+    100104: b6 8
+    100106: b6 9
+    100108: b8
+    100110: b8 1
+    100112: b8 2
+    100114: b8 3
+    100116: b8 4
+    100118: b9
+    100120: b9 1
+    100122: b9 2
+    100124: b9 3
+    100126: b9 4
+    100128: //RootNode
+    100130: pCube113
+    100132: pCube194
+    100134: pCube195
+    100136: pCube210
+    100138: pCube212
+    100140: pCube221
+    100142: pCube222
+    100144: pCube223
+    100146: pCube224
+    100148: pCube225
+    100150: pCube226
+    100152: pCube227
+    100154: pCube228
+    100156: pCube229
+    100158: pCube230
+    100160: pCube231
+    100162: pCube232
+    100164: pCube233
+    100166: pCube234
+    100168: pCube235
+    100170: pCube236
+    100172: pCube237
+    100174: pCube238
+    100176: pCube239
+    100178: pCube57
+    100180: railing
+    100182: railing 1
+    100184: railing 10
+    100186: railing 2
+    100188: railing 3
+    100190: railing 4
+    100192: railing 5
+    100194: railing 6
+    100196: railing 7
+    100198: railing 8
+    100200: railing 9
+    100202: railing1
+    100204: railing2
+    100206: runner12
+    100208: runner13
+    100210: runner14
+    100212: runner15
+    100214: runner16
+    100216: runner17
+    100218: runner18
+    100220: runner19
+    100222: runner20
+    100224: runner21
+    100226: runner22
+    100228: runner23
+    100230: runner24
+    100232: runner25
+    400000: b
+    400002: b 1
+    400004: b 2
+    400006: b 3
+    400008: b 4
+    400010: b 5
+    400012: b 6
+    400014: b 7
+    400016: b 8
+    400018: b 9
+    400020: b1
+    400022: b1 1
+    400024: b1 2
+    400026: b1 3
+    400028: b1 4
+    400030: b1 5
+    400032: b1 6
+    400034: b1 7
+    400036: b1 8
+    400038: b1 9
+    400040: b10
+    400042: b10 1
+    400044: b11
+    400046: b12
+    400048: b13
+    400050: b2
+    400052: b2 1
+    400054: b2 10
+    400056: b2 2
+    400058: b2 3
+    400060: b2 4
+    400062: b2 5
+    400064: b2 6
+    400066: b2 7
+    400068: b2 8
+    400070: b2 9
+    400072: b4
+    400074: b4 1
+    400076: b4 2
+    400078: b4 3
+    400080: b4 4
+    400082: b4 5
+    400084: b4 6
+    400086: b4 7
+    400088: b6
+    400090: b6 1
+    400092: b6 2
+    400094: b6 3
+    400096: b6 4
+    400098: b6 5
+    400100: b6 6
+    400102: b6 7
+    400104: b6 8
+    400106: b6 9
+    400108: b8
+    400110: b8 1
+    400112: b8 2
+    400114: b8 3
+    400116: b8 4
+    400118: b9
+    400120: b9 1
+    400122: b9 2
+    400124: b9 3
+    400126: b9 4
+    400128: //RootNode
+    400130: pCube113
+    400132: pCube194
+    400134: pCube195
+    400136: pCube210
+    400138: pCube212
+    400140: pCube221
+    400142: pCube222
+    400144: pCube223
+    400146: pCube224
+    400148: pCube225
+    400150: pCube226
+    400152: pCube227
+    400154: pCube228
+    400156: pCube229
+    400158: pCube230
+    400160: pCube231
+    400162: pCube232
+    400164: pCube233
+    400166: pCube234
+    400168: pCube235
+    400170: pCube236
+    400172: pCube237
+    400174: pCube238
+    400176: pCube239
+    400178: pCube57
+    400180: railing
+    400182: railing 1
+    400184: railing 10
+    400186: railing 2
+    400188: railing 3
+    400190: railing 4
+    400192: railing 5
+    400194: railing 6
+    400196: railing 7
+    400198: railing 8
+    400200: railing 9
+    400202: railing1
+    400204: railing2
+    400206: runner12
+    400208: runner13
+    400210: runner14
+    400212: runner15
+    400214: runner16
+    400216: runner17
+    400218: runner18
+    400220: runner19
+    400222: runner20
+    400224: runner21
+    400226: runner22
+    400228: runner23
+    400230: runner24
+    400232: runner25
+    2100000: bark1
+    2100002: stump
+    2100004: rope
+    2100006: window_dark
+    2100008: plank1
+    2100010: plankend2
+    2100012: plankend1
+    2300000: b
+    2300002: b 1
+    2300004: b 2
+    2300006: b 3
+    2300008: b 4
+    2300010: b 5
+    2300012: b 6
+    2300014: b 7
+    2300016: b 8
+    2300018: b 9
+    2300020: b1
+    2300022: b1 1
+    2300024: b1 2
+    2300026: b1 3
+    2300028: b1 4
+    2300030: b1 5
+    2300032: b1 6
+    2300034: b1 7
+    2300036: b1 8
+    2300038: b1 9
+    2300040: b10
+    2300042: b10 1
+    2300044: b11
+    2300046: b12
+    2300048: b13
+    2300050: b2
+    2300052: b2 1
+    2300054: b2 10
+    2300056: b2 2
+    2300058: b2 3
+    2300060: b2 4
+    2300062: b2 5
+    2300064: b2 6
+    2300066: b2 7
+    2300068: b2 8
+    2300070: b2 9
+    2300072: b4
+    2300074: b4 1
+    2300076: b4 2
+    2300078: b4 3
+    2300080: b4 4
+    2300082: b4 5
+    2300084: b4 6
+    2300086: b4 7
+    2300088: b6
+    2300090: b6 1
+    2300092: b6 2
+    2300094: b6 3
+    2300096: b6 4
+    2300098: b6 5
+    2300100: b6 6
+    2300102: b6 7
+    2300104: b6 8
+    2300106: b6 9
+    2300108: b8
+    2300110: b8 1
+    2300112: b8 2
+    2300114: b8 3
+    2300116: b8 4
+    2300118: b9
+    2300120: b9 1
+    2300122: b9 2
+    2300124: b9 3
+    2300126: b9 4
+    2300128: pCube113
+    2300130: pCube194
+    2300132: pCube195
+    2300134: pCube210
+    2300136: pCube212
+    2300138: pCube221
+    2300140: pCube222
+    2300142: pCube223
+    2300144: pCube224
+    2300146: pCube225
+    2300148: pCube226
+    2300150: pCube227
+    2300152: pCube228
+    2300154: pCube229
+    2300156: pCube230
+    2300158: pCube231
+    2300160: pCube232
+    2300162: pCube233
+    2300164: pCube234
+    2300166: pCube235
+    2300168: pCube236
+    2300170: pCube237
+    2300172: pCube238
+    2300174: pCube239
+    2300176: pCube57
+    2300178: railing
+    2300180: railing 1
+    2300182: railing 10
+    2300184: railing 2
+    2300186: railing 3
+    2300188: railing 4
+    2300190: railing 5
+    2300192: railing 6
+    2300194: railing 7
+    2300196: railing 8
+    2300198: railing 9
+    2300200: railing1
+    2300202: railing2
+    2300204: runner12
+    2300206: runner13
+    2300208: runner14
+    2300210: runner15
+    2300212: runner16
+    2300214: runner17
+    2300216: runner18
+    2300218: runner19
+    2300220: runner20
+    2300222: runner21
+    2300224: runner22
+    2300226: runner23
+    2300228: runner24
+    2300230: runner25
+    3300000: b
+    3300002: b 1
+    3300004: b 2
+    3300006: b 3
+    3300008: b 4
+    3300010: b 5
+    3300012: b 6
+    3300014: b 7
+    3300016: b 8
+    3300018: b 9
+    3300020: b1
+    3300022: b1 1
+    3300024: b1 2
+    3300026: b1 3
+    3300028: b1 4
+    3300030: b1 5
+    3300032: b1 6
+    3300034: b1 7
+    3300036: b1 8
+    3300038: b1 9
+    3300040: b10
+    3300042: b10 1
+    3300044: b11
+    3300046: b12
+    3300048: b13
+    3300050: b2
+    3300052: b2 1
+    3300054: b2 10
+    3300056: b2 2
+    3300058: b2 3
+    3300060: b2 4
+    3300062: b2 5
+    3300064: b2 6
+    3300066: b2 7
+    3300068: b2 8
+    3300070: b2 9
+    3300072: b4
+    3300074: b4 1
+    3300076: b4 2
+    3300078: b4 3
+    3300080: b4 4
+    3300082: b4 5
+    3300084: b4 6
+    3300086: b4 7
+    3300088: b6
+    3300090: b6 1
+    3300092: b6 2
+    3300094: b6 3
+    3300096: b6 4
+    3300098: b6 5
+    3300100: b6 6
+    3300102: b6 7
+    3300104: b6 8
+    3300106: b6 9
+    3300108: b8
+    3300110: b8 1
+    3300112: b8 2
+    3300114: b8 3
+    3300116: b8 4
+    3300118: b9
+    3300120: b9 1
+    3300122: b9 2
+    3300124: b9 3
+    3300126: b9 4
+    3300128: pCube113
+    3300130: pCube194
+    3300132: pCube195
+    3300134: pCube210
+    3300136: pCube212
+    3300138: pCube221
+    3300140: pCube222
+    3300142: pCube223
+    3300144: pCube224
+    3300146: pCube225
+    3300148: pCube226
+    3300150: pCube227
+    3300152: pCube228
+    3300154: pCube229
+    3300156: pCube230
+    3300158: pCube231
+    3300160: pCube232
+    3300162: pCube233
+    3300164: pCube234
+    3300166: pCube235
+    3300168: pCube236
+    3300170: pCube237
+    3300172: pCube238
+    3300174: pCube239
+    3300176: pCube57
+    3300178: railing
+    3300180: railing 1
+    3300182: railing 10
+    3300184: railing 2
+    3300186: railing 3
+    3300188: railing 4
+    3300190: railing 5
+    3300192: railing 6
+    3300194: railing 7
+    3300196: railing 8
+    3300198: railing 9
+    3300200: railing1
+    3300202: railing2
+    3300204: runner12
+    3300206: runner13
+    3300208: runner14
+    3300210: runner15
+    3300212: runner16
+    3300214: runner17
+    3300216: runner18
+    3300218: runner19
+    3300220: runner20
+    3300222: runner21
+    3300224: runner22
+    3300226: runner23
+    3300228: runner24
+    3300230: runner25
+    4300000: pCube57
+    4300002: pCube113
+    4300004: pCube194
+    4300006: pCube195
+    4300008: pCube210
+    4300010: pCube212
+    4300012: pCube221
+    4300014: pCube222
+    4300016: pCube223
+    4300018: pCube224
+    4300020: runner12
+    4300022: railing
+    4300024: b
+    4300026: b1
+    4300028: b2
+    4300030: b4
+    4300032: b6
+    4300034: runner13
+    4300036: railing
+    4300038: b
+    4300040: b1
+    4300042: b2
+    4300044: b6
+    4300046: runner14
+    4300048: runner15
+    4300050: runner16
+    4300052: runner17
+    4300054: railing
+    4300056: b
+    4300058: b1
+    4300060: b2
+    4300062: b4
+    4300064: b6
+    4300066: b8
+    4300068: b9
+    4300070: runner18
+    4300072: railing
+    4300074: b
+    4300076: b1
+    4300078: b2
+    4300080: b4
+    4300082: b6
+    4300084: b8
+    4300086: b9
+    4300088: b10
+    4300090: runner19
+    4300092: railing
+    4300094: b
+    4300096: b1
+    4300098: b2
+    4300100: b4
+    4300102: b6
+    4300104: b8
+    4300106: b9
+    4300108: b10
+    4300110: railing1
+    4300112: railing2
+    4300114: runner20
+    4300116: railing
+    4300118: b
+    4300120: b1
+    4300122: b2
+    4300124: b4
+    4300126: b6
+    4300128: b8
+    4300130: b9
+    4300132: runner21
+    4300134: railing
+    4300136: b
+    4300138: b1
+    4300140: b2
+    4300142: b4
+    4300144: b6
+    4300146: b8
+    4300148: b9
+    4300150: runner22
+    4300152: railing
+    4300154: b
+    4300156: b1
+    4300158: b2
+    4300160: b6
+    4300162: pCube225
+    4300164: pCube226
+    4300166: pCube227
+    4300168: pCube228
+    4300170: pCube229
+    4300172: pCube230
+    4300174: pCube231
+    4300176: pCube232
+    4300178: runner23
+    4300180: railing
+    4300182: b
+    4300184: b2
+    4300186: b6
+    4300188: runner24
+    4300190: railing
+    4300192: b
+    4300194: b1
+    4300196: b2
+    4300198: b4
+    4300200: b6
+    4300202: b11
+    4300204: pCube233
+    4300206: pCube234
+    4300208: pCube235
+    4300210: pCube236
+    4300212: pCube237
+    4300214: pCube238
+    4300216: pCube239
+    4300218: runner25
+    4300220: railing
+    4300222: b1
+    4300224: b2
+    4300226: b4
+    4300228: b12
+    4300230: b13
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bark1
+    second: {fileID: 2100000, guid: e58cbcac6b36d964ebc73ea61dfc0af6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2100000, guid: dc07ee95c014bcb42abf26df88d59369, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plankend1
+    second: {fileID: 2100000, guid: b6a5be4b489904643ad407a55fabd071, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plankend2
+    second: {fileID: 2100000, guid: 3880d9c5f8468a24582e16c365ac5889, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rope
+    second: {fileID: 2100000, guid: 0f02191f25bc2e847838af38849680bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stump
+    second: {fileID: 2100000, guid: 2aef592186ac7ad45be9161bae23dd04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: window_dark
+    second: {fileID: 2100000, guid: ebabf79e442bc4f4592954154d3cae1c, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bark
+    second: {fileID: 2800000, guid: ee59f6e8f7168f741a3c193f0eb62dd9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bark_nm
+    second: {fileID: 2800000, guid: 9bb26f2958b08b54c89daeefe9d0bd26, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank1
+    second: {fileID: 2800000, guid: 6cb00229b8dd8de478ebea7757824992, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank_end_1
+    second: {fileID: 2800000, guid: a2459de6fd185ee4191999898ef97358, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: plank_end_2
+    second: {fileID: 2800000, guid: b10741b82461a5c4b8be1cb35d5bc6d8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rope
+    second: {fileID: 2800000, guid: 9a19a718837172c4680407cdf61508d3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stump
+    second: {fileID: 2800000, guid: 83e1e19034ec791459947ade0c5bb82e, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
