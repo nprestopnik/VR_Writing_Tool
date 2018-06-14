@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusePerformTask : MonoBehaviour {
 
-	public GameObject muse;
+	//public GameObject muse;
 	public GameObject museCanvas;
 	public float pauseTime;
 
@@ -18,11 +18,11 @@ public class MusePerformTask : MonoBehaviour {
 	//END VARIABLES NEEDED FOR TASKS
 
 	private bool performingTask;
-
-	private MuseAppear museActivation;
+	//private MuseAppear museActivation;
 	private GuideToPoint museGuide;
+	
 	void Start() {
-		museActivation = GetComponent<MuseAppear>();
+		//museActivation = GetComponent<MuseAppear>();
 		museGuide = GetComponent<GuideToPoint>();
 	}
 
@@ -49,33 +49,38 @@ public class MusePerformTask : MonoBehaviour {
 
 	//desk task: show user desk so they can position and use it
 	IEnumerator DeskTask() {
-		museActivation.EnterMuse();
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// museActivation.EnterMuse();
+		// yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// Debug.Log("Muse Entered");
 
 		var text1 = museCanvas.transform.Find("Desk1").gameObject;
 		var	text2 = museCanvas.transform.Find("Desk2").gameObject;
 		text1.SetActive(true);
 		yield return new WaitForSeconds(pauseTime);
+		Debug.Log("First Message");
 		
 		text1.SetActive(false);
 		museGuide.GuideTo(deskParkMusePoint);
 		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		Debug.Log("Muse at Desk");
 
 		desk.SetActive(true);
 		text2.SetActive(true);
 		//will this be changed to a confirmation button instead of a set pause?
 		yield return new WaitForSeconds(pauseTime);
+		Debug.Log("Second Message");
 
-		text2.SetActive(false);
-		museActivation.ExitMuse();
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// text2.SetActive(false);
+		// museActivation.ExitMuse();
+		// yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// Debug.Log("Muse Exited");
 
 		performingTask = false;
 	}
 
 	IEnumerator ParkTask() {
-		museActivation.EnterMuse();
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// museActivation.EnterMuse();
+		// yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		var text1 = museCanvas.transform.Find("Park1").gameObject;
 		var	text2 = museCanvas.transform.Find("Park2").gameObject;
@@ -94,8 +99,8 @@ public class MusePerformTask : MonoBehaviour {
 		desk.SetActive(false);
 		deskParkTarget.SetActive(false);
 		text2.SetActive(false);
-		museActivation.ExitMuse();
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		// museActivation.ExitMuse();
+		// yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		performingTask = false;
 	}

@@ -2,77 +2,72 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnterFromDirection{
-	above,below,left,right
-}
+
 
 public class MuseAppear : MonoBehaviour {
 
-	public EnterFromDirection entryDirection;
-	public Transform abovePoint;
-	public Transform belowPoint;
-	public Transform leftPoint;
-	public Transform rightPoint;
-
-	public Transform startPoint;
+	public GameObject muse;
 
 	private GuideToPoint guide;
+	private MusePointManager points;
+	private EnterFromDirection entryDirection;
 
-	void Start() {
-		guide = GetComponent<GuideToPoint>();
+	private Transform entryPoint;
+
+	private GameObject exitText;
+
+	void Awake() {
+		guide = muse.GetComponent<GuideToPoint>();
+		points = muse.GetComponent<MusePointManager>();
+		entryDirection = points.entryDirection;
+
+		switch((int)entryDirection) {
+			//above
+			case 0:
+				entryPoint = points.abovePoint;
+				break;
+			//below
+			case 1:
+				entryPoint = points.belowPoint;
+				break;
+			//left
+			case 2:
+				entryPoint = points.leftPoint;
+				break;
+			//right
+			case 3:
+				entryPoint = points.rightPoint;
+				break;
+		}
+
+		exitText = muse.transform.Find("Canvas").Find("Bye").gameObject;
+
 	}
 
 	void Update() {
 
 	}
-
+	
 	public void EnterMuse() {
-		var entry = transform.position;
-		switch((int)entryDirection) {
-			//above
-			case 0:
-				entry = abovePoint.position;
-				break;
-			//below
-			case 1:
-				entry = belowPoint.position;
-				break;
-			//left
-			case 2:
-				entry = leftPoint.position;
-				break;
-			//right
-			case 3:
-				entry = rightPoint.position;
-				break;
-		}
-
-		guide.guiding = true;
-		guide.activation = true;
-		guide.target = startPoint;
+		muse.SetActive(true);
+		muse.transform.position = entryPoint.position;
+		guide.GuideTo(points.startPoint);
 	}
 
 	public void ExitMuse() {
-		guide.guiding = true;
-		guide.activation = true;
+		StartCoroutine(DeactivateMuse());
+	}
 
-		switch((int)entryDirection) {
-			//above
-			case 0:
-				guide.target = abovePoint;
-				break;
-			//below
-			case 1:
-				guide.target = belowPoint;
-				break;
-			//left
-			case 2:
-				guide.target = leftPoint;
-				break;
-			//right
-			case 3:
-				guide.target = rightPoint;
-				break;
-		}
+	IEnumerator DeactivateMuse() {
+		// guide.GuideTo(points.startPoint);	
+		// yield return new WaitUntil(()=> guide.IsAtTarget());
+		
+		// exitText.SetActive(true);
+		// yield return new WaitForSeconds(guide.pause);
+		// exitText.SetActive(false);
+
+		guide.GuideTo(entryPoint);
+		yield return new WaitUntil(()=> guide.IsAtTarget());
+		muse.SetActive(false);
 	}
 }

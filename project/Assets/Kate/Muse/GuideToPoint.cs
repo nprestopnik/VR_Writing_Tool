@@ -5,11 +5,9 @@ using UnityEngine;
 public class GuideToPoint : MonoBehaviour {
 
 	public Transform target;
-	public float guideSpeed = 5.0f;
-	public float activationSpeed = 5.0f;
+	public float speed = 5.0f;
+	public float pause = 1.0f;
 	public bool guiding = false;
-	public bool activation = false;
-	public bool deactivation = false;
 
 	private Vector3 pos;
 	
@@ -18,22 +16,12 @@ public class GuideToPoint : MonoBehaviour {
 	}
 	
 	void Update () {
+
 		if (guiding) {
-			if(transform.position != target.position) {
-				if (activation || deactivation) {
-					pos = Vector3.MoveTowards(transform.position, target.position, activationSpeed * Time.deltaTime);
-				}
-				else {
-					pos = Vector3.MoveTowards(transform.position, target.position, guideSpeed * Time.deltaTime);
-				}
-				GetComponent<Rigidbody>().MovePosition(pos);
+			if (transform.position != target.position) {
+				transform.position = Vector3.Lerp(transform.position, target.position, speed * Time.deltaTime);
 			} else {
 				guiding = false;
-				activation = false;
-				if (deactivation) {
-					this.gameObject.SetActive(false);
-					deactivation = false;
-				}
 			}
 		}
 	}

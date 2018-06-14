@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MuseTextFaceCamera : MonoBehaviour {
+public class FaceCamera : MonoBehaviour {
+
+	public Transform camera;
 
 	void Update () {
-		transform.LookAt(Camera.main.transform);
+		transform.LookAt(camera);
 	}
 }
