@@ -112,6 +112,27 @@ public class SaveSystem : MonoBehaviour {
 
     }
 
+    public Save loadSaveWithPath(string path)
+    {
+        print("LOADING: Testing for save at: " + path);
+        if (File.Exists(path))
+        {
+            //Save already exists
+            //Loads the JSON from a file and converts it into a save
+            StreamReader input = new StreamReader(path);
+            Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
+            input.Close();
+            return loadedSave;
+        }
+        else
+        {
+            //Save does not already exist
+            print("Loading a non-existant save");
+            return null;
+        }
+
+    }
+
     public Save[] listSaves()
     {
         //Gets an array of all save files in the directory

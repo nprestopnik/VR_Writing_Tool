@@ -44,7 +44,7 @@ public class Hallway : MonoBehaviour {
             if(goalSceneID != SceneManager.GetActiveScene().buildIndex) {
                 SceneManager.LoadSceneAsync(goalSceneID, LoadSceneMode.Additive);
                 Scene activeScene = SceneManager.GetActiveScene();
-                SceneManager.UnloadSceneAsync(activeScene.buildIndex);
+                SceneManager.UnloadSceneAsync(activeScene.buildIndex);  
             } else {
                 setGoalScene(goalRoomIndex);
             }
