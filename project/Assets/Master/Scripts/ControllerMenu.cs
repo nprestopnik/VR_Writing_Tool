@@ -28,7 +28,7 @@ public class ControllerMenu : MonoBehaviour {
 
 		//FIX THIS
 		for(int i = 0; i < rooms.Length; i++) {
-			if(Hallway.instance.testSetGoalScene(i)) {
+			if(TravelSystem.instance.testSetGoalScene(i)) {
 				RoomPanelHolder p = ((GameObject)Instantiate(roomPanelPrefab, contentPanel.transform)).GetComponent<RoomPanelHolder>();
 				p.loadRoom(i);
 			}	
@@ -42,7 +42,7 @@ public class ControllerMenu : MonoBehaviour {
 	void Update () {
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			saveNameText.text = SaveSystem.instance.getCurrentSave().name;
-			goalRoomText.text = Hallway.instance.goalRoom.name;
+			goalRoomText.text = TravelSystem.instance.goalRoom.name;
 		}
 	}
 

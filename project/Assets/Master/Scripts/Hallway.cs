@@ -20,11 +20,11 @@ public class Hallway : MonoBehaviour {
         instance = this;
     }
 
-	void Start () {
-        //TEMPORARY: Sets goal scene to the loaded scene
-        //goalSceneID = (saveSystem.currentSave.currentRoomID == 2) ? 1 : 2;
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+	// void Start () {
+    //     //TEMPORARY: Sets goal scene to the loaded scene
+    //     //goalSceneID = (saveSystem.currentSave.currentRoomID == 2) ? 1 : 2;
+    //     SceneManager.sceneLoaded += OnSceneLoaded;
+    // }
 	
 	void Update () {
 		
@@ -38,26 +38,28 @@ public class Hallway : MonoBehaviour {
             //Rotates the player around the centerPoint
             col.transform.root.RotateAround(rotatePoint.position, Vector3.up, 180);
      
-            //Swaps scenes
-            //Tests for scenery being the same in each room 
-            //Problematic because scene does not reset
-            if(goalSceneID != SceneManager.GetActiveScene().buildIndex) {
-                SceneManager.LoadSceneAsync(goalSceneID, LoadSceneMode.Additive);
-                Scene activeScene = SceneManager.GetActiveScene();
-                SceneManager.UnloadSceneAsync(activeScene.buildIndex);  
-            } else {
-                setGoalScene(goalRoomIndex);
-            }
+            TravelSystem.instance.loadGoalScene();
+
+            // //Swaps scenes
+            // //Tests for scenery being the same in each room 
+            // //Problematic because scene does not reset
+            // if(goalSceneID != SceneManager.GetActiveScene().buildIndex) {
+            //     SceneManager.LoadSceneAsync(goalSceneID, LoadSceneMode.Additive);
+            //     Scene activeScene = SceneManager.GetActiveScene();
+            //     SceneManager.UnloadSceneAsync(activeScene.buildIndex);  
+            // } else {
+            //     setGoalScene(goalRoomIndex);
+            // }
             
 
-            //Updates the save data and then saves it
-            currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
-            int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
-            SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
-            goalRoomIndex = temp;
-            // setGoalScene(goalRoomIndex);
+            // //Updates the save data and then saves it
+            // currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
+            // int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
+            // SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
+            // goalRoomIndex = temp;
+            // // setGoalScene(goalRoomIndex);
             
-            SaveSystem.instance.saveCurrentSave();
+            // SaveSystem.instance.saveCurrentSave();
 
             
             //TEMPORARY: Sets the goal scene to the other scene
@@ -66,30 +68,30 @@ public class Hallway : MonoBehaviour {
         }
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        setGoalScene(goalRoomIndex);
-    }
+    // public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+    //     setGoalScene(goalRoomIndex);
+    // }
 
-    //Sets the goal scene ID
-    public bool setGoalScene(int index)
-    {
-        if(SaveSystem.instance.getCurrentSave() != null) {
-            if(testSetGoalScene(index)) {
-                goalRoomIndex = index;
-                goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
-                goalSceneID = goalRoom.sceneID;
-                ControllerMenu.instance.loadRooms();
-                return true;
-            }
-        }
+    // //Sets the goal scene ID
+    // public bool setGoalScene(int index)
+    // {
+    //     if(SaveSystem.instance.getCurrentSave() != null) {
+    //         if(testSetGoalScene(index)) {
+    //             goalRoomIndex = index;
+    //             goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
+    //             goalSceneID = goalRoom.sceneID;
+    //             ControllerMenu.instance.loadRooms();
+    //             return true;
+    //         }
+    //     }
         
-        return false;
-    }
+    //     return false;
+    // }
 
-    public bool testSetGoalScene(int index) {
-        //return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
-        //FIX THIS
-        //Selecting a room with the same buildIndex (Background/Scenery) does not work.
-        return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
-    }
+    // public bool testSetGoalScene(int index) {
+    //     //return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
+    //     //FIX THIS
+    //     //Selecting a room with the same buildIndex (Background/Scenery) does not work.
+    //     return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
+    // }
 }

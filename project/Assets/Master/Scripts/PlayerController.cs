@@ -6,20 +6,26 @@ public class PlayerController : MonoBehaviour {
 
 
 	public bool debugMove = false;
-	private float moveSpeed = 15f;
+	private float moveSpeed = 5f;
 
 	public CapsuleCollider collisionCapsule;
 	public Transform head;
+	Rigidbody rig;
 	void Start () {
         //DontDestroyOnLoad(gameObject);
+		rig = GetComponent<Rigidbody>();
 	}
 	
 
 	void Update () {
 		if(debugMove == true) {
-			transform.root.position += transform.root.right * Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-			transform.root.position += transform.root.forward * Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-			//transform.root.position += new Vector3(Input.GetAxis("Horizontal") * Time.deltaTime, 0, Input.GetAxis("Vertical") * Time.deltaTime) * moveSpeed;
+			Vector3 vel = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+			vel.Normalize();
+			vel *= moveSpeed;
+			vel = Quaternion.Euler(0, transform.eulerAngles.y, 0) * vel;
+			vel.y = rig.velocity.y;
+			rig.velocity = vel;
+			
 		}
 
 		Vector3 localPos = head.localPosition;

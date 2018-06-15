@@ -82,10 +82,10 @@ public class SaveSystemEditor : Editor {
 			GUILayout.Label("Current Save:");
 			GUILayout.Label(myTarget.getCurrentSave().name);
 			GUILayout.Label(myTarget.getCurrentSave().path);
-			GUILayout.Label("Current goal: " + Hallway.instance.goalRoomIndex);
+			GUILayout.Label("Current goal: " + TravelSystem.instance.goalRoomIndex);
 			goalRoom = EditorGUILayout.IntField("Current Room Index:", goalRoom);
 			if(GUILayout.Button("Update GoalRoomIndex")) {
-				Hallway.instance.setGoalScene(goalRoom);
+				TravelSystem.instance.setGoalScene(goalRoom);
 			}
 			//myTarget.getCurrentSave().currentRoomIndex = EditorGUILayout.IntField("Current Room Index:", myTarget.getCurrentSave().currentRoomIndex);
 		}
