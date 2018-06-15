@@ -31,6 +31,7 @@ public class GuideToPoint : MonoBehaviour {
 		target = targetPoint;
 	}
 
+	//let's not rely on this one okay it doesn't work all that well
 	public bool IsAtTarget() {
 		if (guiding) return false;
 		else return true;

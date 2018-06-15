@@ -1,0 +1,24 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DeskLocation : MonoBehaviour {
+
+	public GameObject trackedDesk;
+
+	private DeskParked deskParkStatus;
+
+	void Start() {
+		deskParkStatus = trackedDesk.GetComponent<DeskParked>();
+	}
+
+	void Update() {
+		//make the target desk line up with the parked position of the tracked desk
+		bool parked = deskParkStatus.parked;
+		if(parked) {
+			transform.position = trackedDesk.transform.position;
+			transform.rotation = trackedDesk.transform.rotation;
+		}
+	}
+
+}

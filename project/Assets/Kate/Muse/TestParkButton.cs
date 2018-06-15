@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class TestParkButton : MonoBehaviour {
 
-private SteamVR_TrackedObject trackedObj;
+	//for testing only
+	private bool performing = false;
 
+	//controller setup for testing
+	private SteamVR_TrackedObject trackedObj;
 	private SteamVR_Controller.Device Controller {
 		get { return SteamVR_Controller.Input((int)trackedObj.index); }
 	}
-
 	void Awake() {
 		trackedObj = GetComponent<SteamVR_TrackedObject>();
 	}
@@ -20,36 +22,36 @@ private SteamVR_TrackedObject trackedObj;
 
 	public GameObject muse;
 	public float pauseTime;
-
-	public Transform deskParkMusePoint;
-	public GameObject desk;
-	public GameObject deskParkTarget;
-
+	public Transform deskParkMusePoint; //point for muse to hover at - where desk should be parked when done
+	public GameObject deskTracker; //the actual desk that is being used and tracked
+	public GameObject deskTargetTracker; //the parent of the "target" for parking the desk
+	
+	private GameObject deskParkTarget; //the "target" for desk placement
+	private GameObject deskModel; //the desk part of the tracker - child of the actual tracked object
 	private Transform museCanvas;
 	private GuideToPoint museGuide;
-
 	private MuseAppear museActivator;
-
-	private GameObject text1;
-	private GameObject text2;
-
-	//for testing?
-	private bool performing = false;
+	private GameObject textToParkLocation; //text to show the user where to put the desk when done
+	private GameObject textToFinish; //confirmation that they're done with the desk
+	private DeskParked deskParked; //if the desk is parked in its "inactive" location
 
 	void Start() {
 		museActivator = GetComponent<MuseAppear>();
-		
-		museCanvas = muse.transform.Find("Canvas");
-		text1 = museCanvas.Find("Park1").gameObject;
-		text2 = museCanvas.Find("Park2").gameObject;
-
 		museGuide = muse.GetComponent<GuideToPoint>();
+		deskParked = deskTracker.GetComponent<DeskParked>();
+		
+		deskModel = deskTracker.transform.Find("Desk").gameObject;
+		deskParkTarget = deskTargetTracker.transform.Find("Desk").gameObject;
+		museCanvas = muse.transform.Find("Canvas");
+		textToParkLocation = museCanvas.Find("Park1").gameObject;
+		textToFinish = museCanvas.Find("Park2").gameObject;
 	}
 
 	void Update () {
 		
-		if (Controller.GetHairTriggerDown() && !performing) {
+		if (Controller.GetHairTriggerDown() && !performing) { 
 			//this is the stuff that needs to happen when we get an actual desk button
+			//bring the muse in front of the user and perform the task
 			museActivator.EnterMuse();
 			StartCoroutine(PerformParkTask());
 		}
@@ -58,28 +60,32 @@ private SteamVR_TrackedObject trackedObj;
 
 	IEnumerator PerformParkTask() {
 		
-		//testing
+		//for testing only
 		performing = true;
 
-		text1.SetActive(true);
+		//show text saying to follow the muse and wait
+		textToParkLocation.SetActive(true);
 		yield return new WaitForSeconds(pauseTime);
 		
-		text1.SetActive(false);
+		//remove text and have muse guide to the target location
+		textToParkLocation.SetActive(false);
 		museGuide.GuideTo(deskParkMusePoint);
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		//yield return new WaitUntil(()=> museGuide.IsAtTarget());
+		yield return new WaitForSeconds(museGuide.pause);
 
-		
-		text2.SetActive(true);
+		//set the desk target active and show the text waiting for a confirmation of parking
+		textToFinish.SetActive(true);
 		deskParkTarget.SetActive(true);
-		muse.SetActive(true);
 		yield return new WaitUntil(()=> Controller.GetHairTriggerDown());
 		
-		text2.SetActive(false);
-		desk.SetActive(false);
+		//when confirmed, make desk disappear and set it as parked
+		deskParked.parked = true;
+		textToFinish.SetActive(false);
+		deskModel.SetActive(false);
 		deskParkTarget.SetActive(false);
 		museActivator.ExitMuse();
 
-		//testing
+		//for testing only
 		performing = false;
 	}
 }

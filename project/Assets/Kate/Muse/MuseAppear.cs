@@ -11,9 +11,7 @@ public class MuseAppear : MonoBehaviour {
 	private GuideToPoint guide;
 	private MusePointManager points;
 	private EnterFromDirection entryDirection;
-
 	private Transform entryPoint;
-
 	private GameObject exitText;
 
 	void Awake() {
@@ -59,15 +57,15 @@ public class MuseAppear : MonoBehaviour {
 	}
 
 	IEnumerator DeactivateMuse() {
-		// guide.GuideTo(points.startPoint);	
-		// yield return new WaitUntil(()=> guide.IsAtTarget());
-		
-		// exitText.SetActive(true);
-		// yield return new WaitForSeconds(guide.pause);
-		// exitText.SetActive(false);
+		//exit message: may not be necessary
+		guide.GuideTo(points.startPoint);	
+		exitText.SetActive(true);
+		yield return new WaitForSeconds(guide.pause);
+		exitText.SetActive(false);
 
 		guide.GuideTo(entryPoint);
-		yield return new WaitUntil(()=> guide.IsAtTarget());
+		//yield return new WaitUntil(()=> guide.IsAtTarget());
+		yield return new WaitForSeconds(guide.pause);
 		muse.SetActive(false);
 	}
 }
