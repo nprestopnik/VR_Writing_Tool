@@ -21,19 +21,22 @@ public class TestParkButton : MonoBehaviour {
 	//this is subject to change though..... ahhhhhh
 
 	public GameObject muse;
-	public float pauseTime;
+	public float pauseTime; //amount of time to pause to let user read initial text
 	public Transform deskParkMusePoint; //point for muse to hover at - where desk should be parked when done
 	public GameObject deskTracker; //the actual desk that is being used and tracked
 	public GameObject deskTargetTracker; //the parent of the "target" for parking the desk
+	public GameObject lighthouse1; //lighthouses to avoid colliding with the real things
+	public GameObject lighthouse2;
 	
 	private GameObject deskParkTarget; //the "target" for desk placement
 	private GameObject deskModel; //the desk part of the tracker - child of the actual tracked object
-	private Transform museCanvas;
-	private GuideToPoint museGuide;
-	private MuseAppear museActivator;
+	private Transform museCanvas; //canvas attached to the muse for messages
+	private GuideToPoint museGuide; //script responsible for moving the muse places
+	private MuseAppear museActivator; //script for activating/deactivating the muse
 	private GameObject textToParkLocation; //text to show the user where to put the desk when done
 	private GameObject textToFinish; //confirmation that they're done with the desk
 	private DeskParked deskParked; //if the desk is parked in its "inactive" location
+	private bool pausing; //is the muse pausing for reading
 
 	void Start() {
 		museActivator = GetComponent<MuseAppear>();
@@ -56,6 +59,11 @@ public class TestParkButton : MonoBehaviour {
 			StartCoroutine(PerformParkTask());
 		}
 
+		//keep the muse near your face while you're reading
+		if(pausing) {
+			muse.transform.position = museGuide.target.position;
+		}
+
 	}
 
 	IEnumerator PerformParkTask() {
@@ -65,17 +73,23 @@ public class TestParkButton : MonoBehaviour {
 
 		//show text saying to follow the muse and wait
 		textToParkLocation.SetActive(true);
+		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+
+		//pause so user can read text
+		pausing = true;
 		yield return new WaitForSeconds(pauseTime);
-		
+		pausing = false;
+
 		//remove text and have muse guide to the target location
 		textToParkLocation.SetActive(false);
 		museGuide.GuideTo(deskParkMusePoint);
-		//yield return new WaitUntil(()=> museGuide.IsAtTarget());
-		yield return new WaitForSeconds(museGuide.pause);
+		yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		//set the desk target active and show the text waiting for a confirmation of parking
 		textToFinish.SetActive(true);
 		deskParkTarget.SetActive(true);
+		lighthouse1.SetActive(true);
+		lighthouse2.SetActive(true);
 		yield return new WaitUntil(()=> Controller.GetHairTriggerDown());
 		
 		//when confirmed, make desk disappear and set it as parked
@@ -83,9 +97,12 @@ public class TestParkButton : MonoBehaviour {
 		textToFinish.SetActive(false);
 		deskModel.SetActive(false);
 		deskParkTarget.SetActive(false);
+		lighthouse1.SetActive(false);
+		lighthouse2.SetActive(false);
 		museActivator.ExitMuse();
 
 		//for testing only
 		performing = false;
+	
 	}
 }

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class MuseAppear : MonoBehaviour {
 
 	public GameObject muse;
+	public float pause = 1.0f;
 
 	private GuideToPoint guide;
 	private MusePointManager points;
@@ -57,15 +56,15 @@ public class MuseAppear : MonoBehaviour {
 	}
 
 	IEnumerator DeactivateMuse() {
-		//exit message: may not be necessary
-		guide.GuideTo(points.startPoint);	
+		//exit message	
 		exitText.SetActive(true);
-		yield return new WaitForSeconds(guide.pause);
+		yield return new WaitForSeconds(pause);
 		exitText.SetActive(false);
 
 		guide.GuideTo(entryPoint);
-		//yield return new WaitUntil(()=> guide.IsAtTarget());
-		yield return new WaitForSeconds(guide.pause);
+
+		yield return new WaitUntil(()=> guide.IsAtTarget());
+		//yield return new WaitForSeconds(pause);
 		muse.SetActive(false);
 	}
 }

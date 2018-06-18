@@ -21,17 +21,23 @@ public class TestDeskButton : MonoBehaviour {
 	//this is subject to change though..... ahhhhhh
 
 	public GameObject muse;
-	public float pauseTime;
+	public float pauseTime; //amount of time to pause to let user read initial text
 	public Transform deskParkMusePoint; //where the muse goes when the desk is parked
-	public GameObject deskTracker;
+	public GameObject deskTracker; //the tracked point on the desk
+	public Transform deskMoveMusePoint; //for the muse to stay with the desk while you are parking
+	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
+	public GameObject lighthouse2;
 
-	private GameObject deskModel;
-	private Transform museCanvas; 
-	private GuideToPoint museGuide;
-	private MuseAppear museActivator;
+
+	private GameObject deskModel; //the visual desk object
+	private Transform museCanvas; //the canvas attached to the muse
+	private GuideToPoint museGuide; //the muse script responsible for moving the muse
+	private MuseAppear museActivator; //the script responsible for making the muse appear/disappear
 	private GameObject textToDesk; //the text (child of the muse canvas) that the muse will take you to the desk
 	private GameObject textMoveDesk; //the text that says that you can put the desk where you want
 	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
+	private bool movingDesk = false; //is the desk being moved
+	private bool pausing = false; //is the muse paused in front of the user
 
 	void Start() {
 		museActivator = GetComponent<MuseAppear>();
@@ -53,6 +59,14 @@ public class TestDeskButton : MonoBehaviour {
 			StartCoroutine(PerformDeskTask());
 		}
 
+		//keep the muse in place relative to moving objects - desk and head
+		if(movingDesk) {
+			muse.transform.position = deskMoveMusePoint.position;
+		}
+		if(pausing) {
+			muse.transform.position = museGuide.target.position;
+		}
+
 	}
 
 	IEnumerator PerformDeskTask() {
@@ -62,26 +76,39 @@ public class TestDeskButton : MonoBehaviour {
 
 		//show the text to follow the muse and leave it there for the pause time
 		textToDesk.SetActive(true);
+		yield return new WaitUntil(()=> museGuide.IsAtTarget());
+
+		//pause to allow the user to read
+		pausing = true;
 		yield return new WaitForSeconds(pauseTime);
+		pausing = false;
 		
 		//get rid of the first text and send muse to the desk
 		textToDesk.SetActive(false);
 		museGuide.GuideTo(deskParkMusePoint);
-		//yield return new WaitUntil(()=> museGuide.IsAtTarget());
-		yield return new WaitForSeconds(museGuide.pause);
+		yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		//activate the desk and indicate that it is no longer parked
 		//tell user to place desk and wait for confirmation that they're done
 		deskModel.SetActive(true);
 		deskParked.parked = false;
 		textMoveDesk.SetActive(true);
+		//make lighthouses visible, make muse follow desk until deactivated
+		lighthouse1.SetActive(true);
+		lighthouse2.SetActive(true);
+		movingDesk = true;
 		yield return new WaitUntil(()=> Controller.GetHairTriggerDown());
 
-		//get rid of the text and get the muse to leave
+		//desk is presumably parked where the user wants it
+		//get rid of the text and lighthouses and get the muse to leave
+		movingDesk = false;
 		textMoveDesk.SetActive(false);
+		lighthouse1.SetActive(false);
+		lighthouse2.SetActive(false);
 		museActivator.ExitMuse();
 
 		//for testing only
 		performing = false;
+
 	}
 }
