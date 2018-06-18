@@ -8,6 +8,9 @@ public class Room {
 	public string name;
 	public int sceneID;
 
+	[SerializeField]
+    Room[] rooms;
+
 	public Room(string name, int sceneID) {
 		this.name = name;
 		this.sceneID = sceneID;
