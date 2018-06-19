@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeskLocation : MonoBehaviour {
+public class TargetLocation : MonoBehaviour {
 
 	public GameObject trackedDesk;
 
@@ -14,6 +14,7 @@ public class DeskLocation : MonoBehaviour {
 
 	void Update() {
 		//make the target desk line up with the parked position of the tracked desk
+		//if the desk is parked, the target will update based on its tracked position
 		bool parked = deskParkStatus.parked;
 		if(parked) {
 			transform.position = trackedDesk.transform.position;
