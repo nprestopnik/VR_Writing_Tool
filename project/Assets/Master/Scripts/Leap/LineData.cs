@@ -8,6 +8,6 @@ public class LineData : MonoBehaviour {
 	public float lineWidth;
 	public Vector3[] points;
 
-	//Sorting order?
+	public int sortingOrder;
 
 }

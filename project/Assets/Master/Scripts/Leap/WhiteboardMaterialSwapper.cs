@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlackboardMaterialSwapper : MonoBehaviour {
+public class WhiteboardMaterialSwapper : MonoBehaviour {
 
-	public Blackboard bb2;
+	public Whiteboard bb2;
 	public Material m;
 	
 

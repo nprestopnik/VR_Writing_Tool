@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blackboard : MonoBehaviour {
+public class Whiteboard : MonoBehaviour {
 
 	Leap.Unity.Interaction.InteractionButton button;
 	public Leap.Unity.Interaction.InteractionSlider strokeSlider;
@@ -77,6 +77,7 @@ public class Blackboard : MonoBehaviour {
 		go.tag = "BoardLine";
 
 		currData = go.AddComponent<LineData>();
+
 		currLineR = go.AddComponent<LineRenderer>();
 		currLineR.startWidth = lineWidth;
 		currLineR.endWidth = lineWidth;
@@ -101,6 +102,7 @@ public class Blackboard : MonoBehaviour {
 		currData.lineWidth = lineWidth;
 		currData.lMat = lMat;
 		currData.points = points.ToArray();
+		currData.sortingOrder = numLines;
 		history.Add(currData);
 		currLineR = null;
 		currData = null;
@@ -147,6 +149,7 @@ public class Blackboard : MonoBehaviour {
 			currData.lineWidth = l.lineWidth;
 			currData.lMat = l.lMat;
 			currData.points = l.points;
+			currData.sortingOrder = l.sortingOrder;
 
 			currLineR = go.AddComponent<LineRenderer>();
 			currLineR.startWidth = l.lineWidth;
@@ -154,9 +157,10 @@ public class Blackboard : MonoBehaviour {
 			currLineR.material = l.lMat;
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
+			currLineR.sortingOrder = l.sortingOrder;
 			
-			currLineR.sortingOrder = numLines;
-			numLines++;
+			//currLineR.sortingOrder = numLines;
+			//numLines++;
 
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
