@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class textureSwap : MonoBehaviour {
+public class KeyboardFeedback : MonoBehaviour {
 
 	IDictionary<KeyCode, GameObject> keyboard = new Dictionary<KeyCode, GameObject>(); //Holds a key (the keyboard key name as a string, based on the Unity key input names) and value (the corrsponding keyboard key GameObject)
 
