@@ -6,7 +6,7 @@ public class WhiteboardContainer : MonoBehaviour {
 
 	public WhiteboardData data;
 
-	public void loadData() {
+	public void loadData(WhiteboardData newData) {
 
 	}
 
