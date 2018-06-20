@@ -25,6 +25,8 @@ public class Whiteboard : MonoBehaviour {
 	private List<LineData> history;
 	private List<LineData> redoHistory;
 
+	public List<LineData> lines;
+
 	//Used for sorting order
 	private int numLines = 0;
 
@@ -104,6 +106,7 @@ public class Whiteboard : MonoBehaviour {
 		currData.points = points.ToArray();
 		currData.sortingOrder = numLines;
 		history.Add(currData);
+		lines.Add(currData);
 		currLineR = null;
 		currData = null;
 	}
@@ -193,6 +196,51 @@ public class Whiteboard : MonoBehaviour {
 				// history.Add(lhistory);
 				Destroy(t.gameObject);
 			}
+		}
+	}
+
+	public void loadData(WhiteboardData data) {
+		//load the lines and position
+
+		lines = new List<LineData>(data.lines);
+
+		transform.root.position = data.position;
+		transform.root.rotation = data.rotation;
+
+		foreach(LineData l in data.lines) {
+			
+			GameObject go = new GameObject (); 
+			go.tag = "BoardLine";
+
+			currData = go.AddComponent<LineData>();
+			currData.lineWidth = l.lineWidth;
+			currData.lMat = l.lMat;
+			currData.points = l.points;
+			currData.sortingOrder = l.sortingOrder;
+
+			currLineR = go.AddComponent<LineRenderer>();
+			currLineR.startWidth = l.lineWidth;
+			currLineR.endWidth = l.lineWidth;
+			currLineR.material = l.lMat;
+			currLineR.useWorldSpace = false;
+			currLineR.alignment = LineAlignment.Local;
+			currLineR.sortingOrder = l.sortingOrder;
+			
+			//currLineR.sortingOrder = numLines;
+			//numLines++;
+
+			currLineR.positionCount = l.points.Length - 1;
+			currLineR.SetPositions(l.points);
+			
+
+			go.transform.SetParent(transform.parent);
+			go.transform.localPosition = Vector3.zero;
+			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
+			currLineR.transform.localScale = Vector3.one;
+
+			//end();
+			currLineR = null;
+			currData = null;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Feature : MonoBehaviour {
 
 	public string name;
@@ -9,5 +10,11 @@ public class Feature : MonoBehaviour {
 
 	public Vector3 position;
 	public Quaternion rotation;
+
+	public Feature() {
+		name = "";
+		position = Vector3.zero;
+		rotation = Quaternion.identity;
+	}
 	
 }
