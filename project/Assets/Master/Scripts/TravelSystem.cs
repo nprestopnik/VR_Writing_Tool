@@ -12,6 +12,8 @@ public class TravelSystem : MonoBehaviour {
 	public int goalRoomIndex=0;
 	int goalSceneID = 3;
 
+	public GameObject whiteboardPrefab;
+
 	void Awake() {
 		instance = this;
 	}
@@ -31,6 +33,19 @@ public class TravelSystem : MonoBehaviour {
 
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         setGoalScene(goalRoomIndex);
+		//Load features
+		Feature[] features = SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].getFeaturesArray();
+
+		foreach(Feature f in features) {
+			if(f is WhiteboardData) {
+				//Create Whiteboard
+				WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
+				WhiteboardData data = (WhiteboardData)f;
+				whiteboard.loadData(data);
+				//Move Whitboard to scene
+				SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, scene);
+			}
+		}
     }
 
 	void OnApplicationQuit() {

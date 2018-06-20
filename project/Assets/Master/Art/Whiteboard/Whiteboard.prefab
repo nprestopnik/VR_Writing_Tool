@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  whiteboard: {fileID: 0}
+  whiteboard: {fileID: 114060913859279678}
 --- !u!114 &114402421140577300
 MonoBehaviour:
   m_ObjectHideFlags: 1

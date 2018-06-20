@@ -35,6 +35,7 @@ public class Whiteboard : MonoBehaviour {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
 		history = new List<LineData>();
 		redoHistory = new List<LineData>();
+		lines = new List<LineData>();
 	}
 	
 	// Update is called once per frame

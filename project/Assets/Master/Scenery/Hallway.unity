@@ -4416,6 +4416,8 @@ MonoBehaviour:
     sceneID: 0
     features: []
   goalRoomIndex: 0
+  whiteboardPrefab: {fileID: 1636081780300014, guid: b1a92759af1c6ef40ba6f88410d1a494,
+    type: 2}
 --- !u!1 &529041585
 GameObject:
   m_ObjectHideFlags: 0
