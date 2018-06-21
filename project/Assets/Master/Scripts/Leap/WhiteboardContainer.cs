@@ -14,7 +14,7 @@ public class WhiteboardContainer : MonoBehaviour {
 	}
 
 	void Start() {
-		data  = new WhiteboardData();
+		//data  = new WhiteboardData();
 	}
 
 	void Update() {

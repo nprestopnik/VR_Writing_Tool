@@ -14,6 +14,7 @@ public class Room {
 	public Room(string name, int sceneID) {
 		this.name = name;
 		this.sceneID = sceneID;
+        features = new Feature[0];
 	}
 
 	public void addFeature(Feature newFeature) {

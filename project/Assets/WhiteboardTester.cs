@@ -15,7 +15,10 @@ public class WhiteboardTester : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.B)) {
 			WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
-
+			WhiteboardData data = new WhiteboardData();
+			data.position = whiteboard.transform.root.position;
+			data.rotation = whiteboard.transform.root.rotation;
+			whiteboard.loadData(data);
 			SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.data);
 			SaveSystem.instance.saveCurrentSave();
 		}

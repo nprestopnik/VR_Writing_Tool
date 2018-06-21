@@ -273,7 +273,6 @@ GameObject:
   - component: {fileID: 54519941840616824}
   - component: {fileID: 114210743531674982}
   - component: {fileID: 114238293648257918}
-  - component: {fileID: 114961554512898504}
   m_Layer: 0
   m_Name: Redo
   m_TagString: Untagged
@@ -2556,7 +2555,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911e5fa8fae1c8e48bbabbeebb51904f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
+  data:
+    name: Whiteboard
+    ID: 
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 1}
+    lines: []
   whiteboard: {fileID: 114060913859279678}
 --- !u!114 &114402421140577300
 MonoBehaviour:
@@ -3224,17 +3228,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c0049b6cdde5e54cbfd0b8141cc3f4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114961554512898504
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1590586690131392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114963917666864198
