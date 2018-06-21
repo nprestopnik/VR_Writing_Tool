@@ -2229,6 +2229,11 @@ MonoBehaviour:
   boardScaler: {fileID: 1982979956524850}
   scaleHandle: {fileID: 1050526876050092}
   lMat: {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
+  lineMaterials:
+  - {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
+  - {fileID: 2100000, guid: a13eb8f1dc736cb4887637e2e6675b93, type: 2}
+  - {fileID: 2100000, guid: 7ada446c06a9d58438a1b00046e8e3be, type: 2}
+  - {fileID: 2100000, guid: 9ddd0a1b4d920f345b115d006f41510c, type: 2}
   lineWidth: 0.01
   lines: []
 --- !u!114 &114121844251843660
@@ -2543,7 +2548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb2: {fileID: 114060913859279678}
-  m: {fileID: 2100000, guid: 9ddd0a1b4d920f345b115d006f41510c, type: 2}
+  materialIndex: 3
 --- !u!114 &114353551049793158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2765,7 +2770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb2: {fileID: 114060913859279678}
-  m: {fileID: 2100000, guid: 7ada446c06a9d58438a1b00046e8e3be, type: 2}
+  materialIndex: 2
 --- !u!114 &114524518035168350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2990,7 +2995,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb2: {fileID: 114060913859279678}
-  m: {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
+  materialIndex: 0
 --- !u!114 &114713250941340510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3003,7 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bb2: {fileID: 114060913859279678}
-  m: {fileID: 2100000, guid: a13eb8f1dc736cb4887637e2e6675b93, type: 2}
+  materialIndex: 1
 --- !u!114 &114738308771095906
 MonoBehaviour:
   m_ObjectHideFlags: 1

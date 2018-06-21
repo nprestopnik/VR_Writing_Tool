@@ -13,6 +13,8 @@ public class Whiteboard : MonoBehaviour {
 
 	//Original Material for the line
 	public Material lMat;
+	int lMatIndex;
+	public Material[] lineMaterials;
 	//Original line width
 	public float lineWidth = 0.01f;
 
@@ -20,10 +22,10 @@ public class Whiteboard : MonoBehaviour {
 	//The line currently being drawn
 	private LineRenderer currLineR;
 	//Data for history and undo/redo
-	private LineData currData;
+	private LineDataContainer currData;
 	private List<Vector3> points;
-	private List<LineData> history;
-	private List<LineData> redoHistory;
+	private List<LineDataContainer> history;
+	private List<LineDataContainer> redoHistory;
 
 	public List<LineData> lines;
 
@@ -33,9 +35,9 @@ public class Whiteboard : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
-		history = new List<LineData>();
-		redoHistory = new List<LineData>();
-		lines = new List<LineData>();
+		history = new List<LineDataContainer>();
+		redoHistory = new List<LineDataContainer>();
+		//lines = new List<LineData>();
 	}
 	
 	// Update is called once per frame
@@ -79,7 +81,8 @@ public class Whiteboard : MonoBehaviour {
 		GameObject go = new GameObject (); 
 		go.tag = "BoardLine";
 
-		currData = go.AddComponent<LineData>();
+		currData = go.AddComponent<LineDataContainer>();//
+		currData.data = new LineData();
 
 		currLineR = go.AddComponent<LineRenderer>();
 		currLineR.startWidth = lineWidth;
@@ -93,7 +96,7 @@ public class Whiteboard : MonoBehaviour {
 		currLineR.sortingOrder = numLines;
 		numLines++;
 
-		redoHistory = new List<LineData>();
+		redoHistory = new List<LineDataContainer>();
 
 		go.transform.SetParent(transform.parent);
 		go.transform.localPosition = Vector3.zero;
@@ -102,12 +105,12 @@ public class Whiteboard : MonoBehaviour {
 	//Called when contact ends with the board
 	public void end(){
 		currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
-		currData.lineWidth = lineWidth;
-		currData.lMat = lMat;
-		currData.points = points.ToArray();
-		currData.sortingOrder = numLines;
+		currData.data.lineWidth = lineWidth;
+		currData.data.lMatIndex = lMatIndex;
+		currData.data.points = points.ToArray();
+		currData.data.sortingOrder = numLines;
 		history.Add(currData);
-		lines.Add(currData);
+		lines.Add(currData.data);
 		currLineR = null;
 		currData = null;
 	}
@@ -122,8 +125,9 @@ public class Whiteboard : MonoBehaviour {
 	}
 
 	//Used to set the line material
-	public void setMaterial(Material m) {
-		lMat = m;
+	public void setMaterial(int index) {
+		lMat = lineMaterials[index];
+		lMatIndex = index;
 	}
 
 	public void SetGlobalScale (Transform transform, Vector3 globalScale)
@@ -134,31 +138,33 @@ public class Whiteboard : MonoBehaviour {
 
 	//Destroys the gameobject and stores its data in a list
 	public void Undo() {
-		LineData l = history[history.Count - 1];
-		redoHistory.Add(l);
-		Destroy(l.gameObject);
+		LineData l = history[history.Count - 1].data;
+		redoHistory.Add(history[history.Count - 1]);
+		Destroy(history[history.Count - 1].gameObject);
 		history.RemoveAt(history.Count - 1);
+		lines.RemoveAt(lines.Count - 1);
 	}
 
 
 	//Takes the data from the history and creates a new gameobject line
 	public void Redo() {
 		if(redoHistory.Count > 0) {
-			LineData l = redoHistory[redoHistory.Count - 1];
+			LineData l = redoHistory[redoHistory.Count - 1].data;
 			
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineData>();
-			currData.lineWidth = l.lineWidth;
-			currData.lMat = l.lMat;
-			currData.points = l.points;
-			currData.sortingOrder = l.sortingOrder;
+			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData.data = new LineData();
+			currData.data.lineWidth = l.lineWidth;
+			currData.data.lMatIndex = l.lMatIndex;
+			currData.data.points = l.points;
+			currData.data.sortingOrder = l.sortingOrder;
 
 			currLineR = go.AddComponent<LineRenderer>();
 			currLineR.startWidth = l.lineWidth;
 			currLineR.endWidth = l.lineWidth;
-			currLineR.material = l.lMat;
+			currLineR.material = lineMaterials[l.lMatIndex];
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;
@@ -178,6 +184,7 @@ public class Whiteboard : MonoBehaviour {
 			//end();
 			redoHistory.RemoveAt(redoHistory.Count - 1);
 			history.Add(currData);
+			lines.Add(currData.data);
 			currLineR = null;
 			currData = null;
 		}	
@@ -213,16 +220,17 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineData>();
-			currData.lineWidth = l.lineWidth;
-			currData.lMat = l.lMat;
-			currData.points = l.points;
-			currData.sortingOrder = l.sortingOrder;
+			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData.data = new LineData();
+			currData.data.lineWidth = l.lineWidth;
+			currData.data.lMatIndex = l.lMatIndex;
+			currData.data.points = l.points;
+			currData.data.sortingOrder = l.sortingOrder;
 
 			currLineR = go.AddComponent<LineRenderer>();
 			currLineR.startWidth = l.lineWidth;
 			currLineR.endWidth = l.lineWidth;
-			currLineR.material = l.lMat;
+			currLineR.material = lineMaterials[l.lMatIndex];
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;

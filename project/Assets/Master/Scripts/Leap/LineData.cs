@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LineData : MonoBehaviour {
+public class LineData {
 
 	[SerializeField]
-	public Material lMat;
+	public int lMatIndex;
 	public float lineWidth;
 	[SerializeField]
 	public Vector3[] points;
