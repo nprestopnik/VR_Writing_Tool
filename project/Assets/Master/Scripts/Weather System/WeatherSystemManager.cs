@@ -44,7 +44,7 @@ public class WeatherSystemManager : MonoBehaviour {
 		}
 
 		if(day) {
-			environment.SetLighting(lightingPresets[0]);
+			environment.SetLighting(Array.Find(lightingPresets, lightingPreset => lightingPreset.settingName == "Midday"));
 			day = false;
 		}
 		if(dusk) {

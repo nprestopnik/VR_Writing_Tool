@@ -6,7 +6,6 @@ public class EnvironmentManager : MonoBehaviour {
 
 	public ParticleSystem rain;
 	private ParticleSystem.EmissionModule rainEmission;
-
 	public Light sunLight;
 	public Light fillLight;
 	public WindZone windZone;
@@ -25,6 +24,9 @@ public class EnvironmentManager : MonoBehaviour {
 		windZone.windTurbulence = newWeather.windTurbulence;
 		windZone.windPulseMagnitude = newWeather.windPulseMag;
 		windZone.windPulseFrequency = newWeather.windPulseFreq;
+
+		audioManager.ambientSource.clip = newWeather.ambientSound;
+		audioManager.ambientSource.volume = newWeather.ambientVolume;
 	}
 
 	public void SetLighting(LightingPreset newLighting) {
@@ -37,6 +39,11 @@ public class EnvironmentManager : MonoBehaviour {
 		fillLight.transform.rotation = Quaternion.Euler(newLighting.fillLightRotation);
 		fillLight.intensity = newLighting.fillLightIntensity;
 		fillLight.color = newLighting.fillLightColor;
+
+		audioManager.transientSoundClips = newLighting.transientSounds;
+		audioManager.transientVolume = newLighting.transientVolume;
+		audioManager.minDelay = newLighting.minSoundDelay;
+		audioManager.maxDelay = newLighting.maxSoundDelay;
 
 	}
 

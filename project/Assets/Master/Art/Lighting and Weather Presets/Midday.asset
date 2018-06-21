@@ -15,7 +15,11 @@ MonoBehaviour:
   skybox: {fileID: 2100000, guid: f76dcf13f63c34ed386b0ac21d830876, type: 2}
   sunRotation: {x: 63, y: 140, z: 104}
   sunIntensity: 0.8
-  sunColor: {r: 0.99607843, g: 1, b: 0.9098039, a: 1}
+  sunColor: {r: 1, g: 0.95016104, b: 0.7971698, a: 1}
   fillLightRotation: {x: 33, y: 340, z: 106}
   fillLightIntensity: 0.2
   fillLightColor: {r: 0.8349056, g: 1, b: 1, a: 1}
+  transientSounds: []
+  transientVolume: 0
+  minSoundDelay: 0
+  maxSoundDelay: 0

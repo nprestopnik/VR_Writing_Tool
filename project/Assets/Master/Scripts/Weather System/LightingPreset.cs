@@ -17,5 +17,9 @@ public class LightingPreset : ScriptableObject {
 	public float fillLightIntensity;
 	public Color fillLightColor;
 
+	public AudioClip[] transientSounds;
+	public float transientVolume;
+	public float minSoundDelay;
+	public float maxSoundDelay;
 
 }
