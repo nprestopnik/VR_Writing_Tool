@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
   m_Name: Windy
   m_EditorClassIdentifier: 
-  nameOfSetting: Windy
+  settingName: Windy
   rainIntensity: 0
   windIntensity: 0.4
   windTurbulence: 0

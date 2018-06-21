@@ -5,15 +5,15 @@ using UnityEngine;
 [CreateAssetMenu]
 public class LightingPreset : ScriptableObject {
 
-	public string nameOfSetting;
+	public string settingName;
 	
 	public Material skybox;
 
-	public Transform sunLocation;
+	public Vector3 sunRotation;
 	public float sunIntensity;
 	public Color sunColor;
 
-	public Transform fillLightLocation;
+	public Vector3 fillLightRotation;
 	public float fillLightIntensity;
 	public Color fillLightColor;
 

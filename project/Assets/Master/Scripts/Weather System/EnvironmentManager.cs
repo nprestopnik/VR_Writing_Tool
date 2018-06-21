@@ -2,29 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SceneWeatherManager : MonoBehaviour {
+public class EnvironmentManager : MonoBehaviour {
 
 	public ParticleSystem rain;
 	private ParticleSystem.EmissionModule rainEmission;
 
-	public GameObject sun;
-	private Light sunLight;
-	public GameObject fill;
-	private Light fillLight;
+	public Light sunLight;
+	public Light fillLight;
+	public WindZone windZone;
 
-	public GameObject wind;
-	private WindZone windZone;
+	public EnvironmentAudioManager audioManager;
 
 
 	void Start() {
 		rainEmission = rain.emission;
-		windZone = wind.GetComponent<WindZone>();
-		sunLight = sun.GetComponent<Light>();
-		fillLight = fill.GetComponent<Light>();
-	}
-
-	void Update() {
-	
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
@@ -39,13 +30,11 @@ public class SceneWeatherManager : MonoBehaviour {
 	public void SetLighting(LightingPreset newLighting) {
 		RenderSettings.skybox = newLighting.skybox;
 
-		sunLight.transform.position = newLighting.sunLocation.position;
-		sunLight.transform.rotation = newLighting.sunLocation.rotation;
+		sunLight.transform.rotation = Quaternion.Euler(newLighting.sunRotation);
 		sunLight.intensity = newLighting.sunIntensity;
 		sunLight.color = newLighting.sunColor;
 
-		fillLight.transform.position = newLighting.fillLightLocation.position;
-		fillLight.transform.rotation = newLighting.fillLightLocation.rotation;
+		fillLight.transform.rotation = Quaternion.Euler(newLighting.fillLightRotation);
 		fillLight.intensity = newLighting.fillLightIntensity;
 		fillLight.color = newLighting.fillLightColor;
 

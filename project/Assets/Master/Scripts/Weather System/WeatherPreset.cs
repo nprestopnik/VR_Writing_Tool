@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class WeatherPreset : ScriptableObject {
 
-	public string nameOfSetting;
+	public string settingName;
 	
 	public float rainIntensity;
 
@@ -13,6 +13,8 @@ public class WeatherPreset : ScriptableObject {
 	public float windTurbulence;
 	public float windPulseMag;
 	public float windPulseFreq;
+
+	public AudioClip ambientSound;
 
 	
 }

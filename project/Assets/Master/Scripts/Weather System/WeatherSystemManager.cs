@@ -1,39 +1,59 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeatherSystemManager : MonoBehaviour {
 
+	public GameObject environmentManager;
+
 	public WeatherPreset[] weatherPresets;
     public LightingPreset[] lightingPresets;
 
-    public GameObject weatherManager;
-	private SceneWeatherManager sceneWeather;
+	private EnvironmentManager environment;
 
     [Header("Testing Triggers")]
     public bool clear = false;
     public bool windy = false;
 	public bool rainy = false;
+
+	public bool day = false;
+	public bool dusk = false;
+	public bool late = false;
+
 	
     void Start () {
-		weatherManager = GameObject.Find("WeatherManager");
-		sceneWeather = weatherManager.GetComponent<SceneWeatherManager>();
+		environmentManager = GameObject.Find("EnvironmentManager");
+		environment = environmentManager.GetComponent<EnvironmentManager>();
 	}
 	
 	void Update () {
 
         //IF STATEMENTS FOR TESTING ONLY
         if(clear) {
-            sceneWeather.SetWeather(weatherPresets[0]);
+            environment.SetWeather(Array.Find(weatherPresets, weatherPreset => weatherPreset.settingName == "Clear"));
 			clear = false;
         }
 		if(windy) {
-			sceneWeather.SetWeather(weatherPresets[1]);
+			environment.SetWeather(weatherPresets[1]);
 			windy = false;
 		}
 		if(rainy) {
-			sceneWeather.SetWeather(weatherPresets[2]);
+			environment.SetWeather(weatherPresets[2]);
 			rainy = false;
+		}
+
+		if(day) {
+			environment.SetLighting(lightingPresets[0]);
+			day = false;
+		}
+		if(dusk) {
+			environment.SetLighting(lightingPresets[1]);
+			dusk = false;
+		}
+		if(late) {
+			environment.SetLighting(lightingPresets[2]);
+			late = false;
 		}
 
 
