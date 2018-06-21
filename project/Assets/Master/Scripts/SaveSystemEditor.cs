@@ -19,6 +19,7 @@ public class SaveSystemEditor : Editor {
 		
 		GUILayout.Space(10f);
 
+		//Create save button
 		if(creatingSave) {
 			saveName = EditorGUILayout.TextField("Save Name", saveName);
 			if(GUILayout.Button("Create")) {
@@ -35,7 +36,7 @@ public class SaveSystemEditor : Editor {
 		}
 
 		GUILayout.Space(15f);
-
+		//Deleting saves button
 		if(deletingSave) {
 			GUILayout.Label("Saves:");
 			Save[] saves = myTarget.listSaves();
@@ -56,7 +57,7 @@ public class SaveSystemEditor : Editor {
 		}
 
 		GUILayout.Space(15f);
-
+		//Loading save button
 		if(loadingSave) {
 			GUILayout.Label("Saves:");
 			Save[] saves = myTarget.listSaves();
@@ -76,7 +77,7 @@ public class SaveSystemEditor : Editor {
 			}
 		}
 
-
+		//Displaying save information
 		GUILayout.Space(15f);
 		if(myTarget.getCurrentSave() != null && Application.isPlaying) {
 			GUILayout.Label("Current Save:");

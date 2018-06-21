@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class LineDataContainer : MonoBehaviour {
 
+	//This is just a container for this datatype
 	public LineData data;
-	void Start () {
-		
-	}
-	
-	void Update () {
-		
-	}
+
 }

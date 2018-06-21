@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Master/Scenery/CRUDScene.unity
     guid: 7a6bed1b3ad242b43b89a5ffc6b39fe0
+  - enabled: 1
+    path: Assets/Master/Scenery/treehouse.unity
+    guid: d88d0b1f54753164da2199a8fa88672c
   m_configObjects: {}

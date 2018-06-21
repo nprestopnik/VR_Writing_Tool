@@ -85,11 +85,6 @@ public class SaveSystem : MonoBehaviour {
         }
 
         //Converts the save into JSON and saves it to a file
-        // StreamWriter output = new StreamWriter(currentSave.path);
-        // string file = JsonUtility.ToJson(currentSave);
-        // output.Write(file);
-        // output.Close();
-        // return (currentSave.path);
 
         fsSerializer _serializer = new fsSerializer();
         fsData data;
@@ -107,10 +102,6 @@ public class SaveSystem : MonoBehaviour {
         {
             //Save already exists
             //Loads the JSON from a file and converts it into a save
-            // StreamReader input = new StreamReader(Application.persistentDataPath + "/" + name + ".save");
-            // Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
-            // input.Close();
-            // return loadedSave;
 
             StreamReader input = new StreamReader(Application.persistentDataPath + "/" + name + ".save");
             string serializedState = input.ReadToEnd();

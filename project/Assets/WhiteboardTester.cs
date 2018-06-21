@@ -14,6 +14,7 @@ public class WhiteboardTester : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.B)) {
+			//Creating and adding a whiteboard feature tot the scene
 			WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
 			WhiteboardData data = new WhiteboardData();
 			data.position = whiteboard.transform.root.position;
