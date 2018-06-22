@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33189483029382896}
   - component: {fileID: 23511192798196172}
   - component: {fileID: 65718763692098628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 54465308408384462}
   - component: {fileID: 114635367457868692}
   - component: {fileID: 114125612835944666}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Scale Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 114906669116801444}
   - component: {fileID: 114532656931426316}
   - component: {fileID: 114009939490837872}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stroke Slider Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 54127225100335828}
   - component: {fileID: 114888109221141988}
   - component: {fileID: 114312177796883340}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Undo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 114060040577847784}
   - component: {fileID: 114212292996999962}
   - component: {fileID: 114524518035168350}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: History Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 33521961679388812}
   - component: {fileID: 65983688212021922}
   - component: {fileID: 23066795649233504}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4343492358836680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 114577959592290716}
   - component: {fileID: 114228047955488950}
   - component: {fileID: 114974326327242086}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clear Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4183765530210450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: History Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 54348368283575524}
   - component: {fileID: 114121844251843660}
   - component: {fileID: 114787253154280400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4861323365433490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clear Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 114402421140577300}
   - component: {fileID: 114050883933735220}
   - component: {fileID: 114468766401321314}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 114280932268655482}
   - component: {fileID: 114956339078932316}
   - component: {fileID: 114345061941874098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 54519941840616824}
   - component: {fileID: 114210743531674982}
   - component: {fileID: 114238293648257918}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Redo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 114172144564650308}
   - component: {fileID: 114963917666864198}
   - component: {fileID: 65074492119163688}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Whiteboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   - component: {fileID: 114060913859279678}
   - component: {fileID: 114307851266150268}
   - component: {fileID: 114353551049793158}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Interaction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 54924894699049006}
   - component: {fileID: 114942916958104088}
   - component: {fileID: 114023647644203566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 33280437135541452}
   - component: {fileID: 65317229114680166}
   - component: {fileID: 23930657983531562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 33579377772530848}
   - component: {fileID: 23863470153092610}
   - component: {fileID: 65314084077385580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StrokeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 114004974377199072}
   - component: {fileID: 114622164358776600}
   - component: {fileID: 114738308771095906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 33047200383729882}
   - component: {fileID: 65590064302400608}
   - component: {fileID: 23809673315556238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: History Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 114548601335613536}
   - component: {fileID: 114989304713675158}
   - component: {fileID: 114713250941340510}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4706443756402252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 114426695742913898}
   - component: {fileID: 114603096045499926}
   - component: {fileID: 114645427358276336}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Color Change Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 33224157593563042}
   - component: {fileID: 65236056708151608}
   - component: {fileID: 23047046763552900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: History Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4595944908785184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Board Scaler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1636081780300014}
   m_LocalRotation: {x: -0, y: -0.012811363, z: -0, w: -0.999918}
-  m_LocalPosition: {x: 8.821, y: 0.592, z: 1.275}
+  m_LocalPosition: {x: 8.022856, y: 0.588, z: 0.818}
   m_LocalScale: {x: 0.06413463, y: 0.0641346, z: 0.06413463}
   m_Children:
   - {fileID: 4706443756402252}
@@ -1988,7 +1988,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638447416460272}
   m_Material: {fileID: 13400000, guid: dd44a9dcbb1c489438954cde06325d71, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
