@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	public bool debugMove = false;
-	private float moveSpeed = 5f;
+	private float moveSpeed = 3f;
 
 	public CapsuleCollider collisionCapsule;
 	public Transform head;
@@ -51,5 +51,32 @@ public class PlayerController : MonoBehaviour {
 		collisionCapsule.height = height;
 		collisionCapsule.center = new Vector3(0, height / -2f + collisionCapsule.radius, 0);
 		collisionCapsule.transform.rotation = Quaternion.identity;
+	}
+
+	public void moveInDirection(Vector3 dir) {
+			Vector3 vel = dir;
+			//print(dir);
+			vel.Normalize();
+			vel *= moveSpeed;
+			//vel = Quaternion.Euler(0, transform.eulerAngles.y, 0) * vel;
+
+			vel.y = rig.velocity.y;
+
+			RaycastHit hit;
+			Vector3 headPositionFloor = head.position;
+			//headPositionFloor.y = transform.position.y;
+			if(Physics.SphereCast(headPositionFloor, collisionCapsule.radius, Vector3.down, out hit, collisionCapsule.height - collisionCapsule.radius + 0.3f, 1<<0)) {
+				if(hit.normal.y < 0.98f && (dir.x + dir.y == 0)) {
+					vel.y = 0;
+					rig.isKinematic = true;
+				}
+				else {
+					rig.isKinematic = false;
+				}
+			} else {
+				rig.isKinematic = false;
+			}
+			
+			rig.velocity = vel;
 	}
 }
