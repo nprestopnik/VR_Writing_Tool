@@ -19,7 +19,9 @@ MonoBehaviour:
   fillLightRotation: {x: 33, y: 340, z: 106}
   fillLightIntensity: 0.2
   fillLightColor: {r: 0.8349056, g: 1, b: 1, a: 1}
-  transientSounds: []
-  transientVolume: 0
-  minSoundDelay: 0
-  maxSoundDelay: 0
+  transientSounds:
+  - {fileID: 8300000, guid: 508745564744b433a9aedda75fa7d79e, type: 3}
+  - {fileID: 8300000, guid: 72d32528e9dc44945ad2804178717178, type: 3}
+  transientVolume: 1
+  minSoundDelay: 2
+  maxSoundDelay: 10

@@ -17,3 +17,5 @@ MonoBehaviour:
   windTurbulence: 0
   windPulseMag: 1
   windPulseFreq: 1
+  ambientSound: {fileID: 8300000, guid: 574a50782d3f14b0b8a7968ed1e68f41, type: 3}
+  ambientVolume: 1

@@ -27,6 +27,7 @@ public class EnvironmentManager : MonoBehaviour {
 
 		audioManager.ambientSource.clip = newWeather.ambientSound;
 		audioManager.ambientSource.volume = newWeather.ambientVolume;
+		audioManager.ambientSource.Play();
 	}
 
 	public void SetLighting(LightingPreset newLighting) {

@@ -15,7 +15,7 @@ public class WeatherPreset : ScriptableObject {
 	public float windPulseFreq;
 
 	public AudioClip ambientSound;
-	public float ambientVolume; 
+	public float ambientVolume = 1; 
 
 	
 }
