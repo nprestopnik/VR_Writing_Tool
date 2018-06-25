@@ -88,7 +88,8 @@ public class TravelSystem : MonoBehaviour {
 		SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
 		goalRoomIndex = temp;
 		// setGoalScene(goalRoomIndex);
-		
+		//LOOK AT THIS PLEASE
+		//https://medium.com/fusedvr/implementing-vr-scene-transitions-c27861a9ac77
 		SaveSystem.instance.saveCurrentSave();
 	}
 
