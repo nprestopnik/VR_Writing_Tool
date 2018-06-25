@@ -24,7 +24,13 @@ public class RoomPanelHolder : MonoBehaviour {
 	}
 
 	public void roomClick() {
-		Hallway.instance.setGoalScene(roomIndex);
+		TravelSystem.instance.setGoalScene(roomIndex);
 		//ControllerMenu.instance.loadRooms();
+	}
+
+	public void deleteRoom() {
+		SaveSystem.instance.getCurrentSave().deleteRoom(roomIndex);
+		SaveSystem.instance.saveCurrentSave();
+		ControllerMenu.instance.loadRooms();
 	}
 }
