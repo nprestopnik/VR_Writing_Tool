@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 //using UnityEngine.SceneManagement;
+using FullSerializer;
 
 
 public class SaveSystem : MonoBehaviour {
@@ -84,9 +85,12 @@ public class SaveSystem : MonoBehaviour {
         }
 
         //Converts the save into JSON and saves it to a file
+
+        fsSerializer _serializer = new fsSerializer();
+        fsData data;
+        _serializer.TrySerialize(typeof(Save), currentSave, out data).AssertSuccessWithoutWarnings();
         StreamWriter output = new StreamWriter(currentSave.path);
-        string file = JsonUtility.ToJson(currentSave);
-        output.Write(file);
+        output.Write(fsJsonPrinter.CompressedJson(data));
         output.Close();
         return (currentSave.path);
     }
@@ -98,9 +102,50 @@ public class SaveSystem : MonoBehaviour {
         {
             //Save already exists
             //Loads the JSON from a file and converts it into a save
+
             StreamReader input = new StreamReader(Application.persistentDataPath + "/" + name + ".save");
-            Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
+            string serializedState = input.ReadToEnd();
             input.Close();
+            fsData data = fsJsonParser.Parse(serializedState);
+
+            // step 2: deserialize the data
+            fsSerializer _serializer = new fsSerializer();
+            object deserialized = null;
+            _serializer.TryDeserialize(data, typeof(Save), ref deserialized).AssertSuccessWithoutWarnings();
+            Save loadedSave = (Save)deserialized;
+            return loadedSave;
+        }
+        else
+        {
+            //Save does not already exist
+            print("Loading a non-existant save");
+            return null;
+        }
+
+    }
+
+    public Save loadSaveWithPath(string path)
+    {
+        print("LOADING: Testing for save at: " + path);
+        if (File.Exists(path))
+        {
+            //Save already exists
+            //Loads the JSON from a file and converts it into a save
+            // StreamReader input = new StreamReader(path);
+            // Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
+            // input.Close();
+            // return loadedSave;
+
+            StreamReader input = new StreamReader(path);
+            string serializedState = input.ReadToEnd();
+            input.Close();
+            fsData data = fsJsonParser.Parse(serializedState);
+
+            // step 2: deserialize the data
+            fsSerializer _serializer = new fsSerializer();
+            object deserialized = null;
+            _serializer.TryDeserialize(data, typeof(Save), ref deserialized).AssertSuccessWithoutWarnings();
+            Save loadedSave = (Save)deserialized;
             return loadedSave;
         }
         else
