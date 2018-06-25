@@ -7,12 +7,12 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Monitor
-  m_Shader: {fileID: 4800000, guid: 1b18170cf09c7c848ae5da217e0b105a, type: 3}
+  m_Shader: {fileID: 4800000, guid: e5ddf1e17646b054bbab9825a05bfee3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:

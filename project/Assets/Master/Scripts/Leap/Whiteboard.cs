@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Whiteboard : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Whiteboard : MonoBehaviour {
 
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
+	public Text boardText;
 
 	//Original Material for the line
 	public Material lMat;
@@ -214,6 +216,9 @@ public class Whiteboard : MonoBehaviour {
 
 		transform.root.position = data.position;
 		transform.root.rotation = data.rotation;
+		boardScaler.transform.localScale = data.scale;
+		scaleHandle.transform.localPosition = new Vector3(-1 * data.scale.x, data.scale.y, 0);
+		boardText.text = data.text;
 
 		foreach(LineData l in data.lines) {
 			
