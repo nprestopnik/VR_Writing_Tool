@@ -10,5 +10,9 @@ public class KeyboardInput : MonoBehaviour {
 	void Start () {
 		testInput.ActivateInputField();
 	}
+
+	void Update() {
+
+	}
 	
 }
