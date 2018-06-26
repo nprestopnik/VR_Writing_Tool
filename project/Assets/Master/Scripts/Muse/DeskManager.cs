@@ -15,6 +15,8 @@ public class DeskManager : MonoBehaviour {
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
 
+	private SteamVR_TrackedObject deskTrackedObject;
+
 	private Transform museCanvas; //the canvas attached to the muse
 	private GuideToPoint museGuide; //the muse script responsible for moving the muse
 	private MuseAppear museActivator; //the script responsible for making the muse appear/disappear
@@ -37,6 +39,8 @@ public class DeskManager : MonoBehaviour {
 		museActivator = GetComponent<MuseAppear>();
 		museGuide = muse.GetComponent<GuideToPoint>();
 		deskParked = deskTracker.GetComponent<DeskParked>();
+		
+		deskTrackedObject = deskTracker.GetComponent<SteamVR_TrackedObject>();
 
 		deskModel = deskTracker.transform.Find("Desk").gameObject;
 		deskTarget = targetTracker.transform.Find("Desk").gameObject;
@@ -96,6 +100,8 @@ public class DeskManager : MonoBehaviour {
 
 	}
 	public void ConfirmSet() {
+		deskTrackedObject.enabled = false;
+
 		movingDesk = false;
 		textMoveDesk.SetActive(false);
 		lighthouse1.SetActive(false);
@@ -114,6 +120,8 @@ public class DeskManager : MonoBehaviour {
 	IEnumerator PerformParkTask() {
 
 		performing = true;
+
+		deskTrackedObject.enabled = true;
 
 		//show text saying to follow the muse and wait
 		textToParkLocation.SetActive(true);

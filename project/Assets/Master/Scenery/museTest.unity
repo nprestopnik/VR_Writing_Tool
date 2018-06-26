@@ -592,24 +592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a621fb7a97df0f2419ca223e36f17a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  performing: 0
-  trackedObj: {fileID: 0}
-  muse: {fileID: 0}
-  pauseTime: 1
-  deskParkMusePoint: {fileID: 0}
-  deskTracker: {fileID: 0}
-  deskTargetTracker: {fileID: 0}
-  lighthouse1: {fileID: 0}
-  lighthouse2: {fileID: 0}
-  deskParkTarget: {fileID: 0}
-  deskModel: {fileID: 0}
-  museCanvas: {fileID: 0}
-  museGuide: {fileID: 0}
-  museActivator: {fileID: 0}
-  textToParkLocation: {fileID: 0}
-  textToFinish: {fileID: 0}
-  deskParked: {fileID: 0}
-  pausing: 0
 --- !u!114 &363023477
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class KeyboardInput : MonoBehaviour {
 	}
 
 	void Update() {
-
+		testInput.ActivateInputField();
 	}
 	
 }
