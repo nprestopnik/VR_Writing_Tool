@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class CRUDMenu : MonoBehaviour {
 
-	public Text textDisplay;
 	public InputField saveName;
 
 	public GameObject loadContentPanel;
@@ -14,18 +13,11 @@ public class CRUDMenu : MonoBehaviour {
 	public GameObject savePanelPrefab;
 
 	void Start () {
-		// Save[] saves = SaveSystem.instance.listSaves();
 
-		// foreach(Save s in saves) {
-		// 	SavePanel p = ((GameObject)Instantiate(savePanelPrefab, contentPanel.transform)).GetComponent<SavePanel>();
-		// 	p.initSave(s);
-		// }
 	}
 	
 	public void Update() {
-		// if(Input.GetKeyDown(KeyCode.P)) {
-		// 	createNewSave();
-		// }
+
 	}
 
 	public void createLoadPanelContent() {
