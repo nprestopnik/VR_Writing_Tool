@@ -9,9 +9,21 @@ public class SavePanel : MonoBehaviour {
 
 	public Text nameText;
 
-	public void initSave(Save s) {
+	bool isLoad;
+
+	public void initSave(Save s, bool isLoad) {
 		save = s;
 		nameText.text = save.name;
+		this.isLoad = isLoad;
+	}
+
+	public void clickButton() {
+		if(isLoad) {
+			loadSave();
+		} else {
+			deleteSave();
+		}
+		transform.parent.parent.parent.parent.gameObject.SetActive(false);
 	}
 
 	public void loadSave() {
