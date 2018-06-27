@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
 	
 	public void ActivateMenu() {
 		foreach(TransformTweenBehaviour t in menuButtonTweens) {
-			t.PlayForwardAfterDelay(0f);
+			t.PlayForward();
 		}
 	}
 
@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		
 		foreach(TransformTweenBehaviour t in menuButtonTweens) {
-			t.PlayBackwardAfterDelay(0f);
+			t.PlayBackward();
 		}
 	}
 

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class SubMenu : MonoBehaviour {
 
+	public MainMenu menu;
+
 	public TransformTweenBehaviour[] cubeTweens;
 
 	public bool subMenuOpen = false;
@@ -12,16 +14,21 @@ public class SubMenu : MonoBehaviour {
 	public void ControlSubMenu() {
 
 		if (!subMenuOpen) {
-			foreach(TransformTweenBehaviour t in cubeTweens) {
-				t.PlayForwardAfterDelay(0f);
-				subMenuOpen = true;
+			foreach(SubMenu s in menu.subMenus) {
+				if (s.subMenuOpen) {
+					s.ControlSubMenu();
+				}
 			}
+			foreach(TransformTweenBehaviour t in cubeTweens) {
+				t.PlayForward();
+			}
+			subMenuOpen = true;
 		}
 		else {
 			foreach(TransformTweenBehaviour t in cubeTweens) {
-				t.PlayBackwardAfterDelay(0f);
-				subMenuOpen = false;
+				t.PlayBackward();
 			}
+			subMenuOpen = false;
 		}
 
 
