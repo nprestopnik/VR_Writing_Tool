@@ -25,7 +25,6 @@ public class RoomPanelHolder : MonoBehaviour {
 
 	public void roomClick() {
 		TravelSystem.instance.setGoalScene(roomIndex);
-		//ControllerMenu.instance.loadRooms();
 	}
 
 	public void deleteRoom() {

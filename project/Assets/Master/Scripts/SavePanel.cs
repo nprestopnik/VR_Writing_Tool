@@ -33,7 +33,6 @@ public class SavePanel : MonoBehaviour {
 		else {
 			TravelSystem.instance.setGoalScene(1);
 		}
-		//ControllerMenu.instance.loadRooms();
 	}
 
 	public void deleteSave() {
