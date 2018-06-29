@@ -9,14 +9,18 @@ public class MainMenu : MonoBehaviour {
 
 	public SubMenu[] subMenus;
 
+	public bool isActive;
+
 	
 	public void ActivateMenu() {
+		isActive = true;
 		foreach(TransformTweenBehaviour t in menuButtonTweens) {
 			t.PlayForward();
 		}
 	}
 
 	public void DeactivateMenu() {
+		isActive = false;
 		foreach(SubMenu s in subMenus) {
 			if (s.subMenuOpen) {
 				s.ControlSubMenu();
