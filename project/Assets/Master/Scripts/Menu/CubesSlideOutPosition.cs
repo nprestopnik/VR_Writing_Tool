@@ -6,7 +6,7 @@ public class CubesSlideOutPosition : MonoBehaviour {
 
 	public Transform originButton;
 
-	void Start () {
+	void Update () {
 		
 		transform.position = originButton.position;
 
