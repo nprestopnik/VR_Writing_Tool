@@ -11,6 +11,7 @@ public class DoorTrigger : MonoBehaviour {
     public GameObject rightDoor;
 
     public float doorAnimationTime;
+    public int animationSteps = 20;
 
 
     void Update() {
@@ -36,7 +37,7 @@ public class DoorTrigger : MonoBehaviour {
     }
 
     IEnumerator doorAnimation(GameObject door, bool reverse, bool mirror) {
-        int steps = 20;
+        int steps = animationSteps;
         for(int i = 0; i <= steps; i++) {
             float stamp = reverse ? (1 - (i / (steps * 1f))) : (i / (steps * 1f));
             float goalDegree = mirror ? -90f : 90f;
