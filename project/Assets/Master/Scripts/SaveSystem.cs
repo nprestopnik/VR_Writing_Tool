@@ -15,17 +15,6 @@ public class SaveSystem : MonoBehaviour {
     {
         instance = this; 
 
-        // print("Testing for save at: " + Application.persistentDataPath + "/testSave.save");
-        // if(File.Exists(Application.persistentDataPath + "/testSave.save"))
-        // {
-        //     //Load save
-        //     currentSave = loadSaveWithName("testSave");
-        // } else
-        // {
-        //     //Create new save
-        //     createNewSave("testSave");
-        // }
-
         //DEBUG: Lists the names of all the available saves
         Save[] saves = listSaves();
         foreach(Save s in saves) {
@@ -131,10 +120,6 @@ public class SaveSystem : MonoBehaviour {
         {
             //Save already exists
             //Loads the JSON from a file and converts it into a save
-            // StreamReader input = new StreamReader(path);
-            // Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
-            // input.Close();
-            // return loadedSave;
 
             StreamReader input = new StreamReader(path);
             string serializedState = input.ReadToEnd();

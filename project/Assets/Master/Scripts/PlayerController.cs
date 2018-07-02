@@ -20,28 +20,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if(debugMove == true) {
 			Vector3 vel = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-			vel.Normalize();
-			vel *= moveSpeed;
-			vel = Quaternion.Euler(0, transform.eulerAngles.y, 0) * vel;
-
-			vel.y = rig.velocity.y;
-
-			RaycastHit hit;
-			Vector3 headPositionFloor = head.position;
-			//headPositionFloor.y = transform.position.y;
-			if(Physics.SphereCast(headPositionFloor, collisionCapsule.radius, Vector3.down, out hit, collisionCapsule.height - collisionCapsule.radius + 0.3f, 1<<0)) {
-				if(hit.normal.y < 0.98f && (Input.GetAxisRaw("Horizontal") + Input.GetAxisRaw("Vertical") == 0)) {
-					vel.y = 0;
-					rig.isKinematic = true;
-				}
-				else {
-					rig.isKinematic = false;
-				}
-			} else {
-				rig.isKinematic = false;
-			}
-			
-			rig.velocity = vel;
+			moveInDirection(vel);
 			
 		}
 
@@ -54,29 +33,26 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void moveInDirection(Vector3 dir) {
-			Vector3 vel = dir;
-			//print(dir);
-			vel.Normalize();
-			vel *= moveSpeed;
-			//vel = Quaternion.Euler(0, transform.eulerAngles.y, 0) * vel;
+		Vector3 vel = dir;
+		vel.Normalize();
+		vel *= moveSpeed;
 
-			vel.y = rig.velocity.y;
+		vel.y = rig.velocity.y;
 
-			RaycastHit hit;
-			Vector3 headPositionFloor = head.position;
-			//headPositionFloor.y = transform.position.y;
-			if(Physics.SphereCast(headPositionFloor, collisionCapsule.radius, Vector3.down, out hit, collisionCapsule.height - collisionCapsule.radius + 0.3f, 1<<0)) {
-				if(hit.normal.y < 0.98f && (dir.x + dir.y == 0)) {
-					vel.y = 0;
-					rig.isKinematic = true;
-				}
-				else {
-					rig.isKinematic = false;
-				}
-			} else {
+		RaycastHit hit;
+		Vector3 headPositionFloor = head.position;
+		if(Physics.SphereCast(headPositionFloor, collisionCapsule.radius, Vector3.down, out hit, collisionCapsule.height - collisionCapsule.radius + 0.3f, 1<<0)) {
+			if(hit.normal.y < 0.98f && (dir.x + dir.y == 0)) {
+				vel.y = 0;
+				rig.isKinematic = true;
+			}
+			else {
 				rig.isKinematic = false;
 			}
-			
-			rig.velocity = vel;
+		} else {
+			rig.isKinematic = false;
+		}
+		
+		rig.velocity = vel;
 	}
 }

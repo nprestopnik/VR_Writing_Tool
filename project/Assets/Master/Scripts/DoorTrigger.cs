@@ -8,6 +8,10 @@ public class DoorTrigger : MonoBehaviour {
 
     //TEMPORARY: Quick and dirty door programming. 
 
+    void Update() {
+
+    }
+
     void OnTriggerEnter(Collider col)
     {
         if(col.tag == "Player")

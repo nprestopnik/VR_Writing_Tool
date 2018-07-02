@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class Whiteboard : MonoBehaviour {
 
@@ -10,6 +12,8 @@ public class Whiteboard : MonoBehaviour {
 
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
+	public Text boardText;
+	public RawImage boardImage;
 
 	//Original Material for the line
 	public Material lMat;
@@ -207,6 +211,19 @@ public class Whiteboard : MonoBehaviour {
 		}
 	}
 
+	IEnumerator loadPicture(string url)
+    {
+        // Start a download of the given URL
+        using (WWW www = new WWW(url))
+        {
+            // Wait for download to complete
+            yield return www;
+
+            // assign texture
+            boardImage.texture = www.texture;
+        }
+    }
+
 	public void loadData(WhiteboardData data) {
 		//load the lines and position
 
@@ -214,6 +231,30 @@ public class Whiteboard : MonoBehaviour {
 
 		transform.root.position = data.position;
 		transform.root.rotation = data.rotation;
+
+		//Scaling is probably broken right now
+		boardScaler.transform.localScale = data.scale;
+		scaleHandle.transform.localPosition = new Vector3(-1 * data.scale.x, data.scale.y, 0);
+		
+		string text = data.text;
+		string trimmedText = "file:///" + data.text.Trim(new Char[] {'"'}).Replace('\\', '/');
+		print(trimmedText);
+
+		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute);
+		bool isUriNoQuotes = Uri.IsWellFormedUriString(trimmedText, UriKind.RelativeOrAbsolute);
+
+		if(isUri) {
+			StartCoroutine(loadPicture(text));
+			boardText.text = "";
+		} else if(isUriNoQuotes) {
+			StartCoroutine(loadPicture(trimmedText));
+			boardText.text = "";
+		} else {
+			boardText.text = text;
+			boardImage.texture = null;
+		}
+		
+		
 
 		foreach(LineData l in data.lines) {
 			
