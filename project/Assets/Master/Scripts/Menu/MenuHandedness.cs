@@ -18,9 +18,9 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject menu;
 	[Header("Buttons")] 
 	public GameObject mood;
+	public GameObject creation;
 	public GameObject locations;
 	public GameObject weather;
-	public GameObject creation;
 	public GameObject system;
 	
 	public float buttonOffset;
@@ -33,22 +33,27 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 topRight;
 
 	[Header("Cubes")]
+	[Header("Mood")]
 	public GameObject moodUpperParent;
 	public GameObject moodLowerParent;
 	public GameObject[] moodCubesUpper;
 	public GameObject[] moodCubesLower;
 
+	[Header("Creation")]
 	public GameObject creationParent;
 	public GameObject[] creationCubes;
 
+	[Header("Location")]
 	public GameObject locationParent;
 	public GameObject[] locationCubes;
 
+	[Header("Weather")]
 	public GameObject weatherUpperParent;
 	public GameObject weatherLowerParent;
 	public GameObject[] weatherCubesUpper;
 	public GameObject[] weatherCubesLower;
 
+	[Header("System")]
 	public GameObject systemParent;
 	public GameObject[] systemCubes;
 

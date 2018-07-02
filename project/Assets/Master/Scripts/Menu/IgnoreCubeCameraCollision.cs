@@ -5,13 +5,24 @@ using UnityEngine;
 public class IgnoreCubeCameraCollision : MonoBehaviour {
 
 	public Collider cameraCollider;
-	private Collider cubeCollider;
+	public Collider[] buttonColliders;
+	public Collider[] cubeColliders;
+	private Collider currentCollider;
 
 	void Start () {
 		
-		cubeCollider = GetComponent<Collider>();
-		Physics.IgnoreCollision(cubeCollider, cameraCollider);
+		currentCollider = GetComponent<Collider>();
 
+		Physics.IgnoreCollision(currentCollider, cameraCollider);
+
+		foreach(Collider c in buttonColliders) {
+			Physics.IgnoreCollision(currentCollider, c); 
+		}
+
+		foreach(Collider c in cubeColliders) {
+			Physics.IgnoreCollision(currentCollider, c); 
+		}
+		
 	}
 	
 	
