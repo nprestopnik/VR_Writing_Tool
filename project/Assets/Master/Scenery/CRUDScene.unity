@@ -1111,6 +1111,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 1796557080856136, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
   m_IsPrefabParent: 0
