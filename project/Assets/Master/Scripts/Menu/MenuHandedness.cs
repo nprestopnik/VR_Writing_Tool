@@ -10,12 +10,23 @@ public enum Handedness {
 
 public class MenuHandedness : MonoBehaviour {
 
+	[Header("Hand Controls")]
 	public Handedness dominantHand;
 
-	// public HandModelBase leftHand;
-	// public HandModelBase rightHand;
+	public HandModelBase leftHand;
+	public HandModelBase rightHand;
 
+	public ExtendedFingerDetector movementFingerDetector;
+	public PalmDirectionDetector movementPalmDetector;
+	public FingerMovementController movementController;
+	public GameObject leftPalm;
+	public GameObject rightPalm;
+
+	[Header("Menu")]
 	public GameObject menu;
+	public GameObject leftHandMenuSpot;
+	public GameObject rightHandMenuSpot;
+
 	[Header("Buttons")] 
 	public GameObject mood;
 	public GameObject creation;
@@ -70,14 +81,33 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 cubeBottomLeft;
 	private Vector3 cubeBottomRight;
 
-	//private ExtendedFingerDetector fingerDetector;
 
-	void Start () {
-		// fingerDetector = GetComponent<ExtendedFingerDetector>();
-		// if (dominantHand == Handedness.left) fingerDetector.HandModel = rightHand;
-		// else fingerDetector.HandModel = leftHand;
+	private MainMenu menuActivator;
+	private ExtendedFingerDetector fingerDetector;
+	private Handedness currentHand;
+	private Transform currentParent;
+
+	[HideInInspector] 
+	public bool handActive;
+
+	void Start() {
+		menuActivator = GetComponent<MainMenu>();
+		fingerDetector = GetComponent<ExtendedFingerDetector>();
 		SetPositions();
 		SetMenuOrientation();
+	}
+
+	void Update() {
+		if(dominantHand != currentHand) {
+			SetMenuOrientation();
+			currentHand = dominantHand;
+		}
+
+		if(fingerDetector.HandModel.gameObject.activeSelf) {
+			handActive = true;
+		} else {
+			handActive = false;
+		}
 	}
 
     void SetPositions() {
@@ -105,6 +135,15 @@ public class MenuHandedness : MonoBehaviour {
 		mood.transform.localPosition = top;
 		locations.transform.localPosition = bottom;
 		if (dominantHand == Handedness.left) {
+			movementFingerDetector.HandModel = leftHand;
+			movementPalmDetector.HandModel = leftHand;
+			movementController.pointer = leftPalm;
+
+			fingerDetector.HandModel = rightHand;
+			menu.transform.parent = rightHandMenuSpot.transform;
+			menu.transform.localPosition = Vector3.zero;
+			menu.transform.localRotation = Quaternion.identity;
+
 			weather.transform.localPosition = right;
 			creation.transform.localPosition = left;
 			system.transform.localPosition = topRight;
@@ -129,6 +168,15 @@ public class MenuHandedness : MonoBehaviour {
 			SetCubePositions(systemCubes, true, false);
 		} 
 		else if (dominantHand == Handedness.right) {
+			movementFingerDetector.HandModel = rightHand;
+			movementPalmDetector.HandModel = rightHand;
+			movementController.pointer = rightPalm;
+
+			fingerDetector.HandModel = leftHand;
+			menu.transform.parent = leftHandMenuSpot.transform;
+			menu.transform.localPosition = Vector3.zero;
+			menu.transform.localRotation = Quaternion.identity;
+
 			weather.transform.localPosition = left;
 			creation.transform.localPosition = right;
 			system.transform.localPosition = topLeft;

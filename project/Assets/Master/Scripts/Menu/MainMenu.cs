@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Leap.Unity;
 using Leap.Unity.Animation;
 using UnityEngine;
 
@@ -11,16 +12,32 @@ public class MainMenu : MonoBehaviour {
 
 	public bool isActive;
 
-	
+	public GameObject movementController;
+
+	private MenuHandedness menuHandControl;
+
+	void Start() {
+		menuHandControl = GetComponent<MenuHandedness>();
+	}
+
 	public void ActivateMenu() {
 		isActive = true;
+		movementController.SetActive(false);
+
 		foreach(TransformTweenBehaviour t in menuButtonTweens) {
 			t.PlayForward();
 		}
 	}
 
 	public void DeactivateMenu() {
+
+		if(!menuHandControl.handActive) {
+			return;
+		}
+
 		isActive = false;
+		movementController.SetActive(true);
+
 		foreach(SubMenu s in subMenus) {
 			if (s.subMenuOpen) {
 				s.ControlSubMenu();
