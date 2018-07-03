@@ -69,6 +69,7 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject[] systemCubes;
 
 	public float cubeOffset;
+	public float cubeOffButton;
 
 	private Vector3 cubeUpperLeft;
 	private Vector3 cubeUpperRight;
@@ -118,17 +119,19 @@ public class MenuHandedness : MonoBehaviour {
 		topLeft = new Vector3(3f*buttonOffset, 0, -buttonOffset);
 		topRight = new Vector3(buttonOffset, 0, -3f*buttonOffset);
 
-		cubeUpperLeft = new Vector3(4f*cubeOffset, 0, -3f*cubeOffset);
-		cubeUpperRight = new Vector3(3f*cubeOffset, 0, -4f*cubeOffset);
+		float firstCubeOffset = buttonOffset + cubeOffButton;
 
-		cubeTopLeft = new Vector3(4f*cubeOffset, 0, -cubeOffset);
-		cubeTopRight = new Vector3(cubeOffset, 0, -4f*cubeOffset);
-		cubeMidUpperLeft = new Vector3(4f*cubeOffset, 0, cubeOffset);
-		cubeMidLowerLeft = new Vector3(cubeOffset, 0, 4f*cubeOffset);
-		cubeMidUpperRight = new Vector3(-cubeOffset, 0, -4f*cubeOffset);
-		cubeMidLowerRight = new Vector3(-4f*cubeOffset, 0, -cubeOffset);
-		cubeBottomLeft = new Vector3(-cubeOffset, 0, 4f*cubeOffset);
-		cubeBottomRight = new Vector3(-4f*cubeOffset, 0, cubeOffset);
+		cubeUpperLeft = new Vector3(4f*firstCubeOffset, 0, -3f*firstCubeOffset);
+		cubeUpperRight = new Vector3(3f*firstCubeOffset, 0, -4f*firstCubeOffset);
+
+		cubeTopLeft = new Vector3(4f*firstCubeOffset, 0, -firstCubeOffset);
+		cubeTopRight = new Vector3(firstCubeOffset, 0, -4f*firstCubeOffset);
+		cubeMidUpperLeft = new Vector3(4f*firstCubeOffset, 0, firstCubeOffset);
+		cubeMidLowerLeft = new Vector3(firstCubeOffset, 0, 4f*firstCubeOffset);
+		cubeMidUpperRight = new Vector3(-firstCubeOffset, 0, -4f*firstCubeOffset);
+		cubeMidLowerRight = new Vector3(-4f*firstCubeOffset, 0, -firstCubeOffset);
+		cubeBottomLeft = new Vector3(-firstCubeOffset, 0, 4f*firstCubeOffset);
+		cubeBottomRight = new Vector3(-4f*firstCubeOffset, 0, firstCubeOffset);
 	}
 	
 	void SetMenuOrientation() {
