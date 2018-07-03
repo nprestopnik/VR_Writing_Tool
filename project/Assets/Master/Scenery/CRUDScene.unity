@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &246910765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,7 +1077,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4784256386325826, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.904
+      value: 1.886
       objectReference: {fileID: 0}
     - target: {fileID: 4784256386325826, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1110,10 +1110,6 @@ Prefab:
     - target: {fileID: 1113176085601758, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
       propertyPath: m_Name
       value: DoorTrigger
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796557080856136, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcdc6cf91c5447f4aacbcc20ca0bf4c0, type: 2}

@@ -196,7 +196,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   leftDoor: {fileID: 162218246}
   rightDoor: {fileID: 384391007}
-  doorAnimationTime: 0.1
+  doorAnimationTime: 0.3
+  animationSteps: 20
 --- !u!65 &26352637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 26352635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.904, y: 0.999, z: 0}
+  m_LocalPosition: {x: 1.886, y: 0.999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 162218247}
@@ -2464,8 +2465,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 346613574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.045, y: 0.07999998, z: -0.375}
-  m_LocalScale: {x: 0.15100671, y: 2.25, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0.07999998, z: -0.375}
+  m_LocalScale: {x: 0.01882071, y: 2.25, z: 0.75}
   m_Children: []
   m_Father: {fileID: 384391008}
   m_RootOrder: 0
@@ -5453,8 +5454,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 617015639}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.044999957, y: 0.07999998, z: 0.375}
-  m_LocalScale: {x: 0.15100671, y: 2.25, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0.07999998, z: 0.375}
+  m_LocalScale: {x: 0.01882071, y: 2.25, z: 0.75}
   m_Children: []
   m_Father: {fileID: 162218247}
   m_RootOrder: 0
@@ -8319,7 +8320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &870447458
 Transform:
   m_ObjectHideFlags: 0
@@ -8941,7 +8942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &983585006
 Transform:
   m_ObjectHideFlags: 0
