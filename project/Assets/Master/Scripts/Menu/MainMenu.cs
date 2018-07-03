@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Leap.Unity;
 using Leap.Unity.Animation;
+using Leap.Unity.Interaction;
 using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
@@ -15,6 +16,9 @@ public class MainMenu : MonoBehaviour {
 	public GameObject movementController;
 
 	private MenuHandedness menuHandControl;
+
+	[HideInInspector]
+	public bool cubeInUse;
 
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();

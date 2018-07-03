@@ -9,11 +9,5 @@ public class CubesSlideOutPosition : MonoBehaviour {
 	void Awake() {
 		transform.position = originButton.position;
 	}
-
-	void Update () {
-		
-		transform.position = originButton.position;
-
-	}
 	
 }
