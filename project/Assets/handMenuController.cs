@@ -38,6 +38,6 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void activateDesk() {
-		dm.DeskTask();
+		dm.StartDeskTask();
 	}
 }

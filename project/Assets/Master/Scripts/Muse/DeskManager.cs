@@ -22,10 +22,6 @@ public class DeskManager : MonoBehaviour {
 	private MuseAppear museActivator; //the script responsible for making the muse appear/disappear
 	private GameObject deskModel; //the visual desk object
 	private GameObject deskTarget; //the "target" for desk placement
-	private GameObject textToDesk; //the text (child of the muse canvas) that the muse will take you to the desk
-	private GameObject textMoveDesk; //the text that says that you can put the desk where you want
-	private GameObject textToParkLocation; //text to show the user where to put the desk when done
-	private GameObject textToFinish; //confirmation that they're done with the desk
 	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
 	private bool movingDesk = false; //is the desk being moved
 	private bool pausing = false; //is the muse paused in front of the user
@@ -45,11 +41,6 @@ public class DeskManager : MonoBehaviour {
 		deskModel = deskTracker.transform.Find("Desk").gameObject;
 		deskTarget = targetTracker.transform.Find("Desk").gameObject;
 		
-		museCanvas = muse.transform.Find("Canvas");
-		textToDesk = museCanvas.Find("Desk1").gameObject;
-		textMoveDesk = museCanvas.Find("Desk2").gameObject;	
-		textToParkLocation = museCanvas.Find("Park1").gameObject;
-		textToFinish = museCanvas.Find("Park2").gameObject;
 	}
 
 	void Update () {
@@ -64,46 +55,34 @@ public class DeskManager : MonoBehaviour {
 
 	}
 
-	public void DeskTask() {
-		if (!performing) {
-			museActivator.EnterMuse();
-			StartCoroutine(PerformDeskTask());
-		}
+	public void StartDeskTask() {
+		MuseManager.instance.museText.SetText("Follow me to your desk!", DeskStage10);
 	}
-	IEnumerator PerformDeskTask() {
-
-		performing = true;
-		
-		//show the text to follow the muse and leave it there for the pause time
-		textToDesk.SetActive(true);
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
-
-		//pause to allow the user to read
-		pausing = true;
-		yield return new WaitForSeconds(pauseTime);
-		pausing = false;
-		
-		//get rid of the first text and send muse to the desk
-		textToDesk.SetActive(false);
-		museGuide.GuideTo(parkMusePoint);
-		yield return new WaitUntil(()=> museGuide.IsAtTarget());
-
-		//activate the desk and indicate that it is no longer parked
-		//tell user to place desk and wait for confirmation that they're done
+	public void DeskStage10() {
+		MuseManager.instance.museGuide.EnterMuse(DeskStage15);
+	}
+	public void DeskStage15() {
+		MuseManager.instance.Pause(0.5f, DeskStage20);
+	}
+	public void DeskStage20() {
+		MuseManager.instance.museGuide.GuideTo(parkMusePoint, DeskStage30);
+	}
+	public void DeskStage30() {
 		deskModel.SetActive(true);
 		deskParked.parked = false;
-		textMoveDesk.SetActive(true);
-		//make lighthouses visible, make muse follow desk until deactivated
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
 		movingDesk = true;
-
+		MuseManager.instance.museText.SetText("Put your desk where you want it!");
 	}
+
+
+
 	public void ConfirmSet() {
 		deskTrackedObject.enabled = false;
 
 		movingDesk = false;
-		textMoveDesk.SetActive(false);
+		//textMoveDesk.SetActive(false);
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);
 		museActivator.ExitMuse();
@@ -124,7 +103,7 @@ public class DeskManager : MonoBehaviour {
 		deskTrackedObject.enabled = true;
 
 		//show text saying to follow the muse and wait
-		textToParkLocation.SetActive(true);
+		//textToParkLocation.SetActive(true);
 		yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		//pause so user can read text
@@ -133,12 +112,12 @@ public class DeskManager : MonoBehaviour {
 		pausing = false;
 
 		//remove text and have muse guide to the target location
-		textToParkLocation.SetActive(false);
-		museGuide.GuideTo(parkMusePoint);
+		//textToParkLocation.SetActive(false);
+		//museGuide.GuideTo(parkMusePoint);
 		yield return new WaitUntil(()=> museGuide.IsAtTarget());
 
 		//set the desk target active and show the text waiting for a confirmation of parking
-		textToFinish.SetActive(true);
+		//textToFinish.SetActive(true);
 		deskTarget.SetActive(true);
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
@@ -146,7 +125,7 @@ public class DeskManager : MonoBehaviour {
 	}
 	public void ConfirmPark() {
 		deskParked.parked = true;
-		textToFinish.SetActive(false);
+		//textToFinish.SetActive(false);
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);

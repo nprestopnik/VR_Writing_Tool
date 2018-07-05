@@ -37,18 +37,13 @@ public class MuseAppear : MonoBehaviour {
 				break;
 		}
 
-		exitText = muse.transform.Find("Canvas").Find("Bye").gameObject;
-
 	}
 
-	void Update() {
-
-	}
 	
 	public void EnterMuse() {
 		muse.SetActive(true);
 		muse.transform.position = entryPoint.position;
-		guide.GuideTo(points.startPoint);
+		//guide.GuideTo(points.startPoint);
 	}
 
 	public void ExitMuse() {
@@ -61,7 +56,7 @@ public class MuseAppear : MonoBehaviour {
 		yield return new WaitForSeconds(pause);
 		exitText.SetActive(false);
 
-		guide.GuideTo(entryPoint);
+		//guide.GuideTo(entryPoint);
 
 		yield return new WaitUntil(()=> guide.IsAtTarget());
 		//yield return new WaitForSeconds(pause);
