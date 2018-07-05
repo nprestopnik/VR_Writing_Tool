@@ -22,5 +22,6 @@ public class WhiteboardContainer : MonoBehaviour {
 		data.lines = whiteboard.lines.ToArray();
 		data.position = whiteboard.transform.root.position;
 		data.rotation = whiteboard.transform.root.rotation;
+		data.scale = whiteboard.transform.parent.localScale;
 	}
 }
