@@ -27,21 +27,25 @@ public class GuideToPoint : MonoBehaviour {
 	
 	void FixedUpdate () {
 
-		if (guiding) {
-			if (transform.position != target.position) {
-				currentLerpTime += Time.deltaTime;
-				if (currentLerpTime > lerpTime) {
-					currentLerpTime = lerpTime;
-				}
-				float t = currentLerpTime/lerpTime;
-				//make lerp movement ease in and out
-				t = t*t*t * (t * (6f*t-15f) + 10f);
-				transform.position = Vector3.Lerp(startPosition.position, target.position, t);
-			} else {
-				guiding = false;
-				currentLerpTime = 0f;
-			}
+		if (target != null) {
+			transform.position = Vector3.Lerp(startPosition.position, target.position, Time.deltaTime *5);
 		}
+
+		// if (guiding) {
+		// 	if (transform.position != target.position) {
+		// 		currentLerpTime += Time.deltaTime;
+		// 		if (currentLerpTime > lerpTime) {
+		// 			currentLerpTime = lerpTime;
+		// 		}
+		// 		float t = currentLerpTime/lerpTime;
+		// 		//make lerp movement ease in and out
+		// 		t = t*t*t * (t * (6f*t-15f) + 10f);
+		// 		transform.position = Vector3.Lerp(startPosition.position, target.position, t);
+		// 	} else {
+		// 		guiding = false;
+		// 		currentLerpTime = 0f;
+		// 	}
+		// }
 	}
 
 	public void GuideTo(Transform targetPoint, Action completedEvent = null) {
@@ -58,8 +62,11 @@ public class GuideToPoint : MonoBehaviour {
 	}
 
 	public bool IsAtTarget() {
-		if (guiding) return false;
-		else return true;
+
+		return (Vector3.SqrMagnitude(target.position-transform.position) < 0.004f); 
+
+		// if (guiding) return false;
+		// else return true;
 	}
 
 	public void EnterMuse(Action completedEvent = null) {

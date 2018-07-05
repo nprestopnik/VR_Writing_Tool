@@ -59,20 +59,18 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museText.SetText("Follow me to your desk!", DeskStage10);
 	}
 	public void DeskStage10() {
-		MuseManager.instance.museGuide.EnterMuse(DeskStage15);
-	}
-	public void DeskStage15() {
-		MuseManager.instance.Pause(0.5f, DeskStage20);
+		MuseManager.instance.museGuide.EnterMuse();
+		MuseManager.instance.Pause(3f, DeskStage20);
 	}
 	public void DeskStage20() {
-		MuseManager.instance.museGuide.GuideTo(parkMusePoint, DeskStage30);
+		MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30);
 	}
 	public void DeskStage30() {
 		deskModel.SetActive(true);
 		deskParked.parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
-		movingDesk = true;
+		//movingDesk = true;
 		MuseManager.instance.museText.SetText("Put your desk where you want it!");
 	}
 
