@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour {
 	private MenuHandedness menuHandControl;
 
 	[HideInInspector]
-	public bool cubeInUse;
+	public static bool cubeInUse;
 
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();
