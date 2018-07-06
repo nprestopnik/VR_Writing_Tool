@@ -11,7 +11,7 @@ public enum Handedness {
 public class MenuHandedness : MonoBehaviour {
 
 	[Header("Hand Controls")]
-	public Handedness dominantHand;
+	public static Handedness dominantHand = Handedness.right;
 
 	public HandModelBase leftHand;
 	public HandModelBase rightHand;
@@ -111,6 +111,10 @@ public class MenuHandedness : MonoBehaviour {
 		} else {
 			handActive = false;
 		}
+	}
+
+	public void swapHands() {
+		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
 	}
 
     void SetPositions() {
