@@ -58,7 +58,7 @@ public class GuideToPoint : MonoBehaviour {
 	IEnumerator MoveToTarget(Action completedEvent = null) {
 		yield return new WaitUntil(()=> IsAtTarget());
 		if (completedEvent != null)
-		completedEvent();
+			completedEvent();
 	}
 
 	public bool IsAtTarget() {
@@ -82,7 +82,8 @@ public class GuideToPoint : MonoBehaviour {
 	}
 	void CompletedExit() {
 		transform.parent.SetParent(entryPoints[(int)entryDirection]);
+		MuseManager.instance.museText.SetText("");
 		if (storedCompletedEvent != null)
-		storedCompletedEvent();
+			storedCompletedEvent();
 	}
 }

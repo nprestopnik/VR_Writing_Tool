@@ -13,7 +13,7 @@ public class DeskButtons : MonoBehaviour {
 	}
 
 	public void ParkTaskButton() {
-		DeskManager.instance.ParkTask();
+		DeskManager.instance.StartParkTask();
 	}
 
 	public void ConfirmDeskParkButton() {
