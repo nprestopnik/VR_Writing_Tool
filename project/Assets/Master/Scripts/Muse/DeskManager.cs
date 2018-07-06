@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DeskManager : MonoBehaviour {
 
+	public GameObject testNavPoint;
+
 	public static DeskManager instance;
 
 	public GameObject muse;
@@ -74,6 +76,20 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museText.SetText("Put your desk where you want it!");
 	}
 
+
+	public void StartNavgationTest() {
+		MuseManager.instance.museText.SetText("Testing navigation!", NavStage10);
+	}
+	public void NavStage10() {
+		MuseManager.instance.museGuide.EnterMuse();
+		MuseManager.instance.Pause(3f, NavStage20);
+	}
+	public void NavStage20() {
+		MuseManager.instance.museNavigator.NavigateToPoint(testNavPoint.transform.position, NavStage30);
+	}
+	public void NavStage30() {
+		MuseManager.instance.museGuide.GuideTo(testNavPoint.transform);
+	}
 
 
 	public void ConfirmSet() {

@@ -9,6 +9,7 @@ public class MuseManager : MonoBehaviour {
 
 	public MuseText museText;
 	public GuideToPoint museGuide;
+	public MuseNavigation museNavigator;
 
 	void Awake () {
 		instance = this;
