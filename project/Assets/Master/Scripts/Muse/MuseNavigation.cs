@@ -11,13 +11,16 @@ public class MuseNavigation : MonoBehaviour {
 	Action storedCompletedEvent;
 	NavMeshPathStatus lastStatus;
 	public GameObject trail;
+	public ParticleSystem particles;
 	void Update() {
 		// Debug.Log("Remaining distance: " + agent.remainingDistance);
 		// Debug.Log("Path pending: " + agent.pathPending);
 		// Debug.Log("Has path: " + agent.hasPath);
 		// Debug.Log("Path status: " + agent.pathStatus);
+		particles.transform.position = transform.position;
 
 		if(agent.gameObject.activeInHierarchy) {
+			
 			if(Vector3.Distance(transform.position, SaveSystem.instance.transform.position) > 3f) {
 				agent.isStopped = true;
 			} else if(agent.isStopped) {
@@ -30,6 +33,7 @@ public class MuseNavigation : MonoBehaviour {
 			
 				agent.gameObject.SetActive(false);
 				trail.SetActive(false);
+				particles.gameObject.SetActive(false);
 				if(storedCompletedEvent != null)
 					storedCompletedEvent();
 			
@@ -42,6 +46,8 @@ public class MuseNavigation : MonoBehaviour {
 		storedCompletedEvent = completedEvent;
 		agent.gameObject.SetActive(true);
 		trail.SetActive(true);
+		particles.gameObject.SetActive(true);
+		particles.Clear();
 
 		NavMeshHit hit;
 		if(NavMesh.SamplePosition(transform.position,out hit, 2f, NavMesh.AllAreas)) {
