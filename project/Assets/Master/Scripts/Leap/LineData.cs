@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineData : MonoBehaviour {
+[System.Serializable]
+public class LineData {
 
-	public Material lMat;
+	[SerializeField]
+	public int lMatIndex;
 	public float lineWidth;
+	[SerializeField]
 	public Vector3[] points;
 
-	//Sorting order?
+	public int sortingOrder;
 
 }

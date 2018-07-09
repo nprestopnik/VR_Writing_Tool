@@ -1,0 +1,225 @@
+fileFormatVersion: 2
+guid: c71af5542d15f8045adb7c7e4c857900
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: back_wall1
+    100002: //RootNode
+    100004: door_frame
+    100006: door_frame_wall
+    100008: door_left1
+    100010: door_right1
+    100012: ground_blocks
+    100014: left_front_cornerstones
+    100016: left_rear_cornerstones
+    100018: left_wall
+    100020: right_rear_cornerstones
+    100022: right_wall
+    100024: roof_brick
+    100026: roof_rock1
+    100028: roof_rock2
+    400000: back_wall1
+    400002: //RootNode
+    400004: door_frame
+    400006: door_frame_wall
+    400008: door_left1
+    400010: door_right1
+    400012: ground_blocks
+    400014: left_front_cornerstones
+    400016: left_rear_cornerstones
+    400018: left_wall
+    400020: right_rear_cornerstones
+    400022: right_wall
+    400024: roof_brick
+    400026: roof_rock1
+    400028: roof_rock2
+    2100000: stone_wall
+    2100002: single_stone
+    2100004: door_left
+    2100006: door_right
+    2300000: back_wall1
+    2300002: //RootNode
+    2300004: door_frame
+    2300006: door_frame_wall
+    2300008: door_left1
+    2300010: door_right1
+    2300012: ground_blocks
+    2300014: left_front_cornerstones
+    2300016: left_rear_cornerstones
+    2300018: left_wall
+    2300020: right_rear_cornerstones
+    2300022: right_wall
+    2300024: roof_brick
+    2300026: roof_rock1
+    2300028: roof_rock2
+    3300000: back_wall1
+    3300002: //RootNode
+    3300004: door_frame
+    3300006: door_frame_wall
+    3300008: door_left1
+    3300010: door_right1
+    3300012: ground_blocks
+    3300014: left_front_cornerstones
+    3300016: left_rear_cornerstones
+    3300018: left_wall
+    3300020: right_rear_cornerstones
+    3300022: right_wall
+    3300024: roof_brick
+    3300026: roof_rock1
+    3300028: roof_rock2
+    4300000: tower
+    4300002: roof_brick
+    4300004: roof_rock1
+    4300006: roof_rock2
+    4300008: right_rear_cornerstones
+    4300010: left_rear_cornerstones
+    4300012: left_front_cornerstones
+    4300014: ground_blocks
+    4300016: door_frame
+    4300018: door_left1
+    4300020: door_right1
+    4300022: right_wall
+    4300024: left_wall
+    4300026: back_wall1
+    4300028: door_frame_wall
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_left
+    second: {fileID: 2100000, guid: e4aafd691348aad48a0b271157e405fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_right
+    second: {fileID: 2100000, guid: c61148da8b0a0dd41a20ed463d667db3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: single_stone
+    second: {fileID: 2100000, guid: d27a34925b89be14cb1d37384f307dc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stone_wall
+    second: {fileID: 2100000, guid: e9dbe37bf93e1934bb3f3802b06ee950, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_left
+    second: {fileID: 2800000, guid: d9eb83b0c6724454ba2a0189c2106f29, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_left_nm
+    second: {fileID: 2800000, guid: 6263855dc86dde04d9ff373bceaa15ca, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_right
+    second: {fileID: 2800000, guid: deb817f3de8012945bf34aace62ba067, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_right_nm
+    second: {fileID: 2800000, guid: 167db3092e3875942964a60d3ef12d99, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: single_stone
+    second: {fileID: 2800000, guid: 87a229817d401dc49849768ab04b7ba6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: single_stone_nm
+    second: {fileID: 2800000, guid: b8c340357916962499a97cb0b946ef26, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stone_wall
+    second: {fileID: 2800000, guid: c321258b3f0738b45a4bc6ccf834d54f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stone_wall_nm
+    second: {fileID: 2800000, guid: bc50585682b4b734598c011eec9292fb, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

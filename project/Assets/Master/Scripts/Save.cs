@@ -17,6 +17,7 @@ public class Save {
     [SerializeField]
     Room[] rooms;
 
+
     public Save(string name)
     {
         this.name = name;
@@ -31,6 +32,12 @@ public class Save {
         }
         temp[rooms.Length] = newRoom;
         rooms = temp;
+    }
+
+    public void deleteRoom(int index) {
+        List<Room> tempList = new List<Room>(rooms);
+        tempList.RemoveAt(index);
+        rooms = tempList.ToArray();
     }
 
     public Room[] getRoomsArray() {

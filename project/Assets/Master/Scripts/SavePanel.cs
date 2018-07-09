@@ -9,19 +9,30 @@ public class SavePanel : MonoBehaviour {
 
 	public Text nameText;
 
-	public void initSave(Save s) {
+	bool isLoad;
+
+	public void initSave(Save s, bool isLoad) {
 		save = s;
 		nameText.text = save.name;
+		this.isLoad = isLoad;
+	}
+
+	public void clickButton() {
+		if(isLoad) {
+			loadSave();
+		} else {
+			deleteSave();
+		}
+		transform.parent.parent.parent.parent.gameObject.SetActive(false);
 	}
 
 	public void loadSave() {
 		SaveSystem.instance.setCurrentSave(save);
-		if(Hallway.instance.testSetGoalScene(save.currentRoomIndex))
-			Hallway.instance.setGoalScene(save.currentRoomIndex);
+		if(TravelSystem.instance.testSetGoalScene(save.currentRoomIndex))
+			TravelSystem.instance.setGoalScene(save.currentRoomIndex);
 		else {
-			Hallway.instance.setGoalScene(1);
+			TravelSystem.instance.setGoalScene(1);
 		}
-		//ControllerMenu.instance.loadRooms();
 	}
 
 	public void deleteSave() {
