@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Master/Scenery/treehouse colliders.unity
     guid: 25f26074a7d27c845ac8e0243c60ded0
+  - enabled: 1
+    path: Assets/Master/Scenery/nullworld.unity
+    guid: c624a8518623572418c1f1ca16fef6e4
   m_configObjects: {}
