@@ -11,9 +11,13 @@ public class EnvironmentAudioManager : MonoBehaviour {
 	public Vector3 transientAreaMax;
 	
 	//set from lighting/time of day preset
+	[HideInInspector]
 	public AudioClip[] transientSoundClips;
+	[HideInInspector]
 	public float minDelay;
+	[HideInInspector]
 	public float maxDelay;
+	[HideInInspector]
 	public float transientVolume;
 
 	void Start () {

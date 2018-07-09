@@ -10,11 +10,12 @@ public class EnvironmentManager : MonoBehaviour {
 	public Light fillLight;
 	public WindZone windZone;
 
-	public EnvironmentAudioManager audioManager;
+	private EnvironmentAudioManager audioManager;
 
 
 	void Start() {
 		rainEmission = rain.emission;
+		audioManager = GetComponent<EnvironmentAudioManager>();
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
