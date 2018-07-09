@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class WeatherSystemManager : MonoBehaviour {
 
+	public static WeatherSystemManager instance;
+
 	public GameObject environmentManager;
+	private EnvironmentManager environment;
 
-	public WeatherPreset[] weatherPresets;
-    public LightingPreset[] lightingPresets;
-
-
+	[Header("Mood/Lighting Presets")]
 	public LightingPreset dawn;
 	public LightingPreset dusk;
 	public LightingPreset bright;
 	public LightingPreset overcast;
 	public LightingPreset storms;
 	public LightingPreset night;
+
+	[Header("Weather Presets")]
 	public WeatherPreset clear;
 	public WeatherPreset gusty;
 	public WeatherPreset mist;
@@ -24,96 +26,63 @@ public class WeatherSystemManager : MonoBehaviour {
 	public WeatherPreset pouring;
 	public WeatherPreset deluge;
 
+	[Header("Attached Environment Elements")]
+	public ParticleSystem rain;
+	[HideInInspector]
+	public ParticleSystem.EmissionModule rainEmission;
+	public AudioSource ambientSource;
 
-	private EnvironmentManager environment;
+	void Awake() {
+		instance = this;
 
-    // [Header("Testing Triggers")]
-    // public bool clear = false;
-    // public bool windy = false;
-	// public bool rainy = false;
-
-	// public bool day = false;
-	// public bool dusk = false;
-	// public bool late = false;
-
-	
-    void Start () {
-		environmentManager = GameObject.Find("EnvironmentManager");
-		environment = environmentManager.GetComponent<EnvironmentManager>();
+		rainEmission = rain.emission;
 	}
 	
-	void Update () {
-
-        //IF STATEMENTS FOR TESTING ONLY
-        // if(clear) {
-        //     environment.SetWeather(Array.Find(weatherPresets, weatherPreset => weatherPreset.settingName == "Clear"));
-		// 	clear = false;
-        // }
-		// if(windy) {
-		// 	environment.SetWeather(weatherPresets[1]);
-		// 	windy = false;
-		// }
-		// if(rainy) {
-		// 	environment.SetWeather(weatherPresets[2]);
-		// 	rainy = false;
-		// }
-
-		// if(day) {
-		// 	environment.SetLighting(Array.Find(lightingPresets, lightingPreset => lightingPreset.settingName == "Midday"));
-		// 	day = false;
-		// }
-		// if(dusk) {
-		// 	environment.SetLighting(lightingPresets[1]);
-		// 	dusk = false;
-		// }
-		// if(late) {
-		// 	environment.SetLighting(lightingPresets[2]);
-		// 	late = false;
-		// }
-
-
+    public void SetSceneEnvironmentManager(GameObject sceneEnvironment) {
+		environmentManager = sceneEnvironment;
+		environment = environmentManager.GetComponent<EnvironmentManager>();
 	}
 
 	//public functions for cubes to call
 
 	//mood
 	public void SetDawn() {
-
+		environment.SetLighting(dawn);
 	}
 	public void SetDusk() {
-
+		environment.SetLighting(dusk);
 	}
 	public void SetBright() {
-
+		environment.SetLighting(bright);
 	}
 	public void SetOvercast() {
-
+		environment.SetLighting(overcast);
 	}
 	public void SetStorms() {
-
+		environment.SetLighting(storms);
 	}
 	public void SetNight() {
-
+		environment.SetLighting(night);
 	}
 
 	//weather
 	public void SetClear() {
-
+		environment.SetWeather(clear);
 	}
 	public void SetGusty() {
-
+		environment.SetWeather(gusty);
 	}
 	public void SetMist() {
-
+		environment.SetWeather(mist);
 	}
 	public void SetRaining() {
-
+		environment.SetWeather(raining);
 	}
 	public void SetPouring() {
-
+		environment.SetWeather(pouring);
 	}
 	public void SetDeluge() {
-
+		environment.SetWeather(deluge);
 	}
 
 }

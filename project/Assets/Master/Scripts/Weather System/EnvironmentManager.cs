@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour {
 
-	public ParticleSystem rain;
-	private ParticleSystem.EmissionModule rainEmission;
 	public Light sunLight;
 	public Light fillLight;
 	public WindZone windZone;
 
 	private EnvironmentAudioManager audioManager;
 
-
 	void Start() {
-		rainEmission = rain.emission;
+		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
+		
 		audioManager = GetComponent<EnvironmentAudioManager>();
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
-		rainEmission.rateOverTime = newWeather.rainIntensity;
+		WeatherSystemManager.instance.rainEmission.rateOverTime = newWeather.rainIntensity;
 
 		windZone.windMain = newWeather.windIntensity;
 		windZone.windTurbulence = newWeather.windTurbulence;
 		windZone.windPulseMagnitude = newWeather.windPulseMag;
 		windZone.windPulseFrequency = newWeather.windPulseFreq;
 
-		audioManager.ambientSource.clip = newWeather.ambientSound;
-		audioManager.ambientSource.volume = newWeather.ambientVolume;
-		audioManager.ambientSource.Play();
+		WeatherSystemManager.instance.ambientSource.clip = newWeather.ambientSound;
+		WeatherSystemManager.instance.ambientSource.volume = newWeather.ambientVolume;
+		WeatherSystemManager.instance.ambientSource.Play();
 	}
 
 	public void SetLighting(LightingPreset newLighting) {
@@ -46,7 +44,6 @@ public class EnvironmentManager : MonoBehaviour {
 		audioManager.transientVolume = newLighting.transientVolume;
 		audioManager.minDelay = newLighting.minSoundDelay;
 		audioManager.maxDelay = newLighting.maxSoundDelay;
-
 	}
 
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994d896f0be10264292d7d178a49a5d4, type: 3}
+  m_Name: Dusk
+  m_EditorClassIdentifier: 
+  settingName: Dusk
+  skybox: {fileID: 2100000, guid: 723974cb83826574597763a044e618c6, type: 2}
+  sunRotation: {x: 11.625, y: 140.647, z: 103.883}
+  sunIntensity: 0.4
+  sunColor: {r: 1, g: 0.7882353, b: 0.41960785, a: 1}
+  fillLightRotation: {x: 32.873, y: 340.531, z: 106.25}
+  fillLightIntensity: 0.8
+  fillLightColor: {r: 0.2784314, g: 0.2509804, b: 0.43529412, a: 1}
+  transientSounds:
+  - {fileID: 8300000, guid: 508745564744b433a9aedda75fa7d79e, type: 3}
+  - {fileID: 8300000, guid: 72d32528e9dc44945ad2804178717178, type: 3}
+  transientVolume: 1
+  minSoundDelay: 2
+  maxSoundDelay: 6

@@ -6,7 +6,6 @@ using UnityEngine.Audio;
 public class EnvironmentAudioManager : MonoBehaviour {
 
 	//set from scene
-	public AudioSource ambientSource;
 	public Vector3 transientAreaMin;
 	public Vector3 transientAreaMax;
 	
