@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+	public static PlayerController instance;
 
 	public bool debugMove = false;
 	private float moveSpeed = 3f;
@@ -11,6 +12,11 @@ public class PlayerController : MonoBehaviour {
 	public CapsuleCollider collisionCapsule;
 	public Transform head;
 	Rigidbody rig;
+
+	void Awake() {
+		instance = this;
+	}
+
 	void Start () {
         //DontDestroyOnLoad(gameObject);
 		rig = GetComponent<Rigidbody>();
