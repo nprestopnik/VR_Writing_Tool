@@ -6,6 +6,9 @@ using UnityEngine;
 public class LightingPreset : ScriptableObject {
 
 	public string settingName;
+
+	public Material iconMaterial;
+	public Material[] blockMaterials;
 	
 	public Material skybox;
 

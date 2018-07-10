@@ -18,10 +18,10 @@ public class EnvironmentManager : MonoBehaviour {
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
-		WeatherSystemManager.instance.rainEmission.rateOverTime = newWeather.rainIntensity;
+		// WeatherSystemManager.instance.rainEmission.rateOverTime = newWeather.rainIntensity;
 
-		var fogEmission = fog.emission;
-		fogEmission.rateOverTime = newWeather.fogAmount;
+		// var fogEmission = fog.emission;
+		// fogEmission.rateOverTime = newWeather.fogAmount;
 
 		windZone.windMain = newWeather.windIntensity;
 		windZone.windTurbulence = newWeather.windTurbulence;

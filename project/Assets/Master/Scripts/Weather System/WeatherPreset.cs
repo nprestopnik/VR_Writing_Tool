@@ -6,10 +6,11 @@ using UnityEngine;
 public class WeatherPreset : ScriptableObject {
 
 	public string settingName;
-	
-	public float rainIntensity;
 
-	public float fogAmount;
+	public Material iconMaterial;
+	public Material[] blockMaterials;
+	
+	public float particleIntensity;
 
 	public float windIntensity;
 	public float windTurbulence;
