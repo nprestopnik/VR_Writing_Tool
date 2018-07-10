@@ -11,11 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
   m_Name: Mist
   m_EditorClassIdentifier: 
-  settingName: 
-  rainIntensity: 0
+  settingName: Mist
+  rainIntensity: 50
+  fogAmount: 10
   windIntensity: 0
-  windTurbulence: 0
-  windPulseMag: 0
-  windPulseFreq: 0
+  windTurbulence: 0.2
+  windPulseMag: 1
+  windPulseFreq: 1
   ambientSound: {fileID: 0}
   ambientVolume: 1

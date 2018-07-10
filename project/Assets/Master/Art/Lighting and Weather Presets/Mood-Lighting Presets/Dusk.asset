@@ -25,3 +25,4 @@ MonoBehaviour:
   transientVolume: 1
   minSoundDelay: 2
   maxSoundDelay: 6
+  fireflies: 1

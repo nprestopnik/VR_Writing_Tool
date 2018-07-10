@@ -11,8 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
   m_Name: Clear
   m_EditorClassIdentifier: 
-  settingName: 
+  settingName: Clear
   rainIntensity: 0
+  fogAmount: 0
   windIntensity: 0.14
   windTurbulence: 0
   windPulseMag: 1

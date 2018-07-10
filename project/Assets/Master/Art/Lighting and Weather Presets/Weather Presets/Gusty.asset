@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingName: Gusty
   rainIntensity: 0
+  fogAmount: 0
   windIntensity: 0.4
   windTurbulence: 0
   windPulseMag: 1
   windPulseFreq: 1
-  ambientSound: {fileID: 8300000, guid: dc4997b6b0ac941a8a7fe6850d77124c, type: 3}
+  ambientSound: {fileID: 0}
   ambientVolume: 1

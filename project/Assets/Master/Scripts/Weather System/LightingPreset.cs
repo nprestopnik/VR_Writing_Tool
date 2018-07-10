@@ -22,4 +22,6 @@ public class LightingPreset : ScriptableObject {
 	public float minSoundDelay;
 	public float maxSoundDelay;
 
+	public bool fireflies;
+
 }

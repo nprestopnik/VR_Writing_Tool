@@ -9,6 +9,8 @@ public class WeatherPreset : ScriptableObject {
 	
 	public float rainIntensity;
 
+	public float fogAmount;
+
 	public float windIntensity;
 	public float windTurbulence;
 	public float windPulseMag;
@@ -16,6 +18,7 @@ public class WeatherPreset : ScriptableObject {
 
 	public AudioClip ambientSound;
 	public float ambientVolume = 1; 
+
 
 	
 }

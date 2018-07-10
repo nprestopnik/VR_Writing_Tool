@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Name: Pouring
   m_EditorClassIdentifier: 
   settingName: 
-  rainIntensity: 0
-  windIntensity: 0
-  windTurbulence: 0
-  windPulseMag: 0
-  windPulseFreq: 0
+  rainIntensity: 750
+  fogAmount: 80
+  windIntensity: 0.24
+  windTurbulence: 0.2
+  windPulseMag: 1
+  windPulseFreq: 1
   ambientSound: {fileID: 0}
   ambientVolume: 1

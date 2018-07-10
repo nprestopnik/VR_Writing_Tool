@@ -7,17 +7,21 @@ public class EnvironmentManager : MonoBehaviour {
 	public Light sunLight;
 	public Light fillLight;
 	public WindZone windZone;
+	public ParticleSystem fog;
+	public GameObject fireflies;
 
 	private EnvironmentAudioManager audioManager;
 
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
-		
 		audioManager = GetComponent<EnvironmentAudioManager>();
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
 		WeatherSystemManager.instance.rainEmission.rateOverTime = newWeather.rainIntensity;
+
+		var fogEmission = fog.emission;
+		fogEmission.rateOverTime = newWeather.fogAmount;
 
 		windZone.windMain = newWeather.windIntensity;
 		windZone.windTurbulence = newWeather.windTurbulence;
@@ -44,6 +48,14 @@ public class EnvironmentManager : MonoBehaviour {
 		audioManager.transientVolume = newLighting.transientVolume;
 		audioManager.minDelay = newLighting.minSoundDelay;
 		audioManager.maxDelay = newLighting.maxSoundDelay;
+
+		if(fireflies) {
+			if(newLighting.fireflies) {
+				fireflies.SetActive(true);
+			} else {
+				fireflies.SetActive(false);
+			}
+		}
 	}
 
 }

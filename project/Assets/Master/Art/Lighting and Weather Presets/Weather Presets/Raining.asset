@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingName: Raining
   rainIntensity: 200
+  fogAmount: 50
   windIntensity: 0.24
-  windTurbulence: 0
+  windTurbulence: 0.04
   windPulseMag: 1
   windPulseFreq: 1
-  ambientSound: {fileID: 8300000, guid: 574a50782d3f14b0b8a7968ed1e68f41, type: 3}
+  ambientSound: {fileID: 0}
   ambientVolume: 1
