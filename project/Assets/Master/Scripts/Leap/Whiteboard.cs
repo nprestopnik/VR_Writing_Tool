@@ -52,7 +52,8 @@ public class Whiteboard : MonoBehaviour {
 	void LateUpdate () {
 		//Update pointer position
 		if (button.isHovered) {
-			pointer.transform.position = button.primaryHoveringControllerPoint;
+			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
+			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z); //.primaryHoveringFinger.bones[3].; //button.primaryHoveringControllerPoint;
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
 		
 			pointer.transform.localPosition = new Vector3(Mathf.Clamp(pointer.transform.localPosition.x, -1, 0),

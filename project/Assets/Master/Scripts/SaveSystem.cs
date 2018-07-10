@@ -102,6 +102,7 @@ public class SaveSystem : MonoBehaviour {
             object deserialized = null;
             _serializer.TryDeserialize(data, typeof(Save), ref deserialized).AssertSuccessWithoutWarnings();
             Save loadedSave = (Save)deserialized;
+            print(loadedSave.getRoomsArray()[2].getFeaturesArray()[0].GetType());
             return loadedSave;
         }
         else
@@ -131,6 +132,7 @@ public class SaveSystem : MonoBehaviour {
             object deserialized = null;
             _serializer.TryDeserialize(data, typeof(Save), ref deserialized).AssertSuccessWithoutWarnings();
             Save loadedSave = (Save)deserialized;
+            //print(loadedSave.getRoomsArray()[2].getFeaturesArray()[0].GetType());
             return loadedSave;
         }
         else
@@ -159,10 +161,12 @@ public class SaveSystem : MonoBehaviour {
             {
                 //Save already exists
                 //Loads the JSON from a file and converts it into a save
-                StreamReader input = new StreamReader(Application.persistentDataPath + "/" + name);
-                Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
+                // StreamReader input = new StreamReader(Application.persistentDataPath + "/" + name);
+                // Save loadedSave = JsonUtility.FromJson<Save>(input.ReadToEnd());
+                
+                Save loadedSave = loadSaveWithPath(Application.persistentDataPath + "/" + name);
                 loadedSave.path = Application.persistentDataPath + "/" + name;
-                input.Close();
+                //input.Close();
                 saves.Add(loadedSave);
             }
             else

@@ -47,7 +47,7 @@ public class ControllerMenu : MonoBehaviour {
 	}
 
 	public void createRoom() {
-		Room newRoom = new Room(randomName(), 2);
+		Room newRoom = new Room(randomName(), 2, Color.black);
 		SaveSystem.instance.getCurrentSave().addRoom(newRoom);
 		loadRooms();
 		SaveSystem.instance.saveCurrentSave();

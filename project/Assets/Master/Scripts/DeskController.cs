@@ -39,7 +39,7 @@ public class DeskController : MonoBehaviour {
 
 		foreach(Leap.Unity.RiggedHand hand in HandManager.instance.hands) {
 			if(hand.isActiveAndEnabled) {
-				castFinger(hand.fingers[1].bones[3]);
+				castFinger(hand);
 			}
 		}
 
@@ -72,9 +72,10 @@ public class DeskController : MonoBehaviour {
 		}
 	}
 
-	public void castFinger(Transform endBone) {
+	public void castFinger(Leap.Unity.RiggedHand hand) {
 		foreach(VdmDesktop desk in desktops) {
-			desk.CheckRaycast(endBone.position, endBone.right * -100f);
+			Vector3 forwardVect = hand.Handedness == Leap.Unity.Chirality.Left ? hand.fingers[1].bones[3].right : hand.fingers[1].bones[3].right * -1f;
+			desk.CheckRaycast(hand.fingers[1].bones[3].position, forwardVect * -100f);
 		}
 	}
 
