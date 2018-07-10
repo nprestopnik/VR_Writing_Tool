@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ThrowMenuCube : MonoBehaviour {
 
-	public MainMenu menuController;
+	//public MainMenu menuController;
 
 	private ActivateMenuCubeFunction activator;
 
@@ -29,13 +29,13 @@ public class ThrowMenuCube : MonoBehaviour {
 		if (ab.isAttached) {
 			rb.drag = 5;
 			rb.angularDrag = 5;
-			if(menuController.cubeInUse && thisCubeGrasped) {
+			if(MainMenu.cubeInUse && thisCubeGrasped) {
 				thisCubeGrasped = false;
-				menuController.cubeInUse = false;
+				MainMenu.cubeInUse = false;
 			}
 		}
 
-		if (menuController.cubeInUse && !thisCubeGrasped) {
+		if (MainMenu.cubeInUse && !thisCubeGrasped) {
 			ib.ignoreGrasping = true;
 		} else {
 			ib.ignoreGrasping = false;
@@ -43,7 +43,7 @@ public class ThrowMenuCube : MonoBehaviour {
 	}
 
 	public void Grasping() {
-		menuController.cubeInUse = true;
+		MainMenu.cubeInUse = true;
 		thisCubeGrasped = true;
 		activator.thrown = false;
 	}

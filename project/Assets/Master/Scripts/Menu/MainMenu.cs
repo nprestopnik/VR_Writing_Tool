@@ -7,6 +7,9 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
+	private bool finger;
+	private bool palm;
+
 	public TransformTweenBehaviour[] menuButtonTweens;
 
 	public SubMenu[] subMenus;
@@ -18,10 +21,20 @@ public class MainMenu : MonoBehaviour {
 	private MenuHandedness menuHandControl;
 
 	[HideInInspector]
-	public bool cubeInUse;
+	public static bool cubeInUse;
 
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();
+	}
+
+	void Update() {
+		if(finger && palm) {
+			if (!isActive) {
+				ActivateMenu();
+			}	
+ 		} else {
+			 DeactivateMenu();
+		 }
 	}
 
 	public void ActivateMenu() {
@@ -53,4 +66,16 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
+	public void fingerExtend() {
+		finger = true;
+	}
+	public void fingerRetract() {
+		finger = false;
+	}
+	public void palmUp () {
+		palm = true;
+	}
+	public void palmDown() {
+		palm = false;
+	}
 }

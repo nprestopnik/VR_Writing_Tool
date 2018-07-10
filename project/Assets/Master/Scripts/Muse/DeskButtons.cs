@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeskButtons : MonoBehaviour {
 
 	public void DeskTaskButton() {
-		DeskManager.instance.DeskTask();
+		DeskManager.instance.StartDeskTask();
 	}
 
 	public void ConfirmDeskSetButton() {
@@ -13,7 +13,7 @@ public class DeskButtons : MonoBehaviour {
 	}
 
 	public void ParkTaskButton() {
-		DeskManager.instance.ParkTask();
+		DeskManager.instance.StartParkTask();
 	}
 
 	public void ConfirmDeskParkButton() {

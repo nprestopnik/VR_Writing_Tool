@@ -37,7 +37,9 @@ public class TravelSystem : MonoBehaviour {
 		Feature[] features = SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].getFeaturesArray();
 
 		foreach(Feature f in features) {
+			//print("Creating feature: " + f.name);
 			if(f is WhiteboardData) {
+				//print("Creating Whiteboard: " + ((WhiteboardData)f).text);
 				//Create Whiteboard
 				WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
 				WhiteboardData data = (WhiteboardData)f;
@@ -46,6 +48,8 @@ public class TravelSystem : MonoBehaviour {
 				SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, scene);
 			}
 		}
+
+		SaveSystem.instance.saveCurrentSave();
     }
 
 	void OnApplicationQuit() {
@@ -87,7 +91,7 @@ public class TravelSystem : MonoBehaviour {
 		int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
 		SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
 		goalRoomIndex = temp;
-		SaveSystem.instance.saveCurrentSave();
+		
 	}
 
 	public bool testSetGoalScene(int index) {

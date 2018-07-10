@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EnterFromDirection{
-	above,below,left,right
-}
+
 
 public class MusePointManager : MonoBehaviour {
 
@@ -14,6 +12,6 @@ public class MusePointManager : MonoBehaviour {
 	public Transform leftPoint;
 	public Transform rightPoint;
 
-	public Transform startPoint;
+	
 
 }

@@ -7,13 +7,15 @@ public class Room {
 
 	public string name;
 	public int sceneID;
+    public Color color;
 
 	[SerializeField]
 	Feature[] features;
 
-	public Room(string name, int sceneID) {
+	public Room(string name, int sceneID, Color color) {
 		this.name = name;
 		this.sceneID = sceneID;
+        this.color = color;
         features = new Feature[0];
 	}
 

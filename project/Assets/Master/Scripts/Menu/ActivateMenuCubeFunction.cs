@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class ActivateMenuCubeFunction : MonoBehaviour {
 
 	public bool thrown = false;
-	public MainMenu menuController;
+	//public MainMenu menuController;
 
 	private Rigidbody rbCube;
 	private AnchorableBehaviour abCube;
@@ -53,7 +53,7 @@ public class ActivateMenuCubeFunction : MonoBehaviour {
 
 		transform.position = anchor.position;
 		abCube.TryAttach();
-		menuController.cubeInUse = false;
+		MainMenu.cubeInUse = false;
 		throwCube.thisCubeGrasped = false;
 	}
 

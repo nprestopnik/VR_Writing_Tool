@@ -12,6 +12,8 @@ public class Whiteboard : MonoBehaviour {
 
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
+	
+	public GameObject annotationsHolder;
 	public Text boardText;
 	public RawImage boardImage;
 
@@ -41,6 +43,8 @@ public class Whiteboard : MonoBehaviour {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
 		history = new List<LineDataContainer>();
 		redoHistory = new List<LineDataContainer>();
+
+		//toggleAnnotations();
 		//lines = new List<LineData>();
 	}
 	
@@ -48,7 +52,8 @@ public class Whiteboard : MonoBehaviour {
 	void LateUpdate () {
 		//Update pointer position
 		if (button.isHovered) {
-			pointer.transform.position = button.primaryHoveringControllerPoint;
+			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
+			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z); //.primaryHoveringFinger.bones[3].; //button.primaryHoveringControllerPoint;
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
 		
 			pointer.transform.localPosition = new Vector3(Mathf.Clamp(pointer.transform.localPosition.x, -1, 0),
@@ -138,6 +143,27 @@ public class Whiteboard : MonoBehaviour {
 	{
 		transform.localScale = Vector3.one;
 		transform.localScale = new Vector3 (globalScale.x/transform.lossyScale.x, globalScale.y/transform.lossyScale.y, globalScale.z/transform.lossyScale.z);
+	}
+
+	public void toggleAnnotations() {
+		if(annotationsHolder.activeInHierarchy) {
+			annotationsHolder.SetActive(false);
+			scaleHandle.SetActive(false);
+			button.enabled = false;
+			pointer.gameObject.SetActive(false);
+		} else {
+			annotationsHolder.SetActive(true);
+			scaleHandle.SetActive(true);
+			button.enabled = true;
+			pointer.gameObject.SetActive(true);
+		}
+	}
+
+	public void orientRotation() {
+		transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
+		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180, 0);
+
+		//transform.root.rotation = Quaternion.LookRotation(PlayerController.instance.head.transform.position, Vector3.up);
 	}
 
 	//Destroys the gameobject and stores its data in a list
@@ -243,16 +269,22 @@ public class Whiteboard : MonoBehaviour {
 		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute);
 		bool isUriNoQuotes = Uri.IsWellFormedUriString(trimmedText, UriKind.RelativeOrAbsolute);
 
-		if(isUri) {
-			StartCoroutine(loadPicture(text));
-			boardText.text = "";
-		} else if(isUriNoQuotes) {
-			StartCoroutine(loadPicture(trimmedText));
-			boardText.text = "";
+		if(!text.Equals("")) {
+			if(isUri) {
+				StartCoroutine(loadPicture(text));
+				boardText.text = "";
+			} else if(isUriNoQuotes) {
+				StartCoroutine(loadPicture(trimmedText));
+				boardText.text = "";
+			} else {
+				boardText.text = text;
+				boardImage.texture = null;
+			}
 		} else {
-			boardText.text = text;
+			boardText.text = "";
 			boardImage.texture = null;
 		}
+		
 		
 		
 

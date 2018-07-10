@@ -15,9 +15,12 @@ public class FingerMovementController : MonoBehaviour {
 		efd = GetComponent<Leap.Unity.ExtendedFingerDetector>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
 		if(isFingers && isPalm) {
 			Vector3 dir = pointer.transform.right;
+			if(MenuHandedness.dominantHand == Handedness.left) {
+				dir = pointer.transform.right * -1;
+			}
 			dir.y = 0;
 			pc.moveInDirection(dir);
 		} else {
