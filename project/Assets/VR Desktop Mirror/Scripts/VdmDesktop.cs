@@ -232,6 +232,8 @@ public class VdmDesktop : MonoBehaviour
         }
     }
 
+    float mouseClickTimestamp;
+
     public void CheckRaycast(Vector3 rayOrigin, Vector3 rayDirection) {
         Vector3 origin;
         Vector3 direction;
@@ -277,6 +279,34 @@ public class VdmDesktop : MonoBehaviour
                 int iY = (int)y;
 
                 m_manager.SetCursorPos(iX, iY);
+
+                // if (input.GetPressDown(MyButtonToViveButton(m_manager.ViveLeftClick)))
+                //     {
+                //         m_lastLeftTriggerClick = Time.time;
+                //         m_manager.SimulateMouseLeftDown();
+                //         VdmDesktopManager.ActionInThisFrame = true;
+                //     }
+
+                //     if (input.GetPressUp(MyButtonToViveButton(m_manager.ViveLeftClick)))
+                //     {
+                //         if (m_lastLeftTriggerClick != 0)
+                //         {
+                //             m_manager.SimulateMouseLeftUp();
+                //             m_lastLeftTriggerClick = 0;
+                //             VdmDesktopManager.ActionInThisFrame = true;
+                //         }
+                //     }
+
+                if(rcast.distance < 0.01f) {
+                    m_manager.SimulateMouseLeftDown();
+                    VdmDesktopManager.ActionInThisFrame = true;
+                    mouseClickTimestamp = Time.time + 0.1f;
+                }
+
+                if(mouseClickTimestamp - Time.time < 0) {
+                    m_manager.SimulateMouseLeftUp();
+                    VdmDesktopManager.ActionInThisFrame = true;
+                }
             }
         }
     }

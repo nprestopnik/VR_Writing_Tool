@@ -38,10 +38,10 @@ public class DeskManager : MonoBehaviour {
 			deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
 		}
 
-		if(Vector3.Distance(deskTrackedPoint.transform.position, deskTracker.transform.position) > 0.01f) {
-			deskTrackedPoint.transform.position = deskTracker.transform.position;
-			deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
-		}
+		// if(Vector3.Distance(deskTrackedPoint.transform.position, deskTracker.transform.position) > 0.01f) {
+		// 	deskTrackedPoint.transform.position = deskTracker.transform.position;
+		// 	deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
+		// }
 	}
 
 	public void StartDeskTask() {

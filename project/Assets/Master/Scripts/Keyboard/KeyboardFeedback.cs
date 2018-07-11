@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityRawInput;
+using System;
 
 public class KeyboardFeedback : MonoBehaviour {
 
-	IDictionary<KeyCode, GameObject> keyboard = new Dictionary<KeyCode, GameObject>(); //Holds a key (the keyboard key name as a string, based on the Unity key input names) and value (the corrsponding keyboard key GameObject)
+	IDictionary<RawKey, GameObject> keyboard = new Dictionary<RawKey, GameObject>(); //Holds a key (the keyboard key name as a string, based on the Unity key input names) and value (the corrsponding keyboard key GameObject)
 
 	public Material[] solidArray = new Material[2]; //An array holding the two materials used for each key when not pressed
 
@@ -20,9 +22,13 @@ public class KeyboardFeedback : MonoBehaviour {
 		foreach (Transform child in transform) //In the keyboard transform, loop through every key
  		{     		
 			if (child.name != "caps_lock_indicator_light" && child.name != "Fn") { //Ignore the caps lock indicator lamp and the Fn keys. Neither has a valid keyCode
+				try {
+					RawKey thisKeyCode = (RawKey)Enum.Parse(typeof(RawKey), child.name);
+					keyboard.Add(thisKeyCode, child.gameObject); //Append the key name and keyboard key GameObject to the dictionary
+				} catch (ArgumentException e) {
+					print(e.Message);
+				}
 				
-				KeyCode thisKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), child.name.ToString()); //Turn the child name into a valid keyCode (all keys in the keyboard [prefab are named by proper keyCode)
-				keyboard.Add(thisKeyCode, child.gameObject); //Append the key name and keyboard key GameObject to the dictionary
 			
 			}
 
@@ -34,31 +40,47 @@ public class KeyboardFeedback : MonoBehaviour {
 			}
  		} 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		foreach (KeyCode key in keyboard.Keys) { //Loop the keyboard dictionary
-     		
-			 if (Input.GetKeyDown(key)) { //Listen for keyDown on each key in the dictionary
-				keyboard[key].GetComponent<Renderer>().materials = hoverArray; //If down, flip material array to hover
-			}
-			
-			if (Input.GetKeyUp(key)) { //Listen for keuUp on each key in the dictionary
-				keyboard[key].GetComponent<Renderer>().materials = solidArray; //If up, flip material array to solid
-			}
- 		}
 
-		if (Input.GetKeyUp(KeyCode.CapsLock)) { //Listen specifically for KeyUp on caps lock
+	//When the desk turns on begin the key checking process
+	void OnEnable()
+	{
+		RawKeyInput.Start(true);
+		RawKeyInput.OnKeyDown += HandleKeyDown;
+		RawKeyInput.OnKeyUp += HandleKeyUp;
+	}
 
-            capsLockOn = !capsLockOn; //Any time the caps lock key is released, NOT its value
+	//When the desk is disabled or the application stops, end the key checking process
+	void OnDisable()
+	{
+		RawKeyInput.Stop();
+		RawKeyInput.OnKeyDown -= HandleKeyDown;
+		RawKeyInput.OnKeyUp -= HandleKeyUp;
+	}
+	void OnApplicationQuit()
+	{
+		RawKeyInput.Stop();
+		RawKeyInput.OnKeyDown -= HandleKeyDown;
+		RawKeyInput.OnKeyUp -= HandleKeyUp;
+	}
+
+	//Event for Key Down
+	void HandleKeyDown(RawKey key) {
+		if(key == RawKey.CapsLock) {
+			capsLockOn = !capsLockOn; //Any time the caps lock key is released, NOT its value
 		
 			if (capsLockOn) { //If caps lock is on...
 				capsLockMat.SetColor ("_Color", Color.green); //Make the material color green
 			} else { //If caps lock is off...
 				capsLockMat.SetColor ("_Color", Color.black); //Make the material color black
 			}
-        
 		}
+		keyboard[key].GetComponent<Renderer>().materials = hoverArray; //If down, flip material array to hover
 	}
+
+	//Event for Key Up
+	void HandleKeyUp(RawKey key) {
+		keyboard[key].GetComponent<Renderer>().materials = solidArray; //If up, flip material array to solid
+	}
+	
 }
