@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeskManager : MonoBehaviour {
 
-	public GameObject testNavPoint;
 
 	public static DeskManager instance;
 
@@ -44,6 +43,17 @@ public class DeskManager : MonoBehaviour {
 		// }
 	}
 
+	public void toggleDeskLock() {
+		if(isTracking) {
+			ConfirmSet();
+			//ConfirmPark();
+		} else {
+
+		}
+		isTracking = !isTracking;
+		
+	}
+
 	public void StartDeskTask() {
 		MuseManager.instance.museText.SetText("Follow me to your desk!");
 		MuseManager.instance.museGuide.EnterMuse();
@@ -70,19 +80,19 @@ public class DeskManager : MonoBehaviour {
 	}
 
 
-	public void StartNavgationTest() {
-		MuseManager.instance.museText.SetText("Testing navigation!", NavStage10);
-	}
-	void NavStage10() {
-		MuseManager.instance.museGuide.EnterMuse();
-		MuseManager.instance.Pause(3f, NavStage20);
-	}
-	void NavStage20() {
-		MuseManager.instance.museNavigator.NavigateToPoint(testNavPoint.transform.position, NavStage30);
-	}
-	void NavStage30() {
-		MuseManager.instance.museGuide.GuideTo(testNavPoint.transform);
-	}
+	// public void StartNavgationTest() {
+	// 	MuseManager.instance.museText.SetText("Testing navigation!", NavStage10);
+	// }
+	// void NavStage10() {
+	// 	MuseManager.instance.museGuide.EnterMuse();
+	// 	MuseManager.instance.Pause(3f, NavStage20);
+	// }
+	// void NavStage20() {
+	// 	//MuseManager.instance.museNavigator.NavigateToPoint(testNavPoint.transform.position, NavStage30);
+	// }
+	// void NavStage30() {
+	// 	//MuseManager.instance.museGuide.GuideTo(testNavPoint.transform);
+	// }
 
 
 	public void StartParkTask() {

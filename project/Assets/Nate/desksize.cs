@@ -64,7 +64,7 @@ public class desksize : MonoBehaviour {
 	//Positions the desk top and mount based on height. Th prevTopHeight and totalTopHeight vars are used to store information about the positioning and scale of these elements so the legs can scale properly.
 	//In this current solution, the top and mount must be scaled before the legs, and the top must be scaled before the mount
 	private void positionTop(Transform part) {
-		part.position = new Vector3(part.localPosition.x, height - (((part.localScale.y / 2) + prevTopHeight) / cmConvert), part.localPosition.z);
+		part.localPosition = new Vector3(part.localPosition.x, height - (((part.localScale.y / 2) + prevTopHeight) / cmConvert), part.localPosition.z);
 		prevTopHeight = part.localScale.y;
 		totalTopHeight += prevTopHeight;
 	}
@@ -77,19 +77,23 @@ public class desksize : MonoBehaviour {
 	//Positions the four legs in x, y, and z. wDir determines if a leg will move in positive or negative X (width), dDir determines same for Z (depth). sidePos is used to space rear legs from their corresponding front leg pairs.
 	private void positionLeg(Transform part, float wDir = 1.0F, float dDir = 1.0F, float sidePos = 0.0F) {
 
-		float legX = ((part.position.x + width / 2.0F) - 0.20F + sidePos) * wDir; //Calculate X position
+		float legX = ((part.localPosition.x + width / 2.0F) - 0.20F + sidePos) * wDir; //Calculate X position
 		float legY = (height / 2) - (totalTopHeight / 2) / cmConvert; //Calculate Y position 
-		float legZ = ((part.position.z + depth / 2.0F) - 0.40F) * dDir; //Cal;culate Z position
+		float legZ = ((part.localPosition.z + depth / 2.0F) - 0.40F) * dDir; //Cal;culate Z position
 		
-		part.position = new Vector3(legX, legY, legZ);
+		part.localPosition = new Vector3(legX, legY, legZ);
 	}
 
 	// Currently, start is only needed to run the three public methods that set the scale, build the dictionary, and run the desk scaler method.
 	//These may be called elsewhere in the final implementation
-	void Start () {
+	void OnEnable () {
 		//setScale(2.0F, 1.0F, 1.0F);
 		deskSetup();
-		scaleDesk();	
+		scaleDesk();
+		foreach(Transform t in transform) {
+			t.localPosition += new Vector3(0, -1 * height, depth / 2f);	
+		}
+		
 	}
 	
 	// Update is called once per frame

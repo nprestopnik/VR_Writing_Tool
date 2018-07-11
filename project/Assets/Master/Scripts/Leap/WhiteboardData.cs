@@ -13,6 +13,6 @@ public class WhiteboardData : Feature {
 		name = "Whiteboard";
 		text = "";
 		lines = new LineData[0];
-		scale = new Vector3(6, 6, 1);
+		scale = new Vector3(1, 1, 1);
 	}
 }

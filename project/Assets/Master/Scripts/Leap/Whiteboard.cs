@@ -43,6 +43,7 @@ public class Whiteboard : MonoBehaviour {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
 		history = new List<LineDataContainer>();
 		redoHistory = new List<LineDataContainer>();
+		button.enabled = false;
 
 		//toggleAnnotations();
 		//lines = new List<LineData>();
@@ -51,7 +52,7 @@ public class Whiteboard : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate () {
 		//Update pointer position
-		if (button.isHovered) {
+		if (button.isHovered && button.primaryHoveringHand != null) {
 			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
 			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z); //.primaryHoveringFinger.bones[3].; //button.primaryHoveringControllerPoint;
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
@@ -151,6 +152,7 @@ public class Whiteboard : MonoBehaviour {
 			scaleHandle.SetActive(false);
 			button.enabled = false;
 			pointer.gameObject.SetActive(false);
+			
 		} else {
 			annotationsHolder.SetActive(true);
 			scaleHandle.SetActive(true);
@@ -273,16 +275,20 @@ public class Whiteboard : MonoBehaviour {
 			if(isUri) {
 				StartCoroutine(loadPicture(text));
 				boardText.text = "";
+				boardImage.gameObject.SetActive(true);
 			} else if(isUriNoQuotes) {
 				StartCoroutine(loadPicture(trimmedText));
 				boardText.text = "";
+				boardImage.gameObject.SetActive(true);
 			} else {
 				boardText.text = text;
 				boardImage.texture = null;
+				boardImage.gameObject.SetActive(false);
 			}
 		} else {
 			boardText.text = "";
 			boardImage.texture = null;
+			boardImage.gameObject.SetActive(false);
 		}
 		
 		
