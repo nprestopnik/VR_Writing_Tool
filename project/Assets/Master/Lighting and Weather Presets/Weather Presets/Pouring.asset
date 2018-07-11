@@ -11,12 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
   m_Name: Pouring
   m_EditorClassIdentifier: 
-  settingName: 
-  rainIntensity: 750
-  fogAmount: 80
-  windIntensity: 0.24
+  settingName: Pouring
+  iconMaterial: {fileID: 2100000, guid: 7774e3f4b7591c9448edd659ab70c8d3, type: 2}
+  blockMaterials:
+  - {fileID: 2100000, guid: 412f48e5622670b4c824836454706631, type: 2}
+  - {fileID: 2100000, guid: dd908b0d777a6b04f83a299572d876d4, type: 2}
+  precipitationIntensity: 1000
+  windIntensity: 0.5
   windTurbulence: 0.2
   windPulseMag: 1
   windPulseFreq: 1
+  fog: 1
+  fogColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.26666668}
+  fogDensity: 0.1
+  fogMode: 3
   ambientSound: {fileID: 0}
   ambientVolume: 1

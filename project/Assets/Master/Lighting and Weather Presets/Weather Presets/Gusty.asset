@@ -9,14 +9,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
-  m_Name: Clear
+  m_Name: Gusty
   m_EditorClassIdentifier: 
-  settingName: Clear
-  rainIntensity: 0
-  fogAmount: 0
-  windIntensity: 0.14
+  settingName: Gusty
+  iconMaterial: {fileID: 2100000, guid: 5baf6c39afabeef449f347c96ce8273e, type: 2}
+  blockMaterials:
+  - {fileID: 2100000, guid: 412f48e5622670b4c824836454706631, type: 2}
+  - {fileID: 2100000, guid: 5c82c8223afb9204580a6dd3e73df0c6, type: 2}
+  precipitationIntensity: 0
+  windIntensity: 0.4
   windTurbulence: 0
   windPulseMag: 1
   windPulseFreq: 1
+  fog: 0
+  fogColor: {r: 0, g: 0, b: 0, a: 0}
+  fogDensity: 0
+  fogMode: 0
   ambientSound: {fileID: 0}
   ambientVolume: 1

@@ -44,10 +44,12 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 topRight;
 
 	[Header("Cubes")]
-	[Header("Mood")]
+	[Header("Mood: Set per scene via environment manager")]
 	public GameObject moodUpperParent;
 	public GameObject moodLowerParent;
+	[HideInInspector]
 	public GameObject[] moodCubesUpper;
+	[HideInInspector]
 	public GameObject[] moodCubesLower;
 
 	[Header("Creation")]
@@ -58,10 +60,12 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject locationParent;
 	public GameObject[] locationCubes;
 
-	[Header("Weather")]
+	[Header("Weather: Set per scene via environment manager")]
 	public GameObject weatherUpperParent;
 	public GameObject weatherLowerParent;
+	[HideInInspector]
 	public GameObject[] weatherCubesUpper;
+	[HideInInspector]
 	public GameObject[] weatherCubesLower;
 
 	[Header("System")]
@@ -117,6 +121,10 @@ public class MenuHandedness : MonoBehaviour {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
 	}
 
+	public Handedness GetHandedness() {
+		return dominantHand;
+	}
+
     void SetPositions() {
 		top = new Vector3(buttonOffset, 0, -buttonOffset);
 		bottom = new Vector3(-buttonOffset, 0, buttonOffset);
@@ -159,9 +167,9 @@ public class MenuHandedness : MonoBehaviour {
 			system.transform.localPosition = topRight;
 
 			moodUpperParent.transform.localPosition = cubeTopLeft;
-			SetCubePositions(moodCubesUpper, true, false);
+			//SetCubePositions(moodCubesUpper, true, false);
 			moodLowerParent.transform.localPosition = cubeMidLowerLeft;
-			SetCubePositions(moodCubesLower, false, false);
+			//SetCubePositions(moodCubesLower, false, false);
 
 			creationParent.transform.localPosition = cubeMidUpperLeft;
 			SetCubePositions(creationCubes, true, false);
@@ -170,9 +178,9 @@ public class MenuHandedness : MonoBehaviour {
 			SetCubePositions(locationCubes, false, false);
 
 			weatherUpperParent.transform.localPosition = cubeTopLeft;
-			SetCubePositions(weatherCubesUpper, true, false);
+			//SetCubePositions(weatherCubesUpper, true, false);
 			weatherLowerParent.transform.localPosition = cubeBottomLeft;
-			SetCubePositions(weatherCubesLower, false, false);
+			//SetCubePositions(weatherCubesLower, false, false);
 
 			systemParent.transform.localPosition = cubeUpperLeft;
 			SetCubePositions(systemCubes, true, false);
@@ -193,9 +201,9 @@ public class MenuHandedness : MonoBehaviour {
 			system.transform.localPosition = topLeft;
 
 			moodUpperParent.transform.localPosition = cubeTopRight;
-			SetCubePositions(moodCubesUpper, true, true);
+			//SetCubePositions(moodCubesUpper, true, true);
 			moodLowerParent.transform.localPosition = cubeMidLowerRight;
-			SetCubePositions(moodCubesLower, false, true);
+			//SetCubePositions(moodCubesLower, false, true);
 
 			creationParent.transform.localPosition = cubeMidUpperRight;
 			SetCubePositions(creationCubes, true, true);
@@ -204,16 +212,16 @@ public class MenuHandedness : MonoBehaviour {
 			SetCubePositions(locationCubes, false, true);
 
 			weatherUpperParent.transform.localPosition = cubeTopRight;
-			SetCubePositions(weatherCubesUpper, true, true);
+			//SetCubePositions(weatherCubesUpper, true, true);
 			weatherLowerParent.transform.localPosition = cubeBottomRight;
-			SetCubePositions(weatherCubesLower, false, true);
+			//SetCubePositions(weatherCubesLower, false, true);
 
 			systemParent.transform.localPosition = cubeUpperRight;
 			SetCubePositions(systemCubes, true, true);
 		}
 	}
 
-	 void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
+	public void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
 		 int i = 0;
 		 foreach(GameObject cube in cubes) {
 			if(upper) {

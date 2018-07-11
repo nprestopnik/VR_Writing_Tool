@@ -4,33 +4,65 @@ using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour {
 
+	[Header("Environment Element References")]
 	public Light sunLight;
 	public Light fillLight;
 	public WindZone windZone;
-	public ParticleSystem fog;
-	public GameObject fireflies;
+	public GameObject otherVisualEffects;
+	
+	[Header("Rain/Main Weather Particles with Positioning")]
+	public ParticleSystem precipitation;
+	[Tooltip("The particles will track the player; determine where they should be relative to the head.")]
+	public Vector3 particleOffsetFromHead;
+
+	[Header("Ambient Sound Source with Positioning")]
+	public AudioSource ambientSoundSource;
+	[Tooltip("The ambient source will track the player; determine where it should be relative to the head.")]
+	public Vector3 ambientOffsetFromHead;
+
+	[Header("Presets for Mood and Weather with menu size for scene")]
+
+	[Tooltip("NUMBER OF PRESETS PER CATEGORY <= 2 X MAX CUBES PER ROW")]
+	public int maxCubesPerMenuRow = 3;
+	[Tooltip("Mood preset objects are called Lighting Presets")]
+	public LightingPreset[] moodPresets;
+	public WeatherPreset[] weatherPresets;
 
 	private EnvironmentAudioManager audioManager;
 
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
 		audioManager = GetComponent<EnvironmentAudioManager>();
+
+		CreateWeatherMoodCubes.instance.CreateMoodCubes(moodPresets, maxCubesPerMenuRow);
+		CreateWeatherMoodCubes.instance.CreateWeatherCubes(weatherPresets, maxCubesPerMenuRow);
+	}
+
+	void Update() {
+		precipitation.transform.position = PlayerController.instance.head.position + particleOffsetFromHead;
+		ambientSoundSource.transform.position = PlayerController.instance.head.position + ambientOffsetFromHead;
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
-		// WeatherSystemManager.instance.rainEmission.rateOverTime = newWeather.rainIntensity;
+		var particleEmission = precipitation.emission;
+		particleEmission.rateOverTime = newWeather.precipitationIntensity;
 
-		// var fogEmission = fog.emission;
-		// fogEmission.rateOverTime = newWeather.fogAmount;
-
+	
 		windZone.windMain = newWeather.windIntensity;
 		windZone.windTurbulence = newWeather.windTurbulence;
 		windZone.windPulseMagnitude = newWeather.windPulseMag;
 		windZone.windPulseFrequency = newWeather.windPulseFreq;
+		
+		RenderSettings.fog = newWeather.fog;
+		if(newWeather.fog) {
+			RenderSettings.fogColor = newWeather.fogColor;
+			RenderSettings.fogDensity = newWeather.fogDensity;
+			RenderSettings.fogMode = newWeather.fogMode;
+		}
 
-		WeatherSystemManager.instance.ambientSource.clip = newWeather.ambientSound;
-		WeatherSystemManager.instance.ambientSource.volume = newWeather.ambientVolume;
-		WeatherSystemManager.instance.ambientSource.Play();
+		ambientSoundSource.clip = newWeather.ambientSound;
+		ambientSoundSource.volume = newWeather.ambientVolume;
+		ambientSoundSource.Play();
 	}
 
 	public void SetLighting(LightingPreset newLighting) {
@@ -49,13 +81,7 @@ public class EnvironmentManager : MonoBehaviour {
 		audioManager.minDelay = newLighting.minSoundDelay;
 		audioManager.maxDelay = newLighting.maxSoundDelay;
 
-		if(fireflies) {
-			if(newLighting.fireflies) {
-				fireflies.SetActive(true);
-			} else {
-				fireflies.SetActive(false);
-			}
-		}
+		otherVisualEffects.SetActive(newLighting.otherVisualEffects);
 	}
 
 }

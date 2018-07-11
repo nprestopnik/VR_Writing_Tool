@@ -9,9 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 994d896f0be10264292d7d178a49a5d4, type: 3}
-  m_Name: Night
+  m_Name: Overcast
   m_EditorClassIdentifier: 
-  settingName: 
+  settingName: Overcast
+  iconMaterial: {fileID: 2100000, guid: ac53108a02dfc1e4680dcb1b3dfa1666, type: 2}
+  blockMaterials:
+  - {fileID: 2100000, guid: 412f48e5622670b4c824836454706631, type: 2}
+  - {fileID: 2100000, guid: dd908b0d777a6b04f83a299572d876d4, type: 2}
   skybox: {fileID: 0}
   sunRotation: {x: 0, y: 0, z: 0}
   sunIntensity: 0
@@ -23,4 +27,4 @@ MonoBehaviour:
   transientVolume: 1
   minSoundDelay: 0
   maxSoundDelay: 0
-  fireflies: 1
+  otherVisualEffects: 0
