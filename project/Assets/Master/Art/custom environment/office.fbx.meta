@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 59501764cf1feaa4d9bc40672a3cf47d
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ceiling
+    100002: door_wall
+    100004: floor
+    100006: front_mullions
+    100008: //RootNode
+    100010: plain_wall
+    100012: side_mullions
+    100014: window_front_wall
+    100016: window_side_wall
+    400000: ceiling
+    400002: door_wall
+    400004: floor
+    400006: front_mullions
+    400008: //RootNode
+    400010: plain_wall
+    400012: side_mullions
+    400014: window_front_wall
+    400016: window_side_wall
+    2100000: carpet
+    2100002: lambert1
+    2100004: white_paint
+    2100006: wall_paint
+    2100008: frame_corner
+    2100010: door
+    2100012: ceiling1
+    2300000: ceiling
+    2300002: door_wall
+    2300004: floor
+    2300006: front_mullions
+    2300008: plain_wall
+    2300010: side_mullions
+    2300012: window_front_wall
+    2300014: window_side_wall
+    3300000: ceiling
+    3300002: door_wall
+    3300004: floor
+    3300006: front_mullions
+    3300008: plain_wall
+    3300010: side_mullions
+    3300012: window_front_wall
+    3300014: window_side_wall
+    4300000: floor
+    4300002: plain_wall
+    4300004: window_side_wall
+    4300006: door_wall
+    4300008: window_front_wall
+    4300010: ceiling
+    4300012: front_mullions
+    4300014: side_mullions
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carpet
+    second: {fileID: 2100000, guid: 29095149510b8b44291566252a3be178, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ceiling1
+    second: {fileID: 2100000, guid: 405422b71b1d2344999ef161b3ccb788, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door
+    second: {fileID: 2100000, guid: 759eb94e9e189044b93f59af5de03974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: frame_corner
+    second: {fileID: 2100000, guid: 1f1620c6d0147ab469ac2ea096a1bd78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: bf2ec7bac69bd03438f74e998c40b85c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall_paint
+    second: {fileID: 2100000, guid: 5860c367aacf53a47a68f86cf2831201, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white_paint
+    second: {fileID: 2100000, guid: ccbf0a193780ea541ae716c884b70199, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: carpet
+    second: {fileID: 2800000, guid: e65fe8e97cbdfbc409ff155a711d4d16, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: carpet_nm
+    second: {fileID: 2800000, guid: a241cb507cea11a40b587434824c2962, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ceiling
+    second: {fileID: 2800000, guid: 0107d6cd840a9654897f64770d71a591, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ceiling_nm
+    second: {fileID: 2800000, guid: a353d47dbd3b3484ab3eef24860e09ea, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door
+    second: {fileID: 2800000, guid: d7fa7dcba382264428870ab79dad6837, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: door_nm
+    second: {fileID: 2800000, guid: 09ff06b3e14c6dd45bfb92955efac502, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: frane_corner
+    second: {fileID: 2800000, guid: 9fff669209ba95947afa39afd9a45721, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: frane_corner_nm
+    second: {fileID: 2800000, guid: 62950f5fc7a2f8c4caf0e546c4ea9c27, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: paint_griege
+    second: {fileID: 2800000, guid: 1fb13dc9724c75e438ae426fda9a6a35, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: paint_griege_nm
+    second: {fileID: 2800000, guid: 6e2800b001f40814992eb59a944d2e2d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: paint_white
+    second: {fileID: 2800000, guid: 5ac9daaa308804241b69c2d5b6edc9d3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: paint_white_nm
+    second: {fileID: 2800000, guid: 3ed8ff952362144409e1dd84514c4c38, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
