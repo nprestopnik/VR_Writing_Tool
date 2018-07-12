@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114161084126429540}
   - component: {fileID: 114929612026773688}
   m_Layer: 0
-  m_Name: Mood Cube Anchor
+  m_Name: Cube Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,12 +78,12 @@ GameObject:
   - component: {fileID: 114231786754388580}
   - component: {fileID: 114303738675539242}
   m_Layer: 0
-  m_Name: Mood Cube
+  m_Name: Menu Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1303225968411102
 GameObject:
   m_ObjectHideFlags: 1
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 4038700230479356}
   - component: {fileID: 114776099395317670}
   m_Layer: 0
-  m_Name: Mood Tween
+  m_Name: Cube Tween
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ Transform:
   m_GameObject: {fileID: 1251762977164344}
   m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4693956763415466}
   m_Father: {fileID: 4060309754758392}
@@ -303,8 +303,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 044227878d1675043a40d52384797164, type: 2}
-  - {fileID: 2100000, guid: 412f48e5622670b4c824836454706631, type: 2}
+  - {fileID: 2100000, guid: c9d753a439074c94795bc6f306eb2884, type: 2}
+  - {fileID: 2100000, guid: 5fad5e2542fa3e04eaa0e1872f612d0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -339,7 +339,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: e7f1d3c542b2c6f4699a8c63d274f2f2, type: 2}
+  - {fileID: 2100000, guid: 1823350509fda9a4c8f0305c8ec55cb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -492,11 +492,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066acb2b94c66e8478792e71e7306236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preset: {fileID: 0}
+  type: 0
+  moodPreset: {fileID: 0}
+  weatherPreset: {fileID: 0}
   blockMesh: {fileID: 0}
   iconMesh: {fileID: 0}
+  cubeTween: {fileID: 1447328641445594}
   tween: {fileID: 0}
-  hiddenTween: {fileID: 0}
+  tweenHidden: {fileID: 0}
+  tweenVisible: {fileID: 0}
 --- !u!114 &114422538539827210
 MonoBehaviour:
   m_ObjectHideFlags: 1

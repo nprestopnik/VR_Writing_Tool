@@ -17,6 +17,9 @@ public class WeatherSystemManager : MonoBehaviour {
     public void SetSceneEnvironmentManager(GameObject sceneEnvironment) {
 		environmentManager = sceneEnvironment;
 		environment = environmentManager.GetComponent<EnvironmentManager>();
+
+		CreateWeatherMoodCubes.instance.CreateCubes(environment.maxCubesPerMenuRow, EnvironmentCubeType.mood, moodPresets: environment.moodPresets);
+		CreateWeatherMoodCubes.instance.CreateCubes(environment.maxCubesPerMenuRow, EnvironmentCubeType.weather, weatherPresets: environment.weatherPresets);
 	}
 
 }

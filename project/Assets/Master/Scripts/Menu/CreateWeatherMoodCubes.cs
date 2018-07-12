@@ -27,63 +27,132 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		cubeLocationSetter = GetComponent<MenuHandedness>();
 	}
 
-	public GameObject[] CreateMoodRow(MenuRow row, LightingPreset[] presets) {
+	/*only send one preset array, make sure it matches the type provided otherwise everything will break*/
+	public GameObject[] CreateCubeRow(MenuRow row, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
 		
-		GameObject[] cubes = new GameObject[presets.Length];
-		for(int i = 0; i < presets.Length; i++) {
-			GameObject cube = (GameObject)Instantiate(moodCubePrefab);
+		GameObject[] cubes;
+		int rowSize;
+		GameObject prefab;
+		GameObject upperParent;
+		GameObject lowerParent;
+
+		if(type == EnvironmentCubeType.mood) {
+			rowSize = moodPresets.Length;
+			cubes = new GameObject[rowSize];
+
+			prefab = moodCubePrefab;
+			upperParent = cubeLocationSetter.moodUpperParent;
+			lowerParent = cubeLocationSetter.moodLowerParent;
+		} else {
+			rowSize = weatherPresets.Length;
+			cubes = new GameObject[rowSize];
+
+			prefab = weatherCubePrefab;
+			upperParent = cubeLocationSetter.weatherUpperParent;
+			lowerParent = cubeLocationSetter.weatherLowerParent;
+		}
+
+		GameObject[] visiblePoints = new GameObject[cubes.Length];
+		
+		for(int i = 0; i < rowSize; i++) {
+			
+			GameObject cube = (GameObject)Instantiate(prefab);
+
+			GameObject menuCube = cube.transform.Find("Menu Cube").gameObject;
+			WeatherMoodContainer setter = menuCube.GetComponent<WeatherMoodContainer>();
 
 			if(row == MenuRow.upper) {
-				cube.transform.parent = cubeLocationSetter.moodUpperParent.transform;
+				cube.transform.parent = upperParent.transform;
 			} else {
-				cube.transform.parent = cubeLocationSetter.moodLowerParent.transform;
+				cube.transform.parent = lowerParent.transform;
 			}
+
 			cube.transform.localPosition = Vector3.zero;
 			cube.transform.localRotation = Quaternion.identity;
 
-			GameObject moodCube = cube.transform.Find("Mood Cube").gameObject;
-			MoodContainer setter = moodCube.GetComponent<MoodContainer>();
-			setter.preset = presets[i];
-			setter.Setup();
-			setter.blockMesh.materials = presets[i].blockMaterials;
-			setter.iconMesh.material = presets[i].iconMaterial;
+			if(type == EnvironmentCubeType.mood) {
+				setter.moodPreset = moodPresets[i];
+				
+				setter.blockMesh.materials[0].SetColor("_Color", moodPresets[i].blockTint);
+				setter.iconMesh.material.SetTexture("_MainTex", moodPresets[i].icon);
 
-			setter.tween.startTransform = moodHidden;
-			setter.tween.SetTargetToStart();
-			//setter.hiddenTween.position = moodHidden.transform.position;
+				setter.tweenHidden.position = moodHidden.position;
+			} else {
+				setter.weatherPreset = weatherPresets[i];
 
+				setter.blockMesh.materials[0].SetColor("_Color", weatherPresets[i].blockTint);
+				setter.iconMesh.material.SetTexture("_MainTex", weatherPresets[i].icon);
+
+				setter.tweenHidden.position = weatherHidden.position;
+			}
+			
 			cubes[i] = cube;
+			visiblePoints[i] = setter.tweenVisible.gameObject;
 		}
-		cubeLocationSetter.SetCubePositions(cubes, row == MenuRow.upper, cubeLocationSetter.GetHandedness() == Handedness.right);
+
+		cubeLocationSetter.SetCubePositions(visiblePoints, row == MenuRow.upper, cubeLocationSetter.GetHandedness() == Handedness.right);
 		return cubes;
 	}
 
-	public void CreateMoodCubes(LightingPreset[] presets, int maxPerRow) {
+	/*only send one preset array, make sure it matches the type provided otherwise everything will break*/
+	public void CreateCubes(int maxPerRow, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
 
+		int numCubesSet;
 		int numUpper;
 		int numLower;
-		if(presets.Length > maxPerRow) {
-			numUpper = maxPerRow;
-			numLower = presets.Length - numUpper;
+
+		if(type == EnvironmentCubeType.mood) {
+			numCubesSet = moodPresets.Length;
 		} else {
-			numUpper = presets.Length;
+			numCubesSet = weatherPresets.Length;
+		}
+
+		if(numCubesSet > maxPerRow) {
+			numUpper = maxPerRow;
+			numLower = numCubesSet - numUpper;
+		} else {
+			numUpper = numCubesSet;
 			numLower = 0;
 		}
 
-		LightingPreset[] upper = new LightingPreset[numUpper];
-		LightingPreset[] lower = new LightingPreset[numLower];
+		GameObject[] allCubes = new GameObject[numCubesSet];
+		GameObject[] upperCubes;
+		GameObject[] lowerCubes;
 
-		for(int i = 0; i < presets.Length; i++) {
-			if(i < upper.Length) {
-				upper[i] = presets[i];
-			} else {
-				lower[i-upper.Length] = presets[i];
+		SubMenu submenu;
+
+		if(type == EnvironmentCubeType.mood) {
+			LightingPreset[] upper = new LightingPreset[numUpper];
+			LightingPreset[] lower = new LightingPreset[numLower];
+
+			for(int i = 0; i < moodPresets.Length; i++) {
+				if(i < upper.Length) {
+					upper[i] = moodPresets[i];
+				} else {
+					lower[i-upper.Length] = moodPresets[i];
+				}
 			}
+
+			upperCubes = CreateCubeRow(MenuRow.upper, EnvironmentCubeType.mood, moodPresets: upper);
+			lowerCubes = CreateCubeRow(MenuRow.lower, EnvironmentCubeType.mood, moodPresets: lower);
+
+			submenu = moodSubmenu;
+		} else {
+			WeatherPreset[] upper = new WeatherPreset[numUpper];
+			WeatherPreset[] lower = new WeatherPreset[numLower];
+
+			for(int i = 0; i < weatherPresets.Length; i++) {
+				if(i < upper.Length) {
+					upper[i] = weatherPresets[i];
+				} else {
+					lower[i-upper.Length] = weatherPresets[i];
+				}
+			}
+			upperCubes = CreateCubeRow(MenuRow.upper, EnvironmentCubeType.weather, weatherPresets: upper);
+			lowerCubes = CreateCubeRow(MenuRow.lower, EnvironmentCubeType.weather, weatherPresets: lower);
+
+			submenu = weatherSubmenu;
 		}
-		
-		GameObject[] allCubes = new GameObject[presets.Length];
-		GameObject[] upperCubes = CreateMoodRow(MenuRow.upper, upper);
-		GameObject[] lowerCubes = CreateMoodRow(MenuRow.lower, lower);
 
 		for(int i = 0; i < allCubes.Length; i++) {
 			if(i < upperCubes.Length) {
@@ -92,78 +161,12 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 				allCubes[i] = lowerCubes[i-upperCubes.Length];
 			}
 		}
-		
-		moodSubmenu.cubeTweens = new TransformTweenBehaviour[allCubes.Length];
+
+		submenu.cubeTweens = new TransformTweenBehaviour[allCubes.Length];
 		for (int i = 0; i < allCubes.Length; i++) {
-			moodSubmenu.cubeTweens[i] = allCubes[i].transform.Find("Mood Tween").GetComponent<TransformTweenBehaviour>();
-		}
-	}
-
-	public GameObject[] CreateWeatherRow(MenuRow row, WeatherPreset[] presets) {
-		
-		GameObject[] cubes = new GameObject[presets.Length];
-		for(int i = 0; i < presets.Length; i++) {
-			GameObject cube = (GameObject)Instantiate(weatherCubePrefab);
-
-			if(row == MenuRow.upper) {
-				cube.transform.parent = cubeLocationSetter.weatherUpperParent.transform;
-			} else {
-				cube.transform.parent = cubeLocationSetter.weatherLowerParent.transform;
-			}
-			cube.transform.localPosition = Vector3.zero;
-			cube.transform.localRotation = Quaternion.Euler(0f, 45f, 0f);
-
-			WeatherContainer setter = cube.transform.GetComponentInChildren<WeatherContainer>();
-			setter.preset = presets[i];
-			setter.GetMeshes();
-			setter.blockMesh.materials = presets[i].blockMaterials;
-			setter.iconMesh.material = presets[i].iconMaterial;
-
-			cubes[i] = cube;
-		}
-		cubeLocationSetter.SetCubePositions(cubes, row == MenuRow.upper, cubeLocationSetter.GetHandedness() == Handedness.right);
-		return cubes;
-	}
-
-	public void CreateWeatherCubes(WeatherPreset[] presets, int maxPerRow) {
-
-		int numUpper;
-		int numLower;
-		if(presets.Length > maxPerRow) {
-			numUpper = maxPerRow;
-			numLower = presets.Length - numUpper;
-		} else {
-			numUpper = presets.Length;
-			numLower = 0;
-		}
-
-		WeatherPreset[] upper = new WeatherPreset[numUpper];
-		WeatherPreset[] lower = new WeatherPreset[numLower];
-
-		for(int i = 0; i < presets.Length; i++) {
-			if(i < upper.Length) {
-				upper[i] = presets[i];
-			} else {
-				lower[i-upper.Length] = presets[i];
-			}
+			submenu.cubeTweens[i] = allCubes[i].transform.Find("Cube Tween").GetComponent<TransformTweenBehaviour>();
 		}
 		
-		GameObject[] allCubes = new GameObject[presets.Length];
-		GameObject[] upperCubes = CreateWeatherRow(MenuRow.upper, upper);
-		GameObject[] lowerCubes = CreateWeatherRow(MenuRow.lower, lower);
-
-		for(int i = 0; i < allCubes.Length; i++) {
-			if(i < upperCubes.Length) {
-				allCubes[i] = upperCubes[i];
-			} else {
-				allCubes[i] = lowerCubes[i-upperCubes.Length];
-			}
-		}
-		
-		weatherSubmenu.cubeTweens = new TransformTweenBehaviour[allCubes.Length];
-		for (int i = 0; i < allCubes.Length; i++) {
-			weatherSubmenu.cubeTweens[i] = allCubes[i].transform.Find("Weather Tween").GetComponent<TransformTweenBehaviour>();
-		}
 	}
 
 }

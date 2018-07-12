@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Name: Night
   m_EditorClassIdentifier: 
   settingName: Night
-  iconMaterial: {fileID: 2100000, guid: 5046bc63bd46c0449a12c5b0ce4b6d41, type: 2}
-  blockMaterials:
-  - {fileID: 2100000, guid: 412f48e5622670b4c824836454706631, type: 2}
-  - {fileID: 2100000, guid: 6b23132a6f406194493a9614ac376f95, type: 2}
+  icon: {fileID: 2800000, guid: f49b5c2974e98a14c98b58ae0d5593a4, type: 3}
+  blockTint: {r: 0, g: 0, b: 0, a: 1}
   skybox: {fileID: 0}
   sunRotation: {x: 0, y: 0, z: 0}
   sunIntensity: 0

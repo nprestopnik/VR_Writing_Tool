@@ -9,9 +9,9 @@ public class LightingPreset : ScriptableObject {
 	[Tooltip("This isn't really used anywhere but you can name your preset so that's fun")]
 	public string settingName;
 
-	[Header("Menu Cube Materials")]
-	public Material iconMaterial;
-	public Material[] blockMaterials;
+	[Header("Menu Cube Appearance")]
+	public Texture icon;
+	public Color blockTint;
 	
 	[Header("Skybox")]
 	public Material skybox;

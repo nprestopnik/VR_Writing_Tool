@@ -33,9 +33,6 @@ public class EnvironmentManager : MonoBehaviour {
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
 		audioManager = GetComponent<EnvironmentAudioManager>();
-
-		CreateWeatherMoodCubes.instance.CreateMoodCubes(moodPresets, maxCubesPerMenuRow);
-		CreateWeatherMoodCubes.instance.CreateWeatherCubes(weatherPresets, maxCubesPerMenuRow);
 	}
 
 	void Update() {
