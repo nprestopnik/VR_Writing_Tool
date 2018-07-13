@@ -22,6 +22,9 @@ public class DeskManager : MonoBehaviour {
 	private SteamVR_TrackedObject deskTrackedObject;
 	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
 
+	public Leap.Unity.Interaction.Anchor anchor;
+	public Leap.Unity.Interaction.AnchorGroup anchorGroup;
+
 	void Awake () {
 		instance = this;
 	}

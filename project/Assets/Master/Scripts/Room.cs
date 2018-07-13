@@ -34,6 +34,12 @@ public class Room {
         features = tempList.ToArray();
     }
 
+    public void deleteFeature(Feature feature) {
+        List<Feature> tempList = new List<Feature>(features);
+        tempList.Remove(feature);
+        features = tempList.ToArray();
+    }
+
     public Feature[] getFeaturesArray() {
         return features;
     }

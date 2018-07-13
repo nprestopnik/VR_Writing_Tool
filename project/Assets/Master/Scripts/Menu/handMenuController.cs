@@ -28,12 +28,12 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void createIdeaBoard() {
-		WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, head.forward + head.transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
+		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, head.forward + head.transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
 		WhiteboardData data = new WhiteboardData();
 		data.position = whiteboard.transform.root.position;
 		data.rotation = whiteboard.transform.root.rotation;
 		whiteboard.loadData(data);
-		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.data);
+		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
 		SaveSystem.instance.saveCurrentSave();
 	}
 

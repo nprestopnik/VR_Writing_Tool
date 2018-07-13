@@ -15,4 +15,11 @@ public class WhiteboardData : Feature {
 		lines = new LineData[0];
 		scale = new Vector3(1, 1, 1);
 	}
+
+	public WhiteboardData(string text) : base() {
+		name = "Whiteboard";
+		this.text = text;
+		lines = new LineData[0];
+		scale = new Vector3(1, 1, 1);
+	}
 }

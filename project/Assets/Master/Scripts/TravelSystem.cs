@@ -41,7 +41,7 @@ public class TravelSystem : MonoBehaviour {
 			if(f is WhiteboardData) {
 				//print("Creating Whiteboard: " + ((WhiteboardData)f).text);
 				//Create Whiteboard
-				WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
+				Whiteboard whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
 				WhiteboardData data = (WhiteboardData)f;
 				whiteboard.loadData(data);
 				//Move Whitboard to scene

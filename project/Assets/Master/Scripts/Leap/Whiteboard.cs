@@ -7,6 +7,7 @@ using System;
 public class Whiteboard : MonoBehaviour {
 
 	Leap.Unity.Interaction.InteractionButton button;
+	public WhiteboardContainer dataContainer;
 	public Leap.Unity.Interaction.InteractionSlider strokeSlider;
 	public GameObject pointer;
 
@@ -43,6 +44,7 @@ public class Whiteboard : MonoBehaviour {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
 		history = new List<LineDataContainer>();
 		redoHistory = new List<LineDataContainer>();
+		dataContainer = GetComponent<WhiteboardContainer>();
 		button.enabled = false;
 
 		//toggleAnnotations();
@@ -51,6 +53,12 @@ public class Whiteboard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
+		dataContainer.data.lines = lines.ToArray();
+		dataContainer.data.position = transform.root.position;
+		dataContainer.data.rotation = transform.root.rotation;
+		dataContainer.data.scale = transform.parent.localScale;
+
+
 		//Update pointer position
 		if (button.isHovered && button.primaryHoveringHand != null) {
 			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
@@ -163,7 +171,7 @@ public class Whiteboard : MonoBehaviour {
 
 	public void orientRotation() {
 		transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
-		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180, 0);
+		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180 - (boardScaler.transform.localScale.x * 15f), 0);
 
 		//transform.root.rotation = Quaternion.LookRotation(PlayerController.instance.head.transform.position, Vector3.up);
 	}
@@ -254,6 +262,7 @@ public class Whiteboard : MonoBehaviour {
 
 	public void loadData(WhiteboardData data) {
 		//load the lines and position
+		dataContainer.data = data;
 
 		lines = new List<LineData>(data.lines);
 
@@ -266,7 +275,7 @@ public class Whiteboard : MonoBehaviour {
 		
 		string text = data.text;
 		string trimmedText = "file:///" + data.text.Trim(new Char[] {'"'}).Replace('\\', '/');
-		print(trimmedText);
+		//print(trimmedText);
 
 		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute);
 		bool isUriNoQuotes = Uri.IsWellFormedUriString(trimmedText, UriKind.RelativeOrAbsolute);
@@ -330,5 +339,10 @@ public class Whiteboard : MonoBehaviour {
 			currLineR = null;
 			currData = null;
 		}
+	}
+
+	public void removeWhiteboard() {
+		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].deleteFeature(dataContainer.data);
+		Destroy(transform.root.gameObject);
 	}
 }
