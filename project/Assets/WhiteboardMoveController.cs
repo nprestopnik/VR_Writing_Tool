@@ -10,12 +10,13 @@ public class WhiteboardMoveController : MonoBehaviour {
 
 	void Start () {
 		ab = GetComponent<Leap.Unity.Interaction.AnchorableBehaviour>();
-		//ab.anchor = DeskManager.instance.anchor;
 		ab.anchorGroup = DeskManager.instance.anchorGroup;
 	}
 	
 	void Update () {
-		
+		if(Vector3.SqrMagnitude(ab.GetNearestValidAnchor().transform.position - transform.position) < 0.2f) {
+			DeskController.instance.hideCopyPasteTimestamp = Time.time + 0.1f;
+		}
 	}
 
 	public void onAnchorLock() {

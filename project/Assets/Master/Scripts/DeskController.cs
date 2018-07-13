@@ -23,6 +23,8 @@ public class DeskController : MonoBehaviour {
 	public Text boardText;
 	public RawImage boardImage;
 
+	public float hideCopyPasteTimestamp;
+
 	void Awake()
 	{
 		instance = this;
@@ -37,7 +39,9 @@ public class DeskController : MonoBehaviour {
 		desktops = gameObject.GetComponentsInChildren<VdmDesktop>();
 
 
-		
+		boardText.text = "";
+		boardImage.texture = null;
+		boardImage.gameObject.SetActive(false);
 
 		//Turn on in the beginning
 		toggleDesktop();
@@ -45,7 +49,6 @@ public class DeskController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//GUIUtility.systemCopyBuffer;
 
 		foreach(VdmDesktop desk in desktops) {
 			if(desk != null) {
@@ -61,21 +64,12 @@ public class DeskController : MonoBehaviour {
 			}
 		}
 
-		// if(Input.GetKeyUp(KeyCode.O)) {
-		// 	toggleDesktop();
-		// }
-
-		if(Input.GetKeyUp(KeyCode.P) && !lastCopy.Equals("")) {
-			Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
-			WhiteboardData data = new WhiteboardData();
-			data.position = whiteboard.transform.root.position;
-			data.rotation = whiteboard.transform.root.rotation;
-			data.text = lastCopy;
-			whiteboard.loadData(data);
-			SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
-			SaveSystem.instance.saveCurrentSave();
-			SceneManager.MoveGameObjectToScene(whiteboard.gameObject, SceneManager.GetSceneByBuildIndex(SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].sceneID));
+		if(hideCopyPasteTimestamp > Time.time) {
+			copyPasteCube.gameObject.SetActive(false);
+		} else {
+			copyPasteCube.gameObject.SetActive(true);
 		}
+
 	}
 
 	public void toggleDesktop() {
@@ -97,12 +91,16 @@ public class DeskController : MonoBehaviour {
 		}
 	}
 
+	//Method for clipboard listener
+	//Called every time the clipboard changes
 	void onClipboardChange(string newCopy) {
 		//print(newCopy);
 		lastCopy = newCopy;
 		updateClipboardData(new WhiteboardData(lastCopy));
 	}
 
+
+	//When clipboard data is changed, the clipboard image is updated
 	public void updateClipboardData(WhiteboardData data) {
 		lastData = data;
 		//Do stuff

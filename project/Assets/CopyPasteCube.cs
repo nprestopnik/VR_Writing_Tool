@@ -20,7 +20,9 @@ public class CopyPasteCube : MonoBehaviour {
 		
 	}
 
+	//When the copy paste cube is let go, it creates a whiteboard with the copy data and then returns to its anchor
 	public void graspEnd() {
+		//Creates whiteboard with copy data
 		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
 		wc.data.position = whiteboard.transform.root.position;
 		wc.data.rotation = whiteboard.transform.root.rotation;
@@ -28,11 +30,14 @@ public class CopyPasteCube : MonoBehaviour {
 		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
 		SaveSystem.instance.saveCurrentSave();
 		//	SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, SceneManager.GetSceneByBuildIndex(SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].sceneID));
+		
+		whiteboard.orientRotation();
 
+		//returns to anchor
 		transform.position = anchor.transform.position;
+		transform.rotation = anchor.transform.rotation;
 		ab.anchor = anchor;
 
-		whiteboard.orientRotation();
 		
 	}
 

@@ -46,13 +46,11 @@ public class Whiteboard : MonoBehaviour {
 		redoHistory = new List<LineDataContainer>();
 		dataContainer = GetComponent<WhiteboardContainer>();
 		button.enabled = false;
-
-		//toggleAnnotations();
-		//lines = new List<LineData>();
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
+		//Update whiteboard data every frame (Ineffecient? Maybe.)
 		dataContainer.data.lines = lines.ToArray();
 		dataContainer.data.position = transform.root.position;
 		dataContainer.data.rotation = transform.root.rotation;
@@ -172,8 +170,6 @@ public class Whiteboard : MonoBehaviour {
 	public void orientRotation() {
 		transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
 		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180 - (boardScaler.transform.localScale.x * 15f), 0);
-
-		//transform.root.rotation = Quaternion.LookRotation(PlayerController.instance.head.transform.position, Vector3.up);
 	}
 
 	//Destroys the gameobject and stores its data in a list
@@ -208,20 +204,15 @@ public class Whiteboard : MonoBehaviour {
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;
-			
-			//currLineR.sortingOrder = numLines;
-			//numLines++;
 
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
-			
 
 			go.transform.SetParent(transform.parent);
 			go.transform.localPosition = Vector3.zero;
 			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
 			currLineR.transform.localScale = Vector3.one;
 
-			//end();
 			redoHistory.RemoveAt(redoHistory.Count - 1);
 			history.Add(currData);
 			lines.Add(currData.data);
@@ -323,9 +314,6 @@ public class Whiteboard : MonoBehaviour {
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;
 			
-			//currLineR.sortingOrder = numLines;
-			//numLines++;
-
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
 			
@@ -335,7 +323,6 @@ public class Whiteboard : MonoBehaviour {
 			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
 			currLineR.transform.localScale = Vector3.one;
 
-			//end();
 			currLineR = null;
 			currData = null;
 		}
