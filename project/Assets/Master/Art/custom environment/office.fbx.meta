@@ -12,6 +12,13 @@ ModelImporter:
     100012: side_mullions
     100014: window_front_wall
     100016: window_side_wall
+    100018: front_mullion_1
+    100020: front_mullion_2
+    100022: front_mullion_3
+    100024: front_mullion_4
+    100026: front_mullion_5
+    100028: door_left
+    100030: door_right
     400000: ceiling
     400002: door_wall
     400004: floor
@@ -21,6 +28,13 @@ ModelImporter:
     400012: side_mullions
     400014: window_front_wall
     400016: window_side_wall
+    400018: front_mullion_1
+    400020: front_mullion_2
+    400022: front_mullion_3
+    400024: front_mullion_4
+    400026: front_mullion_5
+    400028: door_left
+    400030: door_right
     2100000: carpet
     2100002: lambert1
     2100004: white_paint
@@ -36,6 +50,13 @@ ModelImporter:
     2300010: side_mullions
     2300012: window_front_wall
     2300014: window_side_wall
+    2300016: front_mullion_1
+    2300018: front_mullion_2
+    2300020: front_mullion_3
+    2300022: front_mullion_4
+    2300024: front_mullion_5
+    2300026: door_left
+    2300028: door_right
     3300000: ceiling
     3300002: door_wall
     3300004: floor
@@ -44,6 +65,13 @@ ModelImporter:
     3300010: side_mullions
     3300012: window_front_wall
     3300014: window_side_wall
+    3300016: front_mullion_1
+    3300018: front_mullion_2
+    3300020: front_mullion_3
+    3300022: front_mullion_4
+    3300024: front_mullion_5
+    3300026: door_left
+    3300028: door_right
     4300000: floor
     4300002: plain_wall
     4300004: window_side_wall
@@ -52,6 +80,13 @@ ModelImporter:
     4300010: ceiling
     4300012: front_mullions
     4300014: side_mullions
+    4300016: front_mullion_1
+    4300018: front_mullion_2
+    4300020: front_mullion_3
+    4300022: front_mullion_4
+    4300024: front_mullion_5
+    4300026: door_left
+    4300028: door_right
   externalObjects:
   - first:
       type: UnityEngine:Material
