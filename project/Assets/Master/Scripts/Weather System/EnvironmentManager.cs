@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class EnvironmentManager : MonoBehaviour {
 
@@ -12,12 +13,14 @@ public class EnvironmentManager : MonoBehaviour {
 	
 	[Header("Rain/Main Weather Particles with Positioning")]
 	public ParticleSystem precipitation;
-	[Tooltip("The particles will track the player; determine where they should be relative to the head.")]
+	public bool particlesTrackPlayer;
+	[Tooltip("If the particles will track the player, determine where they should be relative to the head.")]
 	public Vector3 particleOffsetFromHead;
 
 	[Header("Ambient Sound Source with Positioning")]
 	public AudioSource ambientSoundSource;
-	[Tooltip("The ambient source will track the player; determine where it should be relative to the head.")]
+	public bool ambientTrackPlayer;
+	[Tooltip("If the ambient source will track the player, determine where it should be relative to the head.")]
 	public Vector3 ambientOffsetFromHead;
 
 	[Header("Presets for Mood and Weather with menu size for scene")]
@@ -36,15 +39,20 @@ public class EnvironmentManager : MonoBehaviour {
 	}
 
 	void Update() {
-		precipitation.transform.position = PlayerController.instance.head.position + particleOffsetFromHead;
-		ambientSoundSource.transform.position = PlayerController.instance.head.position + ambientOffsetFromHead;
+		if(particlesTrackPlayer) {
+			precipitation.transform.position = PlayerController.instance.head.position + particleOffsetFromHead;
+		}
+		
+		if(ambientTrackPlayer){
+			ambientSoundSource.transform.position = PlayerController.instance.head.position + ambientOffsetFromHead;
+		}
+		
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
 		var particleEmission = precipitation.emission;
 		particleEmission.rateOverTime = newWeather.precipitationIntensity;
 
-	
 		windZone.windMain = newWeather.windIntensity;
 		windZone.windTurbulence = newWeather.windTurbulence;
 		windZone.windPulseMagnitude = newWeather.windPulseMag;
@@ -82,4 +90,5 @@ public class EnvironmentManager : MonoBehaviour {
 	}
 
 }
+
 	

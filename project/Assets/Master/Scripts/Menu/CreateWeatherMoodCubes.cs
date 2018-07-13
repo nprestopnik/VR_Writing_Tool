@@ -7,17 +7,20 @@ public enum MenuRow {
 	upper,lower
 }
 
+/*This is a Mess and I'm sorry */
 [RequireComponent(typeof(MenuHandedness))]
 public class CreateWeatherMoodCubes : MonoBehaviour {
 
 	public static CreateWeatherMoodCubes instance;
 
 	public GameObject moodCubePrefab;
-	public Transform moodHidden;
+	public Transform moodHiddenUpper;
+	public Transform moodHiddenLower;
 	public SubMenu moodSubmenu;
 
 	public GameObject weatherCubePrefab;
-	public Transform weatherHidden;
+	public Transform weatherHiddenUpper;
+	public Transform weatherHiddenLower;
 	public SubMenu weatherSubmenu;
 
 	private MenuHandedness cubeLocationSetter;
@@ -36,6 +39,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		GameObject upperParent;
 		GameObject lowerParent;
 
+		Vector3 hiddenUpperPosition;
+		Vector3 hiddenLowerPosition;
+
 		if(type == EnvironmentCubeType.mood) {
 			rowSize = moodPresets.Length;
 			cubes = new GameObject[rowSize];
@@ -43,6 +49,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			prefab = moodCubePrefab;
 			upperParent = cubeLocationSetter.moodUpperParent;
 			lowerParent = cubeLocationSetter.moodLowerParent;
+
+			hiddenUpperPosition = moodHiddenUpper.position;
+			hiddenLowerPosition = moodHiddenLower.position;
 		} else {
 			rowSize = weatherPresets.Length;
 			cubes = new GameObject[rowSize];
@@ -50,6 +59,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			prefab = weatherCubePrefab;
 			upperParent = cubeLocationSetter.weatherUpperParent;
 			lowerParent = cubeLocationSetter.weatherLowerParent;
+
+			hiddenUpperPosition = weatherHiddenUpper.position;
+			hiddenLowerPosition = weatherHiddenLower.position;
 		}
 
 		GameObject[] visiblePoints = new GameObject[cubes.Length];
@@ -61,10 +73,14 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			GameObject menuCube = cube.transform.Find("Menu Cube").gameObject;
 			WeatherMoodContainer setter = menuCube.GetComponent<WeatherMoodContainer>();
 
+			Vector3 hiddenPosition;
+
 			if(row == MenuRow.upper) {
 				cube.transform.parent = upperParent.transform;
+				hiddenPosition = hiddenUpperPosition;
 			} else {
 				cube.transform.parent = lowerParent.transform;
+				hiddenPosition = hiddenLowerPosition;
 			}
 
 			cube.transform.localPosition = Vector3.zero;
@@ -76,14 +92,16 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 				setter.blockMesh.materials[0].SetColor("_Color", moodPresets[i].blockTint);
 				setter.iconMesh.material.SetTexture("_MainTex", moodPresets[i].icon);
 
-				setter.tweenHidden.position = moodHidden.position;
+				setter.tweenHidden.position = hiddenPosition;
+				setter.tweenHidden.localPosition -= new Vector3(0,0.05f,0);
 			} else {
 				setter.weatherPreset = weatherPresets[i];
 
 				setter.blockMesh.materials[0].SetColor("_Color", weatherPresets[i].blockTint);
 				setter.iconMesh.material.SetTexture("_MainTex", weatherPresets[i].icon);
 
-				setter.tweenHidden.position = weatherHidden.position;
+				setter.tweenHidden.position = hiddenPosition;
+				setter.tweenHidden.localPosition -= new Vector3(0,0.05f,0);
 			}
 			
 			cubes[i] = cube;

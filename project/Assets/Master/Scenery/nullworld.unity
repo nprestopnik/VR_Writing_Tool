@@ -2236,8 +2236,10 @@ MonoBehaviour:
   windZone: {fileID: 0}
   otherVisualEffects: {fileID: 0}
   precipitation: {fileID: 593149176}
+  particlesTrackPlayer: 1
   particleOffsetFromHead: {x: 0, y: 9, z: 0}
   ambientSoundSource: {fileID: 1428039839}
+  ambientTrackPlayer: 1
   ambientOffsetFromHead: {x: 0, y: 0, z: 0}
   maxCubesPerMenuRow: 3
   moodPresets:
