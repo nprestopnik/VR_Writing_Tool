@@ -19,6 +19,13 @@ public class KeyboardFeedback : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	
+			
+	}
+
+
+	//When the desk turns on begin the key checking process
+	void OnEnable()
+	{
 		foreach (Transform child in transform) //In the keyboard transform, loop through every key
  		{     		
 			if (child.name != "caps_lock_indicator_light" && child.name != "Fn") { //Ignore the caps lock indicator lamp and the Fn keys. Neither has a valid keyCode
@@ -38,13 +45,8 @@ public class KeyboardFeedback : MonoBehaviour {
 				capsLockMat.SetColor ("_Color", Color.black); //Set the initial color to black (off)
 
 			}
- 		} 	
-	}
+ 		}
 
-
-	//When the desk turns on begin the key checking process
-	void OnEnable()
-	{
 		RawKeyInput.Start(true);
 		RawKeyInput.OnKeyDown += HandleKeyDown;
 		RawKeyInput.OnKeyUp += HandleKeyUp;

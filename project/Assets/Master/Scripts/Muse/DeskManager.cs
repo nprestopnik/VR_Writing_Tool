@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum DeskState {Disabled, Placing, Enabled, Parking}
+
 public class DeskManager : MonoBehaviour {
 
 
 	public static DeskManager instance;
+
+	DeskState currentState = DeskState.Disabled;
 
 	public GameObject muse;
 	public GameObject deskTracker; //the actual tracker
@@ -13,6 +17,7 @@ public class DeskManager : MonoBehaviour {
 	public GameObject targetTracker; //the parent of the "target" for parking the desk
 	public GameObject deskModel; //the visual desk object
 	public GameObject deskTarget; //the "target" for desk placement
+	public GameObject lockPoint;
 	public Transform parkMusePoint; //where the muse goes when the desk is parked
 	public Transform moveMusePoint; //for the muse to stay with the desk while you are parking
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
@@ -35,25 +40,58 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	void Update() {
+		if(currentState == DeskState.Placing) {
+			//currentState = DeskState.Enabled;
+			isTracking = true;
+		} else if(currentState == DeskState.Parking) {
+			//currentState = DeskState.Disabled;
+			isTracking = true;
+		} else if(currentState == DeskState.Enabled) {
+			//currentState = DeskState.Placing;
+			isTracking = false;
+		}
+
+
 		if(isTracking) {
 			deskTrackedPoint.transform.position = deskTracker.transform.position;
 			deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
 		}
 
-		// if(Vector3.Distance(deskTrackedPoint.transform.position, deskTracker.transform.position) > 0.01f) {
-		// 	deskTrackedPoint.transform.position = deskTracker.transform.position;
-		// 	deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
-		// }
+		if(Vector3.Distance(lockPoint.transform.position, deskTracker.transform.position) <  0.3f && Quaternion.Angle(lockPoint.transform.rotation, deskTracker.transform.rotation) < 5f && currentState == DeskState.Parking) {
+			currentState = DeskState.Disabled;
+			ConfirmPark();
+		}
 	}
 
-	public void toggleDeskLock() {
-		if(isTracking) {
-			ConfirmSet();
-			//ConfirmPark();
-		} else {
+	float cooldown;
 
+	public void toggleDeskLock() {
+		if(cooldown < Time.time) {
+			if(currentState == DeskState.Placing) {
+				currentState = DeskState.Enabled;
+				ConfirmSet();
+				//isTracking = false;
+			} else if(currentState == DeskState.Parking) {
+				currentState = DeskState.Enabled;
+				ConfirmSet();
+				//isTracking = true;
+			} else if(currentState == DeskState.Enabled) {
+				currentState = DeskState.Placing;
+				StartDeskTask();
+				//isTracking = true;
+			}
+
+			cooldown = Time.time + 0.5f;
+			
+			// if(isTracking) {
+			// 	ConfirmSet();
+			// 	//ConfirmPark();
+			// } else {
+
+			// }
+			//isTracking = !isTracking;
 		}
-		isTracking = !isTracking;
+		
 		
 	}
 
@@ -67,7 +105,8 @@ public class DeskManager : MonoBehaviour {
 	}
 	void DeskStage30() {
 		deskModel.SetActive(true);
-		isTracking = true;
+		//isTracking = true;
+		currentState = DeskState.Placing;
 		deskParked.parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
@@ -75,9 +114,11 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	public void ConfirmSet() {
-		isTracking = false;
+		//isTracking = false;
+		currentState = DeskState.Enabled;
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);
+		deskTarget.SetActive(false);
 		MuseManager.instance.museText.SetText("Bye for now!");
 		MuseManager.instance.Pause(3f,()=> MuseManager.instance.museGuide.ExitMuse());
 	}
@@ -107,7 +148,8 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30);
 	}
 	void ParkStage30() {
-		isTracking = true;
+		//isTracking = true;
+		currentState = DeskState.Parking;
 		deskTarget.SetActive(true);
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
@@ -115,6 +157,7 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	public void ConfirmPark() {
+		currentState = DeskState.Disabled;
 		deskParked.parked = true;
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);

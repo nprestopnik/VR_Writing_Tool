@@ -2242,7 +2242,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1636081780300014}
   m_LocalRotation: {x: -0.0000002794776, y: -1, z: -0, w: 0.0000010972205}
-  m_LocalPosition: {x: 14.314957, y: -0.8902296, z: 8.225364}
+  m_LocalPosition: {x: 11.610715, y: -0.38722932, z: 9.863353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4377075199261570}
@@ -5238,11 +5238,11 @@ MonoBehaviour:
   boardImage: {fileID: 114754020135508360}
   lMat: {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
   lineMaterials:
-  - {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
-  - {fileID: 2100000, guid: a13eb8f1dc736cb4887637e2e6675b93, type: 2}
-  - {fileID: 2100000, guid: 7ada446c06a9d58438a1b00046e8e3be, type: 2}
-  - {fileID: 2100000, guid: 9fc4639859d10b64b869029ce65374ec, type: 2}
-  - {fileID: 2100000, guid: 2ee40e2ac6a10c743b63918bcd695add, type: 2}
+  - {fileID: 2100000, guid: 310a011136657334a8dd7bccd6dd5cb4, type: 2}
+  - {fileID: 2100000, guid: c353b0b1faac62446990f2f125fbd4f4, type: 2}
+  - {fileID: 2100000, guid: 55411c535d4a9cd4a8e2e99a646a69fe, type: 2}
+  - {fileID: 2100000, guid: 780a9011b3082764ab72c8c8facdb384, type: 2}
+  - {fileID: 2100000, guid: fadfb7ee4f7c11d4792c2c9e8df9a627, type: 2}
   lineWidth: 0.01
   lines: []
 --- !u!114 &114067648315502080
