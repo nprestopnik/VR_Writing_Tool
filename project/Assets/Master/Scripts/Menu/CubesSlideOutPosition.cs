@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CubesSlideOutPosition : MonoBehaviour {
 
-	public Transform originButton;
+	public Transform hidden;
 
-	void Awake() {
-		transform.position = originButton.position;
+	void Start() {
+		transform.position = hidden.position;
 	}
 	
 }

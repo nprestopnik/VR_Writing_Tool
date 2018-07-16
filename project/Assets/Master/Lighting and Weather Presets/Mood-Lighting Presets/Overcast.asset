@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994d896f0be10264292d7d178a49a5d4, type: 3}
+  m_Name: Overcast
+  m_EditorClassIdentifier: 
+  settingName: Overcast
+  icon: {fileID: 2800000, guid: 71368098e6554284fbf82bcfeee10024, type: 3}
+  blockTint: {r: 1, g: 1, b: 1, a: 1}
+  skybox: {fileID: 0}
+  sunRotation: {x: 0, y: 0, z: 0}
+  sunIntensity: 0
+  sunColor: {r: 0, g: 0, b: 0, a: 0}
+  fillLightRotation: {x: 0, y: 0, z: 0}
+  fillLightIntensity: 0
+  fillLightColor: {r: 0, g: 0, b: 0, a: 0}
+  transientSounds: []
+  transientVolume: 1
+  minSoundDelay: 0
+  maxSoundDelay: 0
+  otherVisualEffects: 0

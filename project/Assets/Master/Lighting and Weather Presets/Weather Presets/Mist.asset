@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c54c0cdc23626343b6b4b6d6ea26771, type: 3}
+  m_Name: Mist
+  m_EditorClassIdentifier: 
+  settingName: Mist
+  icon: {fileID: 2800000, guid: 45ef40c67f5781a428a9e748d704c76a, type: 3}
+  blockTint: {r: 0.76862746, g: 1, b: 0.85882354, a: 1}
+  precipitationIntensity: 25
+  windIntensity: 0.2
+  windTurbulence: 0.2
+  windPulseMag: 1
+  windPulseFreq: 1
+  fog: 1
+  fogColor: {r: 0.6132076, g: 0.5987451, b: 0.5987451, a: 0.14117648}
+  fogDensity: 0.001
+  fogMode: 3
+  ambientSound: {fileID: 0}
+  ambientVolume: 1
