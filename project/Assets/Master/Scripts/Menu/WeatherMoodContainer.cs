@@ -39,6 +39,8 @@ public class WeatherMoodContainer : MonoBehaviour {
 		tweenVisible = cubeTween.transform.Find("Visible");
 	}
 
+	//as it is, a given cube will only have one preset, either mood or weather
+	//so only one of these functions will work on a given cube, so be careful
 	public void SetMood() {
 		WeatherSystemManager.instance.environment.SetLighting(moodPreset);
 	}

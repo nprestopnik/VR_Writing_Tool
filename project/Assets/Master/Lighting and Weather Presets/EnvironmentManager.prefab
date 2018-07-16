@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101994ca102d24f90a63a52821fa7371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transientAreaMin: {x: -40, y: 0, z: -40}
-  transientAreaMax: {x: 40, y: 30, z: 40}
+  transientAreaMin: {x: 0, y: 0, z: 0}
+  transientAreaMax: {x: 0, y: 0, z: 0}
   transientSoundClips: []
   minDelay: 0
   maxDelay: 0
@@ -261,24 +261,14 @@ MonoBehaviour:
   windZone: {fileID: 0}
   otherVisualEffects: {fileID: 0}
   precipitation: {fileID: 198966254234845394}
+  particlesTrackPlayer: 0
   particleOffsetFromHead: {x: 0, y: 9, z: 0}
   ambientSoundSource: {fileID: 82618655002265574}
+  ambientTrackPlayer: 0
   ambientOffsetFromHead: {x: 0, y: 0, z: 0}
   maxCubesPerMenuRow: 3
-  moodPresets:
-  - {fileID: 11400000, guid: afc792c43e6b6f24786a6674e28a641e, type: 2}
-  - {fileID: 11400000, guid: ef50e30a6fae9d445aa1502c64131539, type: 2}
-  - {fileID: 11400000, guid: a19bd881c1b816f40b8df50c51a0d57c, type: 2}
-  - {fileID: 11400000, guid: 6673d8c1fa6c455489bb3112eb703e21, type: 2}
-  - {fileID: 11400000, guid: a5b948a10881b30479eec9d044eef3c5, type: 2}
-  - {fileID: 11400000, guid: c3c23b1ab55ea8941b5206bb6d400ed6, type: 2}
-  weatherPresets:
-  - {fileID: 11400000, guid: 23423b95510c4df409263937b3d1d5ed, type: 2}
-  - {fileID: 11400000, guid: 0d214a2b5f0606c4dadc1278aca94f01, type: 2}
-  - {fileID: 11400000, guid: 2cd6043a46542bd41905da7e3d27a61e, type: 2}
-  - {fileID: 11400000, guid: a874c675ff12ba54bb72817edcbf548c, type: 2}
-  - {fileID: 11400000, guid: 35de73c21a18d9843a8b056653aa9d48, type: 2}
-  - {fileID: 11400000, guid: 1c3b740f25e44e741b27db0537bc5ff0, type: 2}
+  moodPresets: []
+  weatherPresets: []
 --- !u!198 &198268112853287806
 ParticleSystem:
   m_ObjectHideFlags: 1

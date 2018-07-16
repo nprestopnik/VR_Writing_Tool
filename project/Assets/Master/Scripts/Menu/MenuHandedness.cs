@@ -8,7 +8,7 @@ public enum Handedness {
 	left,right
 }
 
-/*this is officially a Terrible Script and I am so sorry to whoever has to fix this menu*/
+/*welcome to the Worst Script*/
 public class MenuHandedness : MonoBehaviour {
 
 	[Header("Hand Controls")]
@@ -83,6 +83,7 @@ public class MenuHandedness : MonoBehaviour {
 	public float cubeOffset;
 	public float cubeOffButton;
 
+	//the positions around the menu where button rows can start - to be calculated
 	private Vector3 cubeUpperLeft;
 	private Vector3 cubeUpperRight;
 	private Vector3 cubeTopLeft;
@@ -94,6 +95,7 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 cubeBottomLeft;
 	private Vector3 cubeBottomRight;
 
+	//the points around the menu where cubes will "hide" when animated
 	[HideInInspector]
 	public Vector3 hiddenUpperLeft;
 	[HideInInspector]
@@ -134,11 +136,14 @@ public class MenuHandedness : MonoBehaviour {
 	}
 
 	void Update() {
+		//this was for testing with the public enum; not really used right now
 		if(dominantHand != currentHand) {
 			SetMenuOrientation();
 			currentHand = dominantHand;
 		}
 
+		//if the hands go off the screen, set this bool so the menu won't deactivate when you don't look at it
+		//the deactivation itself happens in the main menu script
 		if(fingerDetector.HandModel.gameObject.activeSelf) {
 			handActive = true;
 		} else {
@@ -155,6 +160,9 @@ public class MenuHandedness : MonoBehaviour {
 	}
 
     void SetPositions() {
+		//calculate the visible and hidden positions for the buttons and cubes
+		//based on the given offset, with x and z set negative as appropriate
+
 		top = new Vector3(buttonOffset, 0, -buttonOffset);
 		bottom = new Vector3(-buttonOffset, 0, buttonOffset);
 		left = new Vector3(buttonOffset, 0, buttonOffset);
@@ -176,7 +184,7 @@ public class MenuHandedness : MonoBehaviour {
 		cubeBottomLeft = new Vector3(-firstCubeOffset, 0, 4f*firstCubeOffset);
 		cubeBottomRight = new Vector3(-4f*firstCubeOffset, 0, firstCubeOffset);
 
-
+		//the hidden locations are only slightly off the cube (less so than the cube positions above)
 		hiddenUpperLeft = new Vector3(2f*firstCubeOffset, 0, -2.75f*firstCubeOffset);
 		hiddenUpperRight = new Vector3(2.75f*firstCubeOffset, 0, -2f*firstCubeOffset);
 
@@ -194,20 +202,25 @@ public class MenuHandedness : MonoBehaviour {
 		mood.transform.localPosition = top;
 		locations.transform.localPosition = bottom;
 		if (dominantHand == Handedness.left) {
+			//make sure movement is detected on the correct hand (not menu hand)
 			movementFingerDetector.HandModel = leftHand;
 			movementPalmDetector.HandModel = leftHand;
 			movementController.pointer = leftPalm;
 
+			//make sure menu is positioned off non-dominant hand
 			fingerDetector.HandModel = rightHand;
 			palmDetector.HandModel = rightHand;
 			menu.transform.parent = rightHandMenuSpot.transform;
 			menu.transform.localPosition = Vector3.zero;
 			menu.transform.localRotation = Quaternion.identity;
 
+			//set base buttons in correct position
 			weather.transform.localPosition = right;
 			creation.transform.localPosition = left;
 			system.transform.localPosition = topRight;
 
+			//positin the start of the mood rows correctly
+			//the cubes will be created and set from the create cubes script
 			moodUpperParent.transform.localPosition = cubeTopLeft;
 			moodUpperHidden.transform.localPosition = hiddenTopLeft;
 			//SetCubePositions(moodCubesUpper, true, false);
@@ -215,6 +228,7 @@ public class MenuHandedness : MonoBehaviour {
 			moodLowerHidden.transform.localPosition = hiddenMidLowerLeft;
 			//SetCubePositions(moodCubesLower, false, false);
 
+			//position the other creation and location cubes correctly
 			creationParent.transform.localPosition = cubeMidUpperLeft;
 			creationHidden.transform.localPosition = hiddenMidUpperLeft;
 			SetCubePositions(creationCubes, true, false);
@@ -223,6 +237,7 @@ public class MenuHandedness : MonoBehaviour {
 			locationHidden.transform.localPosition = hiddenBottomLeft;
 			SetCubePositions(locationCubes, false, false);
 
+			//position the weather parents, cubes set from create cubes script
 			weatherUpperParent.transform.localPosition = cubeTopLeft;
 			weatherUpperHidden.transform.localPosition = hiddenTopLeft;
 			//SetCubePositions(weatherCubesUpper, true, false);
@@ -230,11 +245,13 @@ public class MenuHandedness : MonoBehaviour {
 			weatherLowerHidden.transform.localPosition = hiddenBottomLeft;
 			//SetCubePositions(weatherCubesLower, false, false);
 
+			//put system cubes in the right spot
 			systemParent.transform.localPosition = cubeUpperLeft;
 			systemHidden.transform.localPosition = hiddenUpperLeft;
 			SetCubePositions(systemCubes, true, false);
 		} 
 		else if (dominantHand == Handedness.right) {
+			//do the same settings as above but adjusted for the menu on the left hand
 			movementFingerDetector.HandModel = rightHand;
 			movementPalmDetector.HandModel = rightHand;
 			movementController.pointer = rightPalm;
@@ -279,6 +296,7 @@ public class MenuHandedness : MonoBehaviour {
 
 	public void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
 		 int i = 0;
+		 //set each cube in a diagonal line out from the button in the proper direction
 		 foreach(GameObject cube in cubes) {
 			if(upper) {
 				if(right) {

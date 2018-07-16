@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class WeatherPreset : ScriptableObject {
 
+	/*if you want to add another element to the preset, 
+	make sure to also change the environment manager
+	so it will update the relevant settings of the proper object */
+
 	[Header("Name")]
-	[Tooltip("This isn't really used anywhere but you can name your preset so that's fun")]
 	public string settingName;
 
 	[Header("Menu Cube Appearance")]

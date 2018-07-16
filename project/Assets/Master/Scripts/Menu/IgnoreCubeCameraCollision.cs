@@ -6,7 +6,6 @@ public class IgnoreCubeCameraCollision : MonoBehaviour {
 
 	public Collider cameraCollider;
 	public Collider[] buttonColliders;
-	public Collider[] cubeColliders;
 	private Collider currentCollider;
 
 	void Start () {
@@ -17,12 +16,7 @@ public class IgnoreCubeCameraCollision : MonoBehaviour {
 
 		foreach(Collider c in buttonColliders) {
 			Physics.IgnoreCollision(currentCollider, c); 
-		}
-
-		foreach(Collider c in cubeColliders) {
-			Physics.IgnoreCollision(currentCollider, c); 
-		}
-		
+		}	
 	}
 	
 	

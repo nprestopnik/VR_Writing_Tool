@@ -7,7 +7,9 @@ public class WeatherSystemManager : MonoBehaviour {
 
 	public static WeatherSystemManager instance;
 
+	[HideInInspector]
 	public GameObject environmentManager;
+	[HideInInspector]
 	public EnvironmentManager environment;
 
 	void Awake() {

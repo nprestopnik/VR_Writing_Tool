@@ -50,13 +50,18 @@ public class EnvironmentManager : MonoBehaviour {
 	}
 
 	public void SetWeather(WeatherPreset newWeather) {
-		var particleEmission = precipitation.emission;
-		particleEmission.rateOverTime = newWeather.precipitationIntensity;
-
-		windZone.windMain = newWeather.windIntensity;
-		windZone.windTurbulence = newWeather.windTurbulence;
-		windZone.windPulseMagnitude = newWeather.windPulseMag;
-		windZone.windPulseFrequency = newWeather.windPulseFreq;
+		//check to make sure that each element has been referenced before setting its properties
+		if(precipitation) {
+			var particleEmission = precipitation.emission;
+			particleEmission.rateOverTime = newWeather.precipitationIntensity;
+		}
+	
+		if(windZone) {
+			windZone.windMain = newWeather.windIntensity;
+			windZone.windTurbulence = newWeather.windTurbulence;
+			windZone.windPulseMagnitude = newWeather.windPulseMag;
+			windZone.windPulseFrequency = newWeather.windPulseFreq;
+		}
 		
 		RenderSettings.fog = newWeather.fog;
 		if(newWeather.fog) {
@@ -65,28 +70,41 @@ public class EnvironmentManager : MonoBehaviour {
 			RenderSettings.fogMode = newWeather.fogMode;
 		}
 
-		ambientSoundSource.clip = newWeather.ambientSound;
-		ambientSoundSource.volume = newWeather.ambientVolume;
-		ambientSoundSource.Play();
+		if(ambientSoundSource) {
+			ambientSoundSource.clip = newWeather.ambientSound;
+			ambientSoundSource.volume = newWeather.ambientVolume;
+			ambientSoundSource.Play();
+		}
 	}
 
 	public void SetLighting(LightingPreset newLighting) {
-		RenderSettings.skybox = newLighting.skybox;
+		
+		if(newLighting.skybox) {
+			RenderSettings.skybox = newLighting.skybox;
+		}
+	
+		if(sunLight) {
+			sunLight.transform.rotation = Quaternion.Euler(newLighting.sunRotation);
+			sunLight.intensity = newLighting.sunIntensity;
+			sunLight.color = newLighting.sunColor;
+		}
+		
+		if(fillLight) {
+			fillLight.transform.rotation = Quaternion.Euler(newLighting.fillLightRotation);
+			fillLight.intensity = newLighting.fillLightIntensity;
+			fillLight.color = newLighting.fillLightColor;
+		}
 
-		sunLight.transform.rotation = Quaternion.Euler(newLighting.sunRotation);
-		sunLight.intensity = newLighting.sunIntensity;
-		sunLight.color = newLighting.sunColor;
-
-		fillLight.transform.rotation = Quaternion.Euler(newLighting.fillLightRotation);
-		fillLight.intensity = newLighting.fillLightIntensity;
-		fillLight.color = newLighting.fillLightColor;
-
-		audioManager.transientSoundClips = newLighting.transientSounds;
-		audioManager.transientVolume = newLighting.transientVolume;
-		audioManager.minDelay = newLighting.minSoundDelay;
-		audioManager.maxDelay = newLighting.maxSoundDelay;
-
-		otherVisualEffects.SetActive(newLighting.otherVisualEffects);
+		if(audioManager) {
+			audioManager.transientSoundClips = newLighting.transientSounds;
+			audioManager.transientVolume = newLighting.transientVolume;
+			audioManager.minDelay = newLighting.minSoundDelay;
+			audioManager.maxDelay = newLighting.maxSoundDelay;
+		}
+		
+		if(otherVisualEffects) {
+			otherVisualEffects.SetActive(newLighting.otherVisualEffects);
+		}
 	}
 
 }
