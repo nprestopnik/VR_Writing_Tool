@@ -49,6 +49,11 @@ public class GuideToPoint : MonoBehaviour {
 	}
 
 	public void GuideTo(Transform targetPoint, Action completedEvent = null) {
+		if(MuseManager.instance.clearingMuse) {
+			MuseManager.instance.clearingMuse = false;
+			return;
+		}	
+
 		guiding = true;
 		target = targetPoint;
 		startPosition = transform;
@@ -70,6 +75,11 @@ public class GuideToPoint : MonoBehaviour {
 	}
 
 	public void EnterMuse(Action completedEvent = null) {
+		MuseManager.instance.clearingMuse = true;
+		StartCoroutine(MuseEntry(completedEvent));
+	}
+	IEnumerator MuseEntry(Action completedEvent = null) {
+		yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse);
 		transform.parent.SetParent(null);
 		transform.position = entryPoints[(int)entryDirection].position;
 		GuideTo(startPoint, completedEvent);
@@ -82,7 +92,7 @@ public class GuideToPoint : MonoBehaviour {
 	}
 	void CompletedExit() {
 		transform.parent.SetParent(entryPoints[(int)entryDirection]);
-		MuseManager.instance.museText.SetText("");
+		MuseManager.instance.museText.ClearText();
 		if (storedCompletedEvent != null)
 			storedCompletedEvent();
 	}

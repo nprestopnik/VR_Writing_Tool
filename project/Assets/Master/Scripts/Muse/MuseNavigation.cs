@@ -9,14 +9,23 @@ public class MuseNavigation : MonoBehaviour {
 	public NavMeshAgent agent;
 
 	Action storedCompletedEvent;
-	NavMeshPathStatus lastStatus;
 	public GameObject trail;
 	public ParticleSystem particles;
 
-
+	
+	public GameObject destinationCube;
 	public Transform hallwayPoint;
 	[HideInInspector]
 	public bool arrivedAtHallway;
+	[HideInInspector]
+	public MeshRenderer destBlockMesh;
+	[HideInInspector]
+	public MeshRenderer destIconMesh;
+
+	void Start() {
+		destBlockMesh = destinationCube.transform.Find("block mesh").GetComponent<MeshRenderer>();
+		destIconMesh = destinationCube.transform.Find("icon mesh").GetComponent<MeshRenderer>();
+	}
 
 	void Update() {
 		// Debug.Log("Remaining distance: " + agent.remainingDistance);
@@ -34,6 +43,13 @@ public class MuseNavigation : MonoBehaviour {
 			}
 		}
 		
+		if(MuseManager.instance.clearingMuse) {
+			agent.gameObject.SetActive(false);
+			trail.SetActive(false);
+			particles.gameObject.SetActive(false);
+
+			MuseManager.instance.clearingMuse = false;
+		}
 		
 		if(agent.gameObject.activeInHierarchy && agent.remainingDistance < 1f && agent.remainingDistance != 0) {
 			
@@ -44,10 +60,15 @@ public class MuseNavigation : MonoBehaviour {
 					storedCompletedEvent();
 			
 		}
-		lastStatus = agent.pathStatus;
+
 	}
 
 	public void NavigateToPoint(Vector3 target, Action completedEvent = null) {
+		if(MuseManager.instance.clearingMuse) {
+			MuseManager.instance.clearingMuse = false;
+			return;
+		}	
+
 		storedCompletedEvent = completedEvent;
 		agent.gameObject.SetActive(true);
 		trail.SetActive(true);
@@ -65,6 +86,11 @@ public class MuseNavigation : MonoBehaviour {
 	}
 
 	public void GetToHallway() {
+		if(MuseManager.instance.clearingMuse) {
+			MuseManager.instance.clearingMuse = false;
+			return;
+		}	
+
 		StartCoroutine(PauseForExit());
 	}
 	IEnumerator PauseForExit() {

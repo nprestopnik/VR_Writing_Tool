@@ -11,6 +11,8 @@ public class MuseManager : MonoBehaviour {
 	public GuideToPoint museGuide;
 	public MuseNavigation museNavigator;
 
+	public bool clearingMuse;
+
 	void Awake () {
 		instance = this;
 	}

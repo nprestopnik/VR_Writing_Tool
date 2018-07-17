@@ -39,7 +39,7 @@ public class ThrowMenuCube : MonoBehaviour {
 				thisCubeGrasped = false;
 				MainMenu.cubeInUse = false;
 			}
-		}
+		} 
 
 		if (MainMenu.cubeInUse && !thisCubeGrasped) {
 			ib.ignoreGrasping = true;
@@ -55,6 +55,7 @@ public class ThrowMenuCube : MonoBehaviour {
 	}
 
 	public void ThrowCube() {
+
 		if (!ab.isAttached) {
 			timeThrown = Time.time;
 			rb.drag = 0;

@@ -18,7 +18,8 @@ public class MainMenu : MonoBehaviour {
 
 	public GameObject movementController;
 
-	private MenuHandedness menuHandControl;
+	[HideInInspector]
+	public static MenuHandedness menuHandControl;
 
 	[HideInInspector]
 	public static bool cubeInUse;

@@ -23,6 +23,9 @@ public class RoomCubeContainer : MonoBehaviour {
 		TravelSystem.instance.setGoalScene(roomIndex);
 		transform.root.gameObject.SetActive(false);
 
+		MuseManager.instance.museNavigator.destBlockMesh.material.color = blockMesh.material.color;
+		MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", iconMesh.material.GetTexture("_MainTex"));
+
 		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);
 	}
 
