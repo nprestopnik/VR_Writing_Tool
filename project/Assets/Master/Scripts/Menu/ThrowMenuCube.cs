@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Leap.Unity.Examples;
 using Leap.Unity.Interaction;
 using UnityEngine;
 
 public class ThrowMenuCube : MonoBehaviour {
 
 	//public MainMenu menuController;
+
+	public SimpleMatchAnchorScaleAndState anchorMatch;
 
 	private ActivateMenuCubeFunction activator;
 
@@ -17,6 +20,8 @@ public class ThrowMenuCube : MonoBehaviour {
 	public bool thisCubeGrasped = false;
 	[HideInInspector]
 	public float timeThrown = 0f;
+	[HideInInspector]
+	public Transform cubeParent;
 
 	void Start() {
 		activator = GetComponent<ActivateMenuCubeFunction>();
@@ -53,6 +58,9 @@ public class ThrowMenuCube : MonoBehaviour {
 			timeThrown = Time.time;
 			rb.drag = 0;
 			rb.angularDrag = 0;
+			cubeParent = transform.parent;
+			transform.parent = null;
+			anchorMatch.enabled = false;
 			activator.thrown = true;
 		}
 	}

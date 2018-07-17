@@ -590,8 +590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b40d41dc5a5fe14f83625e67722aa47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchorMatch: {fileID: 114929612026773688}
   thisCubeGrasped: 0
   timeThrown: 0
+  cubeParent: {fileID: 0}
 --- !u!114 &114597401741954676
 MonoBehaviour:
   m_ObjectHideFlags: 1
