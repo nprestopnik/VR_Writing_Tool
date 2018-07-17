@@ -12,6 +12,12 @@ public class MuseNavigation : MonoBehaviour {
 	NavMeshPathStatus lastStatus;
 	public GameObject trail;
 	public ParticleSystem particles;
+
+
+	public Transform hallwayPoint;
+	[HideInInspector]
+	public bool arrivedAtHallway;
+
 	void Update() {
 		// Debug.Log("Remaining distance: " + agent.remainingDistance);
 		// Debug.Log("Path pending: " + agent.pathPending);
@@ -37,7 +43,6 @@ public class MuseNavigation : MonoBehaviour {
 				if(storedCompletedEvent != null)
 					storedCompletedEvent();
 			
-			
 		}
 		lastStatus = agent.pathStatus;
 	}
@@ -57,6 +62,14 @@ public class MuseNavigation : MonoBehaviour {
 		}
 
 		
+	}
+
+	public void GetToHallway() {
+		StartCoroutine(PauseForExit());
+	}
+	IEnumerator PauseForExit() {
+		yield return new WaitUntil(()=> arrivedAtHallway == true);
+		MuseManager.instance.museGuide.ExitMuse();
 	}
 
 }

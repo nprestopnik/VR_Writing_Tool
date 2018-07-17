@@ -51,9 +51,13 @@ public class ActivateMenuCubeFunction : MonoBehaviour {
 		rbCube.drag = 5;
 		rbCube.angularDrag = 5;
 
-		transform.parent = throwCube.cubeParent;
-		throwCube.anchorMatch.enabled = true;
-		transform.localScale = Vector3.zero;
+		if(throwCube.movingMenu) {
+			transform.parent = throwCube.cubeParent;
+		}
+		if(throwCube.anchorMatch) {
+			throwCube.anchorMatch.enabled = true;
+			transform.localScale = Vector3.zero;
+		}
 
 		transform.position = anchor.position;
 		abCube.TryAttach();

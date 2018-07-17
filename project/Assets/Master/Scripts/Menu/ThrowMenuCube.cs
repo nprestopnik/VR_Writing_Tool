@@ -9,6 +9,7 @@ public class ThrowMenuCube : MonoBehaviour {
 	//public MainMenu menuController;
 
 	public SimpleMatchAnchorScaleAndState anchorMatch;
+	public bool movingMenu;
 
 	private ActivateMenuCubeFunction activator;
 
@@ -58,9 +59,15 @@ public class ThrowMenuCube : MonoBehaviour {
 			timeThrown = Time.time;
 			rb.drag = 0;
 			rb.angularDrag = 0;
-			cubeParent = transform.parent;
-			transform.parent = null;
-			anchorMatch.enabled = false;
+
+			if(movingMenu) {
+				cubeParent = transform.parent;
+				transform.parent = null;
+			}
+			if(anchorMatch) {
+				anchorMatch.enabled = false;
+			}
+	
 			activator.thrown = true;
 		}
 	}

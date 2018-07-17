@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchorMatch: {fileID: 114929612026773688}
+  movingMenu: 1
   thisCubeGrasped: 0
   timeThrown: 0
   cubeParent: {fileID: 0}
