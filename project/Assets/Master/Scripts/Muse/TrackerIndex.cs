@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEditor;
 
 public class TrackerIndex : MonoBehaviour {
 
 	void Awake() {
+		SetTrackerIndex();
+	}
+
+	public void SetTrackerIndex() {
 		uint index = 0;
 		var error = ETrackedPropertyError.TrackedProp_Success;
 		for (uint i = 0; i < 16; i++) {
@@ -20,4 +25,15 @@ public class TrackerIndex : MonoBehaviour {
 
 	}
 
+}
+
+[CustomEditor(typeof(TrackerIndex))]
+public class TrackerIndexEditor : Editor {
+    public override void OnInspectorGUI() {
+        DrawDefaultInspector();
+        TrackerIndex script = (TrackerIndex)target;
+        if(GUILayout.Button("Reset Index")) {
+            script.SetTrackerIndex();
+        }
+    }
 }

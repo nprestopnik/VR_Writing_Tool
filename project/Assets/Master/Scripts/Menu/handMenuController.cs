@@ -24,7 +24,10 @@ public class handMenuController : MonoBehaviour {
 
 	public void openRoomLoadMenu() {
 		RoomsMenu.SetActive(true);
-		RoomsMenu.transform.position = head.forward + head.transform.position;
+
+		RoomsMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+		RoomsMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsMenu.transform.position);
+		//RoomsMenu.transform.position = head.forward + head.transform.position;
 	}
 
 	public void createIdeaBoard() {

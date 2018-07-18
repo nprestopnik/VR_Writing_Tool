@@ -30,7 +30,10 @@ public class ActivateMenuCubeFunction : MonoBehaviour {
 		// if (thrown && (Mathf.Abs(transform.position.x - anchor.position.x) > activeDistance
 		// 	|| Mathf.Abs(transform.position.y - anchor.position.y) > activeDistance
 		// 	|| Mathf.Abs(transform.position.z - anchor.position.z) > activeDistance)) {
-		if(thrown && Time.time > throwCube.timeThrown + activeSeconds) {	
+		if(thrown && Time.time > throwCube.timeThrown + activeSeconds) {
+			PositionThrownObject.instance.cubeInitPosition = transform.position;
+			PositionThrownObject.instance.cubeInitVelocity = rbCube.velocity;
+				
 			cubeFunction.Invoke();
 			thrown = false;
 			ReturnCube();
