@@ -15,6 +15,7 @@ public class Whiteboard : MonoBehaviour {
 	public GameObject scaleHandle;
 	
 	public GameObject annotationsHolder;
+	public MenuProximityShow controlsButton;
 	public Text boardText;
 	public RawImage boardImage;
 
@@ -158,12 +159,14 @@ public class Whiteboard : MonoBehaviour {
 			scaleHandle.SetActive(false);
 			button.enabled = false;
 			pointer.gameObject.SetActive(false);
+			controlsButton.alwaysOn = false;
 			
 		} else {
 			annotationsHolder.SetActive(true);
 			scaleHandle.SetActive(true);
 			button.enabled = true;
 			pointer.gameObject.SetActive(true);
+			controlsButton.alwaysOn = true;
 		}
 	}
 

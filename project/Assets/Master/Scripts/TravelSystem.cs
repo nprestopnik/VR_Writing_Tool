@@ -23,10 +23,12 @@ public class TravelSystem : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if(SaveSystem.instance.getCurrentSave() == null) {
+
+		}
 	}
 
-	public void fastTravelToScene(int index) {
+	public void fastTravelToRoom(int index) {
 		setGoalScene(index);
 		loadGoalScene();
 	}

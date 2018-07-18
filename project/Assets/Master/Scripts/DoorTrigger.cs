@@ -20,7 +20,7 @@ public class DoorTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Player" && SaveSystem.instance.getCurrentSave() != null)
         {
             StartCoroutine(doorAnimation(leftDoor, false, false));
             StartCoroutine(doorAnimation(rightDoor, false, true));
@@ -29,7 +29,7 @@ public class DoorTrigger : MonoBehaviour {
 
     void OnTriggerExit(Collider col)
     {
-        if (col.tag == "Player")
+        if (col.tag == "Player" && SaveSystem.instance.getCurrentSave() != null)
         {
             StartCoroutine(doorAnimation(leftDoor, true, false));
             StartCoroutine(doorAnimation(rightDoor, true, true));

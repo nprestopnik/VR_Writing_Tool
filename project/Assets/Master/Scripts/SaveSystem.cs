@@ -179,8 +179,10 @@ public class SaveSystem : MonoBehaviour {
         return saves.ToArray();
     }
 
+
     public void setCurrentSave(Save newSave) {
         currentSave = newSave;
+        TravelSystem.instance.fastTravelToRoom(0);
     }
 
     public Save getCurrentSave() {

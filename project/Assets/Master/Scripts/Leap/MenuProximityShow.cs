@@ -14,14 +14,21 @@ public class MenuProximityShow : MonoBehaviour {
 	//Time finger has to be gone for target to dissapear 
 	private float showHideDelay = 0.5f;
 
+	public bool alwaysOn = false;
+
 	void Start () {
 		target.SetActive(false);
 	}
 
 	void Update() {
-		if(showTimestamp < Time.time) {
-			target.SetActive(false);
+		if(alwaysOn) {
+			target.SetActive(true);
+		} else {
+			if(showTimestamp < Time.time) {
+				target.SetActive(false);
+			} 
 		}
+		
 	}
 
 	public void beginShow() {

@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 		vel.Normalize();
 		vel *= moveSpeed;
 
-		vel.y = rig.velocity.y;
+		vel.y = rig.velocity.y < 0 ? rig.velocity.y * 2f : rig.velocity.y;
 
 		RaycastHit hit;
 		Vector3 headPositionFloor = head.position;

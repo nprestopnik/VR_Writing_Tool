@@ -38,12 +38,16 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void ActivateMenu() {
-		isActive = true;
-		movementController.SetActive(false);
+		if(SaveSystem.instance.getCurrentSave() != null) {
+			isActive = true;
+			movementController.SetActive(false);
 
-		foreach(TransformTweenBehaviour t in menuButtonTweens) {
-			t.PlayForward();
+			foreach(TransformTweenBehaviour t in menuButtonTweens) {
+				t.PlayForward();
+			}
 		}
+		
+		
 	}
 
 	public void DeactivateMenu() {

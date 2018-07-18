@@ -15,7 +15,8 @@ public class handMenuController : MonoBehaviour {
 
 
 	public void save() {
-		SaveSystem.instance.saveCurrentSave();
+		if(SaveSystem.instance.getCurrentSave() != null)
+			SaveSystem.instance.saveCurrentSave();
 	}
 
 	public void quit() {
@@ -23,8 +24,11 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void openRoomLoadMenu() {
-		RoomsMenu.SetActive(true);
-		RoomsMenu.transform.position = head.forward + head.transform.position;
+		if(SaveSystem.instance.getCurrentSave() != null) {
+			RoomsMenu.SetActive(true);
+			RoomsMenu.transform.position = head.forward + head.transform.position;
+		}
+
 	}
 
 	public void createIdeaBoard() {

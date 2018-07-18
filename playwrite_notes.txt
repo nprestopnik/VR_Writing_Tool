@@ -9,26 +9,26 @@ SET UP
 	- Controllers on (but hopefully not actually, see systems below)
 
 SYSTEMS
-4- confirm that creating project automatically loads it
+x4- confirm that creating project automatically loads it
 2 - non-required controllers for desk tracking
 2 - controllers visible when we don't want them to be
 3 - Steam/Vive load screen should hide when changing locations
-1 - what happens if you haven't loaded a project and enter hallway
-0 - some null reference exception
+x1 - what happens if you haven't loaded a project and enter hallway
+x0 - some null reference exception
 5 - Leap hands flerp as well
 
 DESK (Saul)
 - need real controls on the desk
-- lock button doesn't work
+x- lock button doesn't work
 - world moves when you're near the desk - collision happening
 - desktop mouse needs refinements - ability to touch screen
 - unity crashed when we opened word
 - click / right click needs some work
 - image shows up as a white nothing on the desk cube display when copied from Chrome
 - Chair tracking
-- tracking goes weird sometimes when you sit (tracking doesn't lock right now)
-- desktop needs its own light, not just light probes
-- no way of ending the parking process yet
+x- tracking goes weird sometimes when you sit (tracking doesn't lock right now)
+x- desktop needs its own light, not just light probes
+x- no way of ending the parking process yet
 - Desk tracker sometimes goes into standby mode and positions incorrectly
 
 KEYBOARD
@@ -38,14 +38,14 @@ KEYBOARD
 
 WHITEBOARDS
 4 - positioning of whiteboard when it is created
-2 - whiteboard control button behavior (stay on when controls are turned on)
+x2 - whiteboard control button behavior (stay on when controls are turned on)
 1 - drawing while grasping - make it not happen
-5 - whiteboard colors use specified choices from mockup
+x5 - whiteboard colors use specified choices from mockup
 0 - refinement to finger touching/movement of whiteboard
 2 - move cube should fade when controls are off
 4 - Refine whiteboard spawn sizes
 7 - positioning/scale of controls
-3 - way to delete whiteboards
+x3 - way to delete whiteboards
 6 - Slider controls on whiteboard could be refined
 8 - Text on whiteboards need system for text wrapping, line lengths, etc.
 2 - Show control on/off button when grasping move control
@@ -61,7 +61,7 @@ INTERACTION DESIGN
 0 - need something that tells you what to do
 0 - info about movement and menu
 6 - inadvertent throwing of cube (hands going out of view)
-3 - "hoppy" gravity on stairs
+x3 - "hoppy" gravity on stairs
 2 - "jitter walk"
 1 - buttons flerping
 5 - Misc. sounds for menus, walking, interactions, etc.
