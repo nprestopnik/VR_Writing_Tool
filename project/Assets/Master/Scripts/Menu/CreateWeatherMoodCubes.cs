@@ -1,8 +1,14 @@
-﻿using System.Collections;
+﻿/*
+Create Weather and Mood Cubes
+Purpose: to dynamically create the weather and mood cubes for the hand menu based on the current scene's environment manager
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
 
+//to differentiate between the upper and lower rows of the menu cubes because there are two
 public enum MenuRow {
 	upper,lower
 }
@@ -12,13 +18,13 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 
 	public static CreateWeatherMoodCubes instance;
 
-	public Collider cameraCollider;
+	public Collider cameraCollider; //the cubes don't want to collide with the player
 
 	[Header("Mood")]
-	public GameObject moodCubePrefab;
-	public Transform moodHiddenUpper;
-	public Transform moodHiddenLower;
-	public SubMenu moodSubmenu;
+	public GameObject moodCubePrefab; //the cube prefab, specific to type 
+	public Transform moodHiddenUpper; //hiding spot for the upper row of cubes - where they animate out from
+	public Transform moodHiddenLower; //hidden locatoin for lower row
+	public SubMenu moodSubmenu; //the submenu that will show these cubes in the hand menu
 
 	[Header("Weather")]
 	public GameObject weatherCubePrefab;
@@ -33,19 +39,25 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		cubeLocationSetter = GetComponent<MenuHandedness>();
 	}
 
-	/*only send one preset array, make sure it matches the type provided otherwise everything will break*/
+	/*
+	Creates one row of cubes, either upper or lower and either weather or mood
+	Caller must determine which row, and the type of cubes being made
+	Only sent one preset array, and be certain it is of the type specified by the type variable, otherwise everything will break
+	If you specify which array you are sending using the named parameter syntax, you don't have to fill the other in with null
+	*/
 	public GameObject[] CreateCubeRow(MenuRow row, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
 		
-		GameObject[] cubes;
-		int rowSize;
-		GameObject prefab;
-		GameObject upperParent;
-		GameObject lowerParent;
+		GameObject[] cubes; //this array will hold the entire row of cubes
 
-		Vector3 hiddenUpperPosition;
-		Vector3 hiddenLowerPosition;
+		int rowSize; //the number of cubes in the row
+		GameObject prefab; //which prefab is being used for this row, based on the type of cube
+		GameObject upperParent; //the parent for the upper row, based on cube type
+		GameObject lowerParent; //lower row parent, based on cube type
 
-		//set row size, parents, and positioning based on type of row
+		Vector3 hiddenUpperPosition; //position upper cubes will animate out from
+		Vector3 hiddenLowerPosition; //position lower cubes will animate out from
+
+		//set row size, prefab, parents, and positioning based on type of row
 		if(type == EnvironmentCubeType.mood) {
 			rowSize = moodPresets.Length;
 			cubes = new GameObject[rowSize];
@@ -83,6 +95,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			IgnoreCubeCameraCollision collide = menuCube.GetComponent<IgnoreCubeCameraCollision>();
 			collide.cameraCollider = cameraCollider;
 
+			//this script is responsible for getting the visual components of the cube, as well as holding its preset for setting
 			WeatherMoodContainer setter = menuCube.GetComponent<WeatherMoodContainer>();
 
 			Vector3 hiddenPosition;
@@ -95,11 +108,10 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 				cube.transform.parent = lowerParent.transform;
 				hiddenPosition = hiddenLowerPosition;
 			}
-
 			cube.transform.localPosition = Vector3.zero;
 			cube.transform.localRotation = Quaternion.identity;
 
-			//take proper preset and set cube materials to look like preset
+			//take correct preset and set cube materials to look like preset (and attach preset to cube)
 			if(type == EnvironmentCubeType.mood) {
 				cube.name = moodPresets[i].settingName;
 
@@ -127,16 +139,22 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			visiblePoints[i] = setter.tweenVisible.gameObject;
 		}
 
+		//use the menu handedness script to set the cubes in position in the line out from the menu
 		cubeLocationSetter.SetCubePositions(visiblePoints, row == MenuRow.upper, cubeLocationSetter.GetHandedness() == Handedness.right);
 		return cubes;
 	}
 
-	/*only send one preset array, make sure it matches the type provided otherwise everything will break*/
+	/*
+	Creates all cubes for either weather or mood - this will need to be called twice for each scene's environment manager
+	Caller must determine the type of cubes being made, either weather or mood but not both at once
+	Only sent one preset array, and be certain it is of the type specified by the type variable, otherwise everything will break
+	If you specify which array you are sending using the named parameter syntax, you don't have to fill the other in with null
+	*/
 	public void CreateCubes(int maxPerRow, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
 
-		int numCubesSet;
-		int numUpper;
-		int numLower;
+		int numCubesSet; //the number of cubes that are in the given category for the given scene
+		int numUpper; //the number of cubes that will go in the top row
+		int numLower; //the number of cubes that will go in the bottom row
 
 		//make sure you grab the right preset array - only one should be not null
 		if(type == EnvironmentCubeType.mood) {
@@ -146,6 +164,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		}
 
 		//figure out how many cubes will be in each row
+		//the top row will fill up completely with the maximum per row before any are put on the bottom
 		//if the number of cubes is greater than the max per row times 2, the extras will come off the bottom
 		if(numCubesSet > maxPerRow) {
 			numUpper = maxPerRow;
@@ -155,13 +174,13 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			numLower = 0;
 		}
 
-		GameObject[] allCubes = new GameObject[numCubesSet];
-		GameObject[] upperCubes;
-		GameObject[] lowerCubes;
+		GameObject[] allCubes = new GameObject[numCubesSet]; //all of the cubes that will be created
+		GameObject[] upperCubes; //only the cubes for the upper row
+		GameObject[] lowerCubes; //only the cubes for the lower row
 
-		SubMenu submenu;
+		SubMenu submenu; //the submenu that these cubes will be attached to
 
-		//split up the presets into an upper and lower row and make the rows
+		//split up the presets into an upper and lower row and make the rows - make sure its the correct type
 		if(type == EnvironmentCubeType.mood) {
 			LightingPreset[] upper = new LightingPreset[numUpper];
 			LightingPreset[] lower = new LightingPreset[numLower];
@@ -179,6 +198,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			upperCubes = CreateCubeRow(MenuRow.upper, EnvironmentCubeType.mood, moodPresets: upper);
 			lowerCubes = CreateCubeRow(MenuRow.lower, EnvironmentCubeType.mood, moodPresets: lower);
 
+			//grab the right submenu
 			submenu = moodSubmenu;
 		} else {
 			//same as above but with weather preset types
@@ -199,7 +219,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			submenu = weatherSubmenu;
 		}
 
-		//make an array with both rows of cubes
+		//fill the all cubes array with the cubes from both rows
 		for(int i = 0; i < allCubes.Length; i++) {
 			if(i < upperCubes.Length) {
 				allCubes[i] = upperCubes[i];
@@ -211,6 +231,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		//add the cube tweens to the submenu so they activate/deactivate properly
 		submenu.cubeTweens = new TransformTweenBehaviour[allCubes.Length];
 		for (int i = 0; i < allCubes.Length; i++) {
+			//get the tween behaviour from each cube and add it to the submenu array
 			submenu.cubeTweens[i] = allCubes[i].transform.Find("Cube Tween").GetComponent<TransformTweenBehaviour>();
 		}
 		

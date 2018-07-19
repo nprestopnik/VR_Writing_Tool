@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+Hand Menu Controller
+functions for cubes in the hand menu
+cubes handled currently: save, exit, go to location, idea boards, desk
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +28,7 @@ public class handMenuController : MonoBehaviour {
 		Application.Quit();
 	}
 
+	//open the shelf that has all of the available room cubes on it and position it not terribly
 	public void openRoomLoadMenu() {
 		RoomsMenu.SetActive(true);
 

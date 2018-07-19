@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+Tracking Cases
+Purpose: currently it is to contain notes about the different cases we can use for tracking vive things
+	until we decide what we need/want to do for the system
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

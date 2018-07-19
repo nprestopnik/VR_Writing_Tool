@@ -6,6 +6,7 @@
  * https://developer.leapmotion.com/sdk_agreement, or another agreement       *
  * between Leap Motion and you, your company or other organization.           *
  ******************************************************************************/
+ //I basically took a few functions from the leap menu example and modified them to work with our system
 
 using Leap.Unity;
 using System.Collections;
@@ -16,19 +17,23 @@ public class PositionThrownObject : MonoBehaviour {
 
 	public static PositionThrownObject instance;
 
-	public float placementHeightFromCamera = -0.35f;
-	public float minPlacementDistance = 0.7F;
-    public float maxPlacementDistance = 0.71F;
+	public float placementHeightFromCamera = -0.35f; //how much below the camera should the thing spawn
+	public float minPlacementDistance = 0.7F; //how far away should the thing spawn, minimum
+    public float maxPlacementDistance = 0.71F; //how far away should the thing spawn, maximum
 
 	[HideInInspector]
-	public Vector3 cubeInitPosition;
+	public Vector3 cubeInitPosition; //the position of the cube when it activates
 	[HideInInspector]
-	public Vector3 cubeInitVelocity;
+	public Vector3 cubeInitVelocity; //the velocity of the cube when it activates
 
 	void Awake() {
 		instance = this;
 	}
 
+	/*
+	determine a good position for an object to spawn based on the position and velocity of the thrown cube that spawns it
+	cubeInitPosiiton and cubeInitVelocity must be set first in order for this to work; they are currently set from the cube activation script 
+	*/
 	public Vector3 DeterminePosition() {
      
 		Vector3 userEyePosition = Camera.main.transform.position;
@@ -77,6 +82,10 @@ public class PositionThrownObject : MonoBehaviour {
     	return placementPosition;
     }
 
+	/*
+	determine a good rotation for the thing!
+	position must be calculated first and sent along to this method
+	 */
 	public Quaternion DetermineRotation(Vector3 objectPosition) {
 		Vector3 userEyePos = Camera.main.transform.position;
 

@@ -50,26 +50,26 @@ public class RainIntensity : MonoBehaviour {
 
 		switch(rainLevel){
 			case 0: 
-				rainEmission.rate = 0;
+				rainEmission.rateOverTime = 0;
 				sound.clip = noRain;
 				break;
 			case 1:
-				rainEmission.rate = 50;
+				rainEmission.rateOverTime = 50;
 				sound.clip = lightRain;
 				sound.volume = 1f;
 				break;
 			case 2:
-				rainEmission.rate = 130;
+				rainEmission.rateOverTime = 130;
 				sound.clip = modRain;
 				sound.volume = 0.7f;
 				break;
 			case 3:
-				rainEmission.rate = 350;
+				rainEmission.rateOverTime = 350;
 				sound.clip = heavyRain;
 				sound.volume = 0.5f;
 				break;
 			case 4:
-				rainEmission.rate = 350;
+				rainEmission.rateOverTime = 350;
 				sound.clip = thunder;
 				sound.volume = 0.8f;
 				break;

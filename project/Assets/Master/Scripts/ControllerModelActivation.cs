@@ -1,19 +1,27 @@
-﻿using System.Collections;
+﻿/*
+Controller Model Activation
+Purpose: for activating and deactivating the controller models so you can selectively see/not see them in the scene
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
 public class ControllerModelActivation : MonoBehaviour {
 
-	public GameObject leftControllerModel;
-	public GameObject rightControllerModel;
+	public GameObject leftControllerModel; //the normal steamvr left controller model
+	public GameObject rightControllerModel; //the normal steamvr right controller model
 
-	public GameObject leftLeapController;
-	public GameObject rightLeapController;
+	public GameObject leftLeapController; //the leap vive-style controller, left
+	public GameObject rightLeapController; //the leap vive-style controller, right
 
-	public GameObject[] leapControllerColliders;
+	public GameObject[] leapControllerColliders; //the colliders on the leap controllers
+	//these are unparented from the leap controllers at runtime, and have to be set inactive separately
+	//they can be found within the hierarchy of the leap controllers before entering play mode
 
 
+	//set the controller models active
 	public void ActivateControllers() {
 		leftControllerModel.SetActive(true);
 		rightControllerModel.SetActive(true);
@@ -25,6 +33,7 @@ public class ControllerModelActivation : MonoBehaviour {
 		}
 	}
 
+	//set the controller models inactive
 	public void DeactivateControllers() {
 		leftControllerModel.SetActive(false);
 		rightControllerModel.SetActive(false);
@@ -38,7 +47,7 @@ public class ControllerModelActivation : MonoBehaviour {
 	
 }
 
-//for testing functions from inspector
+//editor for testing functions from inspector
 
 [CustomEditor(typeof(ControllerModelActivation))]
 public class ControllerModelEditor : Editor {
