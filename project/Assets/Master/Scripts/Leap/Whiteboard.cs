@@ -10,10 +10,8 @@ public class Whiteboard : MonoBehaviour {
 	public WhiteboardContainer dataContainer;
 	public Leap.Unity.Interaction.InteractionSlider strokeSlider;
 	public GameObject pointer;
-
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
-	
 	public GameObject annotationsHolder;
 	public MenuProximityShow controlsButton;
 	public Text boardText;
@@ -34,7 +32,6 @@ public class Whiteboard : MonoBehaviour {
 	private List<Vector3> points;
 	private List<LineDataContainer> history;
 	private List<LineDataContainer> redoHistory;
-
 	public List<LineData> lines;
 
 	//Used for sorting order
@@ -63,7 +60,7 @@ public class Whiteboard : MonoBehaviour {
 		//Update pointer position
 		if (button.isHovered && button.primaryHoveringHand != null) {
 			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
-			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z); //.primaryHoveringFinger.bones[3].; //button.primaryHoveringControllerPoint;
+			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z);
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
 		
 			pointer.transform.localPosition = new Vector3(Mathf.Clamp(pointer.transform.localPosition.x, -1, 0),
@@ -76,7 +73,7 @@ public class Whiteboard : MonoBehaviour {
 		SetGlobalScale(pointer.transform, Vector3.one * lineWidth);
 
 		//Scale board scale to custom size
-		boardScaler.transform.localScale = (scaleHandle.transform.localPosition);// * transform.root.localScale.x;
+		boardScaler.transform.localScale = (scaleHandle.transform.localPosition);
 		boardScaler.transform.localScale = new Vector3(boardScaler.transform.localScale.x * -1 , boardScaler.transform.localScale.y, 1);
 
 		//Lock scale handle in plane
@@ -101,7 +98,7 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineDataContainer>();//
+			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 
 			currLineR = go.AddComponent<LineRenderer>();
@@ -121,7 +118,6 @@ public class Whiteboard : MonoBehaviour {
 			go.transform.SetParent(transform.parent);
 			go.transform.localPosition = Vector3.zero;
 		}
-		
 	}
 
 	//Called when contact ends with the board
@@ -164,6 +160,7 @@ public class Whiteboard : MonoBehaviour {
 		transform.localScale = new Vector3 (globalScale.x/transform.lossyScale.x, globalScale.y/transform.lossyScale.y, globalScale.z/transform.lossyScale.z);
 	}
 
+	//Toggles editing on and off
 	public void toggleAnnotations() {
 		if(annotationsHolder.activeInHierarchy) {
 			annotationsHolder.SetActive(false);
@@ -181,6 +178,7 @@ public class Whiteboard : MonoBehaviour {
 		}
 	}
 
+	//Rotate whiteboard towards player's face
 	public void orientRotation() {
 		transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
 		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180 - (boardScaler.transform.localScale.x * 15f), 0);
@@ -206,7 +204,7 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 			currData.data.lineWidth = l.lineWidth;
 			currData.data.lMatIndex = l.lMatIndex;
@@ -315,7 +313,7 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 			currData.data.lineWidth = l.lineWidth;
 			currData.data.lMatIndex = l.lMatIndex;
@@ -332,7 +330,6 @@ public class Whiteboard : MonoBehaviour {
 			
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
-			
 
 			go.transform.SetParent(transform.parent);
 			go.transform.localPosition = Vector3.zero;
@@ -344,6 +341,7 @@ public class Whiteboard : MonoBehaviour {
 		}
 	}
 
+	//Deletes Whiteboard from save and scene
 	public void removeWhiteboard() {
 		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].deleteFeature(dataContainer.data);
 		Destroy(transform.root.gameObject);

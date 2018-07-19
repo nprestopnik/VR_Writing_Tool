@@ -6,8 +6,9 @@ using UnityEngine;
 public class WhiteboardData : Feature {
 
 	[SerializeField]
-	public LineData[] lines;
-	public string text;
+	public LineData[] lines;//All of the drawn lines in on the board
+
+	public string text;	//Test data in the board (image path or plain text)
 
 	public WhiteboardData() : base() {
 		name = "Whiteboard";
