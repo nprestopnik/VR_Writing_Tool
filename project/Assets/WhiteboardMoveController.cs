@@ -5,6 +5,8 @@ using UnityEngine;
 public class WhiteboardMoveController : MonoBehaviour {
 
 	Leap.Unity.Interaction.AnchorableBehaviour ab;
+	public MenuProximityShow mps;
+	public GameObject everythingHolder;
 
 	public Whiteboard wb;
 
@@ -21,6 +23,7 @@ public class WhiteboardMoveController : MonoBehaviour {
 			}
 		}
 		
+		mps.alwaysOn = everythingHolder.activeInHierarchy;
 	}
 
 	public void onAnchorLock() {

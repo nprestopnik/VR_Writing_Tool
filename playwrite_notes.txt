@@ -20,11 +20,11 @@ x0 - some null reference exception
 DESK (Saul)
 - need real controls on the desk
 x- lock button doesn't work
-- world moves when you're near the desk - collision happening
+x- world moves when you're near the desk - collision happening
 - desktop mouse needs refinements - ability to touch screen
 - unity crashed when we opened word
-- click / right click needs some work
-- image shows up as a white nothing on the desk cube display when copied from Chrome
+?- click / right click needs some work
+(Can't reproduce)- image shows up as a white nothing on the desk cube display when copied from Chrome
 - Chair tracking
 x- tracking goes weird sometimes when you sit (tracking doesn't lock right now)
 x- desktop needs its own light, not just light probes
@@ -37,18 +37,18 @@ KEYBOARD
 1 - small letters, not easy to see when standing
 
 WHITEBOARDS
-4 - positioning of whiteboard when it is created
+x4 - positioning of whiteboard when it is created
 x2 - whiteboard control button behavior (stay on when controls are turned on)
-1 - drawing while grasping - make it not happen
+~1 - drawing while grasping - make it not happen
 x5 - whiteboard colors use specified choices from mockup
 0 - refinement to finger touching/movement of whiteboard
-2 - move cube should fade when controls are off
-4 - Refine whiteboard spawn sizes
+x2 - move cube should fade when controls are off
+x4 - Refine whiteboard spawn sizes
 7 - positioning/scale of controls
 x3 - way to delete whiteboards
 6 - Slider controls on whiteboard could be refined
 8 - Text on whiteboards need system for text wrapping, line lengths, etc.
-2 - Show control on/off button when grasping move control
+x2 - Show control on/off button when grasping move control
 
 MENUS
 0 - Spawning elements from menu needs refinement (position, orientation, etc.)

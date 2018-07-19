@@ -193,16 +193,16 @@ public class VdmDesktop : MonoBehaviour
 
         if (m_manager.KeyboardZoom != KeyCode.None)
         {
-            if (Input.GetKeyDown(m_manager.KeyboardZoom))
-            {
-                if (m_zoom == false)
-                {
-                    m_zoomWithFollowCursor = true;
-                    ZoomIn();
-                }
-                else
-                    ZoomOut();
-            }
+            // if (Input.GetKeyDown(m_manager.KeyboardZoom))
+            // {
+            //     if (m_zoom == false)
+            //     {
+            //         m_zoomWithFollowCursor = true;
+            //         ZoomIn();
+            //     }
+            //     else
+            //         ZoomOut();
+            // }
 
             if( (m_zoom) && (m_zoomWithFollowCursor) )
             {
@@ -233,6 +233,7 @@ public class VdmDesktop : MonoBehaviour
     }
 
     float mouseClickTimestamp;
+    float clickAgainCooldown;
 
     public void CheckRaycast(Vector3 rayOrigin, Vector3 rayDirection) {
         Vector3 origin;
@@ -297,10 +298,11 @@ public class VdmDesktop : MonoBehaviour
                 //         }
                 //     }
 
-                if(rcast.distance < 0.01f) {
+                if(rcast.distance < 0.01f && clickAgainCooldown < Time.time) {
                     m_manager.SimulateMouseLeftDown();
                     VdmDesktopManager.ActionInThisFrame = true;
-                    mouseClickTimestamp = Time.time + 0.1f;
+                    mouseClickTimestamp = Time.time + Time.deltaTime / 2f;
+                    clickAgainCooldown = Time.time + 1f;
                 }
 
                 if(mouseClickTimestamp - Time.time < 0) {

@@ -13,13 +13,13 @@ public class WhiteboardData : Feature {
 		name = "Whiteboard";
 		text = "";
 		lines = new LineData[0];
-		scale = new Vector3(1, 1, 1);
+		scale = new Vector3(0.5f, 0.5f, 1);
 	}
 
 	public WhiteboardData(string text) : base() {
 		name = "Whiteboard";
 		this.text = text;
 		lines = new LineData[0];
-		scale = new Vector3(1, 1, 1);
+		scale = new Vector3(0.5f, 0.5f, 1);
 	}
 }
