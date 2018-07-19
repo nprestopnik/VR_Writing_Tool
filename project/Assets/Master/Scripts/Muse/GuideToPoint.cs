@@ -64,10 +64,10 @@ public class GuideToPoint : MonoBehaviour {
 
 	public void GuideTo(Transform targetPoint, Action completedEvent = null) {
 		//stop if the muse is being cleared
-		if(MuseManager.instance.clearingMuse) {
-			MuseManager.instance.clearingMuse = false;
-			return;
-		}	
+		// if(MuseManager.instance.clearingMuse) {
+		// 	MuseManager.instance.clearingMuse = false;
+		// 	return;
+		// }	
 
 		//guiding = true; //from old guiding system
 
@@ -95,19 +95,19 @@ public class GuideToPoint : MonoBehaviour {
 
 	public void EnterMuse(Action completedEvent = null) {
 		//clear the muse of whatever else it might be doing and wait for that to finish before it enters
-		MuseManager.instance.clearingMuse = true;
-		StartCoroutine(MuseEntry(completedEvent));
-	}
-	IEnumerator MuseEntry(Action completedEvent = null) {
-		//this is supposed to wait until the muse is done clearing out whatever else is might have been doing
-		//but looking at it now I feel like it would break everything if the muse wasn't doing anything? because nothing would set this false
-		//it seemed to work before but I really need to look at the muse again more carefully to figure out what it's doing
-		//and the order in which things are called from other places with the callbacks and all that ahhhh
-		yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse); //SOMETHING HAS TO SET IT FALSE BUT WHAT IS SETTING IT FALSE THE FIRST TIME I AM CONFUSED
+		//MuseManager.instance.clearingMuse = true;
+		//StartCoroutine(MuseEntry(completedEvent));
+
 		transform.parent.SetParent(null);
 		transform.position = entryPoints[(int)entryDirection].position;
 		GuideTo(startPoint, completedEvent);
 	}
+	// IEnumerator MuseEntry(Action completedEvent = null) {
+	// 	yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse); 
+	// 	transform.parent.SetParent(null);
+	// 	transform.position = entryPoints[(int)entryDirection].position;
+	// 	GuideTo(startPoint, completedEvent);
+	// }
 
 	Action storedCompletedEvent;
 	public void ExitMuse(Action completedEvent = null) {

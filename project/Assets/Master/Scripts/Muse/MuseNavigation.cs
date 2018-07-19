@@ -50,13 +50,13 @@ public class MuseNavigation : MonoBehaviour {
 		}
 		
 		//if the muse is called for something else, stop navigation and free the muse for the other task
-		if(MuseManager.instance.clearingMuse) {
-			agent.gameObject.SetActive(false);
-			trail.SetActive(false);
-			particles.gameObject.SetActive(false);
+		// if(MuseManager.instance.clearingMuse) {
+		// 	agent.gameObject.SetActive(false);
+		// 	trail.SetActive(false);
+		// 	particles.gameObject.SetActive(false);
 
-			MuseManager.instance.clearingMuse = false;
-		}
+		// 	MuseManager.instance.clearingMuse = false;
+		// }
 		
 		//if the muse gets close to its target, turn off all its navigation things and start the completed event
 		if(agent.gameObject.activeInHierarchy && agent.remainingDistance < 1f && agent.remainingDistance != 0) {
@@ -76,10 +76,10 @@ public class MuseNavigation : MonoBehaviour {
 	//there she go
 	public void NavigateToPoint(Vector3 target, Action completedEvent = null) {
 		//stop if the muse is asked to do something else
-		if(MuseManager.instance.clearingMuse) {
-			MuseManager.instance.clearingMuse = false;
-			return;
-		}	
+		// if(MuseManager.instance.clearingMuse) {
+		// 	MuseManager.instance.clearingMuse = false;
+		// 	return;
+		// }	
 
 		//activate all those funky navigation effects (and the actual nav agent of course)
 		storedCompletedEvent = completedEvent;
@@ -103,10 +103,10 @@ public class MuseNavigation : MonoBehaviour {
 	//make the muse wait for the user to get to the hallway before exiting		
 	public void GetToHallway() {
 		//stop everything if the muse is called for something else
-		if(MuseManager.instance.clearingMuse) {
-			MuseManager.instance.clearingMuse = false;
-			return;
-		}	
+		// if(MuseManager.instance.clearingMuse) {
+		// 	MuseManager.instance.clearingMuse = false;
+		// 	return;
+		// }	
 
 		StartCoroutine(PauseForExit());
 	}

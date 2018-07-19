@@ -17,7 +17,7 @@ public class MuseManager : MonoBehaviour {
 	public GuideToPoint museGuide;
 	public MuseNavigation museNavigator;
 
-	public bool clearingMuse; //if the muse is called again while it is in the middle of a task, the muse will clear
+	//public bool clearingMuse; //if the muse is called again while it is in the middle of a task, the muse will clear
 		//there are checks in the functions of the above muse components to see if this is ever true
 		//if the muse is clearing, those functions will reset this boolean and return so they don't mess up the next task
 		//then the muse should be clear to continue on with whatever function it was last called to do
@@ -32,7 +32,7 @@ public class MuseManager : MonoBehaviour {
 	}
 
 	void Update() {
-		Debug.Log("Clearing Muse: " + clearingMuse);
+		//Debug.Log("Clearing Muse: " + clearingMuse);
 	}
 
 
