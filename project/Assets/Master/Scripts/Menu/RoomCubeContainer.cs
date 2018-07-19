@@ -27,7 +27,7 @@ public class RoomCubeContainer : MonoBehaviour {
 		MuseManager.instance.museNavigator.destBlockMesh.material.color = blockMesh.material.color;
 		MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", iconMesh.material.GetTexture("_MainTex"));
 
-		//set the muse's text and starg its guiding to the hallway
+		//set the muse's text and start its guiding to the hallway
 		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);
 	}
 
@@ -37,6 +37,13 @@ public class RoomCubeContainer : MonoBehaviour {
 		MuseManager.instance.Pause(4f, ()=> MuseManager.instance.museNavigator.NavigateToPoint(MuseManager.instance.museNavigator.hallwayPoint.position, 
 			()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!", 
 			()=> MuseManager.instance.museNavigator.GetToHallway())));
+
+		// try it this way to test the clearing issue... maybe idk
+		// MuseManager.instance.museGuide.EnterMuse(()=> MuseManager.instance.Pause(4f, 
+		// 	()=> MuseManager.instance.museNavigator.NavigateToPoint(MuseManager.instance.museNavigator.hallwayPoint.position,
+		// 	()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!",
+		// 	()=> MuseManager.instance.museNavigator.GetToHallway()))));
+		// }
 	}
 	
 }

@@ -31,6 +31,10 @@ public class MuseManager : MonoBehaviour {
 		museGuide.ExitMuse();
 	}
 
+	void Update() {
+		Debug.Log("Clearing Muse: " + clearingMuse);
+	}
+
 
 	/*
 	a general pause function for whenever you need the muse to just sit and wait, usually to let the user read text

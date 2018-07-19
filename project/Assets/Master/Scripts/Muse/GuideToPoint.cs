@@ -103,7 +103,7 @@ public class GuideToPoint : MonoBehaviour {
 		//but looking at it now I feel like it would break everything if the muse wasn't doing anything? because nothing would set this false
 		//it seemed to work before but I really need to look at the muse again more carefully to figure out what it's doing
 		//and the order in which things are called from other places with the callbacks and all that ahhhh
-		yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse);
+		yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse); //SOMETHING HAS TO SET IT FALSE BUT WHAT IS SETTING IT FALSE THE FIRST TIME I AM CONFUSED
 		transform.parent.SetParent(null);
 		transform.position = entryPoints[(int)entryDirection].position;
 		GuideTo(startPoint, completedEvent);
