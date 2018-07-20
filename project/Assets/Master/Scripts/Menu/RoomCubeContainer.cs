@@ -22,5 +22,28 @@ public class RoomCubeContainer : MonoBehaviour {
 	public void loadRoom() {
 		TravelSystem.instance.setGoalScene(roomIndex);
 		transform.root.gameObject.SetActive(false);
+
+		//set the destination cube above the hallway to correspond to the loaded room
+		MuseManager.instance.museNavigator.destBlockMesh.material.color = blockMesh.material.color;
+		MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", iconMesh.material.GetTexture("_MainTex"));
+
+		//set the muse's text and start its guiding to the hallway
+		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);
 	}
+
+	void startRoomGuide() {
+		//use the muse callback system to bring the muse in, have it navigate to a point, and wait at the hallway with the right text
+		MuseManager.instance.museGuide.EnterMuse(); //this might have been able to muse the callback system through enter muse??? hmmmm....
+		MuseManager.instance.Pause(4f, ()=> MuseManager.instance.museNavigator.NavigateToPoint(MuseManager.instance.museNavigator.hallwayPoint.position, 
+			()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!", 
+			()=> MuseManager.instance.museNavigator.GetToHallway())));
+
+		// try it this way to test the clearing issue... maybe idk
+		// MuseManager.instance.museGuide.EnterMuse(()=> MuseManager.instance.Pause(4f, 
+		// 	()=> MuseManager.instance.museNavigator.NavigateToPoint(MuseManager.instance.museNavigator.hallwayPoint.position,
+		// 	()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!",
+		// 	()=> MuseManager.instance.museNavigator.GetToHallway()))));
+		// }
+	}
+	
 }

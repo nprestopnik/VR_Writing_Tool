@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+Base Station Orientation
+Purpose: make sure the lighthouse models are standing upright when they are activated
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

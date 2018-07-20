@@ -67,7 +67,7 @@ public class TravelSystem : MonoBehaviour {
                 goalRoomIndex = index;
                 goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
                 goalSceneID = goalRoom.sceneID;
-                ControllerMenu.instance.loadRooms();
+                //ControllerMenu.instance.loadRooms();
                 return true;
             }
         }

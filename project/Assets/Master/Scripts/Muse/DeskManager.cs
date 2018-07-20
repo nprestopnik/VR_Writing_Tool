@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+Desk Manager
+Purpose: managing the desk
+Clearly I am the best at comments
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +12,7 @@ enum DeskState {Disabled, Placing, Enabled, Parking}
 
 public class DeskManager : MonoBehaviour {
 
+	//public GameObject testNavPoint; //some point for testing navigation
 
 	public static DeskManager instance;
 
@@ -23,7 +30,7 @@ public class DeskManager : MonoBehaviour {
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
 
-	private bool isTracking;
+	private bool isTracking; //are we supposed to be tracking the tracker irhgt now
 	private SteamVR_TrackedObject deskTrackedObject;
 	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
 
@@ -98,11 +105,9 @@ public class DeskManager : MonoBehaviour {
 	public void StartDeskTask() {
 		MuseManager.instance.museText.SetText("Follow me to your desk!");
 		MuseManager.instance.museGuide.EnterMuse();
-		MuseManager.instance.Pause(3f, DeskStage20);
+		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
 	}
-	void DeskStage20() {
-		MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30);
-	}
+	// void DeskStage20() {	MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30); } //simplified into above
 	void DeskStage30() {
 		deskModel.SetActive(true);
 		//isTracking = true;
@@ -113,6 +118,7 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museText.SetText("Put your desk where you want it!");
 	}
 
+	//once the desk is locked, the muse will exit
 	public void ConfirmSet() {
 		//isTracking = false;
 		currentState = DeskState.Enabled;
@@ -123,30 +129,15 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.Pause(3f,()=> MuseManager.instance.museGuide.ExitMuse());
 	}
 
-
-	// public void StartNavgationTest() {
-	// 	MuseManager.instance.museText.SetText("Testing navigation!", NavStage10);
-	// }
-	// void NavStage10() {
-	// 	MuseManager.instance.museGuide.EnterMuse();
-	// 	MuseManager.instance.Pause(3f, NavStage20);
-	// }
-	// void NavStage20() {
-	// 	//MuseManager.instance.museNavigator.NavigateToPoint(testNavPoint.transform.position, NavStage30);
-	// }
-	// void NavStage30() {
-	// 	//MuseManager.instance.museGuide.GuideTo(testNavPoint.transform);
-	// }
-
-
+	/*
+	use callbacks to activate muse, show where the desk is to be parked, do associated activation and all that
+	 */
 	public void StartParkTask() {
 		MuseManager.instance.museText.SetText("Follow me to park your desk!");
 		MuseManager.instance.museGuide.EnterMuse();
-		MuseManager.instance.Pause(3f, ParkStage20);
+		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30));
 	}
-	void ParkStage20() {
-		MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30);
-	}
+	// void ParkStage20() { MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30); } //simplified into above
 	void ParkStage30() {
 		//isTracking = true;
 		currentState = DeskState.Parking;
@@ -156,6 +147,7 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museText.SetText("Park your desk here!");
 	}
 
+	//confirm that the desk is parked where it is supposed to be and the muse leaves
 	public void ConfirmPark() {
 		currentState = DeskState.Disabled;
 		deskParked.parked = true;
@@ -166,6 +158,23 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museText.SetText("Bye for now!");
 		MuseManager.instance.Pause(3f,()=> MuseManager.instance.museGuide.ExitMuse());
 	}
+
+
+	//testing the muse navigation system here for some reason
+
+	// public void StartNavgationTest() {
+	// 	MuseManager.instance.museText.SetText("Testing navigation!", NavStage10);
+	// }
+	// void NavStage10() {
+	// 	MuseManager.instance.museGuide.EnterMuse();
+	// 	MuseManager.instance.Pause(3f, NavStage20);
+	// }
+	// void NavStage20() {
+	// 	MuseManager.instance.museNavigator.NavigateToPoint(testNavPoint.transform.position, NavStage30);
+	// }
+	// void NavStage30() {
+	// 	MuseManager.instance.museGuide.GuideTo(testNavPoint.transform);
+	// }
 	
 
 }

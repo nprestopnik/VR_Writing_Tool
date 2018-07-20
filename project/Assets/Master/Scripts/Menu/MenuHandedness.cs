@@ -1,42 +1,55 @@
-﻿using System;
+﻿/*
+Menu Handedness
+Purpose: tracking handedness and setting the position of the menu buttons/cubes correctly based on handedness
+Secondary purpose: hurting the heart of anyone who looks at this code because it is the worst
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Leap.Unity;
 using UnityEngine;
 
+//the two options for dominant hand
 public enum Handedness {
 	left,right
 }
 
-/*welcome to the Worst Script*/
 public class MenuHandedness : MonoBehaviour {
 
 	[Header("Hand Controls")]
-	public static Handedness dominantHand = Handedness.right;
+	public static Handedness dominantHand = Handedness.right; //handedness, static so it can be grabbed from elsewhere
 
-	public HandModelBase leftHand;
-	public HandModelBase rightHand;
+	public HandModelBase leftHand; //the leap hand model for the left hand
+	public HandModelBase rightHand; //leap hand model for right hand
 
+	//gesture detectors and controller for movement - the hand that has movement has to swap with the menu based on handedness
 	public ExtendedFingerDetector movementFingerDetector;
 	public PalmDirectionDetector movementPalmDetector;
 	public FingerMovementController movementController;
-	public GameObject leftPalm;
+
+	//the palms (child of the leap hand models) - for changing palm direction detection
+	public GameObject leftPalm; 
 	public GameObject rightPalm;
 
-	[Header("Menu")]
-	public GameObject menu;
-	public GameObject leftHandMenuSpot;
-	public GameObject rightHandMenuSpot;
 
-	[Header("Buttons")] 
+	[Header("Menu")]
+	public GameObject menu; //the menu itself - the parent of the whole menu
+	public GameObject leftHandMenuSpot; //the transform on the left attachment hand where the menu will sit when on that hand
+	public GameObject rightHandMenuSpot; //same as above for right hand
+
+	[Header("Buttons")]  //the buttons of the menu!
 	public GameObject mood;
 	public GameObject creation;
 	public GameObject locations;
 	public GameObject weather;
 	public GameObject system;
 	
-	public float buttonOffset;
+	public float buttonOffset; //this offset determines the spacing between the buttons
 
+
+	//these are the possible positions for the menu button. they will be calculated based on the button offset
+	//the buttons will be placed in these positions as appropriated
 	private Vector3 top;
 	private Vector3 bottom;
 	private Vector3 left;
@@ -44,17 +57,24 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 topLeft;
 	private Vector3 topRight;
 
+
 	[Header("Cubes")]
-	[Header("Mood: Set per scene via environment manager")]
-	public GameObject moodUpperParent;
+	[Header("Mood: Set per scene according to environment manager")]
+	//grab the set objects that will parent the mood rows 
+	//and the objects that represent the transform of where the cubes come out from
+	public GameObject moodUpperParent; 
 	public GameObject moodUpperHidden;
 	public GameObject moodLowerParent;
 	public GameObject moodLowerHidden;
+	//the actual array of mood cubes will be created and assigned from CreateWeatherMoodCubes
 	[HideInInspector]
 	public GameObject[] moodCubesUpper;
 	[HideInInspector]
 	public GameObject[] moodCubesLower;
 
+	//creation, location, and system work the same right now
+	//they need the cube parent, the spot where they will hide by the button, and the cubes themselves
+	//the cubes that are referenced in the array should be the "visible" transform for the tween
 	[Header("Creation")]
 	public GameObject creationParent;
 	public GameObject creationHidden;
@@ -65,7 +85,8 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject locationHidden;
 	public GameObject[] locationCubes;
 
-	[Header("Weather: Set per scene via environment manager")]
+	[Header("Weather: Set per scene according to environment manager")]
+	//weather is like mood
 	public GameObject weatherUpperParent;
 	public GameObject weatherUpperHidden;
 	public GameObject weatherLowerParent;
@@ -80,8 +101,8 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject systemHidden;
 	public GameObject[] systemCubes;
 
-	public float cubeOffset;
-	public float cubeOffButton;
+	public float cubeOffset; //the spacing between cubes
+	public float cubeOffButton; //the spacing between the button and the first button
 
 	//the positions around the menu where button rows can start - to be calculated
 	private Vector3 cubeUpperLeft;
@@ -118,14 +139,17 @@ public class MenuHandedness : MonoBehaviour {
 	public Vector3 hiddenBottomRight;
 
 
-	private MainMenu menuActivator;
-	private ExtendedFingerDetector fingerDetector;
+	private MainMenu menuActivator; 
+	//the gesture detectors for the menu hand
+	private ExtendedFingerDetector fingerDetector;	
 	private PalmDirectionDetector palmDetector;
-	private Handedness currentHand;
-	private Transform currentParent;
+
+	//the current hand was tracked when you could change handedness from the inspector for testing
+	//it isn't really used anymore but it's just chillin here for now
+	private Handedness currentHand; 
 
 	[HideInInspector] 
-	public bool handActive;
+	public bool handActive; //is the hand that holds the menu active - this is for keeping the menu on screen when the hands are not visible
 
 	void Awake() {
 		menuActivator = GetComponent<MainMenu>();
@@ -151,6 +175,7 @@ public class MenuHandedness : MonoBehaviour {
 		}
 	}
 
+	//this was a test method for swapping handedness at runtime; it was really only used for preliminary testing with the static handedness varible
 	public void swapHands() {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
 	}
@@ -159,6 +184,9 @@ public class MenuHandedness : MonoBehaviour {
 		return dominantHand;
 	}
 
+	/*
+	Assigns all location variables (for buttons, cubes, hiding spots) to a vector 3 calculated based off of the given offsets
+	 */
     void SetPositions() {
 		//calculate the visible and hidden positions for the buttons and cubes
 		//based on the given offset, with x and z set negative as appropriate
@@ -198,7 +226,13 @@ public class MenuHandedness : MonoBehaviour {
 		hiddenBottomRight = new Vector3(-2f*firstCubeOffset, 0, firstCubeOffset);
 	}
 	
+
+	/*
+	put the actual buttons and cubes and whatnot in the correct spot based on the handedness 
+		and the desired relative positions of different buttons, etc.
+	 */
 	void SetMenuOrientation() {
+		//the top and bottom buttons don't change based on handedness
 		mood.transform.localPosition = top;
 		locations.transform.localPosition = bottom;
 		if (dominantHand == Handedness.left) {
@@ -296,7 +330,8 @@ public class MenuHandedness : MonoBehaviour {
 
 	public void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
 		 int i = 0;
-		 //set each cube in a diagonal line out from the button in the proper direction
+		 //set each cube in a diagonal line out from the button in the proper direction 
+		 //based on the cube offset and whether or not the row is upper/lower and on the right/left
 		 foreach(GameObject cube in cubes) {
 			if(upper) {
 				if(right) {

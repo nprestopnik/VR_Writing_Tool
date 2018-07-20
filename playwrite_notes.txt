@@ -9,9 +9,9 @@ SET UP
 	- Controllers on (but hopefully not actually, see systems below)
 
 SYSTEMS
-x4- confirm that creating project automatically loads it
-2 - non-required controllers for desk tracking
-2 - controllers visible when we don't want them to be
+4 - confirm that creating project automatically loads it
+~ 2 - non-required controllers for desk tracking
+~ 2 - controllers visible when we don't want them to be
 3 - Steam/Vive load screen should hide when changing locations
 x1 - what happens if you haven't loaded a project and enter hallway
 x0 - some null reference exception
@@ -51,10 +51,10 @@ x3 - way to delete whiteboards
 x2 - Show control on/off button when grasping move control
 
 MENUS
-0 - Spawning elements from menu needs refinement (position, orientation, etc.)
+~ 0 - Spawning elements from menu needs refinement (position, orientation, etc.)
 3 - new icon for journal world
 2 - Menu cubes spin weirdly sometimes
-1 - Remove menu buttons for non-existing features
+x 1 - Remove menu buttons for non-existing features
 
 INTERACTION DESIGN
 0 - starting orientation?
@@ -69,15 +69,15 @@ x3 - "hoppy" gravity on stairs
 2 - Sometimes can "jitter walk" through walls
 
 LEVELS
-0 - going off edge of treehouse - collision boundaries
+x 0 - going off edge of treehouse - collision boundaries
 3 - the "suggested fall" area - handle this falling
-0 - slanted areas of fence that you can go up
+x 0 - slanted areas of fence that you can go up
 1 - Add office room location to system
 2 - More open pleasant locations for working are needed (less tight, constrained locations)
 
 MUSE
-0 - feedback for loading of room (muse)
-0 - thrown location block appear over hallway door
+~ 0 - feedback for loading of room (muse)
+~ 0 - thrown location block appear over hallway door
 1 - need real art and/or particles for the muse
 
 MOOD AND WEATHER (Kate & Nate)
