@@ -9,7 +9,7 @@ SET UP
 	- Controllers on (but hopefully not actually, see systems below)
 
 SYSTEMS
-4 - confirm that creating project automatically loads it
+x4 - confirm that creating project automatically loads it
 ~ 2 - non-required controllers for desk tracking
 ~ 2 - controllers visible when we don't want them to be
 3 - Steam/Vive load screen should hide when changing locations
