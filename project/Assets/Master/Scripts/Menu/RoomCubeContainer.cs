@@ -7,7 +7,7 @@ public class RoomCubeContainer : MonoBehaviour {
 	int roomIndex;
 	public Room room;
 
-	public Texture[] sceneryIcons;
+	//public Texture[] sceneryIcons;
 	public MeshRenderer blockMesh;
 	public MeshRenderer iconMesh;
 
@@ -16,7 +16,7 @@ public class RoomCubeContainer : MonoBehaviour {
 		roomIndex = indx;
 
 		blockMesh.material.color = r.color;
-		iconMesh.material.SetTexture("_MainTex", sceneryIcons[r.sceneID]);
+		iconMesh.material.SetTexture("_MainTex", TravelSystem.instance.sceneryIcons[r.sceneID]);
 	}
 
 	public void loadRoom() {
@@ -24,8 +24,8 @@ public class RoomCubeContainer : MonoBehaviour {
 		transform.root.gameObject.SetActive(false);
 
 		//set the destination cube above the hallway to correspond to the loaded room
-		MuseManager.instance.museNavigator.destBlockMesh.material.color = room.color;
-		MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", iconMesh.material.GetTexture("_MainTex"));
+		// MuseManager.instance.museNavigator.destBlockMesh.material.color = room.color;
+		// MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", iconMesh.material.GetTexture("_MainTex"));
 
 		//set the muse's text and start its guiding to the hallway
 		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);

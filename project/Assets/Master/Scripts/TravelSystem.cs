@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class TravelSystem : MonoBehaviour {
 
 	public static TravelSystem instance;
+	public Texture[] sceneryIcons;
 
 	public Room currentRoom;
     public Room goalRoom;
@@ -24,7 +25,10 @@ public class TravelSystem : MonoBehaviour {
 	
 	void Update () {
 		if(SaveSystem.instance.getCurrentSave() == null) {
-
+ 
+		} else {
+			MuseManager.instance.museNavigator.destBlockMesh.material.color = goalRoom.color;
+			MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", sceneryIcons[goalRoom.sceneID]);
 		}
 	}
 
@@ -90,6 +94,7 @@ public class TravelSystem : MonoBehaviour {
 
 		//Updates the save data and then saves it
 		currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
+
 		int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
 		SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
 		goalRoomIndex = temp;
