@@ -60,6 +60,7 @@ public class RoomCreateMenu : MonoBehaviour {
 		cubeAnchorBeh.transform.position = cubeAnchor.transform.position;
 		cubeAnchorBeh.transform.rotation = cubeAnchor.transform.rotation;
 		cubeAnchorBeh.anchor = cubeAnchor;
+		cubeAnchorBeh.TryAttach();
 
 		SaveSystem.instance.getCurrentSave().addRoom(rcc.room);
 		SaveSystem.instance.saveCurrentSave();

@@ -11,7 +11,7 @@ public class TravelSystem : MonoBehaviour {
 	public Room currentRoom;
     public Room goalRoom;
 	public int goalRoomIndex=0;
-	int goalSceneID = 3;
+	int goalSceneID = 0;
 
 	public GameObject whiteboardPrefab;
 
@@ -105,6 +105,7 @@ public class TravelSystem : MonoBehaviour {
         //return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
         //FIX THIS
         //Selecting a room with the same buildIndex (Background/Scenery) does not work.
-        return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
+        return true;
+		//return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
     }
 }
