@@ -13,6 +13,7 @@ public class handMenuController : MonoBehaviour {
 	public GameObject whiteBoardPrefab;
 	public DeskManager dm;
 	public GameObject RoomsMenu;
+	public GameObject RoomsCreateMenu;
 	public Transform head;
 
 	void Start () {
@@ -36,6 +37,17 @@ public class handMenuController : MonoBehaviour {
 
 			RoomsMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
 			RoomsMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsMenu.transform.position);
+			//RoomsMenu.transform.position = head.forward + head.transform.position;
+		}
+
+	}
+
+	public void openRoomCreateMenu() {
+		if(SaveSystem.instance.getCurrentSave() != null) {
+			RoomsCreateMenu.SetActive(true);
+
+			RoomsCreateMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			RoomsCreateMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsMenu.transform.position);
 			//RoomsMenu.transform.position = head.forward + head.transform.position;
 		}
 
