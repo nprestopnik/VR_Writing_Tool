@@ -16,6 +16,7 @@ x4 - confirm that creating project automatically loads it
 x1 - what happens if you haven't loaded a project and enter hallway
 x0 - some null reference exception
 5 - Leap hands flerp as well
+- tiny text in project creation
 
 DESK (Saul)
 - need real controls on the desk
@@ -30,11 +31,25 @@ x- tracking goes weird sometimes when you sit (tracking doesn't lock right now)
 x- desktop needs its own light, not just light probes
 x- no way of ending the parking process yet
 - Desk tracker sometimes goes into standby mode and positions incorrectly
+- tracker losing track
+- desk behind wall is a bit odd - desk "ghostly" while moving
+- desktop screen came up tiny with resolution change 
+- curved screen for desktop
+- desk moving when sitting/head is close - Saul has theories
+- desk hovering off ground
+- keyboard clicking with mouse will be a thing
+- desk tracking lock is easy to forget about
+- when desk doesn't have track at beginning, parking is weird
+- lighthouses visible through walls - ghostly like desk
+- desk tracking being weird with no parking/moving between rooms
+- manage desk tracking/locking a little better
+- parking position of desk, desk not disappearing
 
 KEYBOARD
 0 - fingers on keyboard are a mess, not even close
 2 - explore hand models
 1 - small letters, not easy to see when standing
+- lighting is dark in places (for keyboard) - make keys emissive
 
 WHITEBOARDS
 x4 - positioning of whiteboard when it is created
@@ -49,12 +64,18 @@ x3 - way to delete whiteboards
 6 - Slider controls on whiteboard could be refined
 8 - Text on whiteboards need system for text wrapping, line lengths, etc.
 x2 - Show control on/off button when grasping move control
+- positioning of whiteboard based on head or cube so users understand
+- how much you have to pull away from whiteboard to write nicely
 
 MENUS
 ~ 0 - Spawning elements from menu needs refinement (position, orientation, etc.)
 3 - new icon for journal world
 2 - Menu cubes spin weirdly sometimes
 x 1 - Remove menu buttons for non-existing features
+- hand menu stopped working???? - priority fix permanent or not?
+- actual art for room creation, office icon
+- go to location menu thing blipped
+- hand covering happens with menu
 
 INTERACTION DESIGN
 0 - starting orientation?
@@ -67,6 +88,9 @@ x3 - "hoppy" gravity on stairs
 5 - Misc. sounds for menus, walking, interactions, etc.
 4 - Falling through the floor happens sometimes
 2 - Sometimes can "jitter walk" through walls
+- instructions for room creation - make location on cube throw, no scanning
+- auto-loading of room on creation
+- position and sizing of hallway location/destination cube
 
 LEVELS
 x 0 - going off edge of treehouse - collision boundaries
@@ -74,12 +98,29 @@ x 0 - going off edge of treehouse - collision boundaries
 x 0 - slanted areas of fence that you can go up
 1 - Add office room location to system
 2 - More open pleasant locations for working are needed (less tight, constrained locations)
+- lights/light probes needed in office 
+- wider walkway in treehouse looks weird just stretched
+- ramps are touchy at top and going down
 
 MUSE
 ~ 0 - feedback for loading of room (muse)
 ~ 0 - thrown location block appear over hallway door
 1 - need real art and/or particles for the muse
+- sometimes muse doesn't connect to nav mesh
+- keep tail on muse or not?
+- some more explanation for desk stuff - finalize muse text
+- muse breaks when you do things too quickly
+- muse feedback for saves
 
 MOOD AND WEATHER (Kate & Nate)
 - Merge latest and generate content for presets
 - All presets need sound
+
+
+
+**try to do an executable for next test**
+
+
+
+
+
