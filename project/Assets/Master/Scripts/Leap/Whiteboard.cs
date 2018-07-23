@@ -7,13 +7,13 @@ using System;
 public class Whiteboard : MonoBehaviour {
 
 	Leap.Unity.Interaction.InteractionButton button;
+	public WhiteboardContainer dataContainer;
 	public Leap.Unity.Interaction.InteractionSlider strokeSlider;
 	public GameObject pointer;
-
 	public GameObject boardScaler;
 	public GameObject scaleHandle;
-	
 	public GameObject annotationsHolder;
+	public MenuProximityShow controlsButton;
 	public Text boardText;
 	public RawImage boardImage;
 
@@ -32,28 +32,35 @@ public class Whiteboard : MonoBehaviour {
 	private List<Vector3> points;
 	private List<LineDataContainer> history;
 	private List<LineDataContainer> redoHistory;
-
 	public List<LineData> lines;
 
 	//Used for sorting order
 	private int numLines = 0;
+	private float scaleHandleTimeStamp;
+
 
 	// Use this for initialization
 	void Start () {
 		button = GetComponent<Leap.Unity.Interaction.InteractionButton>();
 		history = new List<LineDataContainer>();
 		redoHistory = new List<LineDataContainer>();
-
-		//toggleAnnotations();
-		//lines = new List<LineData>();
+		dataContainer = GetComponent<WhiteboardContainer>();
+		button.enabled = false;
 	}
 	
 	// Update is called once per frame
 	void LateUpdate () {
+		//Update whiteboard data every frame (Ineffecient? Maybe.)
+		dataContainer.data.lines = lines.ToArray();
+		dataContainer.data.position = transform.root.position;
+		dataContainer.data.rotation = transform.root.rotation;
+		dataContainer.data.scale = transform.parent.localScale;
+
+
 		//Update pointer position
-		if (button.isHovered) {
+		if (button.isHovered && button.primaryHoveringHand != null) {
 			Leap.Vector vec = button.primaryHoveringHand.Fingers[1].bones[3].Center;
-			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z); //.primaryHoveringFinger.bones[3].; //button.primaryHoveringControllerPoint;
+			pointer.transform.position = new Vector3(vec.x, vec.y, vec.z);
 			pointer.transform.localPosition = new Vector3(pointer.transform.localPosition.x, pointer.transform.localPosition.y, 0);
 		
 			pointer.transform.localPosition = new Vector3(Mathf.Clamp(pointer.transform.localPosition.x, -1, 0),
@@ -66,7 +73,7 @@ public class Whiteboard : MonoBehaviour {
 		SetGlobalScale(pointer.transform, Vector3.one * lineWidth);
 
 		//Scale board scale to custom size
-		boardScaler.transform.localScale = (scaleHandle.transform.localPosition);// * transform.root.localScale.x;
+		boardScaler.transform.localScale = (scaleHandle.transform.localPosition);
 		boardScaler.transform.localScale = new Vector3(boardScaler.transform.localScale.x * -1 , boardScaler.transform.localScale.y, 1);
 
 		//Lock scale handle in plane
@@ -87,41 +94,49 @@ public class Whiteboard : MonoBehaviour {
 
 	//Called when finger makes contact with the board
 	public void begin(){
-		GameObject go = new GameObject (); 
-		go.tag = "BoardLine";
+		if(annotationsHolder.activeInHierarchy && scaleHandleTimeStamp < Time.time) {
+			GameObject go = new GameObject (); 
+			go.tag = "BoardLine";
 
-		currData = go.AddComponent<LineDataContainer>();//
-		currData.data = new LineData();
+			currData = go.AddComponent<LineDataContainer>();
+			currData.data = new LineData();
 
-		currLineR = go.AddComponent<LineRenderer>();
-		currLineR.startWidth = lineWidth;
-		currLineR.endWidth = lineWidth;
-		currLineR.material = lMat;
-		currLineR.useWorldSpace = false;
-		currLineR.alignment = LineAlignment.Local;
-		points = new List<Vector3>();
-		points.Add(pointer.transform.localPosition);
-		
-		currLineR.sortingOrder = numLines;
-		numLines++;
+			currLineR = go.AddComponent<LineRenderer>();
+			currLineR.startWidth = lineWidth;
+			currLineR.endWidth = lineWidth;
+			currLineR.material = lMat;
+			currLineR.useWorldSpace = false;
+			currLineR.alignment = LineAlignment.Local;
+			points = new List<Vector3>();
+			points.Add(pointer.transform.localPosition);
+			
+			currLineR.sortingOrder = numLines;
+			numLines++;
 
-		redoHistory = new List<LineDataContainer>();
+			redoHistory = new List<LineDataContainer>();
 
-		go.transform.SetParent(transform.parent);
-		go.transform.localPosition = Vector3.zero;
+			go.transform.SetParent(transform.parent);
+			go.transform.localPosition = Vector3.zero;
+		}
 	}
 
 	//Called when contact ends with the board
 	public void end(){
-		currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
-		currData.data.lineWidth = lineWidth;
-		currData.data.lMatIndex = lMatIndex;
-		currData.data.points = points.ToArray();
-		currData.data.sortingOrder = numLines;
-		history.Add(currData);
-		lines.Add(currData.data);
-		currLineR = null;
-		currData = null;
+		if(annotationsHolder.activeInHierarchy && scaleHandleTimeStamp < Time.time && currData != null) {
+			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
+			currData.data.lineWidth = lineWidth;
+			currData.data.lMatIndex = lMatIndex;
+			currData.data.points = points.ToArray();
+			currData.data.sortingOrder = numLines;
+			history.Add(currData);
+			lines.Add(currData.data);
+			currLineR = null;
+			currData = null;
+		}
+	}
+
+	public void scaleHandleGraspStay() {
+		scaleHandleTimeStamp = Time.time + 0.2f;
 	}
 
 	//Used to set the line width
@@ -145,25 +160,30 @@ public class Whiteboard : MonoBehaviour {
 		transform.localScale = new Vector3 (globalScale.x/transform.lossyScale.x, globalScale.y/transform.lossyScale.y, globalScale.z/transform.lossyScale.z);
 	}
 
+	//Toggles editing on and off
 	public void toggleAnnotations() {
 		if(annotationsHolder.activeInHierarchy) {
 			annotationsHolder.SetActive(false);
 			scaleHandle.SetActive(false);
 			button.enabled = false;
 			pointer.gameObject.SetActive(false);
+			controlsButton.alwaysOn = false;
+			
 		} else {
 			annotationsHolder.SetActive(true);
 			scaleHandle.SetActive(true);
 			button.enabled = true;
 			pointer.gameObject.SetActive(true);
+			controlsButton.alwaysOn = true;
 		}
 	}
 
+	//Rotate whiteboard towards player's face
 	public void orientRotation() {
 		transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
-		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180, 0);
-
-		//transform.root.rotation = Quaternion.LookRotation(PlayerController.instance.head.transform.position, Vector3.up);
+		transform.root.rotation = Quaternion.Euler(0, transform.root.eulerAngles.y + 180 - (boardScaler.transform.localScale.x * 15f), 0);
+		dataContainer.data.position = transform.root.position;
+		dataContainer.data.rotation = transform.root.rotation;
 	}
 
 	//Destroys the gameobject and stores its data in a list
@@ -184,7 +204,7 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 			currData.data.lineWidth = l.lineWidth;
 			currData.data.lMatIndex = l.lMatIndex;
@@ -198,20 +218,15 @@ public class Whiteboard : MonoBehaviour {
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;
-			
-			//currLineR.sortingOrder = numLines;
-			//numLines++;
 
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
-			
 
 			go.transform.SetParent(transform.parent);
 			go.transform.localPosition = Vector3.zero;
 			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
 			currLineR.transform.localScale = Vector3.one;
 
-			//end();
 			redoHistory.RemoveAt(redoHistory.Count - 1);
 			history.Add(currData);
 			lines.Add(currData.data);
@@ -252,6 +267,7 @@ public class Whiteboard : MonoBehaviour {
 
 	public void loadData(WhiteboardData data) {
 		//load the lines and position
+		dataContainer.data = data;
 
 		lines = new List<LineData>(data.lines);
 
@@ -264,7 +280,7 @@ public class Whiteboard : MonoBehaviour {
 		
 		string text = data.text;
 		string trimmedText = "file:///" + data.text.Trim(new Char[] {'"'}).Replace('\\', '/');
-		print(trimmedText);
+		//print(trimmedText);
 
 		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute);
 		bool isUriNoQuotes = Uri.IsWellFormedUriString(trimmedText, UriKind.RelativeOrAbsolute);
@@ -273,16 +289,20 @@ public class Whiteboard : MonoBehaviour {
 			if(isUri) {
 				StartCoroutine(loadPicture(text));
 				boardText.text = "";
+				boardImage.gameObject.SetActive(true);
 			} else if(isUriNoQuotes) {
 				StartCoroutine(loadPicture(trimmedText));
 				boardText.text = "";
+				boardImage.gameObject.SetActive(true);
 			} else {
 				boardText.text = text;
 				boardImage.texture = null;
+				boardImage.gameObject.SetActive(false);
 			}
 		} else {
 			boardText.text = "";
 			boardImage.texture = null;
+			boardImage.gameObject.SetActive(false);
 		}
 		
 		
@@ -293,7 +313,7 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			currData = go.AddComponent<LineDataContainer>();//.data = new LineData();
+			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 			currData.data.lineWidth = l.lineWidth;
 			currData.data.lMatIndex = l.lMatIndex;
@@ -308,21 +328,22 @@ public class Whiteboard : MonoBehaviour {
 			currLineR.alignment = LineAlignment.Local;
 			currLineR.sortingOrder = l.sortingOrder;
 			
-			//currLineR.sortingOrder = numLines;
-			//numLines++;
-
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
-			
 
 			go.transform.SetParent(transform.parent);
 			go.transform.localPosition = Vector3.zero;
 			currLineR.transform.localRotation = Quaternion.Euler(0,0,0);
 			currLineR.transform.localScale = Vector3.one;
 
-			//end();
 			currLineR = null;
 			currData = null;
 		}
+	}
+
+	//Deletes Whiteboard from save and scene
+	public void removeWhiteboard() {
+		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].deleteFeature(dataContainer.data);
+		Destroy(transform.root.gameObject);
 	}
 }

@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class TravelSystem : MonoBehaviour {
 
 	public static TravelSystem instance;
+	public Texture[] sceneryIcons;
 
 	public Room currentRoom;
     public Room goalRoom;
 	public int goalRoomIndex=0;
-	int goalSceneID = 3;
+	int goalSceneID = 0;
 
 	public GameObject whiteboardPrefab;
 
@@ -23,10 +24,15 @@ public class TravelSystem : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if(SaveSystem.instance.getCurrentSave() == null) {
+ 
+		} else {
+			MuseManager.instance.museNavigator.destBlockMesh.material.color = goalRoom.color;
+			MuseManager.instance.museNavigator.destIconMesh.material.SetTexture("_MainTex", sceneryIcons[goalRoom.sceneID]);
+		}
 	}
 
-	public void fastTravelToScene(int index) {
+	public void fastTravelToRoom(int index) {
 		setGoalScene(index);
 		loadGoalScene();
 	}
@@ -41,7 +47,7 @@ public class TravelSystem : MonoBehaviour {
 			if(f is WhiteboardData) {
 				//print("Creating Whiteboard: " + ((WhiteboardData)f).text);
 				//Create Whiteboard
-				WhiteboardContainer whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<WhiteboardContainer>();
+				Whiteboard whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
 				WhiteboardData data = (WhiteboardData)f;
 				whiteboard.loadData(data);
 				//Move Whitboard to scene
@@ -65,7 +71,7 @@ public class TravelSystem : MonoBehaviour {
                 goalRoomIndex = index;
                 goalRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
                 goalSceneID = goalRoom.sceneID;
-                ControllerMenu.instance.loadRooms();
+                //ControllerMenu.instance.loadRooms();
                 return true;
             }
         }
@@ -88,6 +94,7 @@ public class TravelSystem : MonoBehaviour {
 
 		//Updates the save data and then saves it
 		currentRoom = SaveSystem.instance.getCurrentSave().getRoomsArray()[goalRoomIndex];
+
 		int temp = SaveSystem.instance.getCurrentSave().currentRoomIndex;
 		SaveSystem.instance.getCurrentSave().currentRoomIndex = goalRoomIndex;
 		goalRoomIndex = temp;
@@ -98,6 +105,7 @@ public class TravelSystem : MonoBehaviour {
         //return SaveSystem.instance.getCurrentSave().getRoomsArray()[index].sceneID != SceneManager.GetActiveScene().buildIndex;
         //FIX THIS
         //Selecting a room with the same buildIndex (Background/Scenery) does not work.
-        return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
+        return true;
+		//return !(SaveSystem.instance.getCurrentSave().getRoomsArray()[index].name.Equals(currentRoom.name));
     }
 }

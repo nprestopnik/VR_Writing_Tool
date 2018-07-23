@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Master/Scenery/nullworld.unity
     guid: c624a8518623572418c1f1ca16fef6e4
+  - enabled: 1
+    path: Assets/Master/Scenery/office.unity
+    guid: 8c1fc072ab7fa9e44afd7ffa5de0dc32
   m_configObjects: {}

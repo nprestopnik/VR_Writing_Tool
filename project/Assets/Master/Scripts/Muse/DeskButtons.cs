@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/*
+a collection of desk button functions - just stick these to their buttons/cubes and they'll do their thing
+this one's pretty straight-forward I think
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
