@@ -8,6 +8,7 @@ public enum Handedness {
 	left,right
 }
 
+/*welcome to the Worst Script*/
 public class MenuHandedness : MonoBehaviour {
 
 	[Header("Hand Controls")]
@@ -44,33 +45,45 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 topRight;
 
 	[Header("Cubes")]
-	[Header("Mood")]
+	[Header("Mood: Set per scene via environment manager")]
 	public GameObject moodUpperParent;
+	public GameObject moodUpperHidden;
 	public GameObject moodLowerParent;
+	public GameObject moodLowerHidden;
+	[HideInInspector]
 	public GameObject[] moodCubesUpper;
+	[HideInInspector]
 	public GameObject[] moodCubesLower;
 
 	[Header("Creation")]
 	public GameObject creationParent;
+	public GameObject creationHidden;
 	public GameObject[] creationCubes;
 
 	[Header("Location")]
 	public GameObject locationParent;
+	public GameObject locationHidden;
 	public GameObject[] locationCubes;
 
-	[Header("Weather")]
+	[Header("Weather: Set per scene via environment manager")]
 	public GameObject weatherUpperParent;
+	public GameObject weatherUpperHidden;
 	public GameObject weatherLowerParent;
+	public GameObject weatherLowerHidden;
+	[HideInInspector]
 	public GameObject[] weatherCubesUpper;
+	[HideInInspector]
 	public GameObject[] weatherCubesLower;
 
 	[Header("System")]
 	public GameObject systemParent;
+	public GameObject systemHidden;
 	public GameObject[] systemCubes;
 
 	public float cubeOffset;
 	public float cubeOffButton;
 
+	//the positions around the menu where button rows can start - to be calculated
 	private Vector3 cubeUpperLeft;
 	private Vector3 cubeUpperRight;
 	private Vector3 cubeTopLeft;
@@ -82,6 +95,28 @@ public class MenuHandedness : MonoBehaviour {
 	private Vector3 cubeBottomLeft;
 	private Vector3 cubeBottomRight;
 
+	//the points around the menu where cubes will "hide" when animated
+	[HideInInspector]
+	public Vector3 hiddenUpperLeft;
+	[HideInInspector]
+	public Vector3 hiddenUpperRight;
+	[HideInInspector]
+	public Vector3 hiddenTopLeft;
+	[HideInInspector]
+	public Vector3 hiddenTopRight;
+	[HideInInspector]
+	public Vector3 hiddenMidUpperLeft;
+	[HideInInspector]
+	public Vector3 hiddenMidUpperRight;
+	[HideInInspector]
+	public Vector3 hiddenMidLowerLeft;
+	[HideInInspector]
+	public Vector3 hiddenMidLowerRight;
+	[HideInInspector]
+	public Vector3 hiddenBottomLeft;
+	[HideInInspector]
+	public Vector3 hiddenBottomRight;
+
 
 	private MainMenu menuActivator;
 	private ExtendedFingerDetector fingerDetector;
@@ -92,7 +127,7 @@ public class MenuHandedness : MonoBehaviour {
 	[HideInInspector] 
 	public bool handActive;
 
-	void Start() {
+	void Awake() {
 		menuActivator = GetComponent<MainMenu>();
 		fingerDetector = GetComponent<ExtendedFingerDetector>();
 		palmDetector = GetComponent<PalmDirectionDetector>();
@@ -101,11 +136,14 @@ public class MenuHandedness : MonoBehaviour {
 	}
 
 	void Update() {
+		//this was for testing with the public enum; not really used right now
 		if(dominantHand != currentHand) {
 			SetMenuOrientation();
 			currentHand = dominantHand;
 		}
 
+		//if the hands go off the screen, set this bool so the menu won't deactivate when you don't look at it
+		//the deactivation itself happens in the main menu script
 		if(fingerDetector.HandModel.gameObject.activeSelf) {
 			handActive = true;
 		} else {
@@ -117,7 +155,14 @@ public class MenuHandedness : MonoBehaviour {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
 	}
 
+	public Handedness GetHandedness() {
+		return dominantHand;
+	}
+
     void SetPositions() {
+		//calculate the visible and hidden positions for the buttons and cubes
+		//based on the given offset, with x and z set negative as appropriate
+
 		top = new Vector3(buttonOffset, 0, -buttonOffset);
 		bottom = new Vector3(-buttonOffset, 0, buttonOffset);
 		left = new Vector3(buttonOffset, 0, buttonOffset);
@@ -138,46 +183,75 @@ public class MenuHandedness : MonoBehaviour {
 		cubeMidLowerRight = new Vector3(-4f*firstCubeOffset, 0, -firstCubeOffset);
 		cubeBottomLeft = new Vector3(-firstCubeOffset, 0, 4f*firstCubeOffset);
 		cubeBottomRight = new Vector3(-4f*firstCubeOffset, 0, firstCubeOffset);
+
+		//the hidden locations are only slightly off the cube (less so than the cube positions above)
+		hiddenUpperLeft = new Vector3(2f*firstCubeOffset, 0, -2.75f*firstCubeOffset);
+		hiddenUpperRight = new Vector3(2.75f*firstCubeOffset, 0, -2f*firstCubeOffset);
+
+		hiddenTopLeft = new Vector3(2f*firstCubeOffset, 0, -firstCubeOffset);
+		hiddenTopRight = new Vector3(firstCubeOffset, 0, -2f*firstCubeOffset);
+		hiddenMidUpperLeft = new Vector3(2f*firstCubeOffset, 0, firstCubeOffset);
+		hiddenMidLowerLeft = new Vector3(firstCubeOffset, 0, 2f*firstCubeOffset);
+		hiddenMidUpperRight = new Vector3(-firstCubeOffset, 0, -2f*firstCubeOffset);
+		hiddenMidLowerRight = new Vector3(-2f*firstCubeOffset, 0, -firstCubeOffset);
+		hiddenBottomLeft = new Vector3(-firstCubeOffset, 0, 2f*firstCubeOffset);
+		hiddenBottomRight = new Vector3(-2f*firstCubeOffset, 0, firstCubeOffset);
 	}
 	
 	void SetMenuOrientation() {
 		mood.transform.localPosition = top;
 		locations.transform.localPosition = bottom;
 		if (dominantHand == Handedness.left) {
+			//make sure movement is detected on the correct hand (not menu hand)
 			movementFingerDetector.HandModel = leftHand;
 			movementPalmDetector.HandModel = leftHand;
 			movementController.pointer = leftPalm;
 
+			//make sure menu is positioned off non-dominant hand
 			fingerDetector.HandModel = rightHand;
 			palmDetector.HandModel = rightHand;
 			menu.transform.parent = rightHandMenuSpot.transform;
 			menu.transform.localPosition = Vector3.zero;
 			menu.transform.localRotation = Quaternion.identity;
 
+			//set base buttons in correct position
 			weather.transform.localPosition = right;
 			creation.transform.localPosition = left;
 			system.transform.localPosition = topRight;
 
+			//positin the start of the mood rows correctly
+			//the cubes will be created and set from the create cubes script
 			moodUpperParent.transform.localPosition = cubeTopLeft;
-			SetCubePositions(moodCubesUpper, true, false);
+			moodUpperHidden.transform.localPosition = hiddenTopLeft;
+			//SetCubePositions(moodCubesUpper, true, false);
 			moodLowerParent.transform.localPosition = cubeMidLowerLeft;
-			SetCubePositions(moodCubesLower, false, false);
+			moodLowerHidden.transform.localPosition = hiddenMidLowerLeft;
+			//SetCubePositions(moodCubesLower, false, false);
 
+			//position the other creation and location cubes correctly
 			creationParent.transform.localPosition = cubeMidUpperLeft;
+			creationHidden.transform.localPosition = hiddenMidUpperLeft;
 			SetCubePositions(creationCubes, true, false);
 
 			locationParent.transform.localPosition = cubeBottomLeft;
+			locationHidden.transform.localPosition = hiddenBottomLeft;
 			SetCubePositions(locationCubes, false, false);
 
+			//position the weather parents, cubes set from create cubes script
 			weatherUpperParent.transform.localPosition = cubeTopLeft;
-			SetCubePositions(weatherCubesUpper, true, false);
+			weatherUpperHidden.transform.localPosition = hiddenTopLeft;
+			//SetCubePositions(weatherCubesUpper, true, false);
 			weatherLowerParent.transform.localPosition = cubeBottomLeft;
-			SetCubePositions(weatherCubesLower, false, false);
+			weatherLowerHidden.transform.localPosition = hiddenBottomLeft;
+			//SetCubePositions(weatherCubesLower, false, false);
 
+			//put system cubes in the right spot
 			systemParent.transform.localPosition = cubeUpperLeft;
+			systemHidden.transform.localPosition = hiddenUpperLeft;
 			SetCubePositions(systemCubes, true, false);
 		} 
 		else if (dominantHand == Handedness.right) {
+			//do the same settings as above but adjusted for the menu on the left hand
 			movementFingerDetector.HandModel = rightHand;
 			movementPalmDetector.HandModel = rightHand;
 			movementController.pointer = rightPalm;
@@ -193,28 +267,36 @@ public class MenuHandedness : MonoBehaviour {
 			system.transform.localPosition = topLeft;
 
 			moodUpperParent.transform.localPosition = cubeTopRight;
-			SetCubePositions(moodCubesUpper, true, true);
+			moodUpperHidden.transform.localPosition = hiddenTopRight;
+			//SetCubePositions(moodCubesUpper, true, true);
 			moodLowerParent.transform.localPosition = cubeMidLowerRight;
-			SetCubePositions(moodCubesLower, false, true);
+			moodLowerHidden.transform.localPosition = hiddenMidLowerRight;
+			//SetCubePositions(moodCubesLower, false, true);
 
 			creationParent.transform.localPosition = cubeMidUpperRight;
+			creationHidden.transform.localPosition = hiddenMidUpperRight;
 			SetCubePositions(creationCubes, true, true);
 
 			locationParent.transform.localPosition = cubeBottomRight;
+			locationHidden.transform.localPosition = hiddenBottomRight;
 			SetCubePositions(locationCubes, false, true);
 
 			weatherUpperParent.transform.localPosition = cubeTopRight;
-			SetCubePositions(weatherCubesUpper, true, true);
+			weatherUpperHidden.transform.localPosition = hiddenTopRight;
+			//SetCubePositions(weatherCubesUpper, true, true);
 			weatherLowerParent.transform.localPosition = cubeBottomRight;
-			SetCubePositions(weatherCubesLower, false, true);
+			weatherLowerHidden.transform.localPosition = hiddenBottomRight;
+			//SetCubePositions(weatherCubesLower, false, true);
 
 			systemParent.transform.localPosition = cubeUpperRight;
+			systemHidden.transform.localPosition = hiddenUpperRight;
 			SetCubePositions(systemCubes, true, true);
 		}
 	}
 
-	 void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
+	public void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
 		 int i = 0;
+		 //set each cube in a diagonal line out from the button in the proper direction
 		 foreach(GameObject cube in cubes) {
 			if(upper) {
 				if(right) {
