@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Runtime.InteropServices;
 using System.Xml;
+using UnityRawInput;
 
 public class VdmDesktop : MonoBehaviour
 {
@@ -112,11 +113,15 @@ public class VdmDesktop : MonoBehaviour
     
     void OnEnable()
     {
+        //RawKeyInput.Start(true);
+		RawKeyInput.OnKeyDown += HandleKeyDown;
+		RawKeyInput.OnKeyUp += HandleKeyUp;
     }
 
     void OnDisable()
     {
         m_manager.Disconnect(this);
+        //RawKeyInput.Stop();
     }
 
     public void HideLine()
@@ -281,6 +286,8 @@ public class VdmDesktop : MonoBehaviour
 
                 m_manager.SetCursorPos(iX, iY);
 
+                
+
                 // if (input.GetPressDown(MyButtonToViveButton(m_manager.ViveLeftClick)))
                 //     {
                 //         m_lastLeftTriggerClick = Time.time;
@@ -298,20 +305,46 @@ public class VdmDesktop : MonoBehaviour
                 //         }
                 //     }
 
-                if(rcast.distance < 0.01f && clickAgainCooldown < Time.time) {
-                    m_manager.SimulateMouseLeftDown();
-                    VdmDesktopManager.ActionInThisFrame = true;
-                    mouseClickTimestamp = Time.time + Time.deltaTime / 2f;
-                    clickAgainCooldown = Time.time + 1f;
-                }
+                // if(rcast.distance < 0.01f && clickAgainCooldown < Time.time) {
+                //     m_manager.SimulateMouseLeftDown();
+                //     VdmDesktopManager.ActionInThisFrame = true;
+                //     mouseClickTimestamp = Time.time + Time.deltaTime / 2f;
+                //     clickAgainCooldown = Time.time + 1f;
+                // }
 
-                if(mouseClickTimestamp - Time.time < 0) {
-                    m_manager.SimulateMouseLeftUp();
-                    VdmDesktopManager.ActionInThisFrame = true;
-                }
+                // if(mouseClickTimestamp - Time.time < 0) {
+                //     m_manager.SimulateMouseLeftUp();
+                //     VdmDesktopManager.ActionInThisFrame = true;
+                // }
             }
         }
     }
+
+    void HandleKeyDown(RawKey key) {
+        print(key.ToString());
+        if(key == RawKey.Control) {
+            print("LEFT CLICK");
+            m_manager.SimulateMouseLeftDown();
+            VdmDesktopManager.ActionInThisFrame = true;
+        } else if(key == RawKey.Menu) {
+            print("RIGHT CLICK");
+            m_manager.SimulateMouseRightDown();
+            VdmDesktopManager.ActionInThisFrame = true;
+        }
+        
+	}
+
+	//Event for Key Up
+	void HandleKeyUp(RawKey key) {
+        if(key == RawKey.Control) {
+            m_manager.SimulateMouseLeftUp();
+            VdmDesktopManager.ActionInThisFrame = true;
+        } else if(key == RawKey.Menu) {
+            m_manager.SimulateMouseRightUp();
+            VdmDesktopManager.ActionInThisFrame = true;
+        }
+        
+	}
 
 #if VDM_SteamVR 
     public void CheckController(SteamVR_TrackedObject controller)
