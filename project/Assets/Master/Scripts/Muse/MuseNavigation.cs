@@ -105,6 +105,19 @@ public class MuseNavigation : MonoBehaviour {
 		
 	}
 
+
+	public void NavigateToHallway() {
+		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);
+	}
+	
+	void startRoomGuide() {
+		//use the muse callback system to bring the muse in, have it navigate to a point, and wait at the hallway with the right text
+		MuseManager.instance.museGuide.EnterMuse(); 
+		MuseManager.instance.Pause(4f, ()=> NavigateToPoint(hallwayPoint.position, 
+			()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!", 
+			()=> GetToHallway())));
+	}
+
 	//make the muse wait for the user to get to the hallway before exiting		
 	public void GetToHallway() {
 		//stop everything if the muse is called for something else

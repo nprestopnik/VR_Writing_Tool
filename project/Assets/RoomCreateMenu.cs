@@ -66,6 +66,8 @@ public class RoomCreateMenu : MonoBehaviour {
 		SaveSystem.instance.saveCurrentSave();
 		TravelSystem.instance.setGoalScene(SaveSystem.instance.getCurrentSave().getRoomsArray().Length -1);
 
+		MuseManager.instance.museNavigator.NavigateToHallway();
+
 		gameObject.SetActive(false);
 	}
 

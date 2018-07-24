@@ -30,10 +30,10 @@ x- world moves when you're near the desk - collision happening
 x- tracking goes weird sometimes when you sit (tracking doesn't lock right now)
 x- desktop needs its own light, not just light probes
 x- no way of ending the parking process yet
-- Desk tracker sometimes goes into standby mode and positions incorrectly
-- tracker losing track
+x- Desk tracker sometimes goes into standby mode and positions incorrectly
+x- tracker losing track
 - desk behind wall is a bit odd - desk "ghostly" while moving
-- desktop screen came up tiny with resolution change 
+x- desktop screen came up tiny with resolution change 
 - curved screen for desktop
 x- desk moving when sitting/head is close - Saul has theories
 x- desk hovering off ground
@@ -43,7 +43,7 @@ x- when desk doesn't have track at beginning, parking is weird
 - lighthouses visible through walls - ghostly like desk
 ~- desk tracking being weird with no parking/moving between rooms
 - manage desk tracking/locking a little better
-- parking position of desk, desk not disappearing
+x- parking position of desk, desk not disappearing
 
 KEYBOARD
 0 - fingers on keyboard are a mess, not even close
@@ -98,9 +98,9 @@ x3 - the "suggested fall" area - handle this falling
 x 0 - slanted areas of fence that you can go up
 x1 - Add office room location to system
 2 - More open pleasant locations for working are needed (less tight, constrained locations)
-- lights/light probes needed in office 
+x- lights/light probes needed in office 
 - wider walkway in treehouse looks weird just stretched
-- ramps are touchy at top and going down
+~- ramps are touchy at top and going down
 
 MUSE
 ~ 0 - feedback for loading of room (muse)

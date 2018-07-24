@@ -14,6 +14,7 @@ public class handMenuController : MonoBehaviour {
 	public DeskManager dm;
 	public GameObject RoomsMenu;
 	public GameObject RoomsCreateMenu;
+	public GameObject RoomsDeleteMenu;
 	public Transform head;
 
 	void Start () {
@@ -48,6 +49,17 @@ public class handMenuController : MonoBehaviour {
 
 			RoomsCreateMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
 			RoomsCreateMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsCreateMenu.transform.position);
+			//RoomsMenu.transform.position = head.forward + head.transform.position;
+		}
+
+	}
+
+	public void openRoomDeleteMenu() {
+		if(SaveSystem.instance.getCurrentSave() != null) {
+			RoomsDeleteMenu.SetActive(true);
+
+			RoomsDeleteMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			RoomsDeleteMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsDeleteMenu.transform.position);
 			//RoomsMenu.transform.position = head.forward + head.transform.position;
 		}
 
