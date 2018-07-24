@@ -16,7 +16,7 @@ x4 - confirm that creating project automatically loads it
 x1 - what happens if you haven't loaded a project and enter hallway
 x0 - some null reference exception
 5 - Leap hands flerp as well
-- tiny text in project creation
+x - tiny text in project creation
 
 DESK (Saul)
 - need real control art on the desk
