@@ -64,6 +64,7 @@ public class RoomCreateMenu : MonoBehaviour {
 
 		SaveSystem.instance.getCurrentSave().addRoom(rcc.room);
 		SaveSystem.instance.saveCurrentSave();
+		TravelSystem.instance.setGoalScene(SaveSystem.instance.getCurrentSave().getRoomsArray().Length -1);
 
 		gameObject.SetActive(false);
 	}

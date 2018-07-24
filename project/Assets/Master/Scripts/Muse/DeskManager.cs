@@ -30,9 +30,11 @@ public class DeskManager : MonoBehaviour {
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
 
+	public bool parked = true; //whether or not the desk is parked in its "inactive" location
+
 	private bool isTracking; //are we supposed to be tracking the tracker irhgt now
 	private SteamVR_TrackedObject deskTrackedObject;
-	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
+	 
 
 	public Leap.Unity.Interaction.Anchor anchor;
 	public Leap.Unity.Interaction.AnchorGroup anchorGroup;
@@ -42,7 +44,6 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	void Start() {
-		deskParked = deskTracker.GetComponent<DeskParked>();
 		deskTrackedObject = deskTracker.GetComponent<SteamVR_TrackedObject>();
 	}
 
@@ -103,16 +104,23 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	public void StartDeskTask() {
-		MuseManager.instance.museText.SetText("Follow me to your desk!");
-		MuseManager.instance.museGuide.EnterMuse();
-		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
+		if(deskTracker.transform.position.y < -75) {
+			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again.");
+			MuseManager.instance.museGuide.EnterMuse();
+			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse());
+		} else {
+			MuseManager.instance.museText.SetText("Follow me to your desk!");
+			MuseManager.instance.museGuide.EnterMuse();
+			MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
+		}
+		
 	}
 	// void DeskStage20() {	MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30); } //simplified into above
 	void DeskStage30() {
 		deskModel.SetActive(true);
 		//isTracking = true;
 		currentState = DeskState.Placing;
-		deskParked.parked = false;
+		parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
 		MuseManager.instance.museText.SetText("Put your desk where you want it!");
@@ -150,7 +158,7 @@ public class DeskManager : MonoBehaviour {
 	//confirm that the desk is parked where it is supposed to be and the muse leaves
 	public void ConfirmPark() {
 		currentState = DeskState.Disabled;
-		deskParked.parked = true;
+		parked = true;
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);

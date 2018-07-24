@@ -74,6 +74,7 @@ public class GuideToPoint : MonoBehaviour {
 		//set the target and the start position and let the muse go
 		target = targetPoint;
 		startPosition = transform;
+		MuseManager.instance.SetEffectsActive(true);
 		StartCoroutine(MoveToTarget(completedEvent));
 	}
 
@@ -87,7 +88,7 @@ public class GuideToPoint : MonoBehaviour {
 	public bool IsAtTarget() {
 
 		//if the muse is close enough to its target, we'll say it's at the target and can stop
-		return (Vector3.SqrMagnitude(target.position-transform.position) < 0.004f); 
+		return (Vector3.SqrMagnitude(target.position-transform.position) < 0.05f); 
 
 		// if (guiding) return false;
 		// else return true;
@@ -98,7 +99,7 @@ public class GuideToPoint : MonoBehaviour {
 		//MuseManager.instance.clearingMuse = true;
 		//StartCoroutine(MuseEntry(completedEvent));
 
-		transform.parent.SetParent(null);
+		transform.SetParent(MuseManager.instance.transform);
 		transform.position = entryPoints[(int)entryDirection].position;
 		GuideTo(startPoint, completedEvent);
 	}
@@ -117,7 +118,8 @@ public class GuideToPoint : MonoBehaviour {
 	}
 	void CompletedExit() {
 		//keep the muse out of the way and clear its text before doing the callback
-		transform.parent.SetParent(entryPoints[(int)entryDirection]);
+		transform.SetParent(entryPoints[(int)entryDirection]);
+		MuseManager.instance.SetEffectsActive(false);
 		MuseManager.instance.museText.ClearText();
 		if (storedCompletedEvent != null)
 			storedCompletedEvent();

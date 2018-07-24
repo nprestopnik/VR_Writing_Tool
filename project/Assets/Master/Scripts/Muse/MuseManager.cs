@@ -17,6 +17,9 @@ public class MuseManager : MonoBehaviour {
 	public GuideToPoint museGuide;
 	public MuseNavigation museNavigator;
 
+	public GameObject trail;
+	public ParticleSystem particles;
+
 	//public bool clearingMuse; //if the muse is called again while it is in the middle of a task, the muse will clear
 		//there are checks in the functions of the above muse components to see if this is ever true
 		//if the muse is clearing, those functions will reset this boolean and return so they don't mess up the next task
@@ -32,7 +35,7 @@ public class MuseManager : MonoBehaviour {
 	}
 
 	void Update() {
-		//Debug.Log("Clearing Muse: " + clearingMuse);
+		particles.transform.position = museGuide.transform.position;
 	}
 
 
@@ -47,6 +50,12 @@ public class MuseManager : MonoBehaviour {
 		if(completedEvent != null) {
 			completedEvent();
 		}
+	}
+
+	public void SetEffectsActive(bool active) {
+		trail.SetActive(active);
+		particles.gameObject.SetActive(active);
+		particles.Clear();
 	}
 	
 }
