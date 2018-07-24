@@ -15,14 +15,20 @@ MonoBehaviour:
   icon: {fileID: 2800000, guid: f49b5c2974e98a14c98b58ae0d5593a4, type: 3}
   blockTint: {r: 0, g: 0, b: 0, a: 1}
   skybox: {fileID: 0}
-  sunRotation: {x: 0, y: 0, z: 0}
-  sunIntensity: 0
-  sunColor: {r: 0, g: 0, b: 0, a: 0}
-  fillLightRotation: {x: 0, y: 0, z: 0}
-  fillLightIntensity: 0
-  fillLightColor: {r: 0, g: 0, b: 0, a: 0}
-  transientSounds: []
+  sunRotation: {x: 27.42, y: 155.244, z: 248.106}
+  sunIntensity: 0.6
+  sunColor: {r: 0.27058825, g: 0.34509805, b: 0.5764706, a: 0}
+  fillLightRotation: {x: 32.873, y: 340.531, z: 106.25}
+  fillLightIntensity: 0.3
+  fillLightColor: {r: 0.15294118, g: 0, b: 1, a: 0}
+  transientSounds:
+  - {fileID: 8300000, guid: 175e78242932d8845b7a3661eaa333c5, type: 3}
+  - {fileID: 8300000, guid: 49051b21190898848bc5fd3d3672149b, type: 3}
+  - {fileID: 8300000, guid: 9bdaaca1c468b5340818b580367c6a48, type: 3}
+  - {fileID: 8300000, guid: 4c33978659af37b4c9040df416a4d672, type: 3}
+  - {fileID: 8300000, guid: 8a1d73278c56f754688e532b6cea9a7c, type: 3}
+  - {fileID: 8300000, guid: 6c40e9a7f13c4254ea63463dc6366390, type: 3}
   transientVolume: 1
-  minSoundDelay: 0
-  maxSoundDelay: 0
-  otherVisualEffects: 0
+  minSoundDelay: 1
+  maxSoundDelay: 4
+  otherVisualEffects: 1

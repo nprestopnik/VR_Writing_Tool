@@ -15,9 +15,9 @@ MonoBehaviour:
   icon: {fileID: 2800000, guid: 71368098e6554284fbf82bcfeee10024, type: 3}
   blockTint: {r: 1, g: 1, b: 1, a: 1}
   skybox: {fileID: 0}
-  sunRotation: {x: 0, y: 0, z: 0}
-  sunIntensity: 0
-  sunColor: {r: 0, g: 0, b: 0, a: 0}
+  sunRotation: {x: 33.262, y: 215.118, z: 256.158}
+  sunIntensity: 0.7
+  sunColor: {r: 0.6528037, g: 0.6792453, b: 0.5735137, a: 0}
   fillLightRotation: {x: 0, y: 0, z: 0}
   fillLightIntensity: 0
   fillLightColor: {r: 0, g: 0, b: 0, a: 0}

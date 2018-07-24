@@ -14,17 +14,23 @@ MonoBehaviour:
   settingName: Bright
   icon: {fileID: 2800000, guid: 61acb7849155bc34cb128098d2009d93, type: 3}
   blockTint: {r: 0, g: 0.74509805, b: 1, a: 1}
-  skybox: {fileID: 2100000, guid: f76dcf13f63c34ed386b0ac21d830876, type: 2}
-  sunRotation: {x: 63, y: 140, z: 104}
-  sunIntensity: 0.8
-  sunColor: {r: 1, g: 0.9490196, b: 0.79607844, a: 1}
+  skybox: {fileID: 2100000, guid: 31c370985aa2cb54cae3a71fcbec3ba6, type: 2}
+  sunRotation: {x: 59.538, y: 387.379, z: 304.611}
+  sunIntensity: 1
+  sunColor: {r: 1, g: 0.94509804, b: 0.84313726, a: 1}
   fillLightRotation: {x: 33, y: 340, z: 106}
-  fillLightIntensity: 0.2
+  fillLightIntensity: 0.45
   fillLightColor: {r: 0.8352941, g: 1, b: 1, a: 1}
   transientSounds:
-  - {fileID: 8300000, guid: 508745564744b433a9aedda75fa7d79e, type: 3}
-  - {fileID: 8300000, guid: 72d32528e9dc44945ad2804178717178, type: 3}
-  transientVolume: 1
-  minSoundDelay: 2
-  maxSoundDelay: 10
+  - {fileID: 8300000, guid: 59f052ff5ebaa20478656ebad7711f5a, type: 3}
+  - {fileID: 8300000, guid: d4bdf9eb02d4c1b42807d0ec5123c894, type: 3}
+  - {fileID: 8300000, guid: d28df26a815b8f24a84e9252832fc608, type: 3}
+  - {fileID: 8300000, guid: 888add574078672478317fa2c311ebbf, type: 3}
+  - {fileID: 8300000, guid: bf6c128f728cf2645aef3328705b0d6d, type: 3}
+  - {fileID: 8300000, guid: 093bb62e52ad4eb4cace609f2ea4ba27, type: 3}
+  - {fileID: 8300000, guid: ccc4c3f05e8de624980a422835f15f32, type: 3}
+  - {fileID: 8300000, guid: 9c5bc9327d961ed4ca17e2fd3dea61cf, type: 3}
+  transientVolume: 0.5
+  minSoundDelay: 1
+  maxSoundDelay: 3
   otherVisualEffects: 0

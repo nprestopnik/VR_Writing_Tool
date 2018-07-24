@@ -22,9 +22,13 @@ MonoBehaviour:
   fillLightIntensity: 0.8
   fillLightColor: {r: 0.2784314, g: 0.2509804, b: 0.43529412, a: 1}
   transientSounds:
-  - {fileID: 8300000, guid: 508745564744b433a9aedda75fa7d79e, type: 3}
-  - {fileID: 8300000, guid: 72d32528e9dc44945ad2804178717178, type: 3}
+  - {fileID: 8300000, guid: 175e78242932d8845b7a3661eaa333c5, type: 3}
+  - {fileID: 8300000, guid: 49051b21190898848bc5fd3d3672149b, type: 3}
+  - {fileID: 8300000, guid: 9bdaaca1c468b5340818b580367c6a48, type: 3}
+  - {fileID: 8300000, guid: 4c33978659af37b4c9040df416a4d672, type: 3}
+  - {fileID: 8300000, guid: 8a1d73278c56f754688e532b6cea9a7c, type: 3}
+  - {fileID: 8300000, guid: 6c40e9a7f13c4254ea63463dc6366390, type: 3}
   transientVolume: 1
-  minSoundDelay: 2
-  maxSoundDelay: 6
-  otherVisualEffects: 0
+  minSoundDelay: 1
+  maxSoundDelay: 4
+  otherVisualEffects: 1

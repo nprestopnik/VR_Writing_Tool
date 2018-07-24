@@ -44,6 +44,8 @@ public class EnvironmentManager : MonoBehaviour {
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
 		audioManager = GetComponent<EnvironmentAudioManager>();
+		SetWeather(weatherPresets[0]); //Temp: used to force a weather for content creation
+		SetLighting(moodPresets[0]); //Temp: used to force a mood for content creation
 	}
 
 	void Update() {
@@ -64,6 +66,8 @@ public class EnvironmentManager : MonoBehaviour {
 	public void SetWeather(WeatherPreset newWeather) {
 		//check to make sure that each element has been referenced before setting its properties
 		//then set the appropriate things based on what a preset contains, using the given preset
+
+		print(newWeather);
 
 		if(precipitation) {
 			var particleEmission = precipitation.emission;
