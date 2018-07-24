@@ -19,10 +19,10 @@ x0 - some null reference exception
 - tiny text in project creation
 
 DESK (Saul)
-- need real controls on the desk
+- need real control art on the desk
 x- lock button doesn't work
 x- world moves when you're near the desk - collision happening
-- desktop mouse needs refinements - ability to touch screen
+x- desktop mouse needs refinements - ability to touch screen
 - unity crashed when we opened word
 ?- click / right click needs some work
 (Can't reproduce)- image shows up as a white nothing on the desk cube display when copied from Chrome
@@ -37,7 +37,7 @@ x- desktop screen came up tiny with resolution change
 - curved screen for desktop
 x- desk moving when sitting/head is close - Saul has theories
 x- desk hovering off ground
-- keyboard clicking with mouse will be a thing
+~- keyboard clicking with mouse will be a thing
 - desk tracking lock is easy to forget about
 x- when desk doesn't have track at beginning, parking is weird
 - lighthouses visible through walls - ghostly like desk

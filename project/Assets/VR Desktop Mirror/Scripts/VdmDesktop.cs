@@ -72,6 +72,8 @@ public class VdmDesktop : MonoBehaviour
 
     public void Update()
     {
+        print(isMousing);
+
         bool skip = false;
         if (Visible() == false)
             skip = true;
@@ -239,11 +241,13 @@ public class VdmDesktop : MonoBehaviour
 
     float mouseClickTimestamp;
     float clickAgainCooldown;
+    bool isMousing = false;
 
     public void CheckRaycast(Vector3 rayOrigin, Vector3 rayDirection) {
         Vector3 origin;
         Vector3 direction;
         //Quaternion rotation;
+        isMousing = false;
 
         origin = rayOrigin;
         direction = rayDirection;
@@ -254,8 +258,13 @@ public class VdmDesktop : MonoBehaviour
 
             foreach (RaycastHit rcast in rcasts)
             {
-                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 0.3f)
+                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 0.3f) {
+                    
                     continue;
+                } else {
+                    isMousing = true; 
+                }
+                    
 
                 //hitScreen = true;
 
@@ -321,29 +330,31 @@ public class VdmDesktop : MonoBehaviour
     }
 
     void HandleKeyDown(RawKey key) {
-        print(key.ToString());
-        if(key == RawKey.Control) {
-            print("LEFT CLICK");
-            m_manager.SimulateMouseLeftDown();
-            VdmDesktopManager.ActionInThisFrame = true;
-        } else if(key == RawKey.Menu) {
-            print("RIGHT CLICK");
-            m_manager.SimulateMouseRightDown();
-            VdmDesktopManager.ActionInThisFrame = true;
+        if(isMousing) {
+            print(key.ToString());
+            if(key == RawKey.Space) {
+                print("LEFT CLICK");
+                m_manager.SimulateMouseLeftDown();
+                VdmDesktopManager.ActionInThisFrame = true;
+            } else if(key == RawKey.LeftMenu || key == RawKey.RightMenu) {
+                print("RIGHT CLICK");
+                m_manager.SimulateMouseRightDown();
+                VdmDesktopManager.ActionInThisFrame = true;
+            }
         }
-        
 	}
 
 	//Event for Key Up
 	void HandleKeyUp(RawKey key) {
-        if(key == RawKey.Control) {
-            m_manager.SimulateMouseLeftUp();
-            VdmDesktopManager.ActionInThisFrame = true;
-        } else if(key == RawKey.Menu) {
-            m_manager.SimulateMouseRightUp();
-            VdmDesktopManager.ActionInThisFrame = true;
+        if(isMousing) {
+            if(key == RawKey.Space) {
+                m_manager.SimulateMouseLeftUp();
+                VdmDesktopManager.ActionInThisFrame = true;
+            } else if(key == RawKey.LeftMenu || key == RawKey.RightMenu) {
+                m_manager.SimulateMouseRightUp();
+                VdmDesktopManager.ActionInThisFrame = true;
+            }
         }
-        
 	}
 
 #if VDM_SteamVR 
