@@ -17,6 +17,9 @@ public class IgnoreCubeCameraCollision : MonoBehaviour {
 		
 		//get collider
 		currentCollider = GetComponent<Collider>();
+		if(cameraCollider == null) {
+			cameraCollider = PlayerController.instance.collisionCapsule;
+		}
 
 		//ignore cube-camera collisions
 		Physics.IgnoreCollision(currentCollider, cameraCollider);

@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
+using System.Linq;
 
 //to differentiate between the upper and lower rows of the menu cubes because there are two
 public enum MenuRow {
@@ -45,9 +46,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 	Only sent one preset array, and be certain it is of the type specified by the type variable, otherwise everything will break
 	If you specify which array you are sending using the named parameter syntax, you don't have to fill the other in with null
 	*/
-	public GameObject[] CreateCubeRow(MenuRow row, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
+	public WeatherMoodContainer[] CreateCubeRow(MenuRow row, EnvironmentCubeType type, LightingPreset[] moodPresets = null, WeatherPreset[] weatherPresets = null) {
 		
-		GameObject[] cubes; //this array will hold the entire row of cubes
+		WeatherMoodContainer[] cubes; //this array will hold the entire row of cubes
 
 		int rowSize; //the number of cubes in the row
 		GameObject prefab; //which prefab is being used for this row, based on the type of cube
@@ -60,7 +61,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		//set row size, prefab, parents, and positioning based on type of row
 		if(type == EnvironmentCubeType.mood) {
 			rowSize = moodPresets.Length;
-			cubes = new GameObject[rowSize];
+			cubes = new WeatherMoodContainer[rowSize];
 
 			prefab = moodCubePrefab;
 			upperParent = cubeLocationSetter.moodUpperParent;
@@ -70,7 +71,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			hiddenLowerPosition = moodHiddenLower.position;
 		} else {
 			rowSize = weatherPresets.Length;
-			cubes = new GameObject[rowSize];
+			cubes = new WeatherMoodContainer[rowSize];
 
 			prefab = weatherCubePrefab;
 			upperParent = cubeLocationSetter.weatherUpperParent;
@@ -135,7 +136,7 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			}
 			
 			//add cubes and tweens to master arrays
-			cubes[i] = cube;
+			cubes[i] = setter;
 			visiblePoints[i] = setter.tweenVisible.gameObject;
 		}
 
@@ -174,9 +175,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			numLower = 0;
 		}
 
-		GameObject[] allCubes = new GameObject[numCubesSet]; //all of the cubes that will be created
-		GameObject[] upperCubes; //only the cubes for the upper row
-		GameObject[] lowerCubes; //only the cubes for the lower row
+		WeatherMoodContainer[] allCubes = new WeatherMoodContainer[numCubesSet]; //all of the cubes that will be created
+		WeatherMoodContainer[] upperCubes; //only the cubes for the upper row
+		WeatherMoodContainer[] lowerCubes; //only the cubes for the lower row
 
 		SubMenu submenu; //the submenu that these cubes will be attached to
 
@@ -198,6 +199,9 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			upperCubes = CreateCubeRow(MenuRow.upper, EnvironmentCubeType.mood, moodPresets: upper);
 			lowerCubes = CreateCubeRow(MenuRow.lower, EnvironmentCubeType.mood, moodPresets: lower);
 
+			cubeLocationSetter.moodCubesUpper = upperCubes.Select(x => x.tweenVisible.gameObject).ToArray();
+			cubeLocationSetter.moodCubesLower = lowerCubes.Select(x => x.tweenVisible.gameObject).ToArray();
+
 			//grab the right submenu
 			submenu = moodSubmenu;
 		} else {
@@ -216,8 +220,13 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 			upperCubes = CreateCubeRow(MenuRow.upper, EnvironmentCubeType.weather, weatherPresets: upper);
 			lowerCubes = CreateCubeRow(MenuRow.lower, EnvironmentCubeType.weather, weatherPresets: lower);
 
+			cubeLocationSetter.weatherCubesUpper = upperCubes.Select(x => x.tweenVisible.gameObject).ToArray();
+			cubeLocationSetter.weatherCubesLower = lowerCubes.Select(x => x.tweenVisible.gameObject).ToArray();
+
 			submenu = weatherSubmenu;
 		}
+
+
 
 		//fill the all cubes array with the cubes from both rows
 		for(int i = 0; i < allCubes.Length; i++) {
@@ -232,9 +241,10 @@ public class CreateWeatherMoodCubes : MonoBehaviour {
 		submenu.cubeTweens = new TransformTweenBehaviour[allCubes.Length];
 		for (int i = 0; i < allCubes.Length; i++) {
 			//get the tween behaviour from each cube and add it to the submenu array
-			submenu.cubeTweens[i] = allCubes[i].transform.Find("Cube Tween").GetComponent<TransformTweenBehaviour>();
+			submenu.cubeTweens[i] = allCubes[i].tween;
 		}
 		
 	}
+
 
 }

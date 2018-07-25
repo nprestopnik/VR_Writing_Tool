@@ -38,6 +38,7 @@ public class TravelSystem : MonoBehaviour {
 	}
 
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+		//SteamVR_Fade.View(Color.clear, 1.5f);
         setGoalScene(goalRoomIndex);
 		//Load features
 		Feature[] features = SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].getFeaturesArray();
@@ -80,6 +81,8 @@ public class TravelSystem : MonoBehaviour {
     }
 
 	public void loadGoalScene() {
+		//SteamVR_Fade.View(Color.black, 0.5f);
+
 		 //Swaps scenes
 		//Tests for scenery being the same in each room 
 		//Problematic because scene does not reset

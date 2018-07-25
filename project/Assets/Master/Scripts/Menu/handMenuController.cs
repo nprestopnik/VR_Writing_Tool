@@ -68,6 +68,8 @@ public class handMenuController : MonoBehaviour {
 	public void createIdeaBoard() {
 		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, head.forward + head.transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
 		WhiteboardData data = new WhiteboardData();
+		whiteboard.transform.root.position = PositionThrownObject.instance.DeterminePosition();
+		whiteboard.transform.root.rotation = PositionThrownObject.instance.DetermineRotation(whiteboard.transform.root.position);
 		data.position = whiteboard.transform.root.position;
 		data.rotation = whiteboard.transform.root.rotation;
 		whiteboard.orientRotation();

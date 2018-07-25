@@ -21,7 +21,7 @@ public class GuideToPoint : MonoBehaviour {
 	public Transform[] entryPoints; //the array of entry points
 	public Transform startPoint; //the point where the muse will sit in front of your face
 
-	public float speed = 5f;
+	public float speed = 10f;
 
 	public Transform target; //where the muse is going to go next
 

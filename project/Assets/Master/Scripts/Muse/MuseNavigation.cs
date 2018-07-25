@@ -55,6 +55,16 @@ public class MuseNavigation : MonoBehaviour {
 
 		// 	MuseManager.instance.clearingMuse = false;
 		// }
+
+		if(agent.gameObject.activeInHierarchy) {
+
+			if(Vector3.Distance(agent.transform.position, PlayerController.instance.head.position) < 0.5f) {
+				agent.speed = 6f;
+			} else {
+				agent.speed = 2.9f;
+			}
+
+		}
 		
 		//if the muse gets close to its target, turn off all its navigation things and start the completed event
 		if(agent.gameObject.activeInHierarchy && agent.remainingDistance < 1f && agent.remainingDistance != 0) {
@@ -113,7 +123,7 @@ public class MuseNavigation : MonoBehaviour {
 	void startRoomGuide() {
 		//use the muse callback system to bring the muse in, have it navigate to a point, and wait at the hallway with the right text
 		MuseManager.instance.museGuide.EnterMuse(); 
-		MuseManager.instance.Pause(4f, ()=> NavigateToPoint(hallwayPoint.position, 
+		MuseManager.instance.Pause(2f, ()=> NavigateToPoint(hallwayPoint.position, 
 			()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!", 
 			()=> GetToHallway())));
 	}

@@ -98,10 +98,15 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
+			
+
 			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
 
 			currLineR = go.AddComponent<LineRenderer>();
+			currLineR.sortingOrder = numLines;
+			numLines++;
+
 			currLineR.startWidth = lineWidth;
 			currLineR.endWidth = lineWidth;
 			currLineR.material = lMat;
@@ -110,8 +115,8 @@ public class Whiteboard : MonoBehaviour {
 			points = new List<Vector3>();
 			points.Add(pointer.transform.localPosition);
 			
-			currLineR.sortingOrder = numLines;
-			numLines++;
+			
+			
 
 			redoHistory = new List<LineDataContainer>();
 
@@ -321,12 +326,13 @@ public class Whiteboard : MonoBehaviour {
 			currData.data.sortingOrder = l.sortingOrder;
 
 			currLineR = go.AddComponent<LineRenderer>();
+			currLineR.sortingOrder = l.sortingOrder;
 			currLineR.startWidth = l.lineWidth;
 			currLineR.endWidth = l.lineWidth;
 			currLineR.material = lineMaterials[l.lMatIndex];
 			currLineR.useWorldSpace = false;
 			currLineR.alignment = LineAlignment.Local;
-			currLineR.sortingOrder = l.sortingOrder;
+			
 			
 			currLineR.positionCount = l.points.Length - 1;
 			currLineR.SetPositions(l.points);
