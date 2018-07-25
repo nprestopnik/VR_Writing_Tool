@@ -14,15 +14,21 @@ MonoBehaviour:
   settingName: Storms
   icon: {fileID: 2800000, guid: 096d76440a23d794ab032ca18ee597da, type: 3}
   blockTint: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
-  skybox: {fileID: 0}
-  sunRotation: {x: 0, y: 0, z: 0}
-  sunIntensity: 0
-  sunColor: {r: 0, g: 0, b: 0, a: 0}
-  fillLightRotation: {x: 0, y: 0, z: 0}
-  fillLightIntensity: 0
-  fillLightColor: {r: 0, g: 0, b: 0, a: 0}
-  transientSounds: []
+  skybox: {fileID: 2100000, guid: a6ea96ef773d76149bec5827d06b83a3, type: 2}
+  sunRotation: {x: 32.671, y: 180.635, z: 261.551}
+  sunIntensity: 0.4
+  sunColor: {r: 0.654902, g: 0.67058825, b: 0.6039216, a: 0}
+  fillLightRotation: {x: 11.122, y: 197.08, z: 79.019}
+  fillLightIntensity: 0.6
+  fillLightColor: {r: 0.52156866, g: 0.5372549, b: 0.42352942, a: 0}
+  transientSounds:
+  - {fileID: 8300000, guid: 4bdd4fdc3a2af0042bfe59dc3b5938ee, type: 3}
+  - {fileID: 8300000, guid: 10c7f9cc3e7a88045bc81b23c30bcc1e, type: 3}
+  - {fileID: 8300000, guid: 0b81ab71ddaf7d0408c378a92e9a0e35, type: 3}
+  - {fileID: 8300000, guid: bce0dec9e0662bd45ac8ec111622ebf3, type: 3}
+  - {fileID: 8300000, guid: 255f1e0226a32c14aae803ddc18d422e, type: 3}
+  - {fileID: 8300000, guid: d4c8e3ef6ba9a7244a16675c4ad981d8, type: 3}
   transientVolume: 1
-  minSoundDelay: 0
-  maxSoundDelay: 0
+  minSoundDelay: 1
+  maxSoundDelay: 9
   otherVisualEffects: 0

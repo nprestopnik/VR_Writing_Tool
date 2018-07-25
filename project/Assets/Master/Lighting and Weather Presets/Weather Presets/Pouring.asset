@@ -14,14 +14,14 @@ MonoBehaviour:
   settingName: Pouring
   icon: {fileID: 2800000, guid: ce3940d67caeefd4ebe11e3112010fc7, type: 3}
   blockTint: {r: 1, g: 1, b: 1, a: 1}
-  precipitationIntensity: 1000
-  windIntensity: 0.5
-  windTurbulence: 0.2
-  windPulseMag: 1
-  windPulseFreq: 1
+  precipitationIntensity: 2500
+  windIntensity: 0.3
+  windTurbulence: 0.1
+  windPulseMag: 0.1
+  windPulseFreq: 0.1
   fog: 1
   fogColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.23921569}
-  fogDensity: 0.01
-  fogMode: 3
-  ambientSound: {fileID: 0}
-  ambientVolume: 1
+  fogDensity: 0.03
+  fogMode: 2
+  ambientSound: {fileID: 8300000, guid: 574a50782d3f14b0b8a7968ed1e68f41, type: 3}
+  ambientVolume: 0.5

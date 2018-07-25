@@ -14,15 +14,23 @@ MonoBehaviour:
   settingName: Dawn
   icon: {fileID: 2800000, guid: a28d145a8cca6814e92d61c6708ac6b7, type: 3}
   blockTint: {r: 1, g: 0.75686276, b: 0.7137255, a: 1}
-  skybox: {fileID: 0}
-  sunRotation: {x: 0, y: 0, z: 0}
-  sunIntensity: 0
-  sunColor: {r: 0, g: 0, b: 0, a: 0}
-  fillLightRotation: {x: 0, y: 0, z: 0}
-  fillLightIntensity: 0
-  fillLightColor: {r: 0, g: 0, b: 0, a: 0}
-  transientSounds: []
-  transientVolume: 1
-  minSoundDelay: 0
-  maxSoundDelay: 0
+  skybox: {fileID: 2100000, guid: 974e137875d0b1740b530629cb1dec06, type: 2}
+  sunRotation: {x: 15.171, y: 140.881, z: 262.637}
+  sunIntensity: 0.3
+  sunColor: {r: 1, g: 0.88235295, b: 0.53333336, a: 0}
+  fillLightRotation: {x: 32.873, y: 340.531, z: 106.25}
+  fillLightIntensity: 0.7
+  fillLightColor: {r: 0.2627451, g: 0.2509804, b: 0.4627451, a: 0}
+  transientSounds:
+  - {fileID: 8300000, guid: 59f052ff5ebaa20478656ebad7711f5a, type: 3}
+  - {fileID: 8300000, guid: d4bdf9eb02d4c1b42807d0ec5123c894, type: 3}
+  - {fileID: 8300000, guid: d28df26a815b8f24a84e9252832fc608, type: 3}
+  - {fileID: 8300000, guid: 888add574078672478317fa2c311ebbf, type: 3}
+  - {fileID: 8300000, guid: bf6c128f728cf2645aef3328705b0d6d, type: 3}
+  - {fileID: 8300000, guid: 093bb62e52ad4eb4cace609f2ea4ba27, type: 3}
+  - {fileID: 8300000, guid: ccc4c3f05e8de624980a422835f15f32, type: 3}
+  - {fileID: 8300000, guid: 9c5bc9327d961ed4ca17e2fd3dea61cf, type: 3}
+  transientVolume: 0.6
+  minSoundDelay: 3
+  maxSoundDelay: 10
   otherVisualEffects: 0

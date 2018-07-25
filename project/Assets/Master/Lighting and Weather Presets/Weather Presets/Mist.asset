@@ -14,14 +14,14 @@ MonoBehaviour:
   settingName: Mist
   icon: {fileID: 2800000, guid: 45ef40c67f5781a428a9e748d704c76a, type: 3}
   blockTint: {r: 0.76862746, g: 1, b: 0.85882354, a: 1}
-  precipitationIntensity: 25
-  windIntensity: 0.2
-  windTurbulence: 0.2
-  windPulseMag: 1
-  windPulseFreq: 1
+  precipitationIntensity: 100
+  windIntensity: 0.1
+  windTurbulence: 0.1
+  windPulseMag: 0.1
+  windPulseFreq: 0.1
   fog: 1
-  fogColor: {r: 0.6132076, g: 0.5987451, b: 0.5987451, a: 0.14117648}
-  fogDensity: 0.001
-  fogMode: 3
-  ambientSound: {fileID: 8300000, guid: ad1b80e0311ac904c83b2a7f90aebda3, type: 3}
-  ambientVolume: 0.1
+  fogColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0.14117648}
+  fogDensity: 0.03
+  fogMode: 2
+  ambientSound: {fileID: 8300000, guid: 7cd60839564f1400da8d5acb879a1454, type: 3}
+  ambientVolume: 0.5

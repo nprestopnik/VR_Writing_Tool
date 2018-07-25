@@ -14,7 +14,7 @@ MonoBehaviour:
   settingName: Night
   icon: {fileID: 2800000, guid: f49b5c2974e98a14c98b58ae0d5593a4, type: 3}
   blockTint: {r: 0, g: 0, b: 0, a: 1}
-  skybox: {fileID: 0}
+  skybox: {fileID: 2100000, guid: 542b09e628611674ea477bd5a2f9b7f0, type: 2}
   sunRotation: {x: 27.42, y: 155.244, z: 248.106}
   sunIntensity: 0.6
   sunColor: {r: 0.27058825, g: 0.34509805, b: 0.5764706, a: 0}
@@ -29,6 +29,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8a1d73278c56f754688e532b6cea9a7c, type: 3}
   - {fileID: 8300000, guid: 6c40e9a7f13c4254ea63463dc6366390, type: 3}
   transientVolume: 1
-  minSoundDelay: 1
-  maxSoundDelay: 4
+  minSoundDelay: 7
+  maxSoundDelay: 20
   otherVisualEffects: 1

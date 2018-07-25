@@ -15,13 +15,13 @@ MonoBehaviour:
   icon: {fileID: 2800000, guid: a231662a057eede4690126e8043c22b9, type: 3}
   blockTint: {r: 0.32156864, g: 0.32156864, b: 0.32156864, a: 1}
   precipitationIntensity: 8000
-  windIntensity: 0.1
+  windIntensity: 0.5
   windTurbulence: 0.1
   windPulseMag: 0.1
   windPulseFreq: 0.1
   fog: 1
   fogColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.2784314}
   fogDensity: 0.075
-  fogMode: 3
-  ambientSound: {fileID: 8300000, guid: 574a50782d3f14b0b8a7968ed1e68f41, type: 3}
-  ambientVolume: 1
+  fogMode: 2
+  ambientSound: {fileID: 8300000, guid: 88061fac8efd8234691ea43dc65697b4, type: 3}
+  ambientVolume: 0.6

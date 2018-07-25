@@ -14,15 +14,22 @@ MonoBehaviour:
   settingName: Overcast
   icon: {fileID: 2800000, guid: 71368098e6554284fbf82bcfeee10024, type: 3}
   blockTint: {r: 1, g: 1, b: 1, a: 1}
-  skybox: {fileID: 0}
-  sunRotation: {x: 33.262, y: 215.118, z: 256.158}
-  sunIntensity: 0.7
-  sunColor: {r: 0.6528037, g: 0.6792453, b: 0.5735137, a: 0}
-  fillLightRotation: {x: 0, y: 0, z: 0}
-  fillLightIntensity: 0
-  fillLightColor: {r: 0, g: 0, b: 0, a: 0}
-  transientSounds: []
+  skybox: {fileID: 2100000, guid: 0f6225533cba1b445a74653fa2ccf81c, type: 2}
+  sunRotation: {x: 13.774, y: 183.283, z: 262.637}
+  sunIntensity: 0.8
+  sunColor: {r: 0.8392157, g: 0.8117647, b: 0.79607844, a: 0}
+  fillLightRotation: {x: 32.873, y: 213.788, z: 82.645}
+  fillLightIntensity: 0.8
+  fillLightColor: {r: 0.5568628, g: 0.49803922, b: 0.53333336, a: 0}
+  transientSounds:
+  - {fileID: 8300000, guid: 7d0a6e76d73bf39449b17735990fd91d, type: 3}
+  - {fileID: 8300000, guid: 2c63bf3ccc1216a4182c5e866244343c, type: 3}
+  - {fileID: 8300000, guid: 4205b49f465d26c4f8f375a5e124fd60, type: 3}
+  - {fileID: 8300000, guid: 89075ac04b8509f4fbb02c104920a752, type: 3}
+  - {fileID: 8300000, guid: 16b45b1590a92ff449be83d5645bcb54, type: 3}
+  - {fileID: 8300000, guid: d92f9057717486143b81ece269db5045, type: 3}
+  - {fileID: 8300000, guid: 23a7fd84511dc0c4da421a872c4bd758, type: 3}
   transientVolume: 1
-  minSoundDelay: 0
-  maxSoundDelay: 0
+  minSoundDelay: 2
+  maxSoundDelay: 10
   otherVisualEffects: 0

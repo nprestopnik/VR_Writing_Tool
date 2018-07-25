@@ -44,8 +44,8 @@ public class EnvironmentManager : MonoBehaviour {
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
 		audioManager = GetComponent<EnvironmentAudioManager>();
-		SetWeather(weatherPresets[0]); //Temp: used to force a weather for content creation
-		SetLighting(moodPresets[0]); //Temp: used to force a mood for content creation
+		SetWeather(weatherPresets[0]); //Force the initial weather
+		SetLighting(moodPresets[0]); //Force the initial mood
 	}
 
 	void Update() {
