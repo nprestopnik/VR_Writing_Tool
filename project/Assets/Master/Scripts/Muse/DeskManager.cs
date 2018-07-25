@@ -34,7 +34,8 @@ public class DeskManager : MonoBehaviour {
 	public MeshRenderer[] deskWood;
 	public Material deskMountMAT;
 	public Material deskWoodMAT;
-	public Material ghostlyMAT;
+	public Material ghostlyMountMAT;
+	public Material ghostlyWoodMAT;
 
 	public bool parked = true; //whether or not the desk is parked in its "inactive" location
 
@@ -58,13 +59,13 @@ public class DeskManager : MonoBehaviour {
 			//currentState = DeskState.Enabled;
 			isTracking = true;
 
-			if(deskMount.material != ghostlyMAT) {
+			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
 		} else if(currentState == DeskState.Parking) {
 			//currentState = DeskState.Disabled;
 			isTracking = true;
-			if(deskMount.material != ghostlyMAT) {
+			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
 		} else if(currentState == DeskState.Enabled) {
@@ -121,9 +122,9 @@ public class DeskManager : MonoBehaviour {
 
 	void setDeskMaterials(bool isGhostly) {
 		if(isGhostly) {
-			deskMount.material = ghostlyMAT;
+			deskMount.material = ghostlyMountMAT;
 			foreach(MeshRenderer m in deskWood) {
-				m.material = ghostlyMAT;
+				m.material = ghostlyWoodMAT;
 			}
 		} else {
 			deskMount.material = deskMountMAT;
