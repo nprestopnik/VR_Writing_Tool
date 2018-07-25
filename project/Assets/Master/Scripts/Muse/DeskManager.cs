@@ -30,6 +30,12 @@ public class DeskManager : MonoBehaviour {
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
 
+	public MeshRenderer deskMount;
+	public MeshRenderer[] deskWood;
+	public Material deskMountMAT;
+	public Material deskWoodMAT;
+	public Material ghostlyMAT;
+
 	public bool parked = true; //whether or not the desk is parked in its "inactive" location
 
 	private bool isTracking; //are we supposed to be tracking the tracker irhgt now
@@ -51,12 +57,22 @@ public class DeskManager : MonoBehaviour {
 		if(currentState == DeskState.Placing) {
 			//currentState = DeskState.Enabled;
 			isTracking = true;
+
+			if(deskMount.material != ghostlyMAT) {
+				setDeskMaterials(true);
+			}
 		} else if(currentState == DeskState.Parking) {
 			//currentState = DeskState.Disabled;
 			isTracking = true;
+			if(deskMount.material != ghostlyMAT) {
+				setDeskMaterials(true);
+			}
 		} else if(currentState == DeskState.Enabled) {
 			//currentState = DeskState.Placing;
 			isTracking = false;
+			if(deskMount.material != deskMountMAT) {
+				setDeskMaterials(false);
+			}
 		}
 
 
@@ -101,6 +117,20 @@ public class DeskManager : MonoBehaviour {
 		}
 		
 		
+	}
+
+	void setDeskMaterials(bool isGhostly) {
+		if(isGhostly) {
+			deskMount.material = ghostlyMAT;
+			foreach(MeshRenderer m in deskWood) {
+				m.material = ghostlyMAT;
+			}
+		} else {
+			deskMount.material = deskMountMAT;
+			foreach(MeshRenderer m in deskWood) {
+				m.material = deskWoodMAT;
+			}
+		}
 	}
 
 	public void StartDeskTask() {

@@ -189,6 +189,10 @@ public class MenuHandedness : MonoBehaviour {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
 	}
 
+	public void setHandedness(bool isRight) {
+		dominantHand = !isRight ? Handedness.left : Handedness.right;
+	}
+
 	public Handedness GetHandedness() {
 		return dominantHand;
 	}
