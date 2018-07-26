@@ -26,12 +26,12 @@ public class ChairSizer : MonoBehaviour {
 		// 	Destroy(t.gameObject);
 		// }
 
-		foreach(Vector3 v in  calibrationPoints) {
-			GameObject g = ((GameObject)Instantiate(new GameObject(), v, Quaternion.identity));
-			g.transform.SetParent(transform);
-			g.transform.localPosition = v;
-			g.transform.localRotation = Quaternion.identity;
-		}
+		// foreach(Vector3 v in  calibrationPoints) {
+		// 	GameObject g = ((GameObject)Instantiate(new GameObject(), v, Quaternion.identity));
+		// 	g.transform.SetParent(transform);
+		// 	g.transform.localPosition = v;
+		// 	g.transform.localRotation = Quaternion.identity;
+		// }
 		
 
 		GameObject chairBack = ((GameObject)Instantiate(backPivotPrefab, calibrationPoints[1], Quaternion.identity));

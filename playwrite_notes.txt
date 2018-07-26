@@ -19,7 +19,7 @@ N - need real control art on the desk
 !! - unity crashes a lot... desk?
 ~ - click / right click needs some work
 !! - image shows up as a white nothing on the desk cube display when copied from Chrome
-- Chair tracking
+~- Chair tracking
 N - desk behind wall is a bit odd - desk "ghostly" while moving
 	- manage desk tracking/locking a little better
 	- desk tracking lock is easy to forget about
@@ -50,7 +50,7 @@ N - new icon for journal world
 N - actual art for room creation and deletion, office icon
 - go to location menu thing blipped
 N - hand covering happens with menu
-- check menu handedness
+x- check menu handedness
 
 INTERACTION DESIGN
 N - starting orientation?
@@ -78,6 +78,21 @@ N - All presets need sound
 
 
 **try to do an executable for next test**
+
+NATE ART ICONS PLEASE?
+- Office Icon
+- New Journal Icon
+- Desk Park Cube Icon
+- Desk Lock/Unlock Icons
+- Desk Copy/Paste Cube Icon
+- Close menu button Icon
+- Flip through options menu button icon (Triangle buttons?)
+
+
+OTHER ART
+- Trash bin for deleting
+- Size-able chair
+
 
 
 THINGS THAT ARE DONE

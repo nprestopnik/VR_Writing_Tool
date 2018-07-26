@@ -18,6 +18,8 @@ public class DeskManager : MonoBehaviour {
 
 	DeskState currentState = DeskState.Disabled;
 
+
+	public Calibrator calibrator;
 	public GameObject muse;
 	public GameObject deskTracker; //the actual tracker
 	public GameObject deskTrackedPoint; //the tracked point on the desk model
@@ -29,6 +31,7 @@ public class DeskManager : MonoBehaviour {
 	public Transform moveMusePoint; //for the muse to stay with the desk while you are parking
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
+	public GameObject desktopDisplay;
 
 	public MeshRenderer deskMount;
 	public MeshRenderer[] deskWood;
@@ -62,18 +65,30 @@ public class DeskManager : MonoBehaviour {
 			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
+
+			// if(desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(false);
+			// }
 		} else if(currentState == DeskState.Parking) {
 			//currentState = DeskState.Disabled;
 			isTracking = true;
 			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
+
+			// if(desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(false);
+			// }
 		} else if(currentState == DeskState.Enabled) {
 			//currentState = DeskState.Placing;
 			isTracking = false;
 			if(deskMount.material != deskMountMAT) {
 				setDeskMaterials(false);
 			}
+
+			// if(!desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(true);
+			// }
 		}
 
 
@@ -91,7 +106,9 @@ public class DeskManager : MonoBehaviour {
 	float cooldown;
 
 	public void toggleDeskLock() {
+		
 		if(cooldown < Time.time) {
+			
 			if(currentState == DeskState.Placing) {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
@@ -100,6 +117,7 @@ public class DeskManager : MonoBehaviour {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
 				//isTracking = true;
+				
 			} else if(currentState == DeskState.Enabled) {
 				currentState = DeskState.Placing;
 				StartDeskTask();
@@ -149,6 +167,9 @@ public class DeskManager : MonoBehaviour {
 	// void DeskStage20() {	MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30); } //simplified into above
 	void DeskStage30() {
 		deskModel.SetActive(true);
+		foreach(Transform t in calibrator.getChairController().transform) {
+			t.gameObject.SetActive(true);
+		}
 		//isTracking = true;
 		currentState = DeskState.Placing;
 		parked = false;
@@ -190,7 +211,10 @@ public class DeskManager : MonoBehaviour {
 	public void ConfirmPark() {
 		currentState = DeskState.Disabled;
 		parked = true;
-		deskModel.SetActive(false);
+		
+		foreach(Transform t in calibrator.getChairController().transform) {
+			t.gameObject.SetActive(false);
+		}
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);

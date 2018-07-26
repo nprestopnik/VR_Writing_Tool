@@ -95,8 +95,15 @@ public class Calibrator : MonoBehaviour {
 				// 	PlayerPrefs.SetFloat("chairCalibrationPointZ" + i, chairCalibrationPoints[i].z);
 				// }
 				// PlayerPrefs.Save();
+				foreach(Transform t in chairController.transform) {
+					t.gameObject.SetActive(false);
+				}
 				gameObject.SetActive(false);
 			}
 		}
     }
+
+	public SteamVR_TrackedController getChairController() {
+		return chairController;
+	}
 }

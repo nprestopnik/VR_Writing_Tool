@@ -76,12 +76,12 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _XRayAlbedoIntensity: 1
-    - _XRayIntensity: 1.28
-    - _XRayIntersectionLength: 0.25
-    - _XRayThickness: 0.65
+    - _XRayIntensity: 1.44
+    - _XRayIntersectionLength: 0.339
+    - _XRayThickness: 0.62
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.2075471, g: 0.1491158, b: 0.1302064, a: 1}
+    - _Color: {r: 0.20754707, g: 0.14911577, b: 0.13020638, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _XrayColor: {r: 0.9202575, g: 0.9245283, b: 0.73700607, a: 1}
