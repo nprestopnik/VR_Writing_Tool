@@ -182,6 +182,7 @@ public class SaveSystem : MonoBehaviour {
 
     public void setCurrentSave(Save newSave) {
         currentSave = newSave;
+        if(currentSave != null)
         TravelSystem.instance.fastTravelToRoom(0);
     }
 

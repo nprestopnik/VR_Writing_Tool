@@ -39,24 +39,28 @@ public class TravelSystem : MonoBehaviour {
 
 	public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
 		//SteamVR_Fade.View(Color.clear, 1.5f);
-        setGoalScene(goalRoomIndex);
-		//Load features
-		Feature[] features = SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].getFeaturesArray();
 
-		foreach(Feature f in features) {
-			//print("Creating feature: " + f.name);
-			if(f is WhiteboardData) {
-				//print("Creating Whiteboard: " + ((WhiteboardData)f).text);
-				//Create Whiteboard
-				Whiteboard whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
-				WhiteboardData data = (WhiteboardData)f;
-				whiteboard.loadData(data);
-				//Move Whitboard to scene
-				SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, scene);
+		if(SaveSystem.instance.getCurrentSave() != null) {
+			setGoalScene(goalRoomIndex);
+			//Load features
+			Feature[] features = SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].getFeaturesArray();
+
+			foreach(Feature f in features) {
+				//print("Creating feature: " + f.name);
+				if(f is WhiteboardData) {
+					//print("Creating Whiteboard: " + ((WhiteboardData)f).text);
+					//Create Whiteboard
+					Whiteboard whiteboard = ((GameObject)Instantiate(whiteboardPrefab, transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
+					WhiteboardData data = (WhiteboardData)f;
+					whiteboard.loadData(data);
+					//Move Whitboard to scene
+					SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, scene);
+				}
 			}
-		}
 
-		SaveSystem.instance.saveCurrentSave();
+			SaveSystem.instance.saveCurrentSave();
+		}
+        
     }
 
 	void OnApplicationQuit() {

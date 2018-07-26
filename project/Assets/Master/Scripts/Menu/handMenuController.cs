@@ -7,6 +7,7 @@ cubes handled currently: save, exit, go to location, idea boards, desk
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class handMenuController : MonoBehaviour {
 
@@ -28,7 +29,12 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void quit() {
-		Application.Quit();
+		//Application.Quit();
+		SaveSystem.instance.saveCurrentSave();
+		SaveSystem.instance.setCurrentSave(null);
+		SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+		Scene activeScene = SceneManager.GetActiveScene();
+		SceneManager.UnloadSceneAsync(activeScene.buildIndex);
 	}
 
 	//open the shelf that has all of the available room cubes on it and position it not terribly
