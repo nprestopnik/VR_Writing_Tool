@@ -76,12 +76,13 @@ public class handMenuController : MonoBehaviour {
 		WhiteboardData data = new WhiteboardData();
 		whiteboard.transform.root.position = PositionThrownObject.instance.DeterminePosition();
 		whiteboard.transform.root.rotation = PositionThrownObject.instance.DetermineRotation(whiteboard.transform.root.position);
+		whiteboard.transform.root.Rotate(0, 180, 0);
 		data.position = whiteboard.transform.root.position;
 		data.rotation = whiteboard.transform.root.rotation;
-		whiteboard.orientRotation();
+		//whiteboard.orientRotation();
 		whiteboard.loadData(data);
 		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
-		whiteboard.orientRotation();
+		//whiteboard.orientRotation();
 		SaveSystem.instance.saveCurrentSave();
 	}
 
