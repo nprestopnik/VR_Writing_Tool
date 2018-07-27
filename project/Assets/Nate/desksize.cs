@@ -14,6 +14,8 @@ public class desksize : MonoBehaviour {
 	private const float legSpacing = 0.06F; //The distance between a pair of legs (front and back) in cm (measured from leg center)
 	private const float cmConvert = 100.0F; //A constant used to convert from meters to centimeters or vice versa
 
+	public GameObject deskParkCube;
+
 	//Public setter that can be used to set the desk scale in meters (in unity, the values can be typed in the inspector because they are public)
 	public void setScale(float w = 1.0F, float h = 1.0F, float d = 1.0F) {
 		width = w;
@@ -99,6 +101,7 @@ public class desksize : MonoBehaviour {
 		setScale(SaveSystem.instance.getConfigData().deskCalibrationPoints);
 		deskSetup();
 		scaleDesk();
+		deskParkCube.transform.localScale = new Vector3(width, height, depth);
 		foreach(Transform t in transform) {
 			t.localPosition += new Vector3(0, -1 * height, depth / 2f);	
 		}

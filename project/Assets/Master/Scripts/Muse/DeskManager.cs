@@ -215,6 +215,8 @@ public class DeskManager : MonoBehaviour {
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(false);
 		}
+
+		deskModel.SetActive(false);
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);

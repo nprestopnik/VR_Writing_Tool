@@ -58,11 +58,11 @@ public class MuseNavigation : MonoBehaviour {
 
 		if(agent.gameObject.activeInHierarchy) {
 
-			if(Vector3.Distance(agent.transform.position, PlayerController.instance.head.position) < 0.5f) {
-				agent.speed = 6f;
-			} else {
-				agent.speed = 2.9f;
-			}
+			// if(Vector3.Distance(agent.transform.position, PlayerController.instance.head.position) < 0.5f) {
+			// 	agent.speed = 6f;
+			// } else {
+			// 	agent.speed = 2.9f;
+			// }
 
 		}
 		

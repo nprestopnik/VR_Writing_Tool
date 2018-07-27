@@ -19,6 +19,7 @@ public class RoomDeleteCube : MonoBehaviour {
 
 			SaveSystem.instance.getCurrentSave().deleteRoom(rcc.roomIndex);
 			SaveSystem.instance.saveCurrentSave();
+			TravelSystem.instance.setGoalScene(0);
 
 			MainMenu.cubeInUse = false;
 			transform.root.gameObject.SetActive(false);

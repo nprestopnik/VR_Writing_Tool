@@ -332,11 +332,11 @@ public class VdmDesktop : MonoBehaviour
     void HandleKeyDown(RawKey key) {
         if(isMousing) {
             print(key.ToString());
-            if(key == RawKey.Space) {
+            if(key == RawKey.Numpad0) {
                 print("LEFT CLICK");
                 m_manager.SimulateMouseLeftDown();
                 VdmDesktopManager.ActionInThisFrame = true;
-            } else if(key == RawKey.LeftMenu || key == RawKey.RightMenu) {
+            } else if(key == RawKey.Decimal) {
                 print("RIGHT CLICK");
                 m_manager.SimulateMouseRightDown();
                 VdmDesktopManager.ActionInThisFrame = true;
