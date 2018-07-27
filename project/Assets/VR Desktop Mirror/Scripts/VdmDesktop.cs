@@ -347,10 +347,10 @@ public class VdmDesktop : MonoBehaviour
 	//Event for Key Up
 	void HandleKeyUp(RawKey key) {
         if(isMousing) {
-            if(key == RawKey.Space) {
+            if(key == RawKey.Numpad0) {
                 m_manager.SimulateMouseLeftUp();
                 VdmDesktopManager.ActionInThisFrame = true;
-            } else if(key == RawKey.LeftMenu || key == RawKey.RightMenu) {
+            } else if(key == RawKey.Decimal) {
                 m_manager.SimulateMouseRightUp();
                 VdmDesktopManager.ActionInThisFrame = true;
             }
