@@ -11,6 +11,8 @@ public class SaveSystem : MonoBehaviour {
     public static SaveSystem instance;
     Save currentSave;
 
+    ConfigData config;
+
     void Awake()
     {
         instance = this; 
@@ -20,6 +22,9 @@ public class SaveSystem : MonoBehaviour {
         foreach(Save s in saves) {
             print(s.name + " | " + s.path);
         }
+
+
+        config = loadConfigData();
     }
 
 	void Start () {
@@ -32,6 +37,13 @@ public class SaveSystem : MonoBehaviour {
 	
 	void Update () {
 		
+	}
+
+    void OnApplicationQuit() {
+		//Do stuff
+		print("QUITING");
+		saveCurrentSave();
+        SaveConfigData();
 	}
 
     public void deleteSave(string path)
@@ -188,5 +200,40 @@ public class SaveSystem : MonoBehaviour {
 
     public Save getCurrentSave() {
         return currentSave;
+    }
+
+
+
+    public void SaveConfigData() {
+        fsSerializer _serializer = new fsSerializer();
+        fsData data;
+        _serializer.TrySerialize(typeof(ConfigData), config, out data).AssertSuccessWithoutWarnings();
+        StreamWriter output = new StreamWriter(Application.persistentDataPath + "/config.config");
+        output.Write(fsJsonPrinter.CompressedJson(data));
+        output.Close();
+    }
+
+    ConfigData loadConfigData() {
+        ConfigData loadedConfig;
+        if(!File.Exists(Application.persistentDataPath + "/config.config")) {
+            loadedConfig = new ConfigData();
+        } else {
+            StreamReader input = new StreamReader(Application.persistentDataPath + "/config.config");
+            string serializedState = input.ReadToEnd();
+            input.Close();
+            fsData data = fsJsonParser.Parse(serializedState);
+
+            // step 2: deserialize the data
+            fsSerializer _serializer = new fsSerializer();
+            object deserialized = null;
+            _serializer.TryDeserialize(data, typeof(ConfigData), ref deserialized).AssertSuccessWithoutWarnings();
+            loadedConfig = (ConfigData)deserialized;
+            //print(loadedSave.getRoomsArray()[2].getFeaturesArray()[0].GetType());
+        }
+        return loadedConfig;
+    }
+
+    public ConfigData getConfigData() {
+        return config;
     }
 }

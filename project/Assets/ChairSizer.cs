@@ -18,13 +18,19 @@ public class ChairSizer : MonoBehaviour {
 	
 	void OnEnable()
 	{
-		
+		//setCalibrationPoints(SaveSystem.instance.getConfigData().chairCalibrationPoints);
+	}
+
+	public void destroyChair() {
+		foreach(Transform t in transform) {
+			if(t.tag.Equals("SeatParts")) {
+				Destroy(t.gameObject);
+			} 
+		}
 	}
 
 	void calibrateChair() {
-		// foreach(Transform t in transform) {
-		// 	Destroy(t.gameObject);
-		// }
+		destroyChair();
 
 		// foreach(Vector3 v in  calibrationPoints) {
 		// 	GameObject g = ((GameObject)Instantiate(new GameObject(), v, Quaternion.identity));

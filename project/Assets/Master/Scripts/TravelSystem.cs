@@ -63,11 +63,7 @@ public class TravelSystem : MonoBehaviour {
         
     }
 
-	void OnApplicationQuit() {
-		//Do stuff
-		print("QUITING");
-		SaveSystem.instance.saveCurrentSave();
-	}
+	
 
 	public bool setGoalScene(int index)
     {

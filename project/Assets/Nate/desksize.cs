@@ -21,6 +21,15 @@ public class desksize : MonoBehaviour {
 		depth = d;
 	}
 
+	public void setScale(List<Vector3> points) {
+		float width, height, depth;
+		height = DeskManager.instance.deskTracker.transform.localPosition.y;
+		width = points[1].x - points[0].x;
+		depth = points[0].y - points[1].y;
+
+		setScale(width, height, depth);
+	}
+
 	//Public method to populate a dictionary of desk parts, with part names as keys
 	public void deskSetup() {
 		//Build a dictionary of desk parts
@@ -87,7 +96,7 @@ public class desksize : MonoBehaviour {
 	// Currently, start is only needed to run the three public methods that set the scale, build the dictionary, and run the desk scaler method.
 	//These may be called elsewhere in the final implementation
 	void OnEnable () {
-		//setScale(2.0F, 1.0F, 1.0F);
+		setScale(SaveSystem.instance.getConfigData().deskCalibrationPoints);
 		deskSetup();
 		scaleDesk();
 		foreach(Transform t in transform) {
