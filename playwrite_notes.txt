@@ -34,7 +34,7 @@ N - small letters, not easy to see when standing
 N - lighting is dark in places (for keyboard) - make keys emissive
 
 WHITEBOARDS
-~ - positioning of whiteboard when it is created
+x - positioning of whiteboard when it is created
 	- positioning of whiteboard based on head or cube so users understand
 ~ - drawing while grasping - make it not happen
 - refinement to finger touching/movement of whiteboard
@@ -69,7 +69,7 @@ N - wider walkway in treehouse looks weird just stretched
 MUSE
 N - need real art and/or particles for the muse
 N - some more explanation for desk stuff - finalize muse text
-- muse breaks when you do things too quickly
+!!- muse breaks when you do things too quickly
 N - muse feedback for saves
 
 MOOD AND WEATHER (Kate & Nate)
@@ -92,6 +92,7 @@ NATE ART ICONS PLEASE?
 OTHER ART
 - Trash bin for deleting
 - Size-able chair
+- Calibrator diagrams
 
 
 
