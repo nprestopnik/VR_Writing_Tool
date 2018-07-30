@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum DeskState {Disabled, Placing, Enabled, Parking}
+enum DeskState {Disabled, Placing, Enabled, Parking} //Different states that the desk can be in
 
 public class DeskManager : MonoBehaviour {
 
@@ -57,46 +57,37 @@ public class DeskManager : MonoBehaviour {
 		deskTrackedObject = deskTracker.GetComponent<SteamVR_TrackedObject>();
 	}
 
-	void Update() {
+	void Update() { 
+		//Used to update tracking information and desk materials
 		if(currentState == DeskState.Placing) {
-			//currentState = DeskState.Enabled;
 			isTracking = true;
 
 			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
 
-			// if(desktopDisplay.activeInHierarchy) {
-			// 	desktopDisplay.SetActive(false);
-			// }
 		} else if(currentState == DeskState.Parking) {
-			//currentState = DeskState.Disabled;
 			isTracking = true;
 			if(deskMount.material != ghostlyMountMAT) {
 				setDeskMaterials(true);
 			}
 
-			// if(desktopDisplay.activeInHierarchy) {
-			// 	desktopDisplay.SetActive(false);
-			// }
 		} else if(currentState == DeskState.Enabled) {
-			//currentState = DeskState.Placing;
 			isTracking = false;
 			if(deskMount.material != deskMountMAT) {
 				setDeskMaterials(false);
 			}
 
-			// if(!desktopDisplay.activeInHierarchy) {
-			// 	desktopDisplay.SetActive(true);
-			// }
 		}
 
 
+		//Updates position and rotation of the desk if it is tracking
 		if(isTracking) {
 			deskTrackedPoint.transform.position = deskTracker.transform.position;
 			deskTrackedPoint.transform.rotation = deskTracker.transform.rotation;
 		}
 
+		//If the desk gets in the right orientation of the parking spot it will park
 		if(Vector3.Distance(lockPoint.transform.position, deskTracker.transform.position) <  0.3f && Quaternion.Angle(lockPoint.transform.rotation, deskTracker.transform.rotation) < 5f && currentState == DeskState.Parking) {
 			currentState = DeskState.Disabled;
 			ConfirmPark();
@@ -107,37 +98,27 @@ public class DeskManager : MonoBehaviour {
 
 	public void toggleDeskLock() {
 		
-		if(cooldown < Time.time) {
-			
+		if(cooldown < Time.time) { 
+			//Does correct actions based on lock button press
 			if(currentState == DeskState.Placing) {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
-				//isTracking = false;
 			} else if(currentState == DeskState.Parking) {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
-				//isTracking = true;
-				
 			} else if(currentState == DeskState.Enabled) {
 				currentState = DeskState.Placing;
 				StartDeskTask();
-				//isTracking = true;
 			}
 
 			cooldown = Time.time + 0.5f;
-			
-			// if(isTracking) {
-			// 	ConfirmSet();
-			// 	//ConfirmPark();
-			// } else {
 
-			// }
-			//isTracking = !isTracking;
 		}
 		
 		
 	}
 
+	//Sets the materials of the desk based on parameter value
 	void setDeskMaterials(bool isGhostly) {
 		if(isGhostly) {
 			deskMount.material = ghostlyMountMAT;
@@ -152,11 +133,12 @@ public class DeskManager : MonoBehaviour {
 		}
 	}
 
+	//Begins the Muse task of guiding to the desk
 	public void StartDeskTask() {
-		if(deskTracker.transform.position.y < -75) {
-			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again.");
-			MuseManager.instance.museGuide.EnterMuse();
-			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse());
+		if(deskTracker.transform.position.y < -75) { //If the desk is not tracking it is placed low in the world
+			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again."); //Set muse text
+			MuseManager.instance.museGuide.EnterMuse(); //Muse guides in
+			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse()); //Muse pauses then exits
 		} else {
 			MuseManager.instance.museText.SetText("Follow me to your desk!");
 			MuseManager.instance.museGuide.EnterMuse();
@@ -164,14 +146,14 @@ public class DeskManager : MonoBehaviour {
 		}
 		
 	}
-	// void DeskStage20() {	MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30); } //simplified into above
 	void DeskStage30() {
-		deskModel.SetActive(true);
+		//Activates all the parts of the desk
+		deskModel.SetActive(true); 
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(true);
 		}
 		//isTracking = true;
-		currentState = DeskState.Placing;
+		currentState = DeskState.Placing; //Changes desk state
 		parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
@@ -197,9 +179,7 @@ public class DeskManager : MonoBehaviour {
 		MuseManager.instance.museGuide.EnterMuse();
 		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30));
 	}
-	// void ParkStage20() { MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30); } //simplified into above
 	void ParkStage30() {
-		//isTracking = true;
 		currentState = DeskState.Parking;
 		deskTarget.SetActive(true);
 		lighthouse1.SetActive(true);

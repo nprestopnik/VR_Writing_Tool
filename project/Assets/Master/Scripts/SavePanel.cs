@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*Purpose: UI Panel that contained and managed save loading and deleting
+Depricated as UI panels are no longer used */
 public class SavePanel : MonoBehaviour {
 
 	public Save save;

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*Purpose: VERY IMPORTANT
+One of these needs to be in every scenery */
 public class SceneActivator : MonoBehaviour {
 
     [Tooltip("Set this to the buildIndex of the scene that it belongs in")]

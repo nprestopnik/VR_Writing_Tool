@@ -243,6 +243,8 @@ public class VdmDesktop : MonoBehaviour
     float clickAgainCooldown;
     bool isMousing = false;
 
+    //CUSTOM METHOD FOR CHECKING ANY RAYCAST
+    //Used to check fingers from the Leap (Could be used for anything though)
     public void CheckRaycast(Vector3 rayOrigin, Vector3 rayDirection) {
         Vector3 origin;
         Vector3 direction;
@@ -329,6 +331,7 @@ public class VdmDesktop : MonoBehaviour
         }
     }
 
+    //Using keys for mousepresses
     void HandleKeyDown(RawKey key) {
         if(isMousing) {
             print(key.ToString());
