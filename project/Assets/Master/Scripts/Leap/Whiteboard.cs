@@ -46,6 +46,8 @@ public class Whiteboard : MonoBehaviour {
 		redoHistory = new List<LineDataContainer>();
 		dataContainer = GetComponent<WhiteboardContainer>();
 		button.enabled = false;
+
+		numLines = dataContainer.data.lines.Length + 1;
 	}
 	
 	// Update is called once per frame
@@ -98,7 +100,6 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			
 
 			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
@@ -116,8 +117,6 @@ public class Whiteboard : MonoBehaviour {
 			points.Add(pointer.transform.localPosition);
 			
 			
-			
-
 			redoHistory = new List<LineDataContainer>();
 
 			go.transform.SetParent(transform.parent);
@@ -132,7 +131,7 @@ public class Whiteboard : MonoBehaviour {
 			currData.data.lineWidth = lineWidth;
 			currData.data.lMatIndex = lMatIndex;
 			currData.data.points = points.ToArray();
-			currData.data.sortingOrder = numLines;
+			currData.data.sortingOrder = numLines - 1;
 			history.Add(currData);
 			lines.Add(currData.data);
 			currLineR = null;
