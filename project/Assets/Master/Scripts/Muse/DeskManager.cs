@@ -49,12 +49,16 @@ public class DeskManager : MonoBehaviour {
 	public Leap.Unity.Interaction.Anchor anchor;
 	public Leap.Unity.Interaction.AnchorGroup anchorGroup;
 
+	MeshRenderer[] chairMeshes;
+
 	void Awake () {
 		instance = this;
 	}
 
 	void Start() {
 		deskTrackedObject = deskTracker.GetComponent<SteamVR_TrackedObject>();
+
+		chairMeshes = calibrator.getChairController().GetComponentsInChildren<MeshRenderer>(true);
 	}
 
 	void Update() {
@@ -144,10 +148,16 @@ public class DeskManager : MonoBehaviour {
 			foreach(MeshRenderer m in deskWood) {
 				m.material = ghostlyWoodMAT;
 			}
+			foreach(MeshRenderer m in chairMeshes) {
+				m.material = ghostlyMountMAT;
+			}
 		} else {
 			deskMount.material = deskMountMAT;
 			foreach(MeshRenderer m in deskWood) {
 				m.material = deskWoodMAT;
+			}
+			foreach(MeshRenderer m in chairMeshes) {
+				m.material = deskMountMAT;
 			}
 		}
 	}
