@@ -26,4 +26,5 @@ Clone the repo and Open the "project" folder with Unity.
 [SourceTree](https://www.sourcetreeapp.com/)  
 [Meld Merge](http://meldmerge.org/)  
 [Full Serializer](https://github.com/jacobdufault/fullserializer)  
+[VDM Desktop Mirror](https://github.com/Clodo76/vr-desktop-mirror)  
 
