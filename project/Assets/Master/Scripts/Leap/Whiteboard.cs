@@ -185,7 +185,7 @@ public class Whiteboard : MonoBehaviour {
 	//Rotate whiteboard towards player's face
 	public void orientRotation() {
 		//transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
-		transform.root.rotation = Quaternion.Euler(0, PlayerController.instance.head.transform.rotation.eulerAngles.y, 0);
+		//transform.root.rotation = Quaternion.Euler(0, PlayerController.instance.head.transform.rotation.eulerAngles.y, 0);
 		dataContainer.data.position = transform.root.position;
 		dataContainer.data.rotation = transform.root.rotation;
 	}

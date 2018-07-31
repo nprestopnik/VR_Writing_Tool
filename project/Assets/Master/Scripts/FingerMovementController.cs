@@ -23,8 +23,10 @@ public class FingerMovementController : MonoBehaviour {
 			}
 			dir.y = 0;
 			pc.moveInDirection(dir);
+			pc.isMoving = true;
 		} else {
 			pc.moveInDirection(Vector3.zero);
+			pc.isMoving = false;
 		}
 	}
 

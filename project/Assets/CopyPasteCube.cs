@@ -37,7 +37,7 @@ public class CopyPasteCube : MonoBehaviour {
 		transform.position = anchor.transform.position;
 		transform.rotation = anchor.transform.rotation;
 		ab.anchor = anchor;
-
+		ab.TryAttach();
 		
 	}
 

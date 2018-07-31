@@ -31,7 +31,8 @@ public class DeskManager : MonoBehaviour {
 	public Transform moveMusePoint; //for the muse to stay with the desk while you are parking
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
-	public GameObject desktopDisplay;
+	public GameObject desktopDisplay; //haven't been able to get this to turn off and back on properly
+	public bool desktopReactivate = false;
 
 	public MeshRenderer deskMount;
 	public MeshRenderer[] deskWood;
@@ -39,6 +40,8 @@ public class DeskManager : MonoBehaviour {
 	public Material deskWoodMAT;
 	public Material ghostlyMountMAT;
 	public Material ghostlyWoodMAT;
+	public Material chairMAT;
+	public Material ghostlyChairMAT;
 
 	public bool parked = true; //whether or not the desk is parked in its "inactive" location
 
@@ -143,13 +146,14 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	void setDeskMaterials(bool isGhostly) {
+		chairMeshes = calibrator.getChairController().GetComponentsInChildren<MeshRenderer>(true);
 		if(isGhostly) {
 			deskMount.material = ghostlyMountMAT;
 			foreach(MeshRenderer m in deskWood) {
 				m.material = ghostlyWoodMAT;
 			}
 			foreach(MeshRenderer m in chairMeshes) {
-				m.material = ghostlyMountMAT;
+				m.material = ghostlyChairMAT;
 			}
 		} else {
 			deskMount.material = deskMountMAT;
@@ -157,7 +161,7 @@ public class DeskManager : MonoBehaviour {
 				m.material = deskWoodMAT;
 			}
 			foreach(MeshRenderer m in chairMeshes) {
-				m.material = deskMountMAT;
+				m.material = chairMAT;
 			}
 		}
 	}
@@ -168,6 +172,7 @@ public class DeskManager : MonoBehaviour {
 			MuseManager.instance.museGuide.EnterMuse();
 			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse());
 		} else {
+			//desktopDisplay.SetActive(false);
 			MuseManager.instance.museText.SetText("Follow me to your desk!");
 			MuseManager.instance.museGuide.EnterMuse();
 			MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
@@ -179,6 +184,7 @@ public class DeskManager : MonoBehaviour {
 		deskModel.SetActive(true);
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(true);
+			ControllerModelActivation.instance.DeactivateControllers();
 		}
 		//isTracking = true;
 		currentState = DeskState.Placing;
@@ -191,6 +197,9 @@ public class DeskManager : MonoBehaviour {
 	//once the desk is locked, the muse will exit
 	public void ConfirmSet() {
 		//isTracking = false;
+		// desktopDisplay.SetActive(true);
+		// desktopReactivate = true;
+
 		currentState = DeskState.Enabled;
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);

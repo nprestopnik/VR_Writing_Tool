@@ -10,6 +10,8 @@ using UnityEditor;
 
 public class ControllerModelActivation : MonoBehaviour {
 
+	public static ControllerModelActivation instance;
+
 	public GameObject leftControllerModel; //the normal steamvr left controller model
 	public GameObject rightControllerModel; //the normal steamvr right controller model
 
@@ -19,6 +21,11 @@ public class ControllerModelActivation : MonoBehaviour {
 	public GameObject[] leapControllerColliders; //the colliders on the leap controllers
 	//these are unparented from the leap controllers at runtime, and have to be set inactive separately
 	//they can be found within the hierarchy of the leap controllers before entering play mode
+
+
+	void Awake() {
+		instance = this;
+	}
 
 
 	//set the controller models active

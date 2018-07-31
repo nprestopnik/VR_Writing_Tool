@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody rig;
 
 	bool isJitterWalking = false;
+	
+	[HideInInspector]
+	public bool isMoving = false;
 	float jitterWalkCooldown;
 
 	void Awake() {
