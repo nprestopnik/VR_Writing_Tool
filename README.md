@@ -11,3 +11,6 @@ PLAY | WRITE is a piece of research software designed to facilitate creative wri
 1. Windows Computer running Unity 2018.1.1f (or later?)  
 2. HTC Vive
 3. Vive Tracker
+  
+### Installation: 
+Clone the repo and Open the "project" folder with Unity.
