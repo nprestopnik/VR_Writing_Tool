@@ -6,7 +6,7 @@ PLAY | WRITE is a piece of research software designed to facilitate creative wri
 ### Documentation: 
 [1. Setting Up a Scenery](/creating_a_scenery.md)  
 [2. Preparing to Run PLAY | WRITE](/preparing_to_run.md)  
-3. Setting Up Unity Smart Merge with SourceTree  
+[3. Setting Up Unity Smart Merge with SourceTree](/smart_merge_setup.md)  
 4. Backend Overview  
 5. Muse Overview  
 6. Desk Overview  
@@ -20,4 +20,7 @@ PLAY | WRITE is a piece of research software designed to facilitate creative wri
 4. Leap Motion 2
   
 ### Installation: 
-Clone the repo and Open the "project" folder with Unity.
+Clone the repo and Open the "project" folder with Unity.  
+  
+### Resources:  
+
