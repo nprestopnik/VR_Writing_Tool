@@ -14,11 +14,22 @@ public class desksize : MonoBehaviour {
 	private const float legSpacing = 0.06F; //The distance between a pair of legs (front and back) in cm (measured from leg center)
 	private const float cmConvert = 100.0F; //A constant used to convert from meters to centimeters or vice versa
 
+	public GameObject deskParkCube;
+
 	//Public setter that can be used to set the desk scale in meters (in unity, the values can be typed in the inspector because they are public)
 	public void setScale(float w = 1.0F, float h = 1.0F, float d = 1.0F) {
 		width = w;
 		height = h;
 		depth = d;
+	}
+
+	public void setScale(List<Vector3> points) {
+		float width, height, depth;
+		height = DeskManager.instance.deskTracker.transform.localPosition.y;
+		width = points[1].x - points[0].x;
+		depth = points[0].y - points[1].y;
+
+		setScale(width, height, depth);
 	}
 
 	//Public method to populate a dictionary of desk parts, with part names as keys
@@ -87,9 +98,10 @@ public class desksize : MonoBehaviour {
 	// Currently, start is only needed to run the three public methods that set the scale, build the dictionary, and run the desk scaler method.
 	//These may be called elsewhere in the final implementation
 	void OnEnable () {
-		//setScale(2.0F, 1.0F, 1.0F);
+		setScale(SaveSystem.instance.getConfigData().deskCalibrationPoints);
 		deskSetup();
 		scaleDesk();
+		deskParkCube.transform.localScale = new Vector3(width, height, depth);
 		foreach(Transform t in transform) {
 			t.localPosition += new Vector3(0, -1 * height, depth / 2f);	
 		}

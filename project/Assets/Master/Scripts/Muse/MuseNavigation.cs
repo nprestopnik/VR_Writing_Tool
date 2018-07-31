@@ -16,9 +16,6 @@ public class MuseNavigation : MonoBehaviour {
 	public NavMeshAgent agent;
 
 	Action storedCompletedEvent; //the completed event sent with navigation call
-	
-	public GameObject trail;
-	public ParticleSystem particles;
 
 	
 	public GameObject destinationCube; //the cube above the hallway that shows your next destination
@@ -36,9 +33,10 @@ public class MuseNavigation : MonoBehaviour {
 	}
 
 	void Update() {
-
+		Debug.DrawLine(agent.transform.position, agent.destination, Color.red);
 		//keep the particles with the muse
-		particles.transform.position = transform.position;
+		
+		//agent.transform.rotation = Quaternion.identity;
 
 		if(agent.gameObject.activeInHierarchy) {
 			//if the muse has gotten too far from the user, stop and wait for them
@@ -57,13 +55,22 @@ public class MuseNavigation : MonoBehaviour {
 
 		// 	MuseManager.instance.clearingMuse = false;
 		// }
+
+		if(agent.gameObject.activeInHierarchy) {
+
+			// if(Vector3.Distance(agent.transform.position, PlayerController.instance.head.position) < 0.5f) {
+			// 	agent.speed = 6f;
+			// } else {
+			// 	agent.speed = 2.9f;
+			// }
+
+		}
 		
 		//if the muse gets close to its target, turn off all its navigation things and start the completed event
 		if(agent.gameObject.activeInHierarchy && agent.remainingDistance < 1f && agent.remainingDistance != 0) {
 			
 				agent.gameObject.SetActive(false);
-				trail.SetActive(false);
-				particles.gameObject.SetActive(false);
+				//MuseManager.instance.SetEffectsActive(false);
 				if(storedCompletedEvent != null)
 					storedCompletedEvent();
 			
@@ -83,21 +90,42 @@ public class MuseNavigation : MonoBehaviour {
 
 		//activate all those funky navigation effects (and the actual nav agent of course)
 		storedCompletedEvent = completedEvent;
-		agent.gameObject.SetActive(true);
-		trail.SetActive(true);
-		particles.gameObject.SetActive(true);
-		particles.Clear();
+		
+		//MuseManager.instance.SetEffectsActive(true);
 
+		//agent.Warp(transform.position);
+		
 		//set up the nav mesh agent so the muse gets onto the mesh and the agent can work 
 		NavMeshHit hit;
-		if(NavMesh.SamplePosition(transform.position,out hit, 2f, NavMesh.AllAreas)) {
-			agent.Warp(transform.position);
-			agent.SetDestination(target);
+		if(NavMesh.SamplePosition(transform.position, out hit, 30f, NavMesh.AllAreas)) {
+			
+			Vector3 newPos = transform.position;
+			newPos.y = SaveSystem.instance.transform.position.y + 0.5f;
+			agent.Warp(hit.position);
+			agent.gameObject.SetActive(true);
+			//agent.ResetPath();
+			agent.destination = (target);
+			
+			
+			
 			//have the muse follow the agent as it goes along the mesh to its destination
-			MuseManager.instance.museGuide.GuideTo(agent.transform);
+			MuseManager.instance.museGuide.GuideTo(agent.transform.GetChild(0));
 		}
 
 		
+	}
+
+
+	public void NavigateToHallway() {
+		MuseManager.instance.museText.SetText("Your destination has been loaded!\nFollow me to the hallway!", startRoomGuide);
+	}
+	
+	void startRoomGuide() {
+		//use the muse callback system to bring the muse in, have it navigate to a point, and wait at the hallway with the right text
+		MuseManager.instance.museGuide.EnterMuse(); 
+		MuseManager.instance.Pause(2f, ()=> NavigateToPoint(hallwayPoint.position, 
+			()=> MuseManager.instance.museText.SetText("Go through the hallway\nto the selected room!", 
+			()=> GetToHallway())));
 	}
 
 	//make the muse wait for the user to get to the hallway before exiting		

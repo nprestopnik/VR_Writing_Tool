@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour {
 		Vector3 localPos = head.localPosition;
 		float height = localPos.y + (collisionCapsule.radius);
 		height = Mathf.Clamp(height, 0f, 100f);
-		collisionCapsule.height = height - 0.1f;
+		collisionCapsule.height = height - 0.23f;
 		collisionCapsule.center = new Vector3(0, height / -2f + collisionCapsule.radius, 0);
 		collisionCapsule.transform.rotation = Quaternion.identity;
 
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
 		vel.Normalize();
 		vel *= moveSpeed;
 
-		vel.y = rig.velocity.y < 0 ? rig.velocity.y * 2f : rig.velocity.y;
+		vel.y = rig.velocity.y;// < 0 ? rig.velocity.y * 2f : rig.velocity.y;
 
 		RaycastHit hit;
 		Vector3 headPositionFloor = head.position;

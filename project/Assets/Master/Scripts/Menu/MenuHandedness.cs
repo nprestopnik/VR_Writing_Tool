@@ -67,9 +67,9 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject moodLowerParent;
 	public GameObject moodLowerHidden;
 	//the actual array of mood cubes will be created and assigned from CreateWeatherMoodCubes
-	[HideInInspector]
+	
 	public GameObject[] moodCubesUpper;
-	[HideInInspector]
+
 	public GameObject[] moodCubesLower;
 
 	//creation, location, and system work the same right now
@@ -91,9 +91,9 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject weatherUpperHidden;
 	public GameObject weatherLowerParent;
 	public GameObject weatherLowerHidden;
-	[HideInInspector]
+
 	public GameObject[] weatherCubesUpper;
-	[HideInInspector]
+
 	public GameObject[] weatherCubesLower;
 
 	[Header("System")]
@@ -152,6 +152,7 @@ public class MenuHandedness : MonoBehaviour {
 	public bool handActive; //is the hand that holds the menu active - this is for keeping the menu on screen when the hands are not visible
 
 	void Awake() {
+		currentHand = dominantHand;
 		menuActivator = GetComponent<MainMenu>();
 		fingerDetector = GetComponent<ExtendedFingerDetector>();
 		palmDetector = GetComponent<PalmDirectionDetector>();
@@ -163,6 +164,10 @@ public class MenuHandedness : MonoBehaviour {
 		//this was for testing with the public enum; not really used right now
 		if(dominantHand != currentHand) {
 			SetMenuOrientation();
+			SetCubePositions(moodCubesLower, false, dominantHand == Handedness.right);
+			SetCubePositions(moodCubesUpper, true, dominantHand == Handedness.right);
+			SetCubePositions(weatherCubesLower, false, dominantHand == Handedness.right);
+			SetCubePositions(weatherCubesUpper, true, dominantHand == Handedness.right);
 			currentHand = dominantHand;
 		}
 
@@ -173,11 +178,19 @@ public class MenuHandedness : MonoBehaviour {
 		} else {
 			handActive = false;
 		}
+
+		if(Input.GetKeyDown(KeyCode.H)) {
+			swapHands();
+		}
 	}
 
 	//this was a test method for swapping handedness at runtime; it was really only used for preliminary testing with the static handedness varible
 	public void swapHands() {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
+	}
+
+	public void setHandedness(bool isRight) {
+		dominantHand = !isRight ? Handedness.left : Handedness.right;
 	}
 
 	public Handedness GetHandedness() {

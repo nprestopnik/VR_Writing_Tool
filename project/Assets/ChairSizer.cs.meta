@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1b7e4e47c95e47c489a78ff38bd281c4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - backPivotPrefab: {fileID: 1188034531621440, guid: bbc85088839219c448afb170a3e6af8d,
+      type: 2}
+  - seatPivotPrefab: {fileID: 1388656057436384, guid: 06f5ec60134f1a54c986fb98e2efb95c,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

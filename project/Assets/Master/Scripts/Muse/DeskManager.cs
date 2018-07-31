@@ -18,6 +18,8 @@ public class DeskManager : MonoBehaviour {
 
 	DeskState currentState = DeskState.Disabled;
 
+
+	public Calibrator calibrator;
 	public GameObject muse;
 	public GameObject deskTracker; //the actual tracker
 	public GameObject deskTrackedPoint; //the tracked point on the desk model
@@ -29,10 +31,20 @@ public class DeskManager : MonoBehaviour {
 	public Transform moveMusePoint; //for the muse to stay with the desk while you are parking
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
+	public GameObject desktopDisplay;
+
+	public MeshRenderer deskMount;
+	public MeshRenderer[] deskWood;
+	public Material deskMountMAT;
+	public Material deskWoodMAT;
+	public Material ghostlyMountMAT;
+	public Material ghostlyWoodMAT;
+
+	public bool parked = true; //whether or not the desk is parked in its "inactive" location
 
 	private bool isTracking; //are we supposed to be tracking the tracker irhgt now
 	private SteamVR_TrackedObject deskTrackedObject;
-	private DeskParked deskParked; //whether or not the desk is parked in its "inactive" location
+	 
 
 	public Leap.Unity.Interaction.Anchor anchor;
 	public Leap.Unity.Interaction.AnchorGroup anchorGroup;
@@ -42,7 +54,6 @@ public class DeskManager : MonoBehaviour {
 	}
 
 	void Start() {
-		deskParked = deskTracker.GetComponent<DeskParked>();
 		deskTrackedObject = deskTracker.GetComponent<SteamVR_TrackedObject>();
 	}
 
@@ -50,12 +61,34 @@ public class DeskManager : MonoBehaviour {
 		if(currentState == DeskState.Placing) {
 			//currentState = DeskState.Enabled;
 			isTracking = true;
+
+			if(deskMount.material != ghostlyMountMAT) {
+				setDeskMaterials(true);
+			}
+
+			// if(desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(false);
+			// }
 		} else if(currentState == DeskState.Parking) {
 			//currentState = DeskState.Disabled;
 			isTracking = true;
+			if(deskMount.material != ghostlyMountMAT) {
+				setDeskMaterials(true);
+			}
+
+			// if(desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(false);
+			// }
 		} else if(currentState == DeskState.Enabled) {
 			//currentState = DeskState.Placing;
 			isTracking = false;
+			if(deskMount.material != deskMountMAT) {
+				setDeskMaterials(false);
+			}
+
+			// if(!desktopDisplay.activeInHierarchy) {
+			// 	desktopDisplay.SetActive(true);
+			// }
 		}
 
 
@@ -73,7 +106,9 @@ public class DeskManager : MonoBehaviour {
 	float cooldown;
 
 	public void toggleDeskLock() {
+		
 		if(cooldown < Time.time) {
+			
 			if(currentState == DeskState.Placing) {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
@@ -82,6 +117,7 @@ public class DeskManager : MonoBehaviour {
 				currentState = DeskState.Enabled;
 				ConfirmSet();
 				//isTracking = true;
+				
 			} else if(currentState == DeskState.Enabled) {
 				currentState = DeskState.Placing;
 				StartDeskTask();
@@ -102,17 +138,41 @@ public class DeskManager : MonoBehaviour {
 		
 	}
 
+	void setDeskMaterials(bool isGhostly) {
+		if(isGhostly) {
+			deskMount.material = ghostlyMountMAT;
+			foreach(MeshRenderer m in deskWood) {
+				m.material = ghostlyWoodMAT;
+			}
+		} else {
+			deskMount.material = deskMountMAT;
+			foreach(MeshRenderer m in deskWood) {
+				m.material = deskWoodMAT;
+			}
+		}
+	}
+
 	public void StartDeskTask() {
-		MuseManager.instance.museText.SetText("Follow me to your desk!");
-		MuseManager.instance.museGuide.EnterMuse();
-		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
+		if(deskTracker.transform.position.y < -75) {
+			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again.");
+			MuseManager.instance.museGuide.EnterMuse();
+			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse());
+		} else {
+			MuseManager.instance.museText.SetText("Follow me to your desk!");
+			MuseManager.instance.museGuide.EnterMuse();
+			MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
+		}
+		
 	}
 	// void DeskStage20() {	MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30); } //simplified into above
 	void DeskStage30() {
 		deskModel.SetActive(true);
+		foreach(Transform t in calibrator.getChairController().transform) {
+			t.gameObject.SetActive(true);
+		}
 		//isTracking = true;
 		currentState = DeskState.Placing;
-		deskParked.parked = false;
+		parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
 		MuseManager.instance.museText.SetText("Put your desk where you want it!");
@@ -150,7 +210,12 @@ public class DeskManager : MonoBehaviour {
 	//confirm that the desk is parked where it is supposed to be and the muse leaves
 	public void ConfirmPark() {
 		currentState = DeskState.Disabled;
-		deskParked.parked = true;
+		parked = true;
+		
+		foreach(Transform t in calibrator.getChairController().transform) {
+			t.gameObject.SetActive(false);
+		}
+
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);

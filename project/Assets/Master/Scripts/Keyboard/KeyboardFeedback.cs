@@ -48,6 +48,7 @@ public class KeyboardFeedback : MonoBehaviour {
  		}
 
 		RawKeyInput.Start(true);
+		RawKeyInput.InterceptMessages = false;
 		RawKeyInput.OnKeyDown += HandleKeyDown;
 		RawKeyInput.OnKeyUp += HandleKeyUp;
 	}
