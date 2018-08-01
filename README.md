@@ -9,8 +9,8 @@ PLAY | WRITE is a piece of research software designed to facilitate creative wri
 [3. Setting Up Unity Smart Merge with SourceTree](/smart_merge_setup.md)  
 [4. Backend Overview](/backend_overview.md)  
 [5. Muse Overview](/muse_overview.md)  
-6. Desk Overview  
-7. Whiteboard Overview  
+[6. Desk Overview](/desk_overview.md)  
+[7. Idea Board Overview](/whiteboard_overview.md)  
 8. Menu Overview  
   
 ### Requirements: 
