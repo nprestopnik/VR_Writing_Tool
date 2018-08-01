@@ -11,7 +11,7 @@ PLAY | WRITE is a piece of research software designed to facilitate creative wri
 [5. Muse Overview](/muse_overview.md)  
 [6. Desk Overview](/desk_overview.md)  
 [7. Idea Board Overview](/whiteboard_overview.md)  
-8. Menu Overview  
+[8. Menu Overview] (/menu_overview.md)  
   
 ### Requirements: 
 1. Windows Computer running Unity 2018.1.1f (or later?)  
