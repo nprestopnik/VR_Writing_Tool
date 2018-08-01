@@ -8,6 +8,7 @@ class Point {
 } 
 */
 
+/*DEPRICATED Purpose: Custom mesh based line renderer. Not being used */
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class MeshLineRenderer : MonoBehaviour {

@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 
+
+/*DEPRICATED Purpose: Procedurally create parts of a UI based menu on a previous version */
 public class CRUDMenu : MonoBehaviour {
 
 	public InputField saveName;

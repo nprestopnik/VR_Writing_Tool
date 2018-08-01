@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*DEPRICATED Purpose: Moving the menu to be on a controller
+SUPER NOT BEING USED ANYMORE */
 public class MenuMovement: MonoBehaviour {
 
 	private SteamVR_TrackedController thisController;
@@ -9,8 +11,6 @@ public class MenuMovement: MonoBehaviour {
 	Transform controllerTransform;
 
 	public Canvas menu;
-
-	//public Canvas otherWindow;
 
 	public bool menuOpen = false;
 	public int menuOrientation = 1;

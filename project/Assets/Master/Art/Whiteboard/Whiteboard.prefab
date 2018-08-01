@@ -5296,13 +5296,13 @@ MonoBehaviour:
   controlsButton: {fileID: 114632408493337360}
   boardText: {fileID: 114817509849588694}
   boardImage: {fileID: 114754020135508360}
-  lMat: {fileID: 2100000, guid: 62a3b46d9b008c442b924ca6c13f121e, type: 2}
+  lMat: {fileID: 2100000, guid: 17dfef242cf94ad45a64e8d132f1e67f, type: 2}
   lineMaterials:
-  - {fileID: 2100000, guid: 310a011136657334a8dd7bccd6dd5cb4, type: 2}
-  - {fileID: 2100000, guid: c353b0b1faac62446990f2f125fbd4f4, type: 2}
-  - {fileID: 2100000, guid: 55411c535d4a9cd4a8e2e99a646a69fe, type: 2}
-  - {fileID: 2100000, guid: 780a9011b3082764ab72c8c8facdb384, type: 2}
-  - {fileID: 2100000, guid: fadfb7ee4f7c11d4792c2c9e8df9a627, type: 2}
+  - {fileID: 2100000, guid: 17dfef242cf94ad45a64e8d132f1e67f, type: 2}
+  - {fileID: 2100000, guid: 1e7b6d21611d367448ee2489879051b0, type: 2}
+  - {fileID: 2100000, guid: 54bc2a536f38e324f997a51cebbf7f9e, type: 2}
+  - {fileID: 2100000, guid: b7b6d81f0450dee4f8d032e81c350998, type: 2}
+  - {fileID: 2100000, guid: b69a108a1dfa1fe4ab27fd38d8165420, type: 2}
   lineWidth: 0.01
   lines: []
 --- !u!114 &114067648315502080

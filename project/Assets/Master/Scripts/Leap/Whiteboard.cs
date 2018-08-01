@@ -46,6 +46,8 @@ public class Whiteboard : MonoBehaviour {
 		redoHistory = new List<LineDataContainer>();
 		dataContainer = GetComponent<WhiteboardContainer>();
 		button.enabled = false;
+
+		numLines = dataContainer.data.lines.Length + 1;
 	}
 	
 	// Update is called once per frame
@@ -98,7 +100,6 @@ public class Whiteboard : MonoBehaviour {
 			GameObject go = new GameObject (); 
 			go.tag = "BoardLine";
 
-			
 
 			currData = go.AddComponent<LineDataContainer>();
 			currData.data = new LineData();
@@ -116,8 +117,6 @@ public class Whiteboard : MonoBehaviour {
 			points.Add(pointer.transform.localPosition);
 			
 			
-			
-
 			redoHistory = new List<LineDataContainer>();
 
 			go.transform.SetParent(transform.parent);
@@ -132,7 +131,7 @@ public class Whiteboard : MonoBehaviour {
 			currData.data.lineWidth = lineWidth;
 			currData.data.lMatIndex = lMatIndex;
 			currData.data.points = points.ToArray();
-			currData.data.sortingOrder = numLines;
+			currData.data.sortingOrder = numLines - 1;
 			history.Add(currData);
 			lines.Add(currData.data);
 			currLineR = null;
@@ -186,7 +185,7 @@ public class Whiteboard : MonoBehaviour {
 	//Rotate whiteboard towards player's face
 	public void orientRotation() {
 		//transform.root.LookAt(PlayerController.instance.head.transform.position, Vector3.up);
-		transform.root.rotation = Quaternion.Euler(0, PlayerController.instance.head.transform.rotation.eulerAngles.y, 0);
+		//transform.root.rotation = Quaternion.Euler(0, PlayerController.instance.head.transform.rotation.eulerAngles.y, 0);
 		dataContainer.data.position = transform.root.position;
 		dataContainer.data.rotation = transform.root.rotation;
 	}

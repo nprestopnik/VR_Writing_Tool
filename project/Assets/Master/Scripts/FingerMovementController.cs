@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Purpose: Controls movement gesture and playermovement */
 public class FingerMovementController : MonoBehaviour {
 
-	public PlayerController pc;
+	public PlayerController pc; //Player controller for movement
 	Leap.Unity.ExtendedFingerDetector efd;
 	public GameObject pointer;
 
@@ -16,18 +17,21 @@ public class FingerMovementController : MonoBehaviour {
 	}
 	
 	void FixedUpdate () {
-		if(isFingers && isPalm) {
+		if(isFingers && isPalm) { //if fingers are curled and palm is facing upwards
 			Vector3 dir = pointer.transform.right;
 			if(MenuHandedness.dominantHand == Handedness.left) {
 				dir = pointer.transform.right * -1;
 			}
 			dir.y = 0;
-			pc.moveInDirection(dir);
+			pc.isMoving = true;
+			pc.moveInDirection(dir); //Move the player
 		} else {
 			pc.moveInDirection(Vector3.zero);
+			pc.isMoving = false;
 		}
 	}
 
+	//Pretty self explanitory
 	public void fingerExtend() {
 		//print("EXTEND");
 		isFingers = true;

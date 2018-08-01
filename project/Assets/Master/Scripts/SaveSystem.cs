@@ -6,12 +6,13 @@ using System.IO;
 using FullSerializer;
 
 
+/*Purpose: Manages saving and loading of project files as well as system config file */
 public class SaveSystem : MonoBehaviour {
 
-    public static SaveSystem instance;
-    Save currentSave;
+    public static SaveSystem instance; //Singleton
+    Save currentSave; //Currently loaded save
 
-    ConfigData config;
+    ConfigData config; //Currently loaded config file
 
     void Awake()
     {
@@ -24,28 +25,18 @@ public class SaveSystem : MonoBehaviour {
         }
 
 
-        config = loadConfigData();
+        config = loadConfigData(); //Automatically tries to load config data
     }
 
-	void Start () {
-		//TEMPORARY: Loads the last scene that was saved
-        //SceneManager.LoadSceneAsync(currentSave.currentRoomID, LoadSceneMode.Additive);
-
-        //Sets the hallway goal scene to the current save's last open scene
-        //Hallway.instance.setGoalScene(currentSave.currentRoomIndex);
-	}
-	
-	void Update () {
-		
-	}
-
+    //When the application is closed
     void OnApplicationQuit() {
 		//Do stuff
 		print("QUITING");
-		saveCurrentSave();
-        SaveConfigData();
+		saveCurrentSave(); //Save the current project
+        SaveConfigData(); //Save the config file
 	}
 
+    //Deletes file at a path
     public void deleteSave(string path)
     {
         print("DELETING: Testing for save at: " + path);
@@ -60,19 +51,21 @@ public class SaveSystem : MonoBehaviour {
         }
     }
 
+    //Creates a new save at a path
     public Save createNewSave(string path)
     {
         //Create new save and set it to the current one
         print(path.Length + " " + (path.Length - 5 - 1) + " " + ((Application.persistentDataPath + "/").Length - 1));
-        string name = path.Substring((Application.persistentDataPath + "/").Length, path.Length - 5 - (Application.persistentDataPath + "/").Length );
-        Save newSave = new Save(name);
-        currentSave = newSave;
+        string name = path.Substring((Application.persistentDataPath + "/").Length, path.Length - 5 - (Application.persistentDataPath + "/").Length ); //Grabs the name from the path
+        Save newSave = new Save(name); //Creates a new project
+        currentSave = newSave; //Sets it active
         
-        currentSave.path = path;
-        saveCurrentSave();
-        return currentSave;
+        currentSave.path = path; //Updates the project's path
+        saveCurrentSave(); //Saves it
+        return currentSave; //Returns it
     }
 
+    //Saves the current project
     public string saveCurrentSave()
     {
         print("SAVING: Testing for save at: " + currentSave.path);
@@ -85,17 +78,18 @@ public class SaveSystem : MonoBehaviour {
             //Save does not already exist
         }
 
-        //Converts the save into JSON and saves it to a file
-
+        //Converts the save into JSON and saves it to a file 
+        //USE FSSERIALIZER TO SAVE ALL FILES (Allows for saving of more advanced data types)
         fsSerializer _serializer = new fsSerializer();
         fsData data;
-        _serializer.TrySerialize(typeof(Save), currentSave, out data).AssertSuccessWithoutWarnings();
-        StreamWriter output = new StreamWriter(currentSave.path);
-        output.Write(fsJsonPrinter.CompressedJson(data));
-        output.Close();
-        return (currentSave.path);
+        _serializer.TrySerialize(typeof(Save), currentSave, out data).AssertSuccessWithoutWarnings(); //Converts file
+        StreamWriter output = new StreamWriter(currentSave.path); //Opens writer
+        output.Write(fsJsonPrinter.CompressedJson(data)); //Writes to the file
+        output.Close(); //Closes it
+        return (currentSave.path); //Returns the path
     }
 
+    //Load a save by the name (Honestly don't use this. Use the path one instead)
     public Save loadSaveWithName(string name)
     {
         print("LOADING: Testing for save at: " + Application.persistentDataPath + "/" + name + ".save");
@@ -126,6 +120,7 @@ public class SaveSystem : MonoBehaviour {
 
     }
 
+    //Loads a save by its path
     public Save loadSaveWithPath(string path)
     {
         print("LOADING: Testing for save at: " + path);
@@ -139,7 +134,7 @@ public class SaveSystem : MonoBehaviour {
             input.Close();
             fsData data = fsJsonParser.Parse(serializedState);
 
-            // step 2: deserialize the data
+            //deserialize the data
             fsSerializer _serializer = new fsSerializer();
             object deserialized = null;
             _serializer.TryDeserialize(data, typeof(Save), ref deserialized).AssertSuccessWithoutWarnings();
@@ -156,6 +151,7 @@ public class SaveSystem : MonoBehaviour {
 
     }
 
+    //Returns a list of all the projects it can find in the usual directory
     public Save[] listSaves()
     {
         //Gets an array of all save files in the directory
@@ -192,18 +188,19 @@ public class SaveSystem : MonoBehaviour {
     }
 
 
+    //Sets the current project and loads the first room in it to the hallway
     public void setCurrentSave(Save newSave) {
         currentSave = newSave;
         if(currentSave != null)
         TravelSystem.instance.fastTravelToRoom(0);
     }
 
+    //Accessor
     public Save getCurrentSave() {
         return currentSave;
     }
 
-
-
+    //Writes the config file to a JSON file
     public void SaveConfigData() {
         fsSerializer _serializer = new fsSerializer();
         fsData data;
@@ -213,17 +210,18 @@ public class SaveSystem : MonoBehaviour {
         output.Close();
     }
 
+    //Returns config data from the file saved, if the file is not found it creates a new file
     ConfigData loadConfigData() {
         ConfigData loadedConfig;
-        if(!File.Exists(Application.persistentDataPath + "/config.config")) {
-            loadedConfig = new ConfigData();
+        if(!File.Exists(Application.persistentDataPath + "/config.config")) { //Cannot find the config file
+            loadedConfig = new ConfigData(); //Creates new one
         } else {
-            StreamReader input = new StreamReader(Application.persistentDataPath + "/config.config");
+            StreamReader input = new StreamReader(Application.persistentDataPath + "/config.config"); //Reads in config file
             string serializedState = input.ReadToEnd();
             input.Close();
             fsData data = fsJsonParser.Parse(serializedState);
 
-            // step 2: deserialize the data
+            // deserialize the data
             fsSerializer _serializer = new fsSerializer();
             object deserialized = null;
             _serializer.TryDeserialize(data, typeof(ConfigData), ref deserialized).AssertSuccessWithoutWarnings();
@@ -233,6 +231,7 @@ public class SaveSystem : MonoBehaviour {
         return loadedConfig;
     }
 
+    //Accessor
     public ConfigData getConfigData() {
         return config;
     }

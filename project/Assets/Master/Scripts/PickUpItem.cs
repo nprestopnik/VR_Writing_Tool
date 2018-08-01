@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+/*DEPRICATED Purpose: Used to pick up items with a specific layer
+NO LONGER BEING USED */
 public class PickUpItem : MonoBehaviour {
 
     SteamVR_TrackedController controller;
