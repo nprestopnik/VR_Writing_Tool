@@ -75,6 +75,41 @@ MOOD AND WEATHER (Kate & Nate)
 N - Merge latest and generate content for presets
 N - All presets need sound
 
+LIST 3.0
+-Desk Screen not refreshing
+-Load Room with empty project
+-Drawing while grasping
+-Randomly stop drawing
+-Weather Merge
+-Weather Documentation
+-Movement refinement (Palm flat)
+-Hallway doors opening with same destination
+-Menu positioning weird
+-Muse tell user to lock desk
+-Desk needs more tutorials
+-Make sure people know that hands are not persistant
+-Training the user with the desk
+-Parking desk refinements
+-Pretty frikin cool
+-LOTS OF INSTRUCTIONS
+-so cool ("that is cool")
+-Undo needs refinements
+-Cable/chair management
+-Play hangman?
+-Cubes were intuitive
+   -But cube orientation can be weird (Throw cube behind you)
+-Menu handedness swapping weird???
+-THROWING AND HAND LEAVES VIEW
+-Treehouse load time
+-Nate did good nature
+-Moving with menu open happens a lot
+-Remove test worlds from system?
+-More worlds (to look around?)
+-interface touchy
+-throwing is good
+-Make a location before going to a location (Scrolling?)
+-Hardcode locations
+
 
 **try to do an executable for next test**
 
