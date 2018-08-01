@@ -34,8 +34,8 @@ N - small letters, not easy to see when standing
 N - lighting is dark in places (for keyboard) - make keys emissive
 
 WHITEBOARDS
-x - positioning of whiteboard when it is created
-	- positioning of whiteboard based on head or cube so users understand
+- when multiple copies of the same whiteboard are made from the desk, they all reference the same original whiteboard
+	so they are made at the same scale and with the same annotations and aren't saved properly as individual whiteboards
 ~ - drawing while grasping - make it not happen
 - refinement to finger touching/movement of whiteboard
 - how much you have to pull away from whiteboard to write nicely
@@ -50,7 +50,6 @@ N - new icon for journal world
 N - actual art for room creation and deletion, office icon
 - go to location menu thing blipped
 N - hand covering happens with menu
-x- check menu handedness
 
 INTERACTION DESIGN
 N - starting orientation?
@@ -135,7 +134,9 @@ x 0 - feedback for loading of room (muse)
 x 0 - thrown location block appear over hallway door
 x- sometimes muse doesn't connect to nav mesh
 x- keep tail on muse or not?
-
+x - positioning of whiteboard when it is created
+	- positioning of whiteboard based on head or cube so users understand
+x- check menu handedness
 
 
 
