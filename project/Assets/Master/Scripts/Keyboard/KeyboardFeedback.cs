@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityRawInput;
 using System;
 
+/*Purpose: Changes the keys of the keyboard when they are pressed */
 public class KeyboardFeedback : MonoBehaviour {
 
 	IDictionary<RawKey, GameObject> keyboard = new Dictionary<RawKey, GameObject>(); //Holds a key (the keyboard key name as a string, based on the Unity key input names) and value (the corrsponding keyboard key GameObject)
@@ -47,6 +48,7 @@ public class KeyboardFeedback : MonoBehaviour {
 			}
  		}
 
+		//Manages Key Input API for input even when Unity is not focused
 		RawKeyInput.Start(true);
 		RawKeyInput.InterceptMessages = false;
 		RawKeyInput.OnKeyDown += HandleKeyDown;

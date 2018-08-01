@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/*Purpose: Data structure for how projects are saved. Anything in here will be saved and can be read later */
 [System.Serializable]
 public class Save {
 
@@ -15,7 +15,7 @@ public class Save {
 
 
     [SerializeField]
-    Room[] rooms;
+    Room[] rooms; //Array of rooms in the project
 
 
     public Save(string name)
@@ -25,6 +25,7 @@ public class Save {
         rooms = new Room[]{new Room("Null World", 5, Color.black)};
     }
 
+    //Adds a room to the array
     public void addRoom(Room newRoom) {
         Room[] temp = new Room[rooms.Length + 1];
         for(int i = 0 ; i < rooms.Length; i++) {
@@ -34,12 +35,14 @@ public class Save {
         rooms = temp;
     }
 
+    //Deletes a room from the array
     public void deleteRoom(int index) {
         List<Room> tempList = new List<Room>(rooms);
         tempList.RemoveAt(index);
         rooms = tempList.ToArray();
     }
 
+    //Accessor
     public Room[] getRoomsArray() {
         return rooms;
     }

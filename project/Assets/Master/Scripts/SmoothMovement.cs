@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Super depricated... Not recommended for use
+Purpose: Put one of these on a controller and moves the camera rig smoothely when touchpad is pressed */
 public class SmoothMovement : MonoBehaviour {
 
     SteamVR_TrackedController controller;

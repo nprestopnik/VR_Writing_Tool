@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Super depricated... Not recommended for use
+Purpose: Put one of these on a controller and teleports the camera rig when the touchpad is pressed */
 public class TeleportMovement : MonoBehaviour {
 
     SteamVR_TrackedController controller;

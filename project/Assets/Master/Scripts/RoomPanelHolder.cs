@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*DEPRICATED 
+Purpose: Used to load and display rooms on the old UI Menu */
 public class RoomPanelHolder : MonoBehaviour {
 
 	public Text nameText;

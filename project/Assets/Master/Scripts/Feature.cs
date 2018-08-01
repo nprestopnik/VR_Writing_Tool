@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Purpose: Data structure for saving features. Should be extended for more specific features (See WhiteboardData.cs) */
 [System.Serializable]
 public class Feature {
 
-	public string name;
-	public string ID;
+	public string name; //Useless
+	public string ID; //Useless
 
 	public Vector3 position;
 	public Quaternion rotation;

@@ -7,17 +7,13 @@ public class CopyPasteCube : MonoBehaviour {
 
 	public GameObject whiteBoardPrefab;
 
-	public Leap.Unity.Interaction.Anchor anchor;
-	public WhiteboardContainer wc;
+	public Leap.Unity.Interaction.Anchor anchor; //Anchor that the cube attaches to
+	public WhiteboardContainer wc; //Data stored in the whiteboard
 	Leap.Unity.Interaction.AnchorableBehaviour ab;
 
 	void Start () {
 		wc = GetComponent<WhiteboardContainer>();
 		ab = GetComponent<Leap.Unity.Interaction.AnchorableBehaviour>();
-	}
-	
-	void Update () {
-		
 	}
 
 	//When the copy paste cube is let go, it creates a whiteboard with the copy data and then returns to its anchor
@@ -29,7 +25,6 @@ public class CopyPasteCube : MonoBehaviour {
 		whiteboard.loadData(wc.data);
 		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
 		SaveSystem.instance.saveCurrentSave();
-		//	SceneManager.MoveGameObjectToScene(whiteboard.transform.root.gameObject, SceneManager.GetSceneByBuildIndex(SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].sceneID));
 		
 		whiteboard.orientRotation();
 
@@ -39,13 +34,5 @@ public class CopyPasteCube : MonoBehaviour {
 		ab.anchor = anchor;
 		ab.TryAttach();
 		
-	}
-
-	public void onAnchorLock() {
-
-	}
-
-	public void onAnchorUnlock() {
-
 	}
 }

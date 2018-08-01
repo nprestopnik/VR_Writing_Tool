@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Super depricated... Not recommended for use
+Purpose: Put one of these on each controller and moves the camera rig when grips are pressed */
 public class WheelChairMovement : MonoBehaviour {
 
     SteamVR_TrackedController controller;
