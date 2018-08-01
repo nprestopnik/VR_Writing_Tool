@@ -17,6 +17,9 @@ public class Calibrator : MonoBehaviour {
 	public GameObject seatPivotPrefab;
 	public GameObject[] stagePanels;
 
+	public CanvasRenderer[] deskPointVisuals;
+	public CanvasRenderer[] chairPointVisuals;
+
 	public SteamVR_TrackedController rightController;
 	public SteamVR_TrackedController leftController;
 	SteamVR_TrackedController calibrationController;
@@ -63,6 +66,23 @@ public class Calibrator : MonoBehaviour {
 				chairCalibrationPoints = new List<Vector3>();
 				calibrationController.TriggerClicked += triggerClicked;
 				currentStage = CalibrationStage.CalibrateDesk;
+			}
+		}
+
+		if(currentStage == CalibrationStage.CalibrateDesk) {
+			for(int i = 0; i < deskCalibrationPoints.Count; i++) {
+				deskPointVisuals[i].SetColor(Color.green);
+			}
+		} else if (currentStage == CalibrationStage.CalibrateChair) {
+			for(int i = 0; i < chairCalibrationPoints.Count; i++) {
+				chairPointVisuals[i].SetColor(Color.green);
+			}
+		} else {
+			foreach(CanvasRenderer c in chairPointVisuals) {
+				c.SetColor(Color.white);
+			}
+			foreach(CanvasRenderer c in deskPointVisuals) {
+				c.SetColor(Color.white);
 			}
 		}
 	}
