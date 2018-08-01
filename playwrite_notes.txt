@@ -109,6 +109,8 @@ LIST 3.0
 -throwing is good
 -Make a location before going to a location (Scrolling?)
 -Hardcode locations
+-Desk legs on small desk
+-Hide copy/paste for first time
 
 
 **try to do an executable for next test**
