@@ -254,6 +254,8 @@ public class VdmDesktopManager : MonoBehaviour {
 
     void OnEnable()
     {
+        StartCoroutine(OnRender());
+
 #if VDM_SteamVR
         //SteamVR_Events.DeviceConnected.Listen(OnDeviceConnected);
         //SteamVR_Utils.Event.Listen("device_connected", OnDeviceConnected);

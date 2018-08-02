@@ -112,6 +112,13 @@ LIST 3.0
 -Desk legs on small desk
 -Hide copy/paste for first time
 
+-Everyone leaves the tutorial before learning menus
+-Menus palm orientation weird
+-Everyone does weather first
+-Menu closing when using menu
+-Whiteboards spawn weird
+-Buttons flerp
+
 
 **try to do an executable for next test**
 

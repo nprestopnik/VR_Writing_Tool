@@ -115,6 +115,8 @@ public class VdmDesktop : MonoBehaviour
     
     void OnEnable()
     {
+        m_manager = transform.parent.GetComponent<VdmDesktopManager>();
+        m_manager.Connect(this);
         //RawKeyInput.Start(true);
 		RawKeyInput.OnKeyDown += HandleKeyDown;
 		RawKeyInput.OnKeyUp += HandleKeyUp;
