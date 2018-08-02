@@ -88,7 +88,7 @@ public class DeskController : MonoBehaviour {
 	}
 
 
-	//Checks if a finger is pointing towards a desk
+	//Checks if a finger is pointing towards a desktop
 	public void castFinger(Leap.Unity.RiggedHand hand) {
 		foreach(VdmDesktop desk in desktops) {
 			Vector3 forwardVect = hand.Handedness == Leap.Unity.Chirality.Left ? hand.fingers[1].bones[3].right : hand.fingers[1].bones[3].right * -1f;

@@ -102,7 +102,7 @@ x-Hallway doors opening with same destination
 -THROWING AND HAND LEAVES VIEW
 -Treehouse load time
 -Nate did good nature
--Moving with menu open happens a lot
+-Moving with menu open happens a lot *
 -Remove test worlds from system?
 -More worlds (to look around?)
 -interface touchy
@@ -110,14 +110,18 @@ x-Hallway doors opening with same destination
 x-Make a location before going to a location (Scrolling?)
 x-Hardcode locations
 -Desk legs on small desk
-x-Hide copy/paste for first time
+x-Hide copy/paste for first time 
+- movement palm direction/angle *
+-mouse pointing smoothing/distance
 
 -Everyone leaves the tutorial before learning menus
 -Menus palm orientation weird
 -Everyone does weather first
 -Menu closing when using menu
--Whiteboards spawn weird
+x-Whiteboards spawn weird
 -Buttons flerp
+
+-menu text size (calibrator during build)
 
 
 **try to do an executable for next test**

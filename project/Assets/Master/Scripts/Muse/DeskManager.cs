@@ -169,7 +169,7 @@ public class DeskManager : MonoBehaviour {
 		if(deskTracker.transform.position.y < -75) { //If the desk is not tracking it is placed low in the world
 			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again."); //Set muse text
 			MuseManager.instance.museGuide.EnterMuse(); //Muse guides in
-			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse()); //Muse pauses then exits
+			MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.ExitMuse()); //Muse pauses then exits
 		} else {
 			desktopDisplay.SetActive(false);
 			MuseManager.instance.museText.SetText("Follow me to your desk!");

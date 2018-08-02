@@ -391,7 +391,7 @@ Shader "Nature/SpeedTreeFix"
 					#ifdef SPEEDTREE_ALPHATEST
 						clip(tex2D(_MainTex, i.uv).a * _Color.a - _Cutoff);
 					#endif
-					UNITY_APPLY_DITHER_CROSSFADE(i)
+					//UNITY_APPLY_DITHER_CROSSFADE(i)
 					SHADOW_CASTER_FRAGMENT(i)
 				}
 			ENDCG

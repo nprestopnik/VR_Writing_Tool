@@ -54,6 +54,7 @@ public class ControllerModelActivation : MonoBehaviour {
 	
 }
 
+#if UNITY_EDITOR
 //editor for testing functions from inspector
 
 [CustomEditor(typeof(ControllerModelActivation))]
@@ -69,3 +70,5 @@ public class ControllerModelEditor : Editor {
         }
     }
 }
+
+#endif

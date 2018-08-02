@@ -34,6 +34,8 @@ public class TrackerIndex : MonoBehaviour {
 
 }
 
+
+#if UNITY_EDITOR
 /*
 this editor makes an inspector button to reset the tracker's index to the actual tracker
 this was used when trying different combinations of tracker/controller (see trackingCases.cs) and having to reset the index at runtimes 
@@ -48,3 +50,5 @@ public class TrackerIndexEditor : Editor {
         }
     }
 }
+
+#endif

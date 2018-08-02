@@ -22,7 +22,7 @@ public class RoomCubeContainer : MonoBehaviour {
 
 	public void loadRoom() {
 		TravelSystem.instance.setGoalScene(roomIndex); //Loads the room
-		transform.root.gameObject.SetActive(false); //Deactivates menus
+		transform.parent.parent.parent.gameObject.SetActive(false); //Deactivates menus
 
 		//set the muse's text and start its guiding to the hallway
 		MuseManager.instance.museNavigator.NavigateToHallway();

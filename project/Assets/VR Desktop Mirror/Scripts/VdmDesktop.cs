@@ -149,7 +149,7 @@ public class VdmDesktop : MonoBehaviour
 
             foreach (RaycastHit rcast in rcasts)
             {
-                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 0.3f) {
+                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 1f) {
                     continue;
                 } else {
                     isMousing = true; 
