@@ -101,7 +101,7 @@ public class desksize : MonoBehaviour {
 		setScale(SaveSystem.instance.getConfigData().deskCalibrationPoints);
 		deskSetup();
 		scaleDesk();
-		deskParkCube.transform.localScale = new Vector3(width, height, depth);
+		deskParkCube.transform.localScale = new Vector3(width, depth, height);
 		foreach(Transform t in transform) {
 			t.localPosition += new Vector3(0, -1 * height, depth / 2f);	
 		}

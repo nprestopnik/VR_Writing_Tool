@@ -76,15 +76,15 @@ N - Merge latest and generate content for presets
 N - All presets need sound
 
 LIST 3.0
--Desk Screen not refreshing
--Load Room with empty project
+x-Desk Screen not refreshing
+x-Load Room with empty project
 -Drawing while grasping
 -Randomly stop drawing
 -Weather Merge
 -Weather Documentation
 -Movement refinement (Palm flat)
--Hallway doors opening with same destination
--Menu positioning weird
+x-Hallway doors opening with same destination
+-Menu tween positioning weird
 -Muse tell user to lock desk
 -Desk needs more tutorials
 -Make sure people know that hands are not persistant
@@ -107,10 +107,10 @@ LIST 3.0
 -More worlds (to look around?)
 -interface touchy
 -throwing is good
--Make a location before going to a location (Scrolling?)
--Hardcode locations
+x-Make a location before going to a location (Scrolling?)
+x-Hardcode locations
 -Desk legs on small desk
--Hide copy/paste for first time
+x-Hide copy/paste for first time
 
 -Everyone leaves the tutorial before learning menus
 -Menus palm orientation weird

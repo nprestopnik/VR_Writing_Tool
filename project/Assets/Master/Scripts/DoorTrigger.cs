@@ -16,7 +16,7 @@ public class DoorTrigger : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if(col.tag == "Player" && SaveSystem.instance.getCurrentSave() != null) //If the player is near the hallway and there is a loaded save
+        if(col.tag == "Player" && SaveSystem.instance.getCurrentSave() != null && !(TravelSystem.instance.currentRoom.sceneID == TravelSystem.instance.goalRoom.sceneID)) //If the player is near the hallway and there is a loaded save
         {
             StartCoroutine(doorAnimation(leftDoor, false, false));
             StartCoroutine(doorAnimation(rightDoor, false, true));

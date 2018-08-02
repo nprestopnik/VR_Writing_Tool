@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Leap.Unity;
 using UnityEngine;
+using UnityEngine.UI;
 
 //the two options for dominant hand
 public enum Handedness {
@@ -31,6 +32,8 @@ public class MenuHandedness : MonoBehaviour {
 	//the palms (child of the leap hand models) - for changing palm direction detection
 	public GameObject leftPalm; 
 	public GameObject rightPalm;
+
+	public Toggle handednessToggle;
 
 
 	[Header("Menu")]
@@ -187,10 +190,7 @@ public class MenuHandedness : MonoBehaviour {
 	//this was a test method for swapping handedness at runtime; it was really only used for preliminary testing with the static handedness varible
 	public void swapHands() {
 		dominantHand = dominantHand == Handedness.right ? Handedness.left : Handedness.right;
-	}
-
-	public void setHandedness(bool isRight) {
-		dominantHand = !isRight ? Handedness.left : Handedness.right;
+		handednessToggle.isOn = dominantHand == Handedness.right;
 	}
 
 	public Handedness GetHandedness() {

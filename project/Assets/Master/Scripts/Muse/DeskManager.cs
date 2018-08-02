@@ -47,6 +47,7 @@ public class DeskManager : MonoBehaviour {
 	public Material chairMAT;
 	public Material ghostlyChairMAT;
 
+	public GameObject parkCube;
 	public bool parked = true; //whether or not the desk is parked in its "inactive" location
 
 	private bool isTracking; //are we supposed to be tracking the tracker irhgt now
@@ -57,6 +58,8 @@ public class DeskManager : MonoBehaviour {
 	public Leap.Unity.Interaction.AnchorGroup anchorGroup;
 
 	MeshRenderer[] chairMeshes;
+
+	bool isFirstSet;
 
 	void Awake () {
 		instance = this;
@@ -119,7 +122,7 @@ public class DeskManager : MonoBehaviour {
 				ConfirmSet();
 			} else if(currentState == DeskState.Enabled) {
 				currentState = DeskState.Placing;
-				StartDeskTask();
+				StartDeskTask(false);
 			}
 
 			cooldown = Time.time + 0.5f;
@@ -141,6 +144,9 @@ public class DeskManager : MonoBehaviour {
 				m.material = ghostlyChairMAT;
 			}
 			moveLockButton.material = setDeskIcon;
+
+			if(!isFirstSet)
+				parkCube.SetActive(true);
 		} else {
 			deskMount.material = deskMountMAT;
 			foreach(MeshRenderer m in deskWood) {
@@ -150,11 +156,16 @@ public class DeskManager : MonoBehaviour {
 				m.material = chairMAT;
 			}
 			moveLockButton.material = moveDeskIcon;
+			parkCube.SetActive(false);
 		}
 	}
 
 	//Begins the Muse task of guiding to the desk
-	public void StartDeskTask() {
+	public void StartDeskTask(bool isFromMenu) {
+		if(isFromMenu) {
+			isFirstSet = true;
+		}
+
 		if(deskTracker.transform.position.y < -75) { //If the desk is not tracking it is placed low in the world
 			MuseManager.instance.museText.SetText("The tracker is not tracking!\nGo fix it and try again."); //Set muse text
 			MuseManager.instance.museGuide.EnterMuse(); //Muse guides in
@@ -185,8 +196,8 @@ public class DeskManager : MonoBehaviour {
 	//once the desk is locked, the muse will exit
 	public void ConfirmSet() {
 		//isTracking = false;
+		isFirstSet = false;
 		desktopDisplay.SetActive(true);
-
 		currentState = DeskState.Enabled;
 		lighthouse1.SetActive(false);
 		lighthouse2.SetActive(false);
@@ -220,7 +231,7 @@ public class DeskManager : MonoBehaviour {
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(false);
 		}
-
+		parkCube.SetActive(false);
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);
 		lighthouse1.SetActive(false);

@@ -72,10 +72,18 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void createIdeaBoard() {
-		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, head.forward + head.transform.position, transform.rotation)).GetComponentInChildren<Whiteboard>();
+		Vector3 pos = (head.forward);// + head.transform.position;
+		pos.y = 0;
+		pos.Normalize();
+		pos /= 2f;
+		pos += head.transform.position;
+		pos.y = head.transform.position.y - 0.5f;
+
+		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, pos, transform.rotation)).GetComponentInChildren<Whiteboard>();
 		WhiteboardData data = new WhiteboardData();
-		whiteboard.transform.root.position = PositionThrownObject.instance.DeterminePosition();
+		// whiteboard.transform.root.position = PositionThrownObject.instance.DeterminePosition();
 		whiteboard.transform.root.rotation = PositionThrownObject.instance.DetermineRotation(whiteboard.transform.root.position);
+
 		whiteboard.transform.root.Rotate(0, 180, 0);
 		data.position = whiteboard.transform.root.position;
 		data.rotation = whiteboard.transform.root.rotation;
@@ -88,6 +96,6 @@ public class handMenuController : MonoBehaviour {
 
 
 	public void activateDesk() {
-		dm.StartDeskTask();
+		dm.StartDeskTask(true);
 	}
 }
