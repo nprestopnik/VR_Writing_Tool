@@ -1,6 +1,4 @@
-﻿//#define VDM_SteamVR
-
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,26 +15,6 @@ public class VdmDesktopManager : MonoBehaviour {
     [Tooltip("Keyboard key to zoom")]
     public KeyCode KeyboardZoom = KeyCode.LeftAlt;
 
-#if VDM_SteamVR
-
-    public enum ViveButton
-    {
-        None = 0,
-        Trigger = 33,
-        Grip = 2,
-        Menu = 1,
-        Touchpad = 32,
-    }
-
-    [Tooltip("Vive button to show/drag/hide")]
-    public ViveButton ViveShow = ViveButton.Grip;
-    [Tooltip("Vive button to zoom")]
-    public ViveButton ViveZoom = ViveButton.Menu;
-    [Tooltip("Vive button as mouse click (left)")]
-    public ViveButton ViveLeftClick = ViveButton.Trigger;
-    [Tooltip("Vive touchpad as mouse left and right click")]
-    public bool ViveTouchPadForClick = true;
-#endif
     [Tooltip("Distance of the screen if showed with keyboard/mouse. Change it at runtime with 'Show' + Mouse Wheel")]
     public float KeyboardDistance = 1;
     
@@ -203,13 +181,6 @@ public class VdmDesktopManager : MonoBehaviour {
 
     private static int needReinit = 0;
 
-#if VDM_SteamVR
-    // Don't worry!
-    // If you have a compilation error about missing SteamVR_TrackedObject,
-    // comment the first line of this file, the "#define VDM_SteamVR" line.
-    private List<SteamVR_TrackedObject> Controllers = new List<SteamVR_TrackedObject>();
-#endif
-
     private List<VdmDesktop> Monitors = new List<VdmDesktop>();
 
     private bool m_forceMouseTrail = false; // Otherwise cursor is not visible
@@ -245,21 +216,12 @@ public class VdmDesktopManager : MonoBehaviour {
 
         yield return new WaitForSeconds(1);
 
-#if VDM_SteamVR
-        RefreshControllers();
-#endif
-
         StartCoroutine(OnRender());
     }
 
     void OnEnable()
     {
         StartCoroutine(OnRender());
-
-#if VDM_SteamVR
-        //SteamVR_Events.DeviceConnected.Listen(OnDeviceConnected);
-        //SteamVR_Utils.Event.Listen("device_connected", OnDeviceConnected);
-#endif
 
         HackStart();
 
@@ -272,11 +234,6 @@ public class VdmDesktopManager : MonoBehaviour {
 
     void OnDisable()
     {
-#if VDM_SteamVR
-        //SteamVR_Events.DeviceConnected.Remove(OnDeviceConnected);
-        //SteamVR_Utils.Event.Remove("device_connected", OnDeviceConnected);
-#endif
-
         HackStop();
 
         if (m_forceMouseTrail)
@@ -303,16 +260,7 @@ public class VdmDesktopManager : MonoBehaviour {
 
         foreach (VdmDesktop monitor in Monitors)
         {
-            monitor.HideLine();
-
-            monitor.CheckKeyboardAndMouse();                
-            
-#if VDM_SteamVR
-            foreach (SteamVR_TrackedObject controller in Controllers)
-            {
-                monitor.CheckController(controller);
-            }
-#endif            
+            monitor.HideLine();                   
         }
     }
         
@@ -426,28 +374,6 @@ public class VdmDesktopManager : MonoBehaviour {
             winDesk.ReInit(tex, width, height);                        
         }
     }
-
-#if VDM_SteamVR
-    private void RefreshControllers()
-    {
-        foreach (SteamVR_TrackedObject trackedObj in GameObject.FindObjectsOfType<SteamVR_TrackedObject>())
-        {
-            if (trackedObj.name.Contains("Controller"))
-            {
-                if (Controllers.Contains(trackedObj) == false)
-                    Controllers.Add(trackedObj);
-            }
-        }
-        Debug.Log("Controllers found: " + Controllers.Count);
-    }
-#endif
-
-#if VDM_SteamVR
-    private void OnDeviceConnected(params object[] args)
-    {
-        RefreshControllers();        
-    }
-#endif
 
     public bool GetMouseTrailEnabled()
     {

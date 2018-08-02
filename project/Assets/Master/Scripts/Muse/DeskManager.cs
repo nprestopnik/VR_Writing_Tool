@@ -160,7 +160,7 @@ public class DeskManager : MonoBehaviour {
 			MuseManager.instance.museGuide.EnterMuse(); //Muse guides in
 			MuseManager.instance.Pause(2f, ()=> MuseManager.instance.museGuide.ExitMuse()); //Muse pauses then exits
 		} else {
-			//desktopDisplay.SetActive(false);
+			desktopDisplay.SetActive(false);
 			MuseManager.instance.museText.SetText("Follow me to your desk!");
 			MuseManager.instance.museGuide.EnterMuse();
 			MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(moveMusePoint, DeskStage30));
@@ -185,8 +185,7 @@ public class DeskManager : MonoBehaviour {
 	//once the desk is locked, the muse will exit
 	public void ConfirmSet() {
 		//isTracking = false;
-		// desktopDisplay.SetActive(true);
-		// desktopReactivate = true;
+		desktopDisplay.SetActive(true);
 
 		currentState = DeskState.Enabled;
 		lighthouse1.SetActive(false);
@@ -200,6 +199,7 @@ public class DeskManager : MonoBehaviour {
 	use callbacks to activate muse, show where the desk is to be parked, do associated activation and all that
 	 */
 	public void StartParkTask() {
+		desktopDisplay.SetActive(false);
 		MuseManager.instance.museText.SetText("Follow me to park your desk!");
 		MuseManager.instance.museGuide.EnterMuse();
 		MuseManager.instance.Pause(3f, ()=> MuseManager.instance.museGuide.GuideTo(parkMusePoint, ParkStage30));
