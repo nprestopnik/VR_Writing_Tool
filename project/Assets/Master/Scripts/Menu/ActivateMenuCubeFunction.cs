@@ -61,7 +61,7 @@ public class ActivateMenuCubeFunction : MonoBehaviour {
 	}
 
 	//returns the cube to its original place in the menu lineup
-	void ReturnCube() {
+	public void ReturnCube() {
 		//stop the cube's movement
 		rbCube.velocity = new Vector3(0,0,0);
 		rbCube.angularVelocity = new Vector3(0,0,0);

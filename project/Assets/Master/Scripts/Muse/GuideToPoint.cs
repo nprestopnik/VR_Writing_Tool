@@ -25,14 +25,8 @@ public class GuideToPoint : MonoBehaviour {
 
 	public Transform target; //where the muse is going to go next
 
-	//public bool guiding = false; //if the muse is currently travelling somewhere
-	//this was used for the old movement system; it has gone out of use but it's still here as comments
-
 	private Transform startPosition; //the muse's start position when it begins guiding
 
-	//lerp stuff from the old movement system
-	//private float lerpTime = 1f;
-	//private float currentLerpTime = 0f;
 	
 	void Start () {
 		
@@ -45,31 +39,9 @@ public class GuideToPoint : MonoBehaviour {
 			transform.position = Vector3.Lerp(startPosition.position, target.position, Time.deltaTime * speed);
 		}
 
-		// if (guiding) {
-		// 	if (transform.position != target.position) {
-		// 		currentLerpTime += Time.deltaTime;
-		// 		if (currentLerpTime > lerpTime) {
-		// 			currentLerpTime = lerpTime;
-		// 		}
-		// 		float t = currentLerpTime/lerpTime;
-		// 		//make lerp movement ease in and out
-		// 		t = t*t*t * (t * (6f*t-15f) + 10f);
-		// 		transform.position = Vector3.Lerp(startPosition.position, target.position, t);
-		// 	} else {
-		// 		guiding = false;
-		// 		currentLerpTime = 0f;
-		// 	}
-		// }
 	}
 
 	public void GuideTo(Transform targetPoint, Action completedEvent = null) {
-		//stop if the muse is being cleared
-		// if(MuseManager.instance.clearingMuse) {
-		// 	MuseManager.instance.clearingMuse = false;
-		// 	return;
-		// }	
-
-		//guiding = true; //from old guiding system
 
 		//set the target and the start position and let the muse go
 		target = targetPoint;
@@ -89,26 +61,14 @@ public class GuideToPoint : MonoBehaviour {
 
 		//if the muse is close enough to its target, we'll say it's at the target and can stop
 		return (Vector3.SqrMagnitude(target.position-transform.position) < 0.05f); 
-
-		// if (guiding) return false;
-		// else return true;
 	}
 
 	public void EnterMuse(Action completedEvent = null) {
-		//clear the muse of whatever else it might be doing and wait for that to finish before it enters
-		//MuseManager.instance.clearingMuse = true;
-		//StartCoroutine(MuseEntry(completedEvent));
-
 		transform.SetParent(MuseManager.instance.transform);
 		transform.position = entryPoints[(int)entryDirection].position;
 		GuideTo(startPoint, completedEvent);
 	}
-	// IEnumerator MuseEntry(Action completedEvent = null) {
-	// 	yield return new WaitUntil(()=> !MuseManager.instance.clearingMuse); 
-	// 	transform.parent.SetParent(null);
-	// 	transform.position = entryPoints[(int)entryDirection].position;
-	// 	GuideTo(startPoint, completedEvent);
-	// }
+
 
 	Action storedCompletedEvent;
 	public void ExitMuse(Action completedEvent = null) {

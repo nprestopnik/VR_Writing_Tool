@@ -9,13 +9,14 @@ using UnityEngine.UI;
 public class DeskController : MonoBehaviour {
 
 	public static DeskController instance; //Singleton
-	WhiteboardData lastData;
+	WhiteboardData lastData = null;
 
 	VdmDesktop[] desktops;
 	public Transform goalDesktopPosition;
 
 	ClipboardListener cl;
 
+	public GameObject copyPasteInteraction;
 	public CopyPasteCube copyPasteCube;
 
 	public GameObject whiteBoardPrefab;
@@ -87,7 +88,7 @@ public class DeskController : MonoBehaviour {
 	}
 
 
-	//Checks if a finger is pointing towards a desk
+	//Checks if a finger is pointing towards a desktop
 	public void castFinger(Leap.Unity.RiggedHand hand) {
 		foreach(VdmDesktop desk in desktops) {
 			Vector3 forwardVect = hand.Handedness == Leap.Unity.Chirality.Left ? hand.fingers[1].bones[3].right : hand.fingers[1].bones[3].right * -1f;
@@ -106,6 +107,11 @@ public class DeskController : MonoBehaviour {
 
 	//When clipboard data is changed, the clipboard image is updated
 	public void updateClipboardData(WhiteboardData data) {
+
+		if(lastData == null) {
+			copyPasteInteraction.SetActive(true);
+		}
+
 		lastData = data;
 		//Do stuff
 		copyPasteCube.wc.data = lastData;

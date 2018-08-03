@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Weather System Manager
+holds on to the current scene environment manager and makes sure the menu has the right cubes 
+	and is hooked up to the right things
+ */
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +22,9 @@ public class WeatherSystemManager : MonoBehaviour {
 		instance = this;
 	}
 	
+
+
+	//this is called when a scene's environment manager loads in; it sets the system environment manager and creates menu cubes
     public void SetSceneEnvironmentManager(GameObject sceneEnvironment) {
 		environmentManager = sceneEnvironment;
 		environment = environmentManager.GetComponent<EnvironmentManager>();

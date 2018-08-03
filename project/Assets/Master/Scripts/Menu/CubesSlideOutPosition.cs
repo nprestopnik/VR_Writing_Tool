@@ -13,5 +13,6 @@ public class CubesSlideOutPosition : MonoBehaviour {
 	void Start() {
 		transform.position = hidden.position;
 	}
+
 	
 }

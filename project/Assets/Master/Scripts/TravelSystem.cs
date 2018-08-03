@@ -19,6 +19,7 @@ public class TravelSystem : MonoBehaviour {
 
 	void Awake() {
 		instance = this; //Sets singleton
+		SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
 	}
 
 	void Start () {

@@ -22,7 +22,7 @@ public class Save {
     {
         this.name = name;
         currentRoomIndex = 0;
-        rooms = new Room[]{new Room("Null World", 5, Color.black)};
+        rooms = new Room[]{new Room("Null World", 5, Color.black), new Room("Treehouse", 4, Color.green), new Room("Office", 6, Color.blue), new Room("World 1", 1, Color.yellow), new Room("World 2", 2, Color.magenta)};
     }
 
     //Adds a room to the array

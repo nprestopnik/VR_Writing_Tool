@@ -47,24 +47,6 @@ public class MuseNavigation : MonoBehaviour {
 			}
 		}
 		
-		//if the muse is called for something else, stop navigation and free the muse for the other task
-		// if(MuseManager.instance.clearingMuse) {
-		// 	agent.gameObject.SetActive(false);
-		// 	trail.SetActive(false);
-		// 	particles.gameObject.SetActive(false);
-
-		// 	MuseManager.instance.clearingMuse = false;
-		// }
-
-		if(agent.gameObject.activeInHierarchy) {
-
-			// if(Vector3.Distance(agent.transform.position, PlayerController.instance.head.position) < 0.5f) {
-			// 	agent.speed = 6f;
-			// } else {
-			// 	agent.speed = 2.9f;
-			// }
-
-		}
 		
 		//if the muse gets close to its target, turn off all its navigation things and start the completed event
 		if(agent.gameObject.activeInHierarchy && agent.remainingDistance < 1f && agent.remainingDistance != 0) {
@@ -82,18 +64,9 @@ public class MuseNavigation : MonoBehaviour {
 	//give her a target and something to do when she's done (if you want) and she will take you where you need to go
 	//there she go
 	public void NavigateToPoint(Vector3 target, Action completedEvent = null) {
-		//stop if the muse is asked to do something else
-		// if(MuseManager.instance.clearingMuse) {
-		// 	MuseManager.instance.clearingMuse = false;
-		// 	return;
-		// }	
-
+	
 		//activate all those funky navigation effects (and the actual nav agent of course)
 		storedCompletedEvent = completedEvent;
-		
-		//MuseManager.instance.SetEffectsActive(true);
-
-		//agent.Warp(transform.position);
 		
 		//set up the nav mesh agent so the muse gets onto the mesh and the agent can work 
 		NavMeshHit hit;
@@ -129,12 +102,7 @@ public class MuseNavigation : MonoBehaviour {
 	}
 
 	//make the muse wait for the user to get to the hallway before exiting		
-	public void GetToHallway() {
-		//stop everything if the muse is called for something else
-		// if(MuseManager.instance.clearingMuse) {
-		// 	MuseManager.instance.clearingMuse = false;
-		// 	return;
-		// }	
+	public void GetToHallway() {	
 
 		StartCoroutine(PauseForExit());
 	}

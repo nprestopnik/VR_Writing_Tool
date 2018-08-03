@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace UnityEditor
 {
+#if UNITY_EDITOR
     internal class StandardShaderGUIXRay : ShaderGUI
     {
         private enum WorkflowMode
@@ -450,4 +451,5 @@ namespace UnityEditor
                 m.DisableKeyword(keyword);
         }
     }
+#endif
 } // namespace UnityEditor

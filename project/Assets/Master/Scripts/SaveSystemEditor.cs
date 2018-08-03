@@ -5,6 +5,7 @@ using UnityEditor;
 
 /*Purpose: Custom inspector for manipulating the save system 
 Was used for debugging before menus had been made. Virtually obsolete now*/
+#if UNITY_EDITOR
 [CustomEditor(typeof(SaveSystem))]
 public class SaveSystemEditor : Editor {
 
@@ -94,3 +95,4 @@ public class SaveSystemEditor : Editor {
 		}
 	}
 }
+#endif

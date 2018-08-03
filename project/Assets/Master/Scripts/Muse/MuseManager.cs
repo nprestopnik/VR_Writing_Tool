@@ -20,10 +20,6 @@ public class MuseManager : MonoBehaviour {
 	public GameObject trail;
 	public ParticleSystem particles;
 
-	//public bool clearingMuse; //if the muse is called again while it is in the middle of a task, the muse will clear
-		//there are checks in the functions of the above muse components to see if this is ever true
-		//if the muse is clearing, those functions will reset this boolean and return so they don't mess up the next task
-		//then the muse should be clear to continue on with whatever function it was last called to do
 
 	void Awake () {
 		instance = this;

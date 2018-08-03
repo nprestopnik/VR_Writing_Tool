@@ -8,6 +8,7 @@
  ******************************************************************************/
  //I basically took a few functions from the leap menu example and modified them to work with our system
 
+
 using Leap.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ public class PositionThrownObject : MonoBehaviour {
 	/*
 	determine a good position for an object to spawn based on the position and velocity of the thrown cube that spawns it
 	cubeInitPosiiton and cubeInitVelocity must be set first in order for this to work; they are currently set from the cube activation script 
+	note that this doesn't guarantee that the spawned object is visible (it could be behind you) which is why it's not really used at the moment
 	*/
 	public Vector3 DeterminePosition() {
      
