@@ -76,14 +76,11 @@ N - Merge latest and generate content for presets
 N - All presets need sound
 
 LIST 3.0
-x-Desk Screen not refreshing
-x-Load Room with empty project
 -Drawing while grasping
 -Randomly stop drawing
 -Weather Merge
 -Weather Documentation
 -Movement refinement (Palm flat)
-x-Hallway doors opening with same destination
 -Menu tween positioning weird
 -Muse tell user to lock desk
 -Desk needs more tutorials
@@ -107,10 +104,8 @@ x-Hallway doors opening with same destination
 -More worlds (to look around?)
 -interface touchy
 -throwing is good
-x-Make a location before going to a location (Scrolling?)
-x-Hardcode locations
 -Desk legs on small desk
-x-Hide copy/paste for first time 
+
 - movement palm direction/angle *
 -mouse pointing smoothing/distance
 
@@ -118,10 +113,23 @@ x-Hide copy/paste for first time
 -Menus palm orientation weird
 -Everyone does weather first
 -Menu closing when using menu
-x-Whiteboards spawn weird
 -Buttons flerp
-
 -menu text size (calibrator during build)
+
+
+Final Summer To-Do List
+x-menu text size (calibrator during build)
+-movement palm direction/angle *
+-mouse pointing smoothing/distance
+-Moving with menu open happens a lot *
+x-Menu tween positioning weird
+-Muse tell user to lock desk
+-Desk needs more tutorials
+-Make sure people know that hands are not persistent
+-Training the user with the desk
+-Weather Merge
+-Weather Documentation
+-POLISH
 
 
 **try to do an executable for next test**
@@ -140,6 +148,7 @@ OTHER ART
 - Trash bin for deleting
 - Size-able chair
 - Calibrator diagrams
+- Desk instructions
 
 
 
@@ -185,7 +194,10 @@ x- keep tail on muse or not?
 x - positioning of whiteboard when it is created
 	- positioning of whiteboard based on head or cube so users understand
 x- check menu handedness
-
-
-
-
+x-Hide copy/paste for first time 
+x-Whiteboards spawn weird
+x-Make a location before going to a location (Scrolling?)
+x-Hardcode locations
+x-Hallway doors opening with same destination
+x-Desk Screen not refreshing
+x-Load Room with empty project

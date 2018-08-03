@@ -16,8 +16,14 @@ public enum Handedness {
 	left,right
 }
 
+public enum MenuCategory {
+	mood,weather,creation,location,system
+}
+
 public class MenuHandedness : MonoBehaviour {
 
+	//too many references. too much hardcoding. this needs a makeover ahhhhhhhhhhhhhh
+	
 	[Header("Hand Controls")]
 	public static Handedness dominantHand = Handedness.right; //handedness, static so it can be grabbed from elsewhere
 
@@ -171,6 +177,7 @@ public class MenuHandedness : MonoBehaviour {
 			SetCubePositions(moodCubesUpper, true, dominantHand == Handedness.right);
 			SetCubePositions(weatherCubesLower, false, dominantHand == Handedness.right);
 			SetCubePositions(weatherCubesUpper, true, dominantHand == Handedness.right);
+			SetAllHiddenTweens();
 			currentHand = dominantHand;
 		}
 
@@ -341,6 +348,7 @@ public class MenuHandedness : MonoBehaviour {
 		}
 	}
 
+	//sets the positions of the cubes spaced out from the menu in the indicated directions
 	public void SetCubePositions(GameObject[] cubes, bool upper, bool right) {
 		 int i = 0;
 		 //set each cube in a diagonal line out from the button in the proper direction 
@@ -362,5 +370,42 @@ public class MenuHandedness : MonoBehaviour {
 			i++;
 		 }
     }
+
+	public void SetAllHiddenTweens() {
+		SetHiddenTweens(moodCubesUpper, MenuCategory.mood, MenuRow.upper);
+		SetHiddenTweens(moodCubesLower, MenuCategory.mood, MenuRow.lower);
+		SetHiddenTweens(weatherCubesUpper, MenuCategory.weather, MenuRow.upper);
+		SetHiddenTweens(weatherCubesLower, MenuCategory.weather, MenuRow.lower);
+		SetHiddenTweens(creationCubes, MenuCategory.creation);
+		SetHiddenTweens(locationCubes, MenuCategory.location);
+		SetHiddenTweens(systemCubes, MenuCategory.system);
+	}
+
+	void SetHiddenTweens(GameObject[] tweensVisible, MenuCategory category, MenuRow row = 0) {
+		GameObject masterHidden;
+		if(category == MenuCategory.mood) {
+			if(row == MenuRow.upper) {
+				masterHidden = moodUpperHidden;
+			} else {
+				masterHidden = moodLowerHidden;
+			}
+		} else if (category == MenuCategory.weather) {
+			if(row == MenuRow.upper) {
+				masterHidden = weatherUpperHidden;
+			} else {
+				masterHidden = weatherLowerHidden;
+			}
+		} else if (category == MenuCategory.location) {
+			masterHidden = locationHidden;
+		} else if (category == MenuCategory.creation) {
+			masterHidden = creationHidden;
+		} else { //if (category == MenuCategory.system) {
+			masterHidden = systemHidden;
+		}
+
+		foreach(GameObject g in tweensVisible) {
+			g.transform.parent.GetChild(0).position = masterHidden.transform.position;
+		}
+	}
 
 }
