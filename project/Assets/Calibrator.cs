@@ -134,7 +134,8 @@ public class Calibrator : MonoBehaviour {
 		} else if(currentStage == CalibrationStage.CalibrateDesk) { //Desk Calibration Phase
 			if(deskCalibrationPoints.Count <= 2) { //Adds the calibration point position local to the tracker
 				deskCalibrationPoints.Add(deskTracker.transform.InverseTransformPoint(calibrationController.transform.Find("Calibration Point").position));
-				//print(deskCalibrationPoints[deskCalibrationPoints.Count - 1]);
+				//print(deskCalibrationPoints[deskCalibrationPoints.Count - 1].x);
+				//print(deskCalibrationPoints[deskCalibrationPoints.Count - 1].y);
 			}
 
 			if(deskCalibrationPoints.Count == 2) { //When there are 2 calibration points (Top right and bottom left corners of the desk)
@@ -143,7 +144,8 @@ public class Calibrator : MonoBehaviour {
 				height = deskTracker.transform.localPosition.y; //Height is based on the height from the calibrated ground
 				width = deskCalibrationPoints[1].x - deskCalibrationPoints[0].x; //Width is calculated using the x values from the points
 				depth = deskCalibrationPoints[0].y - deskCalibrationPoints[1].y; //Depth is calculated using the y values from the points
-
+				print(width);
+				print(depth);
 
 				deskResizer.setScale(width, height, depth); //Calibrates desk using the calculated points
 

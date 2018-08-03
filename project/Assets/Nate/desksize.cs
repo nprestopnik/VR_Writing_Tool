@@ -18,6 +18,8 @@ public class desksize : MonoBehaviour {
 
 	//Public setter that can be used to set the desk scale in meters (in unity, the values can be typed in the inspector because they are public)
 	public void setScale(float w = 1.0F, float h = 1.0F, float d = 1.0F) {
+		//print("from calibrator w: " + w);
+		//print("from calibrator d: " + d);
 		width = w;
 		height = h;
 		depth = d;
@@ -28,6 +30,9 @@ public class desksize : MonoBehaviour {
 		height = DeskManager.instance.deskTracker.transform.localPosition.y;
 		width = points[1].x - points[0].x;
 		depth = points[0].y - points[1].y;
+
+		//print("desk start w: " + width);
+		//print("desk start d: " + depth);
 
 		setScale(width, height, depth);
 	}
@@ -63,13 +68,15 @@ public class desksize : MonoBehaviour {
 		//Also position them in width and depth based so they are appropriately positioned underneath the table to support the surface
 		positionLeg(deskParts["front_left"].transform, wDir: -1.0F, sidePos: legSpacing);
 		positionLeg(deskParts["front_right"].transform, sidePos: legSpacing);
-		positionLeg(deskParts["rear_left"].transform, dDir: -1.0F, wDir: -1.0F);
+		positionLeg(deskParts["rear_left"].transform,  dDir: -1.0F, wDir: -1.0F);
 		positionLeg(deskParts["rear_right"].transform, dDir: -1.0F);		
 	}
 
 	//A method that will scale the desk top and mount in width and depth (height is not scaled because we want top and mount heights to be the same, no matter the desk scale)
 	private void scaleTop (Transform part) {
 		part.localScale = new Vector3(part.localScale.x * width, part.localScale.y, part.localScale.z * depth);
+		//print("actual scale x: " + part.localScale.x);
+		//print("actual scale z: " + part.localScale.z);
 	}
 
 	//Positions the desk top and mount based on height. Th prevTopHeight and totalTopHeight vars are used to store information about the positioning and scale of these elements so the legs can scale properly.
@@ -90,7 +97,7 @@ public class desksize : MonoBehaviour {
 
 		float legX = ((part.localPosition.x + width / 2.0F) - 0.20F + sidePos) * wDir; //Calculate X position
 		float legY = (height / 2) - (totalTopHeight / 2) / cmConvert; //Calculate Y position 
-		float legZ = ((part.localPosition.z + depth / 2.0F) - 0.40F) * dDir; //Cal;culate Z position
+		float legZ = ((part.localPosition.z + depth / 2.0F) - 0.40F) * dDir; //Calculate Z position
 		
 		part.localPosition = new Vector3(legX, legY, legZ);
 	}
