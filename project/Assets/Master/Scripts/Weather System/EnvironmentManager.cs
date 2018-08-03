@@ -117,8 +117,10 @@ public class EnvironmentManager : MonoBehaviour {
 		if(audioManager) {
 			audioManager.transientSoundClips = newLighting.transientSounds;
 			audioManager.transientVolume = newLighting.transientVolume;
+			audioManager.spacialBlend = newLighting.applyDistanceVolume;
 			audioManager.minDelay = newLighting.minSoundDelay;
 			audioManager.maxDelay = newLighting.maxSoundDelay;
+			audioManager.lightning = newLighting.lightning;
 		}
 		
 		if(otherVisualEffects) {

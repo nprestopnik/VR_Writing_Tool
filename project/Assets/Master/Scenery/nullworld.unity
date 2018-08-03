@@ -2321,10 +2321,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transientAreaMin: {x: -40, y: 0, z: -40}
   transientAreaMax: {x: 40, y: 30, z: 40}
+  lightningGenerator: {fileID: 2069959490}
   transientSoundClips: []
   minDelay: 0
   maxDelay: 0
   transientVolume: 0
+  spacialBlend: 0
+  lightning: 0
 --- !u!114 &464103422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,9 +2340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7333531b6f7ac8348af6d5ef7e4081a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sunLight: {fileID: 0}
-  fillLight: {fileID: 0}
-  windZone: {fileID: 0}
+  sunLight: {fileID: 2071615994}
+  fillLight: {fileID: 868347062}
+  windZone: {fileID: 495397725}
   otherVisualEffects: {fileID: 0}
   precipitation: {fileID: 593149176}
   particlesTrackPlayer: 1
@@ -2352,10 +2355,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: afc792c43e6b6f24786a6674e28a641e, type: 2}
   - {fileID: 11400000, guid: ef50e30a6fae9d445aa1502c64131539, type: 2}
   - {fileID: 11400000, guid: a19bd881c1b816f40b8df50c51a0d57c, type: 2}
+  - {fileID: 11400000, guid: 6673d8c1fa6c455489bb3112eb703e21, type: 2}
+  - {fileID: 11400000, guid: a5b948a10881b30479eec9d044eef3c5, type: 2}
+  - {fileID: 11400000, guid: c3c23b1ab55ea8941b5206bb6d400ed6, type: 2}
   weatherPresets:
   - {fileID: 11400000, guid: 23423b95510c4df409263937b3d1d5ed, type: 2}
   - {fileID: 11400000, guid: 0d214a2b5f0606c4dadc1278aca94f01, type: 2}
   - {fileID: 11400000, guid: 2cd6043a46542bd41905da7e3d27a61e, type: 2}
+  - {fileID: 11400000, guid: a874c675ff12ba54bb72817edcbf548c, type: 2}
+  - {fileID: 11400000, guid: 35de73c21a18d9843a8b056653aa9d48, type: 2}
+  - {fileID: 11400000, guid: 1c3b740f25e44e741b27db0537bc5ff0, type: 2}
 --- !u!4 &464103423
 Transform:
   m_ObjectHideFlags: 0
@@ -6473,7 +6482,7 @@ ParticleSystem:
     radiusScale: 0.1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 4294966783
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -10500,6 +10509,7 @@ Transform:
   - {fileID: 2071615995}
   - {fileID: 868347061}
   - {fileID: 648340498}
+  - {fileID: 2069959491}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12142,7 +12152,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -12459,8 +12469,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 4
-        minScalar: 1
+        scalar: 15
+        minScalar: 5
         maxCurve:
           serializedVersion: 2
           m_Curve:
@@ -17719,6 +17729,71 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2059643724}
+--- !u!1 &2069959489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2069959491}
+  - component: {fileID: 2069959490}
+  m_Layer: 0
+  m_Name: Lightning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &2069959490
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069959489}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 0.495283, g: 0.9785228, b: 1, a: 1}
+  m_Intensity: 0
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &2069959491
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2069959489}
+  m_LocalRotation: {x: 0.07935492, y: -0.8901871, z: 0.41510162, w: 0.17017767}
+  m_LocalPosition: {x: 1.7, y: 23.4, z: 2.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1363188504}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 50.000004, y: -158.35501, z: 0}
 --- !u!1 &2071615993
 GameObject:
   m_ObjectHideFlags: 0

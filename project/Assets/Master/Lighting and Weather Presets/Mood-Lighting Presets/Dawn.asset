@@ -31,6 +31,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ccc4c3f05e8de624980a422835f15f32, type: 3}
   - {fileID: 8300000, guid: 9c5bc9327d961ed4ca17e2fd3dea61cf, type: 3}
   transientVolume: 0.6
+  applyDistanceVolume: 1
   minSoundDelay: 3
   maxSoundDelay: 10
   otherVisualEffects: 0

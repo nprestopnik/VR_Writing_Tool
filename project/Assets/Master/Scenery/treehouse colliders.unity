@@ -10077,7 +10077,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 876046872}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!220 &623776067
 LightProbeGroup:
@@ -12203,6 +12203,7 @@ Transform:
   - {fileID: 841324733}
   - {fileID: 996932986}
   - {fileID: 107547783}
+  - {fileID: 900555963}
   - {fileID: 623776066}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -12474,6 +12475,71 @@ Transform:
   m_PrefabParentObject: {fileID: 4024313235448070, guid: 801e4a65cc3767040874604a723d2bef,
     type: 2}
   m_PrefabInternal: {fileID: 898067516}
+--- !u!1 &900555961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 900555963}
+  - component: {fileID: 900555962}
+  m_Layer: 0
+  m_Name: Lightning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &900555962
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900555961}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 0.8632076, g: 0.9857592, b: 1, a: 1}
+  m_Intensity: 0
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &900555963
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 900555961}
+  m_LocalRotation: {x: 0.32698727, y: -0.8549857, z: 0.13783632, w: 0.37825912}
+  m_LocalPosition: {x: 11.36, y: 30.58, z: -0.71000004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 876046872}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 28.886002, y: -140.52301, z: -31.299002}
 --- !u!1 &912941118
 GameObject:
   m_ObjectHideFlags: 0
@@ -19353,10 +19419,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transientAreaMin: {x: -40, y: 0, z: -40}
   transientAreaMax: {x: 40, y: 30, z: 40}
+  lightningGenerator: {fileID: 900555962}
   transientSoundClips: []
   minDelay: 0
   maxDelay: 0
   transientVolume: 0
+  spacialBlend: 0
+  lightning: 0
 --- !u!114 &1139984659
 MonoBehaviour:
   m_ObjectHideFlags: 0

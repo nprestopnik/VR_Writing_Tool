@@ -20,7 +20,7 @@ MonoBehaviour:
   windPulseMag: 0.1
   windPulseFreq: 0.1
   fog: 1
-  fogColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0.2784314}
+  fogColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.2784314}
   fogDensity: 0.075
   fogMode: 2
   ambientSound: {fileID: 8300000, guid: 88061fac8efd8234691ea43dc65697b4, type: 3}

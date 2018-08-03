@@ -32,11 +32,16 @@ public class LightingPreset : ScriptableObject {
 	[Header("Audio: Transient Sounds")]
 	public AudioClip[] transientSounds;
 	public float transientVolume = 1;
+	[Tooltip("0 for 2D sound (doesn't consider distance) to 1 for 3D sound (distance/spacing matter)")]
+	[Range(0,1)]
+	public float applyDistanceVolume;
 	public float minSoundDelay;
 	public float maxSoundDelay;
 
 	[Header("Other Visual Effects")]
+	public bool lightning;
 	[Tooltip("Other effects includes fireflies and similar elements that can be turned on/off as one unit.")]
 	public bool otherVisualEffects;
+	
 
 }
