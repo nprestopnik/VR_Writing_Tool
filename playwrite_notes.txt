@@ -7,59 +7,67 @@ SET UP
 	- Desk/chair trackers on and tracking
 	- Desk/chair positioned outside bounds
 	- Controllers on (but hopefully not actually, see systems below)
+-Cable/chair management
 
 SYSTEMS
-~ - non-required controllers for desk tracking
-~ - controllers visible when we don't want them to be
+~ - controllers visible when we don't want them to be - as it is now, the controllers are not visible but you need them both on for chair tracking/calibration
+	~ - non-required controllers for desk tracking 
 ~ - Steam/Vive load screen should hide when changing locations
 !! - Leap hands flerp as well
 
-DESK (Saul)
-N - need real control art on the desk
+DESK
 !! - unity crashes a lot... desk?
-~ - click / right click needs some work
-!! - image shows up as a white nothing on the desk cube display when copied from Chrome
-~- Chair tracking
-N - desk behind wall is a bit odd - desk "ghostly" while moving
-	- manage desk tracking/locking a little better
-	- desk tracking lock is easy to forget about
-	- lighthouses visible through walls - ghostly like desk	
+!! - some images show up as a white nothing on the desk cube display when copied from Chrome
+~- click / right click needs some work - need to figure out keys or other buttons
+~- Chair tracking - chair is tracked+calibrated, needs real chair art 
+~ - desk behind wall is a bit odd - desk "ghostly" while moving - desk has ghostly shader, could be refined
+	~ - manage desk tracking/locking a little better - materials and button change, desk is kept relative to camera rig
+	~ - lighthouses visible through walls - has same ghostly material as chair, both could use actual materials to look nice	
 N - curved screen for desktop
-
+-Training the user with the desk
+-Parking desk refinements
+-Desk legs on small desk
+-mouse pointing smoothing/distance
 
 KEYBOARD
-L - fingers on keyboard are a mess, not even close
+! - fingers on keyboard are a mess, not even close
 N - explore hand models
 N - small letters, not easy to see when standing
 N - lighting is dark in places (for keyboard) - make keys emissive
 
-WHITEBOARDS
-- when multiple copies of the same whiteboard are made from the desk, they all reference the same original whiteboard
+WHITEBOARDS 
+! - when multiple copies of the same whiteboard are made from the desk, they all reference the same original whiteboard
 	so they are made at the same scale and with the same annotations and aren't saved properly as individual whiteboards
+N - positioning/scale of controls
 ~ - drawing while grasping - make it not happen
+- Randomly stop drawing - fix this
 - refinement to finger touching/movement of whiteboard
 - how much you have to pull away from whiteboard to write nicely
-N - positioning/scale of controls
 - Slider controls on whiteboard could be refined
 L - Text on whiteboards need system for text wrapping, line lengths, etc.
+-Undo needs refinements - people look at whiteboard not button
 
 MENUS
-~ - Spawning elements from menu needs refinement (position, orientation, etc.)
-N - new icon for journal world
-- Menu cubes spin weirdly sometimes
-N - actual art for room creation and deletion, office icon
-- go to location menu thing blipped
+~ - Spawning elements from menu needs refinement (position, orientation, etc.) - it's better now but may need more tuning
+N - actual art for room creation and deletion
 N - hand covering happens with menu
+-THROWING AND HAND LEAVES VIEW
+	-make menu cubes return w/o activating when hands go out of view
+-Menus palm orientation weird
+-Menu closing when using menu
 
 INTERACTION DESIGN
 N - starting orientation?
 N - need something that tells you what to do
-N - info about movement and menu
+	~N - info about movement and menu - there are intro signs but everyone leaves the tutorial before learning menus
+	-Desk needs more tutorials
 !! - inadvertent throwing of cube (hands going out of view)
-- "hoppy" gravity on stairs
+! - "hoppy" gravity on stairs
 !! - buttons flerping
 N - Misc. sounds for menus, walking, interactions, etc.
-- Falling through the floor happens sometimes
+- Falling through the floor happens sometimes - usually just when headset isn't tracking
+-Movement refinement (Palm flat), - movement palm direction/angle
+-Make sure people know that hands are not persistant
 
 LEVELS
 N - More open pleasant locations for working are needed (less tight, constrained locations)
@@ -68,67 +76,44 @@ N - wider walkway in treehouse looks weird just stretched
 MUSE
 N - need real art and/or particles for the muse
 N - some more explanation for desk stuff - finalize muse text
+	-Muse tell user to lock desk
 !!- muse breaks when you do things too quickly
 N - muse feedback for saves
 
-MOOD AND WEATHER (Kate & Nate)
+MOOD AND WEATHER
 N - Merge latest and generate content for presets
 N - All presets need sound
-
-LIST 3.0
--Drawing while grasping
--Randomly stop drawing
 -Weather Merge
 -Weather Documentation
--Movement refinement (Palm flat)
--Menu tween positioning weird
--Muse tell user to lock desk
--Desk needs more tutorials
--Make sure people know that hands are not persistant
--Training the user with the desk
--Parking desk refinements
+-Everyone does weather first
+
+
+LIST 3.0
 -Pretty frikin cool
 -LOTS OF INSTRUCTIONS
--so cool ("that is cool")
--Undo needs refinements
--Cable/chair management
+-so cool (that is cool)
 -Play hangman?
 -Cubes were intuitive
-   -But cube orientation can be weird (Throw cube behind you)
--Menu handedness swapping weird???
--THROWING AND HAND LEAVES VIEW
+   x-But cube orientation can be weird (Throw cube behind you)
 -Treehouse load time
 -Nate did good nature
--Moving with menu open happens a lot *
 -Remove test worlds from system?
 -More worlds (to look around?)
 -interface touchy
 -throwing is good
--Desk legs on small desk
 
-- movement palm direction/angle *
--mouse pointing smoothing/distance
-
--Everyone leaves the tutorial before learning menus
--Menus palm orientation weird
--Everyone does weather first
--Menu closing when using menu
--Buttons flerp
--menu text size (calibrator during build)
 
 
 Final Summer To-Do List
-x-menu text size (calibrator during build)
 -movement palm direction/angle *
 -mouse pointing smoothing/distance
--Moving with menu open happens a lot *
-x-Menu tween positioning weird
 -Muse tell user to lock desk
 -Desk needs more tutorials
 -Make sure people know that hands are not persistent
 -Training the user with the desk
 -Weather Merge
--Weather Documentation
+-Weather Documentation	
+-make menu cubes return w/o activating when hands go out of view
 -POLISH
 
 
@@ -201,3 +186,9 @@ x-Hardcode locations
 x-Hallway doors opening with same destination
 x-Desk Screen not refreshing
 x-Load Room with empty project
+x-Menu tween positioning weird
+xN - need real control art on the desk
+xN - new icon for journal world, office world
+x-Menu handedness swapping weird???
+x-Moving with menu open happens a lot - only prevent moving when grasping
+x-menu text size (calibrator during build)

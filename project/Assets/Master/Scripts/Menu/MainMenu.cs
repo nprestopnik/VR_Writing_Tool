@@ -1,6 +1,7 @@
 ﻿/*
 Main Menu Controller
 Purpose: keeps the hand menu kind of together, keeps track of hand gestures and de/activates menu when appropriate
+this could probably be redone slightly to be a singleton instead of having just a few static variables
  */
 
 using System.Collections;
@@ -43,13 +44,20 @@ public class MainMenu : MonoBehaviour {
 			}	
  		} else {
 			 DeactivateMenu();
-		 }
+		}
+
+		if(cubeInUse) {
+			movementController.SetActive(false);
+		} else {
+			movementController.SetActive(true);
+		}
+
 	}
 
 	public void ActivateMenu() {
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			isActive = true;
-			movementController.SetActive(false);
+			//movementController.SetActive(false);
 
 			foreach(TransformTweenBehaviour t in menuButtonTweens) {
 				t.PlayForward();
@@ -69,7 +77,7 @@ public class MainMenu : MonoBehaviour {
 
 		//menu is not active, turn movement back on
 		isActive = false;
-		movementController.SetActive(true);
+		//movementController.SetActive(true);
 
 		//make sure all submenus are closed along with the menu
 		foreach(SubMenu s in subMenus) {

@@ -42,7 +42,8 @@ public class handMenuController : MonoBehaviour {
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			RoomsMenu.SetActive(true);
 
-			RoomsMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			//RoomsMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			RoomsMenu.transform.position = DetermineVisiblePosition();
 			RoomsMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsMenu.transform.position);
 			//RoomsMenu.transform.position = head.forward + head.transform.position;
 		}
@@ -53,7 +54,7 @@ public class handMenuController : MonoBehaviour {
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			RoomsCreateMenu.SetActive(true);
 
-			RoomsCreateMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			RoomsCreateMenu.transform.position = DetermineVisiblePosition(); //PositionThrownObject.instance.DeterminePosition();
 			RoomsCreateMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsCreateMenu.transform.position);
 			//RoomsMenu.transform.position = head.forward + head.transform.position;
 		}
@@ -64,7 +65,7 @@ public class handMenuController : MonoBehaviour {
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			RoomsDeleteMenu.SetActive(true);
 
-			RoomsDeleteMenu.transform.position = PositionThrownObject.instance.DeterminePosition();
+			RoomsDeleteMenu.transform.position = DetermineVisiblePosition();//PositionThrownObject.instance.DeterminePosition();
 			RoomsDeleteMenu.transform.rotation = PositionThrownObject.instance.DetermineRotation(RoomsDeleteMenu.transform.position);
 			//RoomsMenu.transform.position = head.forward + head.transform.position;
 		}
@@ -72,12 +73,7 @@ public class handMenuController : MonoBehaviour {
 	}
 
 	public void createIdeaBoard() {
-		Vector3 pos = (head.forward);// + head.transform.position;
-		pos.y = 0;
-		pos.Normalize();
-		pos /= 2f;
-		pos += head.transform.position;
-		pos.y = head.transform.position.y - 0.5f;
+		Vector3 pos = DetermineVisiblePosition();
 
 		Whiteboard whiteboard = ((GameObject)Instantiate(whiteBoardPrefab, pos, transform.rotation)).GetComponentInChildren<Whiteboard>();
 		WhiteboardData data = new WhiteboardData();
@@ -92,6 +88,17 @@ public class handMenuController : MonoBehaviour {
 		SaveSystem.instance.getCurrentSave().getRoomsArray()[SaveSystem.instance.getCurrentSave().currentRoomIndex].addFeature(whiteboard.dataContainer.data);
 		//whiteboard.orientRotation();
 		SaveSystem.instance.saveCurrentSave();
+	}
+
+	//determine a position for the object to spawn that is in front of the user
+	Vector3 DetermineVisiblePosition() {
+		Vector3 pos = (head.forward);// + head.transform.position;
+		pos.y = 0;
+		pos.Normalize();
+		pos /= 1.5f;
+		pos += head.transform.position;
+		pos.y = head.transform.position.y - 0.5f;
+		return pos;
 	}
 
 
