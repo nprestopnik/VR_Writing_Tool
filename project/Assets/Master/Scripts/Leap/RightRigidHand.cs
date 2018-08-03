@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*DEPRICATED, USELESS. REALLY SHOULD BE DELETED */
 public class RightRigidHand : MonoBehaviour {
 
 	public static Leap.Unity.RigidHand rightHandInstance;

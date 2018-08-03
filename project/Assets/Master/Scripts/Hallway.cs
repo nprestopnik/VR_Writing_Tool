@@ -3,15 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*Purpose: Manages the hallway physical interaction with the player */
 public class Hallway : MonoBehaviour {
 
     public static Hallway instance;
-
-    int goalSceneID = 3;
-
-    public Room goalRoom;
-    public Room currentRoom;
-    public int goalRoomIndex=0;
 
     [Tooltip("This point should be dead center in a perfectly symmetrical hallway")]
     public Transform rotatePoint;

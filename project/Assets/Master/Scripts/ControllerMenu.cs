@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*DEPRICATED Purpose: events for the old menu to call */
 public class ControllerMenu : MonoBehaviour {
 
 	public static ControllerMenu instance;

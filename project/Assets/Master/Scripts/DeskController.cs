@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
 
+/*Purpose: Manages Desktop display and copy paste feature */
 public class DeskController : MonoBehaviour {
 
-	public static DeskController instance;
+	public static DeskController instance; //Singleton
 	WhiteboardData lastData;
 
 	VdmDesktop[] desktops;
@@ -25,17 +26,16 @@ public class DeskController : MonoBehaviour {
 
 	public float hideCopyPasteTimestamp;
 
-	void Awake()
-	{
+	void Awake() {
 		instance = this;
 	}
 
 	IEnumerator Start () {
 		cl = GetComponent<ClipboardListener>();
-		cl.onClipboardChange += onClipboardChange;
+		cl.onClipboardChange += onClipboardChange; //Adds clipboard event to the delegate
 
 		desktops = new VdmDesktop[0];
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.1f); //Waits for desktops to be initialized (Bad way of doing this)
 		desktops = gameObject.GetComponentsInChildren<VdmDesktop>();
 
 
@@ -53,17 +53,18 @@ public class DeskController : MonoBehaviour {
 		foreach(VdmDesktop desk in desktops) {
 			if(desk != null) {
 				if(desk.Visible()) {
-					desk.setDesktopTransform(goalDesktopPosition);
+					desk.setDesktopTransform(goalDesktopPosition); //Sets desktop positions to the goal position. Should be adjusted for multiple monitors
 				}
 			}
 		}
 
 		foreach(Leap.Unity.RiggedHand hand in HandManager.instance.hands) {
 			if(hand.isActiveAndEnabled) {
-				castFinger(hand);
+				castFinger(hand); //Checks if the hand is pointing towards the monitor
 			}
 		}
 
+		//Manages the copyPasteCube being shown when a whiteboard is nearby
 		if(hideCopyPasteTimestamp > Time.time) {
 			copyPasteCube.gameObject.SetActive(false);
 		} else {
@@ -72,6 +73,7 @@ public class DeskController : MonoBehaviour {
 
 	}
 
+	//Turns all desktops on or off
 	public void toggleDesktop() {
 		foreach(VdmDesktop desk in desktops) {
 			if(desk != null) {
@@ -84,6 +86,8 @@ public class DeskController : MonoBehaviour {
 		}
 	}
 
+
+	//Checks if a finger is pointing towards a desk
 	public void castFinger(Leap.Unity.RiggedHand hand) {
 		foreach(VdmDesktop desk in desktops) {
 			Vector3 forwardVect = hand.Handedness == Leap.Unity.Chirality.Left ? hand.fingers[1].bones[3].right : hand.fingers[1].bones[3].right * -1f;
@@ -108,22 +112,22 @@ public class DeskController : MonoBehaviour {
 		GUIUtility.systemCopyBuffer = lastData.text;
 
 		string text = data.text;
-		string trimmedText = "file:///" + data.text.Trim(new Char[] {'"'}).Replace('\\', '/');
-		//print(trimmedText);
+		string trimmedText = "file:///" + data.text.Trim(new Char[] {'"'}).Replace('\\', '/'); //Format text to be a path and add the file protocol
 
-		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute);
+		//Check if the text is a link
+		bool isUri = Uri.IsWellFormedUriString(text, UriKind.RelativeOrAbsolute); 
 		bool isUriNoQuotes = Uri.IsWellFormedUriString(trimmedText, UriKind.RelativeOrAbsolute);
 
 		if(!text.Equals("")) {
-			if(isUri) {
+			if(isUri) { //If it is a link load it
 				StartCoroutine(loadPicture(text));
 				boardText.text = "";
 				boardImage.gameObject.SetActive(true);
-			} else if(isUriNoQuotes) {
+			} else if(isUriNoQuotes) { //If it is a link without quotes load it
 				StartCoroutine(loadPicture(trimmedText));
 				boardText.text = "";
 				boardImage.gameObject.SetActive(true);
-			} else {
+			} else { 
 				boardText.text = text;
 				boardImage.texture = null;
 				boardImage.gameObject.SetActive(false);
@@ -135,6 +139,7 @@ public class DeskController : MonoBehaviour {
 		}
 	}
 
+	//Load a picture from a url
 	IEnumerator loadPicture(string url)
     {
         // Start a download of the given URL
