@@ -113,20 +113,20 @@ Final Summer To-Do List
 -Training the user with the desk
 -Weather Merge
 -Weather Documentation	
--make menu cubes return w/o activating when hands go out of view
+x-make menu cubes return w/o activating when hands go out of view
 -POLISH
 
 
 **try to do an executable for next test**
 
 NATE ART ICONS PLEASE?
-- Office Icon
-- New Journal Icon
-- Desk Park Cube Icon
-- Desk Lock/Unlock Icons
-- Desk Copy/Paste Cube Icon
-- Close menu button Icon
-- Flip through options menu button icon (Triangle buttons?)
+x- Office Icon
+x- New Journal Icon
+x- Desk Park Cube Icon
+x- Desk Lock/Unlock Icons
+x- Desk Copy/Paste Cube Icon
+x- Close menu button Icon
+x- Flip through options menu button icon (Triangle buttons?)
 
 
 OTHER ART

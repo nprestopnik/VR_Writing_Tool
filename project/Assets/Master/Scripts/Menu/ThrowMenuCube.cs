@@ -28,11 +28,14 @@ public class ThrowMenuCube : MonoBehaviour {
 	[HideInInspector]
 	public Transform cubeParent; //the cube's parent in the menu
 
+	List<InteractionHand> graspingHands;
+
 	void Start() {
 		activator = GetComponent<ActivateMenuCubeFunction>();
 		rb = GetComponent<Rigidbody>();
 		ab = GetComponent<AnchorableBehaviour>();
 		ib = GetComponent<InteractionBehaviour>();
+		graspingHands = new List<InteractionHand>();
 	}
 
 	void Update() {
@@ -64,6 +67,12 @@ public class ThrowMenuCube : MonoBehaviour {
 		MainMenu.cubeInUse = true;
 		thisCubeGrasped = true;
 		activator.thrown = false;
+
+		//keep track of only the most recent hand grasping
+		graspingHands.Clear();
+		foreach(InteractionHand hand in ib.graspingHands) {
+			graspingHands.Add(hand);
+		}
 	}
 
 
@@ -72,6 +81,15 @@ public class ThrowMenuCube : MonoBehaviour {
 	on post try anchor on grasp end or whatever
 	 */
 	public void ThrowCube() {
+
+		//if the hand that is grapsing the cube goes out of view, return the cube without activating it
+		//to avoid accidental cube throwing when the hands disappear
+		foreach(InteractionHand hand in graspingHands) {
+			if(!hand.isActiveAndEnabled) {
+				activator.ReturnCube();
+				return;
+			}
+		}
 
 		//make sure the cube isn't attached to the anchor before "throwing" it
 		if (!ab.isAttached) {
