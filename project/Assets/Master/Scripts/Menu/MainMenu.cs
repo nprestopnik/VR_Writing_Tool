@@ -13,10 +13,12 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour {
 
+	public GameObject menu;
+
 	private bool finger; //is the index finger extended
 	private bool palm; //is the palm facing upward
 
-	public TransformTweenBehaviour[] menuButtonTweens; //the tweens for the central menu buttons
+	public TransformTweenBehaviour menuButtonTween; //the tweens for the central menu buttons
 
 	public SubMenu[] subMenus; //the sub menu scripts attached to each button
 
@@ -25,14 +27,28 @@ public class MainMenu : MonoBehaviour {
 	public GameObject movementController; //the object that controls movement
 
 	[HideInInspector]
-	public static MenuHandedness menuHandControl;
+	public static MenuHandedness menuHandControl; //how we know if the proper hand is active
 
 	[HideInInspector]
 	public static bool cubeInUse; //is any cube being used at the moment
-	//this boolean is just here for individual cubes to reference - its how they know whether some other cube is being used at the moment
+	//this boolean is here for individual cubes to reference - its how they know whether some other cube is being used at the moment
+
+	public float lerpSpeed;
+	[Tooltip("how far away from the menu your finger can get before the menu lerps back to it")]
+	public float maxFreezeDistance;
+	[Tooltip("if the menu gets within this distance from the finger, it will stop lerping")]
+	public float closeEnoughDistance;
+	[Tooltip("how far off of the menu's rotation your finger can get before the menu lerps back to it")]
+	public float maxFreezeAngle;
+	[Tooltip("if the menu gets within this angle from the finger's rotation, it will stop lerping")]
+	public float closeEnoughAngle;
+	Transform menuParent; //the parent of the menu on the attachment hands
+	bool menuHandVisible = true; //has the menu holding hand gone out of view?
+	bool startLerp = true; //should the menu be lerping towards the attachment hand point
 
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();
+		menuParent = menu.transform.parent;
 	}
 
 	void Update() {
@@ -43,27 +59,59 @@ public class MainMenu : MonoBehaviour {
 				ActivateMenu();
 			}	
  		} else {
-			 DeactivateMenu();
+			if(isActive) {
+				DeactivateMenu();
+			}
 		}
 
+		//don't let the user accidentally move while trying to throw a menu cube
 		if(cubeInUse) {
 			movementController.SetActive(false);
 		} else {
 			movementController.SetActive(true);
 		}
 
+		//it's probably really inefficient to calculate these every frame but here they are anyway
+		float menuMoved = Vector3.Distance(menu.transform.position, menuParent.position);
+		float menuRotated = Quaternion.Angle(menu.transform.rotation, menuParent.rotation);
+		//lerp the menu back to the finger if the distance or angle between them gets too great
+		//stop moving the menu if it is close enough to the finger/your hand isn't really moving
+		if(menuMoved > maxFreezeDistance || menuRotated > maxFreezeAngle) {
+			startLerp = true;
+		} else if (menuMoved < closeEnoughDistance || menuRotated < closeEnoughAngle) {
+			startLerp = false;
+		}
+
+		//if the hand was not visible and is visible again, put the menu back at its position off the finger
+		if(isActive && !menuHandVisible && menuHandControl.handActive) {
+			menuHandVisible = true;
+			startLerp = true;
+		}
+		
+		//while the menu is unparented from the hand, have it lerp to the position off the finger
+		//this is so it will ease into the right position rather than being rigidly locked to the finger
+		if(startLerp) {
+			menu.transform.position = Vector3.Lerp(menu.transform.position, menuParent.position, Time.deltaTime * lerpSpeed);
+			menu.transform.rotation = Quaternion.Lerp(menu.transform.rotation, menuParent.rotation, Time.deltaTime * lerpSpeed);
+		}
+		
 	}
 
 	public void ActivateMenu() {
+		//only allow the menu to be opened if a save has been loaded
 		if(SaveSystem.instance.getCurrentSave() != null) {
 			isActive = true;
-			//movementController.SetActive(false);
 
-			foreach(TransformTweenBehaviour t in menuButtonTweens) {
-				t.PlayForward();
-			}
+			//animate the buttons in
+			menuButtonTween.PlayForward();
+			
+			//make sure the menu is where it's supposed to be
+			ResetMenuTransform();
+			//freeze menu in opening location
+			menuParent = menu.transform.parent;
+			menu.transform.parent = transform;
+
 		}
-		
 		
 	}
 
@@ -72,12 +120,11 @@ public class MainMenu : MonoBehaviour {
 		//if the menu is trying to deactivate because the hands are no longer visible, stop it from deactivating
 		//only actually deactivate menu if the hand gesture is recognized as not being correct anymore
 		if(!menuHandControl.handActive) {
+			menuHandVisible = false;
 			return;
 		}
 
-		//menu is not active, turn movement back on
 		isActive = false;
-		//movementController.SetActive(true);
 
 		//make sure all submenus are closed along with the menu
 		foreach(SubMenu s in subMenus) {
@@ -87,9 +134,11 @@ public class MainMenu : MonoBehaviour {
 		}
 		
 		//close the buttons
-		foreach(TransformTweenBehaviour t in menuButtonTweens) {
-			t.PlayBackward();
-		}
+		menuButtonTween.PlayBackward();
+	
+		//unfreeze menu in world
+		menu.transform.parent = menuParent;
+		ResetMenuTransform();
 	}
 
 
@@ -105,5 +154,17 @@ public class MainMenu : MonoBehaviour {
 	}
 	public void palmDown() {
 		palm = false;
+	}
+
+	//resets local position and rotation of menu to all zero
+	public void ResetMenuTransform() {
+		menu.transform.localPosition = Vector3.zero;
+		menu.transform.localRotation = Quaternion.identity;
+
+		//make sure the tween transforms are also at local zero
+		foreach(Transform t in menuButtonTween.transform) {
+			t.localPosition = Vector3.zero;
+			t.localRotation = Quaternion.identity;
+		}
 	}
 }

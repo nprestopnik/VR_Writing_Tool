@@ -105,7 +105,7 @@ LIST 3.0
 
 
 Final Summer To-Do List
--movement palm direction/angle *
+-movement palm direction/angle
 -mouse pointing smoothing/distance
 -Muse tell user to lock desk
 -Desk needs more tutorials
@@ -114,6 +114,7 @@ Final Summer To-Do List
 -Weather Merge
 -Weather Documentation	
 x-make menu cubes return w/o activating when hands go out of view
+-menu freeze/ease when open based on hand movement
 -POLISH
 
 
