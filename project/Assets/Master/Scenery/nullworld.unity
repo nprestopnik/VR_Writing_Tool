@@ -2352,7 +2352,7 @@ MonoBehaviour:
   ambientOffsetFromHead: {x: 0, y: 0, z: 0}
   maxCubesPerMenuRow: 3
   moodPresets:
-  - {fileID: 11400000, guid: c3c23b1ab55ea8941b5206bb6d400ed6, type: 2}
+  - {fileID: 11400000, guid: afc792c43e6b6f24786a6674e28a641e, type: 2}
   - {fileID: 11400000, guid: ef50e30a6fae9d445aa1502c64131539, type: 2}
   - {fileID: 11400000, guid: a19bd881c1b816f40b8df50c51a0d57c, type: 2}
   - {fileID: 11400000, guid: 6673d8c1fa6c455489bb3112eb703e21, type: 2}

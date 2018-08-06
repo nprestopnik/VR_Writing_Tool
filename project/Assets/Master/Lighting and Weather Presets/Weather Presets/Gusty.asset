@@ -24,4 +24,4 @@ MonoBehaviour:
   fogDensity: 0
   fogMode: 0
   ambientSound: {fileID: 8300000, guid: 6e7e66188e145614ca16a27c7584b39a, type: 3}
-  ambientVolume: 0.6
+  ambientVolume: 0.3
