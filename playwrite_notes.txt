@@ -123,6 +123,8 @@ Final Summer To-Do List
 -the tree thing
 	-lighting and facing leaves
 -interaction sounds - how it would work
+-organize scripts in master folder
+-calibrator behaving oddly???
 
 
 **try to do an executable for next test**
