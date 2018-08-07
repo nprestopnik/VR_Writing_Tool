@@ -119,12 +119,19 @@ Final Summer To-Do List
 -Weather Documentation	
 ~-menu freeze/ease when open based on hand movement
 ~-stop closing menu when hand is covering other hand
+	-make sure it only fades when menu is open
+	-only transparent material when hand is fading (don't see fingers throught hands)
+	-make sure it fades all the way out and all the way back in
+	-tune fade speed, block box shape
+	-reset hand under certain circumstances (look away, close menu, etc)
+	-make sure both hands have same material
+-system, mood, location buttons acting weird (depress when you move hand)
 -POLISH
 -the tree thing
 	-lighting and facing leaves
 -interaction sounds - how it would work
 -organize scripts in master folder
--calibrator behaving oddly???
+-calibrator behaving oddly??? - doesn't put chair on correct controller and doesn't work right the second time
 
 
 **try to do an executable for next test**
