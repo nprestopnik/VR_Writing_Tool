@@ -107,15 +107,22 @@ LIST 3.0
 Final Summer To-Do List
 -movement palm direction/angle
 -mouse pointing smoothing/distance
--Muse tell user to lock desk
--Desk needs more tutorials
+	-potentially looking at controller as mouse
+-desk tutorial
+	-Muse tell user to lock desk
+	-Desk needs more tutorials
+	-Training the user with the desk
+	-make the instruction screen appear/disappear (always there in move mode, leaves when set)
+		-should scale to size of desktop
 -Make sure people know that hands are not persistent
--Training the user with the desk
 -Weather Merge
 -Weather Documentation	
-x-make menu cubes return w/o activating when hands go out of view
--menu freeze/ease when open based on hand movement
+~-menu freeze/ease when open based on hand movement
+~-stop closing menu when hand is covering other hand
 -POLISH
+-the tree thing
+	-lighting and facing leaves
+-interaction sounds - how it would work
 
 
 **try to do an executable for next test**
@@ -193,3 +200,4 @@ xN - new icon for journal world, office world
 x-Menu handedness swapping weird???
 x-Moving with menu open happens a lot - only prevent moving when grasping
 x-menu text size (calibrator during build)
+x-make menu cubes return w/o activating when hands go out of view

@@ -30,6 +30,10 @@ public class MenuHandedness : MonoBehaviour {
 
 	public HandModelBase leftHand; //the leap hand model for the left hand
 	public HandModelBase rightHand; //leap hand model for right hand
+	[HideInInspector] 
+	public HandModelBase currentHandModel;
+	[HideInInspector]
+	public HandModelBase otherHandModel;
 
 	//gesture detectors and controller for movement - the hand that has movement has to swap with the menu based on handedness
 	public ExtendedFingerDetector movementFingerDetector;
@@ -276,6 +280,9 @@ public class MenuHandedness : MonoBehaviour {
 			movementController.pointer = leftPalm;
 
 			//make sure menu is positioned off non-dominant hand
+			currentHandModel = rightHand;
+			otherHandModel = leftHand;
+
 			fingerDetector.HandModel = rightHand;
 			palmDetector.HandModel = rightHand;
 			menu.transform.parent = rightHandMenuSpot.transform;
@@ -323,6 +330,9 @@ public class MenuHandedness : MonoBehaviour {
 			movementFingerDetector.HandModel = rightHand;
 			movementPalmDetector.HandModel = rightHand;
 			movementController.pointer = rightPalm;
+
+			currentHandModel = leftHand;
+			otherHandModel = rightHand;
 
 			fingerDetector.HandModel = leftHand;
 			palmDetector.HandModel = leftHand;

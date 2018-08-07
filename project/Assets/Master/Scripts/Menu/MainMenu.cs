@@ -33,6 +33,8 @@ public class MainMenu : MonoBehaviour {
 	public static bool cubeInUse; //is any cube being used at the moment
 	//this boolean is here for individual cubes to reference - its how they know whether some other cube is being used at the moment
 
+	public HandOcclusion occlusionDetector;
+
 	public float lerpSpeed;
 	[Tooltip("how far away from the menu your finger can get before the menu lerps back to it")]
 	public float maxFreezeDistance;
@@ -87,6 +89,10 @@ public class MainMenu : MonoBehaviour {
 			menuHandVisible = true;
 			startLerp = true;
 		}
+
+		if(occlusionDetector.handCovering) {
+			startLerp = false;
+		}
 		
 		//while the menu is unparented from the hand, have it lerp to the position off the finger
 		//this is so it will ease into the right position rather than being rigidly locked to the finger
@@ -121,6 +127,10 @@ public class MainMenu : MonoBehaviour {
 		//only actually deactivate menu if the hand gesture is recognized as not being correct anymore
 		if(!menuHandControl.handActive) {
 			menuHandVisible = false;
+			return;
+		}
+
+		if(occlusionDetector.handCovering) {
 			return;
 		}
 
