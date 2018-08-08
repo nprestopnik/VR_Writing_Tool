@@ -32,7 +32,8 @@ public class DeskManager : MonoBehaviour {
 	public GameObject lighthouse1; //the lighthouses - make visible to avoid collisions
 	public GameObject lighthouse2;
 	public GameObject desktopDisplay; //haven't been able to get this to turn off and back on properly
-	public bool desktopReactivate = false;
+
+	public GameObject instructionDisplay;
 
 	public MeshRenderer moveLockButton;
 	public Material setDeskIcon;
@@ -181,6 +182,7 @@ public class DeskManager : MonoBehaviour {
 	void DeskStage30() {
 		//Activates all the parts of the desk
 		deskModel.SetActive(true); 
+		instructionDisplay.SetActive(true);
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(true);
 			ControllerModelActivation.instance.DeactivateControllers();
@@ -197,6 +199,7 @@ public class DeskManager : MonoBehaviour {
 	public void ConfirmSet() {
 		//isTracking = false;
 		isFirstSet = false;
+		instructionDisplay.SetActive(false);
 		desktopDisplay.SetActive(true);
 		currentState = DeskState.Enabled;
 		lighthouse1.SetActive(false);
@@ -231,6 +234,7 @@ public class DeskManager : MonoBehaviour {
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(false);
 		}
+		instructionDisplay.SetActive(false);
 		parkCube.SetActive(false);
 		deskModel.SetActive(false);
 		deskTarget.SetActive(false);

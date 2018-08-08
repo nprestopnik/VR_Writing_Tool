@@ -48,12 +48,37 @@ public class MainMenu : MonoBehaviour {
 	bool menuHandVisible = true; //has the menu holding hand gone out of view?
 	bool startLerp = true; //should the menu be lerping towards the attachment hand point
 
+	bool doNotDeactivate = false; //stop deactivation under certain circumstances
+
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();
 		menuParent = menu.transform.parent;
 	}
 
 	void Update() {
+
+		//if the hand was not visible and is visible again, put the menu back at its position off the finger
+		if(isActive && !menuHandVisible && menuHandControl.handActive) {
+
+			//force finger to be true when the hand becomes visible again
+			finger = true; //not a great fix but it kind of works for the reappearing blip
+
+			menuHandVisible = true;
+			doNotDeactivate = true;
+			startLerp = true;
+		}
+
+		//if the menu is trying to deactivate because the hands are no longer visible, stop it from deactivating
+		//only actually deactivate menu if the hand gesture is recognized as not being correct anymore
+		if(!menuHandControl.handActive) {
+			menuHandVisible = false;
+			doNotDeactivate = true;
+		}
+
+		//if the menu hand is being covered by the other hand, do not deactivate it
+		if(occlusionDetector.handCovering) {
+			doNotDeactivate = true;
+		}
 
 		//if the finger and palm are in the right place, activate the menu (if it isn't open already)
 		if(finger && palm) {
@@ -84,12 +109,6 @@ public class MainMenu : MonoBehaviour {
 			startLerp = false;
 		}
 
-		//if the hand was not visible and is visible again, put the menu back at its position off the finger
-		if(isActive && !menuHandVisible && menuHandControl.handActive) {
-			menuHandVisible = true;
-			startLerp = true;
-		}
-
 		if(occlusionDetector.handCovering) {
 			startLerp = false;
 		}
@@ -100,7 +119,7 @@ public class MainMenu : MonoBehaviour {
 			menu.transform.position = Vector3.Lerp(menu.transform.position, menuParent.position, Time.deltaTime * lerpSpeed);
 			menu.transform.rotation = Quaternion.Lerp(menu.transform.rotation, menuParent.rotation, Time.deltaTime * lerpSpeed);
 		}
-		
+
 	}
 
 	public void ActivateMenu() {
@@ -123,14 +142,8 @@ public class MainMenu : MonoBehaviour {
 
 	public void DeactivateMenu() {
 
-		//if the menu is trying to deactivate because the hands are no longer visible, stop it from deactivating
-		//only actually deactivate menu if the hand gesture is recognized as not being correct anymore
-		if(!menuHandControl.handActive) {
-			menuHandVisible = false;
-			return;
-		}
-
-		if(occlusionDetector.handCovering) {
+		if(doNotDeactivate) {
+			doNotDeactivate = false;
 			return;
 		}
 

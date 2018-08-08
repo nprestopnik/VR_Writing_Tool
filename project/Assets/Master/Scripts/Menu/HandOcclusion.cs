@@ -79,7 +79,8 @@ public class HandOcclusion : MonoBehaviour {
 	void Update() {
 
 		//make sure the occlusion collider is following the correct hand (the one with the menu on it)
-		transform.position = hands.currentHandModel.gameObject.transform.GetChild(0).GetChild(0).position;
+		transform.parent.position = hands.currentHandModel.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).position;
+		transform.localPosition = new Vector3(0,0,0.5f);
 
 		//if the dominant hand has gone out of view or the menu is inactive, make sure it says that it isn't covering the other hand
 		if((!hands.otherHandModel.gameObject.activeSelf || !menu.isActive) && handMesh) {
