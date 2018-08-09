@@ -23,5 +23,5 @@ MonoBehaviour:
   fogColor: {r: 0.764151, g: 0.764151, b: 0.764151, a: 0.14117648}
   fogDensity: 0.01
   fogMode: 2
-  ambientSound: {fileID: 8300000, guid: 7cd60839564f1400da8d5acb879a1454, type: 3}
-  ambientVolume: 1
+  ambientSound: {fileID: 8300000, guid: 30160a8c72e6b5c4da5e00a8df8910f2, type: 3}
+  ambientVolume: 0.15

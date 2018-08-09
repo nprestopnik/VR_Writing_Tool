@@ -16,6 +16,8 @@ SYSTEMS
 !! - Leap hands flerp as well
 -organize scripts in master folder??
 -calibrator behaving oddly??? - doesn't put chair on correct controller and doesn't work right the second time
+	-chair calibration needs to be refined - get all of calibration as precise as possible
+-bug if you go to far in the hallway before the scene loads
 
 DESK
 !! - unity crashes a lot... desk?
@@ -32,6 +34,7 @@ N - curved screen for desktop
 -mouse pointing smoothing/distance
 -controller as mouse?
 -instruction screen scale to size of desktop
+-mouse doesn't work well near the edges of the screens
 
 KEYBOARD
 ! - fingers on keyboard are a mess, not even close
@@ -78,6 +81,7 @@ LEVELS
 N - More open pleasant locations for working are needed (less tight, constrained locations)
 N - wider walkway in treehouse looks weird just stretched
 - treehouse tree thing - lighting and facing leaves
+- treehouse lights need attention
 
 MUSE
 N - need real art and/or particles for the muse

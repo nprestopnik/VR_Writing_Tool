@@ -17,7 +17,7 @@ MonoBehaviour:
   skybox: {fileID: 2100000, guid: 542b09e628611674ea477bd5a2f9b7f0, type: 2}
   sunRotation: {x: 27.42, y: 199.084, z: 248.106}
   sunIntensity: 0.3
-  sunColor: {r: 1, g: 0.94924027, b: 0.6650944, a: 0}
+  sunColor: {r: 0.6084906, g: 0.69448215, b: 1, a: 0}
   fillLightRotation: {x: 32.873, y: 340.531, z: 106.25}
   fillLightIntensity: 0.3
   fillLightColor: {r: 0.29466003, g: 0.26099148, b: 0.4811321, a: 0}
