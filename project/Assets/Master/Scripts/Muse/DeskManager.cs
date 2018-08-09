@@ -146,8 +146,10 @@ public class DeskManager : MonoBehaviour {
 			}
 			moveLockButton.material = setDeskIcon;
 
-			if(!isFirstSet)
+			if(!isFirstSet) {
 				parkCube.SetActive(true);
+				instructionDisplay.SetActive(true);
+			}
 		} else {
 			deskMount.material = deskMountMAT;
 			foreach(MeshRenderer m in deskWood) {

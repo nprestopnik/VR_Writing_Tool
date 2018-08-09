@@ -24,11 +24,12 @@ DESK
 	~ - manage desk tracking/locking a little better - materials and button change, desk is kept relative to camera rig
 	~ - lighthouses visible through walls - has same ghostly material as chair, both could use actual materials to look nice	
 N - curved screen for desktop
--Training the user with the desk
+-desk tutorial / Training the user with the desk
 -Parking desk refinements
 -Desk legs on small desk
 -mouse pointing smoothing/distance
 -controller as mouse?
+-instruction screen scale to size of desktop
 
 KEYBOARD
 ! - fingers on keyboard are a mess, not even close
@@ -82,6 +83,7 @@ N - some more explanation for desk stuff - finalize muse text
 	-Muse tell user to lock desk
 !!- muse breaks when you do things too quickly
 N - muse feedback for saves
+-Muse instructions for desk
 
 MOOD AND WEATHER
 N - Merge latest and generate content for presets
@@ -111,12 +113,6 @@ Final Summer To-Do List
 -Weather Merge
 -Weather Documentation?	
 
--desk tutorial
-	-Muse tell user to lock desk
-	-Desk needs more tutorials
-	-Training the user with the desk
-	-make the instruction screen appear/disappear (always there in move mode, leaves when set)
-		-should scale to size of desktop
 -Make sure people know that hands are not persistent
 
 -organize scripts in master folder
@@ -210,3 +206,4 @@ x-stop closing menu when hand is covering other hand
 	x-weird case when hand is seen out of edge of vision
 	-fade out more quickly
 	x-blip when you look up at cubes and the hand stops rendering then comes back
+x-make the instruction screen appear/disappear (always there in move mode, leaves when set)
