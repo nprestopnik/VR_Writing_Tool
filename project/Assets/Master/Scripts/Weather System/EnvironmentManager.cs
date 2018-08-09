@@ -39,13 +39,16 @@ public class EnvironmentManager : MonoBehaviour {
 	public LightingPreset[] moodPresets; //all of the mood presets available for this scene
 	public WeatherPreset[] weatherPresets; //all of the weather presets available for this scene
 
+	public int defaultMoodIndex;
+	public int defaultWeatherIndex;
+
 	private EnvironmentAudioManager audioManager; //the scene's audio manager to take care of playing mood-related transient sounds
 
 	void Start() {
 		WeatherSystemManager.instance.SetSceneEnvironmentManager(gameObject);
 		audioManager = GetComponent<EnvironmentAudioManager>();
-		SetWeather(weatherPresets[0]); //Force the initial weather
-		SetLighting(moodPresets[0]); //Force the initial mood
+		SetWeather(weatherPresets[defaultWeatherIndex]); //Force the initial weather
+		SetLighting(moodPresets[defaultMoodIndex]); //Force the initial mood
 	}
 
 	void Update() {

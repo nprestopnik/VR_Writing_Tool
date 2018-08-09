@@ -2365,6 +2365,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a874c675ff12ba54bb72817edcbf548c, type: 2}
   - {fileID: 11400000, guid: 35de73c21a18d9843a8b056653aa9d48, type: 2}
   - {fileID: 11400000, guid: 1c3b740f25e44e741b27db0537bc5ff0, type: 2}
+  defaultMoodIndex: 2
+  defaultWeatherIndex: 0
 --- !u!4 &464103423
 Transform:
   m_ObjectHideFlags: 0
