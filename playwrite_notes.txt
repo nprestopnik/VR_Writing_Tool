@@ -95,6 +95,7 @@ MOOD AND WEATHER
 N - Merge latest and generate content for presets
 N - All presets need sound
 -Everyone does weather first
+-build doesn't apply default settings
 
 
 LIST 3.0
