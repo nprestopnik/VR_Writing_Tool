@@ -17734,7 +17734,8 @@ CanvasRenderer:
 --- !u!1 &2069959489
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 1765634784101906, guid: c1dfcbde033186c40a4b8d2655cc835f,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
@@ -17750,13 +17751,14 @@ GameObject:
 --- !u!108 &2069959490
 Light:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 108750141016867258, guid: c1dfcbde033186c40a4b8d2655cc835f,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2069959489}
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.495283, g: 0.9785228, b: 1, a: 1}
+  m_Color: {r: 0.8066038, g: 0.992504, b: 1, a: 1}
   m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
@@ -17786,7 +17788,8 @@ Light:
 --- !u!4 &2069959491
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 4514793541842508, guid: c1dfcbde033186c40a4b8d2655cc835f,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2069959489}
   m_LocalRotation: {x: 0.07935492, y: -0.8901871, z: 0.41510162, w: 0.17017767}

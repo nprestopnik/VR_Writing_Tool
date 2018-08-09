@@ -41,7 +41,7 @@ public class EnvironmentAudioManager : MonoBehaviour {
 				Vector3 position = RandomVector3InBox();
 				//AudioSource.PlayClipAtPoint(clip, position, transientVolume);
 				PlayAudioClip(clip, position, transientVolume, spacialBlend);
-				if(lightning){
+				if(lightning && lightningGenerator){
 					//make lightning!
 					StopCoroutine(LightningFlash());
 					StartCoroutine(LightningFlash());

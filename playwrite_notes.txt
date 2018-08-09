@@ -14,6 +14,8 @@ SYSTEMS
 	~ - non-required controllers for desk tracking 
 ~ - Steam/Vive load screen should hide when changing locations
 !! - Leap hands flerp as well
+-organize scripts in master folder??
+-calibrator behaving oddly??? - doesn't put chair on correct controller and doesn't work right the second time
 
 DESK
 !! - unity crashes a lot... desk?
@@ -88,8 +90,6 @@ N - muse feedback for saves
 MOOD AND WEATHER
 N - Merge latest and generate content for presets
 N - All presets need sound
--Weather Merge
--Weather Documentation
 -Everyone does weather first
 
 
@@ -99,7 +99,7 @@ LIST 3.0
 -so cool (that is cool)
 -Play hangman?
 -Cubes were intuitive
-   x-But cube orientation can be weird (Throw cube behind you)
+   ~-But cube orientation can be weird (Throw cube behind you)
 -Treehouse load time
 -Nate did good nature
 -Remove test worlds from system?
@@ -107,17 +107,6 @@ LIST 3.0
 -interface touchy
 -throwing is good
 
-
-***************************************************************************************************
-Final Summer To-Do List
--Weather Merge
--Weather Documentation?	
-
--Make sure people know that hands are not persistent
-
--organize scripts in master folder
--calibrator behaving oddly??? - doesn't put chair on correct controller and doesn't work right the second time
-***************************************************************************************************
 
 **try to do an executable for next test**
 
@@ -207,3 +196,4 @@ x-stop closing menu when hand is covering other hand
 	-fade out more quickly
 	x-blip when you look up at cubes and the hand stops rendering then comes back
 x-make the instruction screen appear/disappear (always there in move mode, leaves when set)
+x-Weather Merge

@@ -191,7 +191,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1746789118308666}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 11.415658, y: -0.7157, z: 5.650202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -199,7 +199,7 @@ Transform:
   - {fileID: 4129768158713958}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!23 &23579524322246904
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -524,18 +524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7140af160e16e641b5644cad73456f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomIndex: 0
   room:
     name: 
     sceneID: 0
     color: {r: 0, g: 0, b: 0, a: 0}
     features: []
-  sceneryIcons:
-  - {fileID: 0}
-  - {fileID: 2800000, guid: 183e3ac59ada1f848ab97bc05b6eb593, type: 3}
-  - {fileID: 2800000, guid: a84c6ab6aa5f98b448e00eeff9ef0af4, type: 3}
-  - {fileID: 2800000, guid: 653e5f26ef3a718409894ec0951ee010, type: 3}
-  - {fileID: 2800000, guid: 774713e4e5c389b4f9c120513799e1b1, type: 3}
-  - {fileID: 2800000, guid: 3331d58948d1f4e4b968b2f51e74ae2d, type: 3}
-  - {fileID: 2800000, guid: 653e5f26ef3a718409894ec0951ee010, type: 3}
   blockMesh: {fileID: 23579524322246904}
   iconMesh: {fileID: 23700079461781554}
