@@ -194,7 +194,7 @@ public class DeskManager : MonoBehaviour {
 		parked = false;
 		lighthouse1.SetActive(true);
 		lighthouse2.SetActive(true);
-		MuseManager.instance.museText.SetText("Put your desk where you want it!");
+		MuseManager.instance.museText.SetText("Put your desk\nwhere you want it!");
 	}
 
 	//once the desk is locked, the muse will exit
