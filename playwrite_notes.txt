@@ -53,9 +53,9 @@ MENUS
 N - actual art for room creation and deletion
 N - hand covering happens with menu
 -THROWING AND HAND LEAVES VIEW
-	-make menu cubes return w/o activating when hands go out of view
 -Menus palm orientation weird
 -Menu closing when using menu
+-system, mood, location buttons acting weird (depress when you move hand)
 
 INTERACTION DESIGN
 N - starting orientation?
@@ -117,11 +117,11 @@ Final Summer To-Do List
 	x-make sure it fades all the way out and all the way back in
 	~-reset hand under certain circumstances (look away, close menu, etc)
 	x-make sure both hands have same material
-	~-size of the overlap box
-	-weird case when hand is seen out of edge of vision
+	x-size of the overlap box - cone
+	x-weird case when hand is seen out of edge of vision
 	-fade out more quickly
-	-blip when you look up at cubes and the hand stops rendering then comes back
--system, mood, location buttons acting weird (depress when you move hand)
+	x-blip when you look up at cubes and the hand stops rendering then comes back
+
 
 -desk tutorial
 	-Muse tell user to lock desk

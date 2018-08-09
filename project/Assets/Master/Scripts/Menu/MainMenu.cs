@@ -36,6 +36,7 @@ public class MainMenu : MonoBehaviour {
 	public HandOcclusion occlusionDetector;
 
 	public float lerpSpeed;
+	public float slowLerpSpeed;
 	[Tooltip("how far away from the menu your finger can get before the menu lerps back to it")]
 	public float maxFreezeDistance;
 	[Tooltip("if the menu gets within this distance from the finger, it will stop lerping")]
@@ -47,11 +48,18 @@ public class MainMenu : MonoBehaviour {
 	Transform menuParent; //the parent of the menu on the attachment hands
 	bool menuHandVisible = true; //has the menu holding hand gone out of view?
 	bool startLerp = true; //should the menu be lerping towards the attachment hand point
+	bool blipLerp = false; //lerp when the menu hand reappears from not being visible
 
 	bool doNotDeactivate = false; //stop deactivation under certain circumstances
 
+	IEnumerator resetDeactivation;
+	bool waitingToDeactivate = false;
+
+	ExtendedFingerDetector fingerDetector;
+
 	void Start() {
 		menuHandControl = GetComponent<MenuHandedness>();
+		fingerDetector = GetComponent<ExtendedFingerDetector>();
 		menuParent = menu.transform.parent;
 	}
 
@@ -59,18 +67,15 @@ public class MainMenu : MonoBehaviour {
 
 		//if the hand was not visible and is visible again, put the menu back at its position off the finger
 		if(isActive && !menuHandVisible && menuHandControl.handActive) {
-
-			//force finger to be true when the hand becomes visible again
-			finger = true; //not a great fix but it kind of works for the reappearing blip
-
 			menuHandVisible = true;
 			doNotDeactivate = true;
 			startLerp = true;
+			blipLerp = true;
 		}
 
 		//if the menu is trying to deactivate because the hands are no longer visible, stop it from deactivating
 		//only actually deactivate menu if the hand gesture is recognized as not being correct anymore
-		if(!menuHandControl.handActive) {
+		if(isActive && !menuHandControl.handActive) {
 			menuHandVisible = false;
 			doNotDeactivate = true;
 		}
@@ -106,9 +111,14 @@ public class MainMenu : MonoBehaviour {
 		if(menuMoved > maxFreezeDistance || menuRotated > maxFreezeAngle) {
 			startLerp = true;
 		} else if (menuMoved < closeEnoughDistance || menuRotated < closeEnoughAngle) {
+			blipLerp = false;
+			startLerp = false;
+		} else if (blipLerp && menuMoved < closeEnoughDistance * 2 || menuRotated < closeEnoughAngle) {
+			blipLerp = false;
 			startLerp = false;
 		}
 
+		//don't lerp if the hand is being covered
 		if(occlusionDetector.handCovering) {
 			startLerp = false;
 		}
@@ -116,15 +126,27 @@ public class MainMenu : MonoBehaviour {
 		//while the menu is unparented from the hand, have it lerp to the position off the finger
 		//this is so it will ease into the right position rather than being rigidly locked to the finger
 		if(startLerp) {
-			menu.transform.position = Vector3.Lerp(menu.transform.position, menuParent.position, Time.deltaTime * lerpSpeed);
-			menu.transform.rotation = Quaternion.Lerp(menu.transform.rotation, menuParent.rotation, Time.deltaTime * lerpSpeed);
+			//if lerping back to place after the hand reappears, lerp slower
+			if(blipLerp) {
+				MenuLerp(slowLerpSpeed);
+			} else {
+				MenuLerp(lerpSpeed);
+			}
+			
 		}
 
+	}
+
+	//lerp the menu back to the proper position and rotation
+	void MenuLerp(float speed) {
+		menu.transform.position = Vector3.Lerp(menu.transform.position, menuParent.position, Time.deltaTime * speed);
+		menu.transform.rotation = Quaternion.Lerp(menu.transform.rotation, menuParent.rotation, Time.deltaTime * speed);
 	}
 
 	public void ActivateMenu() {
 		//only allow the menu to be opened if a save has been loaded
 		if(SaveSystem.instance.getCurrentSave() != null) {
+
 			isActive = true;
 
 			//animate the buttons in
@@ -143,7 +165,11 @@ public class MainMenu : MonoBehaviour {
 	public void DeactivateMenu() {
 
 		if(doNotDeactivate) {
-			doNotDeactivate = false;
+			//pause before making doNotDeactivate true again so leap has time to recognize fingers again
+			//make sure the coroutine isn't going before starting it again
+			if(!waitingToDeactivate) {
+				StartCoroutine(allowDeactivation());
+			}	
 			return;
 		}
 
@@ -163,6 +189,14 @@ public class MainMenu : MonoBehaviour {
 		menu.transform.parent = menuParent;
 		ResetMenuTransform();
 	}
+
+	//pause after weird hand cases before letting the menu deactivate again
+	IEnumerator allowDeactivation() {
+		waitingToDeactivate = true; //flag that the coroutine is running 
+		yield return new WaitForSeconds(0.5f); //balance this time with finger detector period to make the menu stable
+		doNotDeactivate = false;
+		waitingToDeactivate = false;
+	} 
 
 
 	//the following are for the finger and palm detectors to set these flags as appropriate

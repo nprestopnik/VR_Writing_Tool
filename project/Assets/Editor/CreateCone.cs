@@ -9,6 +9,8 @@ using System.Collections;
 // note you will get inevitable breaks in the smooth shading at cone tips
 // note the resulting mesh will be created as an asset in Assets/Editor
 // Author: Wolfram Kresse
+#if UNITY_EDITOR
+
 public class CreateCone : ScriptableWizard {
  
 	public int numVertices = 10;
@@ -186,3 +188,5 @@ public class CreateCone : ScriptableWizard {
         Selection.activeObject = newCone;
 	}
 }
+
+#endif
