@@ -28,6 +28,7 @@ N - curved screen for desktop
 -Parking desk refinements
 -Desk legs on small desk
 -mouse pointing smoothing/distance
+-controller as mouse?
 
 KEYBOARD
 ! - fingers on keyboard are a mess, not even close
@@ -52,9 +53,10 @@ MENUS
 N - actual art for room creation and deletion
 N - hand covering happens with menu
 -THROWING AND HAND LEAVES VIEW
-	-make menu cubes return w/o activating when hands go out of view
 -Menus palm orientation weird
 -Menu closing when using menu
+-system, mood, location buttons acting weird (depress when you move hand)
+-possible refinements to menu movement/behavior - test with users
 
 INTERACTION DESIGN
 N - starting orientation?
@@ -72,6 +74,7 @@ N - Misc. sounds for menus, walking, interactions, etc.
 LEVELS
 N - More open pleasant locations for working are needed (less tight, constrained locations)
 N - wider walkway in treehouse looks weird just stretched
+- treehouse tree thing - lighting and facing leaves
 
 MUSE
 N - need real art and/or particles for the muse
@@ -103,19 +106,22 @@ LIST 3.0
 -throwing is good
 
 
-
+***************************************************************************************************
 Final Summer To-Do List
--movement palm direction/angle *
--mouse pointing smoothing/distance
--Muse tell user to lock desk
--Desk needs more tutorials
--Make sure people know that hands are not persistent
--Training the user with the desk
 -Weather Merge
--Weather Documentation	
-x-make menu cubes return w/o activating when hands go out of view
--POLISH
+-Weather Documentation?	
 
+-desk tutorial
+	-Muse tell user to lock desk
+	-Desk needs more tutorials
+	-Training the user with the desk
+	-make the instruction screen appear/disappear (always there in move mode, leaves when set)
+		-should scale to size of desktop
+-Make sure people know that hands are not persistent
+
+-organize scripts in master folder
+-calibrator behaving oddly??? - doesn't put chair on correct controller and doesn't work right the second time
+***************************************************************************************************
 
 **try to do an executable for next test**
 
@@ -192,3 +198,15 @@ xN - new icon for journal world, office world
 x-Menu handedness swapping weird???
 x-Moving with menu open happens a lot - only prevent moving when grasping
 x-menu text size (calibrator during build)
+x-make menu cubes return w/o activating when hands go out of view
+x-menu freeze/ease when open based on hand movement
+x-stop closing menu when hand is covering other hand
+	x-make sure it only fades when menu is open
+	x-only transparent material when hand is fading (don't see fingers throught hands)
+	x-make sure it fades all the way out and all the way back in
+	~-reset hand under certain circumstances (look away, close menu, etc)
+	x-make sure both hands have same material
+	x-size of the overlap box - cone
+	x-weird case when hand is seen out of edge of vision
+	-fade out more quickly
+	x-blip when you look up at cubes and the hand stops rendering then comes back

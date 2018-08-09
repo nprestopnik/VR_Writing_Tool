@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Leap.Unity;
+using Leap.Unity.Interaction;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +30,10 @@ public class MenuHandedness : MonoBehaviour {
 
 	public HandModelBase leftHand; //the leap hand model for the left hand
 	public HandModelBase rightHand; //leap hand model for right hand
+	[HideInInspector] 
+	public HandModelBase currentHandModel;
+	[HideInInspector]
+	public HandModelBase otherHandModel;
 
 	//gesture detectors and controller for movement - the hand that has movement has to swap with the menu based on handedness
 	public ExtendedFingerDetector movementFingerDetector;
@@ -53,6 +58,7 @@ public class MenuHandedness : MonoBehaviour {
 	public GameObject locations;
 	public GameObject weather;
 	public GameObject system;
+	List<InteractionButton> mainButtons;
 	
 	public float buttonOffset; //this offset determines the spacing between the buttons
 
@@ -160,13 +166,24 @@ public class MenuHandedness : MonoBehaviour {
 	[HideInInspector] 
 	public bool handActive; //is the hand that holds the menu active - this is for keeping the menu on screen when the hands are not visible
 
+
 	void Awake() {
 		currentHand = dominantHand;
 		menuActivator = GetComponent<MainMenu>();
 		fingerDetector = GetComponent<ExtendedFingerDetector>();
 		palmDetector = GetComponent<PalmDirectionDetector>();
+
+		
+		mainButtons = new List<InteractionButton>();
+		mainButtons.Add(mood.GetComponentInChildren<InteractionButton>());
+		mainButtons.Add(weather.GetComponentInChildren<InteractionButton>());
+		mainButtons.Add(creation.GetComponentInChildren<InteractionButton>());
+		mainButtons.Add(locations.GetComponentInChildren<InteractionButton>());
+		mainButtons.Add(system.GetComponentInChildren<InteractionButton>());
+
 		SetPositions();
 		SetMenuOrientation();
+		SetButtonMode();
 	}
 
 	void Update() {
@@ -178,6 +195,7 @@ public class MenuHandedness : MonoBehaviour {
 			SetCubePositions(weatherCubesLower, false, dominantHand == Handedness.right);
 			SetCubePositions(weatherCubesUpper, true, dominantHand == Handedness.right);
 			SetAllHiddenTweens();
+			SetButtonMode();
 			currentHand = dominantHand;
 		}
 
@@ -262,6 +280,9 @@ public class MenuHandedness : MonoBehaviour {
 			movementController.pointer = leftPalm;
 
 			//make sure menu is positioned off non-dominant hand
+			currentHandModel = rightHand;
+			otherHandModel = leftHand;
+
 			fingerDetector.HandModel = rightHand;
 			palmDetector.HandModel = rightHand;
 			menu.transform.parent = rightHandMenuSpot.transform;
@@ -309,6 +330,9 @@ public class MenuHandedness : MonoBehaviour {
 			movementFingerDetector.HandModel = rightHand;
 			movementPalmDetector.HandModel = rightHand;
 			movementController.pointer = rightPalm;
+
+			currentHandModel = leftHand;
+			otherHandModel = rightHand;
 
 			fingerDetector.HandModel = leftHand;
 			palmDetector.HandModel = leftHand;
@@ -405,6 +429,17 @@ public class MenuHandedness : MonoBehaviour {
 
 		foreach(GameObject g in tweensVisible) {
 			g.transform.parent.GetChild(0).position = masterHidden.transform.position;
+		}
+	}
+	 
+	void SetButtonMode() {
+		foreach(InteractionButton button in mainButtons) {
+			if(dominantHand == Handedness.right) {
+				button.ignoreHoverMode = IgnoreHoverMode.Left;
+			} else {
+				button.ignoreHoverMode = IgnoreHoverMode.Right;
+			}
+			
 		}
 	}
 
