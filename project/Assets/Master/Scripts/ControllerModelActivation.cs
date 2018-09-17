@@ -25,8 +25,13 @@ public class ControllerModelActivation : MonoBehaviour {
 
 	void Awake() {
 		instance = this;
+        rightLeapController.SetActive(true);
 	}
 
+    //Get controller models
+    public GameObject getRightController(){
+        return rightLeapController;
+    }
 
 	//set the controller models active
 	public void ActivateControllers() {

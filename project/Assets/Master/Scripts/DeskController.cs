@@ -25,7 +25,13 @@ public class DeskController : MonoBehaviour {
 	public Text boardText;
 	public RawImage boardImage;
 
-	public float hideCopyPasteTimestamp;
+    public Calibrator calibrator;
+    public SteamVR_TrackedController controller;
+
+    public ControllerModelActivation controllerModels;
+    public GameObject rightControllerModel;
+
+    public float hideCopyPasteTimestamp;
 
 	void Awake() {
 		instance = this;
@@ -44,6 +50,9 @@ public class DeskController : MonoBehaviour {
 		boardImage.texture = null;
 		boardImage.gameObject.SetActive(false);
 
+        controller = calibrator.getCalibrationController();
+        rightControllerModel = controllerModels.getRightController();
+
 		//Turn on in the beginning
 		toggleDesktop();
 	}
@@ -61,9 +70,12 @@ public class DeskController : MonoBehaviour {
 
 		foreach(Leap.Unity.RiggedHand hand in HandManager.instance.hands) {
 			if(hand.isActiveAndEnabled) {
-				castFinger(hand); //Checks if the hand is pointing towards the monitor
+				//castFinger(hand); //Checks if the hand is pointing towards the monitor
 			}
 		}
+
+        //castController(controller); //Check if the controller is pointing toward the monitor
+        castController(rightControllerModel);
 
 		//Manages the copyPasteCube being shown when a whiteboard is nearby
 		if(hideCopyPasteTimestamp > Time.time) {
@@ -95,6 +107,24 @@ public class DeskController : MonoBehaviour {
 			desk.CheckRaycast(hand.fingers[1].bones[3].position, forwardVect * -100f);
 		}
 	}
+
+    //Check if a controller is pointing towards a desktop (using calibration controllers)
+    public void castController(SteamVR_TrackedController controller){
+        foreach (VdmDesktop desk in desktops){
+            Vector3 forwardVect = controller.transform.eulerAngles;
+            Vector3 position = controller.transform.position;
+            desk.CheckRaycast(position, forwardVect);
+        }
+    }
+
+    //Check if a controller is pointing towards a desktop (using controller models);
+    public void castController(GameObject obj){
+        foreach (VdmDesktop desk in desktops){
+            Vector3 forwardVect = obj.transform.eulerAngles;
+            Vector3 position = obj.transform.position;
+            desk.CheckRaycast(position, forwardVect);
+        }
+    }
 
 	//Method for clipboard listener
 	//Called every time the clipboard changes
