@@ -187,7 +187,7 @@ public class DeskManager : MonoBehaviour {
 		instructionDisplay.SetActive(true);
 		foreach(Transform t in calibrator.getChairController().transform) {
 			t.gameObject.SetActive(true);
-			ControllerModelActivation.instance.DeactivateControllers();
+			//ControllerModelActivation.instance.DeactivateControllers();
 		}
 		//isTracking = true;
 		currentState = DeskState.Placing; //Changes desk state

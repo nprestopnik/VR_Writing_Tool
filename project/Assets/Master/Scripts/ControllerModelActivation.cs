@@ -22,10 +22,15 @@ public class ControllerModelActivation : MonoBehaviour {
 	//these are unparented from the leap controllers at runtime, and have to be set inactive separately
 	//they can be found within the hierarchy of the leap controllers before entering play mode
 
+	private HandManager handManager;
 
 	void Awake() {
 		instance = this;
         rightLeapController.SetActive(true);
+	}
+
+	void Update(){
+		//Debug.Log(rightLeapController.transform.localPosition);
 	}
 
     //Get controller models
@@ -54,6 +59,13 @@ public class ControllerModelActivation : MonoBehaviour {
 
 		foreach(GameObject g in leapControllerColliders) {
 			g.SetActive(false);
+		}
+	}
+
+	//Make hands invisible if they are grabbing a controller
+	public void DeactivateHandController(){
+		foreach(Leap.Unity.RiggedHand hand in handManager.hands){
+			
 		}
 	}
 	

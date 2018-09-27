@@ -25,10 +25,8 @@ public class DeskController : MonoBehaviour {
 	public Text boardText;
 	public RawImage boardImage;
 
-    public Calibrator calibrator;
     public SteamVR_TrackedController controller;
 
-    public ControllerModelActivation controllerModels;
     public GameObject rightControllerModel;
 
     public float hideCopyPasteTimestamp;
@@ -50,16 +48,12 @@ public class DeskController : MonoBehaviour {
 		boardImage.texture = null;
 		boardImage.gameObject.SetActive(false);
 
-        controller = calibrator.getCalibrationController();
-        rightControllerModel = controllerModels.getRightController();
-
 		//Turn on in the beginning
 		toggleDesktop();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 		foreach(VdmDesktop desk in desktops) {
 			if(desk != null) {
 				if(desk.Visible()) {
@@ -104,6 +98,7 @@ public class DeskController : MonoBehaviour {
 	public void castFinger(Leap.Unity.RiggedHand hand) {
 		foreach(VdmDesktop desk in desktops) {
 			Vector3 forwardVect = hand.Handedness == Leap.Unity.Chirality.Left ? hand.fingers[1].bones[3].right : hand.fingers[1].bones[3].right * -1f;
+			Debug.Log(forwardVect);
 			desk.CheckRaycast(hand.fingers[1].bones[3].position, forwardVect * -100f);
 		}
 	}
@@ -111,7 +106,7 @@ public class DeskController : MonoBehaviour {
     //Check if a controller is pointing towards a desktop (using calibration controllers)
     public void castController(SteamVR_TrackedController controller){
         foreach (VdmDesktop desk in desktops){
-            Vector3 forwardVect = controller.transform.eulerAngles;
+            Vector3 forwardVect = new Vector3(controller.transform.rotation.x, controller.transform.rotation.y, controller.transform.rotation.z);
             Vector3 position = controller.transform.position;
             desk.CheckRaycast(position, forwardVect);
         }
@@ -120,7 +115,8 @@ public class DeskController : MonoBehaviour {
     //Check if a controller is pointing towards a desktop (using controller models);
     public void castController(GameObject obj){
         foreach (VdmDesktop desk in desktops){
-            Vector3 forwardVect = obj.transform.eulerAngles;
+			//Vector3 forwardVect = obj.transform.eulerAngles;
+            Vector3 forwardVect = new Vector3(obj.transform.localRotation.x, obj.transform.localRotation.y, obj.transform.localRotation.z);
             Vector3 position = obj.transform.position;
             desk.CheckRaycast(position, forwardVect);
         }

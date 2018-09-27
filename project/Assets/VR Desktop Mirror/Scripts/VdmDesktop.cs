@@ -149,12 +149,15 @@ public class VdmDesktop : MonoBehaviour
 
             foreach (RaycastHit rcast in rcasts)
             {
-                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 1f) {
+                if (rcast.collider.gameObject != this.gameObject || rcast.distance > 10f) {
                     continue;
                 } else {
+                    Debug.Log("Is Mousing");
                     isMousing = true; 
                 }
-                    
+
+                //For Debugging
+                m_manager.ShowLine = true;  
                 if (m_manager.ShowLine)
                 {
                     m_line.enabled = true;
