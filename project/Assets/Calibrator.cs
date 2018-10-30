@@ -59,8 +59,14 @@ public class Calibrator : MonoBehaviour {
 		rightController.Gripped += gripsClicked;
 		
 	}
+
+	void Update() {
+		if(calibrationPanel.gameObject.activeInHierarchy) {
+			calibrateUpdate();
+		}
+	}
 	
-	void Update () {
+	void calibrateUpdate () {
 		//Turns all panels off at the beginning of the frame (Inefficient? Probably)
 		foreach(GameObject g in stagePanels) {
 			g.SetActive(false);
