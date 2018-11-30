@@ -30,26 +30,26 @@ public class ControllerModelActivation : MonoBehaviour {
 
 	//set the controller models active
 	public void ActivateControllers() {
-		leftControllerModel.SetActive(true);
-		rightControllerModel.SetActive(true);
-		leftLeapController.SetActive(true);
-		rightLeapController.SetActive(true);
+		// leftControllerModel.SetActive(true);
+		// rightControllerModel.SetActive(true);
+		// leftLeapController.SetActive(true);
+		// rightLeapController.SetActive(true);
 
-		foreach(GameObject g in leapControllerColliders) {
-			g.SetActive(true);
-		}
+		// foreach(GameObject g in leapControllerColliders) {
+		// 	g.SetActive(true);
+		// }
 	}
 
 	//set the controller models inactive
 	public void DeactivateControllers() {
-		leftControllerModel.SetActive(false);
-		rightControllerModel.SetActive(false);
-		leftLeapController.SetActive(false);
-		rightLeapController.SetActive(false);
+		// leftControllerModel.SetActive(false);
+		// rightControllerModel.SetActive(false);
+		// leftLeapController.SetActive(false);
+		// rightLeapController.SetActive(false);
 
-		foreach(GameObject g in leapControllerColliders) {
-			g.SetActive(false);
-		}
+		// foreach(GameObject g in leapControllerColliders) {
+		// 	g.SetActive(false);
+		// }
 	}
 	
 }
