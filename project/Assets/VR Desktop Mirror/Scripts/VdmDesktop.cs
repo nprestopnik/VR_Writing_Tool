@@ -180,7 +180,7 @@ public class VdmDesktop : MonoBehaviour
                 int iX = (int)x;
                 int iY = (int)y;
 
-                m_manager.SetCursorPos(iX, iY);
+                //m_manager.SetCursorPos(iX, iY);
             }
         }
     }
